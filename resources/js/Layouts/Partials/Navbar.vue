@@ -315,10 +315,10 @@
 
                 <div  v-if="navOpen"
                     style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-                    class="fixed inset-0 bottom-0 left-0 z-[500] w-10/12 overflow-auto origin-left transform shadow-lg bg-findDark-50 dark:bg-findDark-900 custom-scrollbar lg:hidden">
+                    class="fixed inset-0 bottom-0 left-0 z-[500] w-10/12 overflow-auto origin-left transform shadow-lg bg-findDark-200 dark:bg-findDark-900 custom-scrollbar lg:hidden">
 
                     <div
-                        class="sticky top-0 z-20 flex justify-between h-24 p-2 border-b border-gray-700 bg-findDark-50 dark:bg-findDark-900 dark:border-gray-300 ">
+                        class="sticky top-0 z-20 flex justify-between h-24 p-2 border-b border-gray-700 bg-findDark-200 dark:bg-findDark-900 dark:border-gray-300 ">
 
                         <div class="flex p-3 mx-1 ">
 
@@ -410,7 +410,12 @@
                                                 <button @click="toggleAccordion(category.id)"
                                                     class="flex items-center justify-between w-full px-3 py-2 mt-1 text-lg text-left text-gray-800 rounded-md font-bega-medium dark:text-gray-50 hover:dark:text-white hover:bg-findDark-200 dark:hover:bg-findDark-600 focus:dark:text-white focus:text-white focus:bg-amber-600">
                                                     <span class="flex gap-2 ml-3">
-                                                     <SvgIcon :illustration="category.illustration" fillColor="#FFF" />
+                                                        <template v-if="!isDark">
+                                                     <SvgIcon :illustration="category.illustration" fillColor="#000" />
+                                                     </template>
+                                                      <template v-else>
+                                                         <SvgIcon :illustration="category.illustration" fillColor="#FFF" />
+                                                         </template>
                                                     <span class="ml-3">{{ category.name }}</span>
                                                     </span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" :class="{ 'rotate-180': expandedItems.includes(category.id), 'rotate-0': !expandedItems.includes(category.id) }"

@@ -633,28 +633,28 @@ for (let index = 1999; index < year ; index++) {
 
 
                         <div class="block mb-2 rounded-lg dark:bg-gray-800 dark:p-3 lg:hidden">
-                            <div class="mb-1 text-xs font-bold leading-tight tracking-wide uppercase text-dark"
+                            <div class="mb-1 text-xs font-bold leading-tight tracking-wide text-gray-700 uppercase dark:text-gray-200"
                                 v-text="`Etape: ${step} of 5`"></div>
 
                             <div class="flex-1">
                                 <div v-show="step === 1">
-                                    <div class="text-lg font-bold leading-tight text-dark">Compentences
+                                    <div class="text-lg font-bold leading-tight text-gray-700 dark:text-gray-200">Compentences
                                     </div>
                                 </div>
                                 <div v-show="step === 2">
-                                    <div class="text-lg font-bold leading-tight text-dark">Informations Personnelles
+                                    <div class="text-lg font-bold leading-tight text-gray-700 dark:text-gray-200">Informations Personnelles
                                     </div>
                                 </div>
                                 <div v-show="step === 3">
-                                    <div class="text-lg font-bold leading-tight text-dark">Formations</div>
+                                    <div class="text-lg font-bold leading-tight text-gray-700 dark:text-gray-200">Formations</div>
                                 </div>
 
                                 <div v-show="step === 4">
-                                    <div class="text-lg font-bold leading-tight text-dark">Comptes lies</div>
+                                    <div class="text-lg font-bold leading-tight text-gray-700 dark:text-gray-200">Comptes lies</div>
                                 </div>
 
                                 <div v-show="step === 5">
-                                    <div class="text-lg font-bold leading-tight text-dark">Securite Du compte
+                                    <div class="text-lg font-bold leading-tight text-gray-700 dark:text-gray-200">Securite Du compte
                                     </div>
                                 </div>
                             </div>
@@ -666,7 +666,7 @@ for (let index = 1999; index < year ; index++) {
                                 <div class="h-2 text-xs leading-none text-center text-white bg-green-500 rounded-full"
                                     :style="'width: ' + parseInt(step / 5 * 100) + '%'"></div>
                             </div>
-                            <div class="w-10 text-xs text-dark" v-text="parseInt(step / 5* 100) +'%'">
+                            <div class="w-10 text-xs text-gray-700 dark:text-gray-200" v-text="parseInt(step / 5* 100) +'%'">
                             </div>
                         </div>
                     </div>
@@ -1662,7 +1662,7 @@ for (let index = 1999; index < year ; index++) {
                                         <div class="grid gap-2 mb-4 lg:grid-cols-3">
                                                 <div>
                                                      <MazSelect
-                                                label="Select color"
+                                                label="comptes"
                                                 v-model="selectedComptes.compte"
                                                 :options="comptesSelector"
                                                 v-slot="{ option, isSelected }"
@@ -1878,7 +1878,7 @@ for (let index = 1999; index < year ; index++) {
                         Continuer
                     </button>
 
-                    <button :class="{ 'opacity-25': registerLoad }" :disabled="registerLoad" v-if="$page.props.auth.user.email_verified_at == null" v-show="step == 5" @click="register()"
+                    <button :class="{ 'opacity-25': registerLoad }" :disabled="registerLoad" v-if="$page.props.auth.user.email_verified_at !== null" v-show="step == 5" @click="register()"
                         class="middle none center rounded-lg bg-green-600 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         data-ripple-light="true">
                         S'inscrire
@@ -1904,7 +1904,7 @@ for (let index = 1999; index < year ; index++) {
 
 
   <Dialog v-model:visible="verifier" position="bottom" header="VERIFICATION"
-        :style="{ width: '50rem' }"
+        :style="{ width: '30rem' }"
         :position="'center'"
         :modal="true"
         :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
