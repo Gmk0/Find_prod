@@ -1,0 +1,64 @@
+{
+    "id": "dashboard",
+    "route": "/freelance-gestion",
+    "colors": [
+        "",
+        ""
+    ],
+    "alwaysShow": true,
+    "visible": true,
+    "uncloseable": true,
+    "ignoreRoutes": false,
+    "disableEvents": true,
+    "nextButtonLabel": "Next",
+    "previousButtonLabel": "Previous",
+    "doneButtonLabel": "Done",
+    "steps": [
+        {
+            "title": "Woaw ! First Step !",
+            "description": "Yeah ! And I'm from a json file !",
+            "uncloseable": false,
+            "events": {
+                "clickOnNext": "body",
+                "notifyOnNext": {
+                    "title": "Hello World !",
+                    "body": "Woaw ! I'm from a Json file !",
+                    "color": "success"
+                },
+                "redirectOnNext": {
+                    "url": "https://filamentphp.com",
+                    "newTab": true
+                },
+                "dispatchOnNext": [
+                    "open-modal",
+                    {
+                        "id": "edit-user"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "An other one !",
+            "description": "Yeah ! And I'm from the same json file !",
+            "uncloseable": false,
+            "events": {
+                "clickOnNext": "body",
+                "notifyOnNext": {
+                    "title": "Hello World !",
+                    "body": "Woaw ! I'm from a Json file !",
+                    "color": "success"
+                },
+                "redirectOnNext": {
+                    "url": "https://filamentphp.com",
+                    "newTab": true
+                },
+                "dispatchOnNext": [
+                    "open-modal",
+                    {
+                        "id": "edit-user"
+                    }
+                ]
+            }
+        }
+    ]
+}

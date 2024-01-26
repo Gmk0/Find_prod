@@ -1,0 +1,225 @@
+@import 'responsive.css';
+
+
+
+@import 'primeicons/primeicons.css';
+
+@import 'new.css';
+
+
+.dark .swal2-popup.swal2-toast{
+    @apply !bg-gray-900 !text-gray-100;
+
+}
+
+  .dark #siteNav>li ul.dropdown li a {
+        @apply !bg-gray-900 !text-gray-100;
+    }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "bega";
+    src: url("../../public/fonts/bega/Bega-Black-BF63c8a6be73dc2.otf");
+}
+@font-face {
+    font-family: "bega-bold";
+    src: url("../../public/fonts/bega/Bega-Bold-BF63c8a6bb34694.otf");
+}
+@font-face {
+    font-family: "bega-medium";
+    src: url("../../public/fonts/bega/Bega-Medium-BF63c8a6bded0de.otf");
+}
+
+@font-face {
+    font-family: "bega-light";
+    src: url("../../public/fonts/bega/Bega-Light-BF63c8a6bd51e41.otf");
+}
+@font-face {
+    font-family: "bega-semibold";
+    src: url("../../public/fonts/bega/Bega-Semibold-BF63c8a6bb35edc.otf");
+}
+
+.loader-dots div {
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.border-slate-150 {
+     --tw-border-opacity: 1;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity));
+
+}
+
+.loader-dots div:nth-child(1) {
+    left: 8px;
+    animation: loader-dots1 0.6s infinite;
+}
+
+.loader-dots div:nth-child(2) {
+    left: 8px;
+    animation: loader-dots2 0.6s infinite;
+}
+
+.loader-dots div:nth-child(3) {
+    left: 32px;
+    animation: loader-dots2 0.6s infinite;
+}
+
+.loader-dots div:nth-child(4) {
+    left: 56px;
+    animation: loader-dots3 0.6s infinite;
+}
+
+@keyframes loader-dots1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes loader-dots3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes loader-dots2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(24px, 0);
+    }
+}
+
+#inertia-progress {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 20px;
+    z-index: 9999;
+}
+
+@layer primevue;
+
+@layer base {
+    :root {
+        --color-text-base: 255, 255, 255;
+        --color-text-muted: 199, 210, 254;
+        --color-text-inverted: 241, 127, 52;
+        --color-fill: 244, 117, 33;
+
+        --color-button-accent: 255, 255, 255;
+        --color-button-accent-hover: 238, 242, 255;
+        --color-button-muted: var(--color-fill);
+    }
+}
+
+.floating {
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+
+
+
+
+
+
+.m-input-wrapper-input .m-input-input{
+    @apply !border-gray-900
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 8px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
+}
+
+.floating-4 {
+    animation-name: floating;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating-4 {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(0, 8px);
+    }
+
+    100% {
+        transform: translate(0, -0px);
+    }
+}
+
+.bg {
+    @apply !bg-gray-900
+}
+.m-input-wrapper-right{
+    @apply !border-none
+
+}
+.m-input-wrapper:focus{
+    @apply !border-none
+}
+
+.gradient {
+    background: linear-gradient(100deg, #FF9E5E 10%, rgb(69, 67, 67) 100%);
+}
+
+.gradient2 {
+    background: linear-gradient(80deg, #fd8b3f 20%, rgb(47, 46, 46) 100%);
+}
+
+@supports selector(::-webkit-scrollbar) {
+    .scrollbar-sm::-webkit-scrollbar {
+        height: .375rem;
+        width: .375rem
+    }
+
+    .scrollbar-sm:hover::-webkit-scrollbar-thumb,
+    .scrollbar-sm:focus-within::-webkit-scrollbar-thumb {
+        border-radius: 9999px;
+        background-color: #cbd5e1cc
+    }
+
+    :is(.dark .scrollbar-sm:hover)::-webkit-scrollbar-thumb,
+    :is(.dark .scrollbar-sm:focus-within)::-webkit-scrollbar-thumb {
+        background-color: #5c6b8a
+    }
+
+    .scrollbar-sm::-webkit-scrollbar-thumb:hover {
+        background-color: #94a3b8
+    }
+
+    :is(.dark .scrollbar-sm)::-webkit-scrollbar-thumb:hover {
+        background-color: #697a9b
+    }
+}
