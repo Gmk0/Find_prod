@@ -16,7 +16,7 @@ const layoutStore = useLayoutStore();
 
 
 
-        <div class="relative flex w-full bg-white header-container dark:bg-gray-900 print:hidden">
+        <div class="relative flex w-full bg-white header-container dark:bg-findDark-900 print:hidden">
             <!-- Header Items -->
             <div class="flex items-center justify-between w-full">
                 <!-- Left: Sidebar Toggle Button -->

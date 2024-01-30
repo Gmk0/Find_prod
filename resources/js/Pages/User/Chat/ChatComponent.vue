@@ -21,7 +21,7 @@ defineOptions({
 
 
 const props=defineProps({
-    conversations:Array,
+    conversations:Object,
     messages:Array,
     chat:Object,
     user:Object,

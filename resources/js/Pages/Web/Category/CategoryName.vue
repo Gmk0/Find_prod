@@ -71,7 +71,22 @@
                                 </div>
                                 <div class="flex gap-2 lg:hidden ">
                                     <div>
-                                             <Dropdown v-model="form.orderBy" optionValue="code" :options="trieElement" showClear optionLabel="name" placeholder="Trier par" size="small" class="w-full md:w-14rem" />
+                                        <div class="relative flex">
+                                        <MazSelect
+                                        v-model="form.orderBy"
+                                        label="Trier par"
+                                        option-value-key="code"
+                                        option-label-key="name"
+                                        option-input-value-key="name"
+                                        :options="trieElement"
+                                        />
+                                        <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-7 p-1 text-white z-[100]  rounded top-[20%] ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                        </button>
+                                    </div>
+
 
                                     </div>
                                 </div>
@@ -128,19 +143,23 @@
 
                                             <div aria-hidden="true" class="flex flex-col justify-between gap-4 px-1">
                                                   <span class="mb-4 text-base dark:text-gray-100"> Prix Service</span>
-                                                <div class="flex justify-between gap-4 p-2 border">
-                                                     <MazInputNumber  v-model="form.priceMin" :no-buttons="true"   />
-                                                      <MazInputNumber
-                                                        v-model="form.price"
-                                                        placeholder="Prix"
-                                                        :no-buttons="true"
-                                                        :min="5"
-                                                        :max="10000"
-                                                        style="width: 200px;"
 
-                                                    />
+                                                 <div class="flex justify-between gap-4 p-2 border rounded-md">
+                                                             <MazInputNumber
+                                                              v-model="form.priceMin"
+                                                                placeholder="min"
+                                                             :no-buttons="true"   />
+                                                              <MazInputNumber
+                                                                v-model="form.price"
+                                                                placeholder="max"
+                                                                :no-buttons="true"
+                                                                :min="5"
+                                                                :max="10000"
+                                                                style="width: 200px;"
 
-                                                </div>
+                                                            />
+
+                                                        </div>
                                             </div>
 
                                              <button v-if="form.price !=null " @click="clearPrice()" class="p-2 text-gray-800 bg-gray-200 rounded-md">
@@ -168,9 +187,24 @@
                                             </svg>
                                         </button>
 
-                                        <Collapse :when="showCategoryFilter">
+                                        <Collapse :when="showCategoryFilter" class="m-2">
+                                               <div class="relative flex">
+                                                            <MazSelect
+                                                            v-model="form.level"
+                                                            label="Choisir un niveau"
+                                                            option-value-key="code"
+                                                            option-label-key="name"
+                                                            option-input-value-key="name"
+                                                            :options="cities"
+                                                            />
+                                                            <button v-if="form.level" @click="form.level = null" class="absolute right-9 p-1 text-white z-[100]  rounded top-[20%]">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                            </svg>
+                                                            </button>
+                                                        </div>
 
-                                             <Dropdown v-model="form.level" optionValue="code" :options="cities" showClear optionLabel="name" placeholder="Choisir un niveau" class="w-full md:w-14rem" />
+
                                         </Collapse>
 
                                         <div
@@ -189,14 +223,24 @@
                                                         d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
                                                 </svg>
                                             </button>
-                                            <Collapse :when="showDeliveryFilter">
+                                            <Collapse :when="showDeliveryFilter" class="m-2">
+                                                <div class="relative flex">
+                                                            <MazSelect
+                                                            v-model="form.deliveryTime"
+                                                            label="Choisir un le temps"
+                                                            option-value-key="code"
+                                                            option-label-key="name"
+                                                            option-input-value-key="name"
+                                                            :options="deliveryTime"
+                                                            />
+                                                            <button v-if="form.deliveryTime" @click="form.deliveryTime = null" class="absolute right-9 p-1 text-white z-[100]  rounded top-[20%]">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                            </svg>
+                                                            </button>
+                                                        </div>
 
-                                                <div class="m-2">
 
-                                                     <Dropdown v-model="form.deliveryTime" :options="deliveryTime" showClear optionLabel="name" optionValue="code" placeholder="Choisir un le temps" class="w-full md:w-14rem" />
-
-
-                                                </div>
 
 
 
@@ -266,22 +310,28 @@
                            <div class="col-span-12 pt-8 lg:col-span-9">
 
                             <div class="flex-row-reverse justify-between hidden px-4 py-4 lg:flex">
-                                <!--
 
-                                <div class="flex gap-4 p-2 mb-4 rounded">
-
-                                    <span class="text-sm text-amber-600">Filtres appliqués : {{ $count }}</span>
-
-
-                                    <x-button.circle icon="x" wire:click='resetAll' />
-                                </div>
-                                -->
 
 
 
                                 <div class=" lg:block">
+                                    <div class="relative flex">
+                                            <MazSelect
+                                            v-model="form.orderBy"
+                                            label="Trier par"
+                                            option-value-key="code"
+                                            option-label-key="name"
+                                            option-input-value-key="name"
+                                            :options="trieElement"
+                                            />
+                                            <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-7 p-1 text-white z-[100]  rounded top-[20%] ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                            </button>
+                                        </div>
 
-                                        <Dropdown v-model="form.orderBy" optionValue="code" :options="trieElement" showClear optionLabel="name" placeholder="Trier par" size="small" class="w-full md:w-14rem" />
+
 
                                 </div>
                                 <div class=" lg:block">
@@ -387,13 +437,12 @@ import {  ref, watch } from 'vue';
 import { Collapse } from 'vue-collapsed'
 import pickBy from 'lodash/pickBy';
 import throttle from 'lodash/throttle';
-import TextInput from '@/Components/TextInput.vue';
+
 
 import ServiceCard from '@/Components/ServiceCard.vue';
 
 
-import Dropdown from 'primevue/dropdown';
-//import Slider from 'primevue/slider';
+
 
 
 

@@ -146,29 +146,26 @@ const submit = () => {
                                     <div class="flex-auto p-6">
                                         <form role="form" @submit.prevent="submit">
                                                             <div>
-                                                <InputLabel for="email" value="Email" />
-                                                <TextInput
-                                                    id="email"
-                                                    v-model="form.email"
-                                                    type="email"
-                                                    class="block w-full mt-1"
-                                                    required
-                                                    autofocus
-                                                    autocomplete="username"
-                                                />
+
+
+                                                 <MazInput
+                                                label="email"
+                                                type="email"
+                                                v-model="form.email"
+                                                 />
+
                                                 <InputError class="mt-2" :message="form.errors.email" />
                                             </div>
 
                                              <div class="mt-4">
-                                                <InputLabel for="password" value="Password" />
-                                                <TextInput
-                                                    id="password"
-                                                    v-model="form.password"
-                                                    type="password"
-                                                    class="block w-full mt-1"
-                                                    required
-                                                    autocomplete="current-password"
+
+                                                <MazInput
+                                                label="Mot de passe"
+                                                type="password"
+                                                v-model="form.password"
+                                                required
                                                 />
+
                                                 <InputError class="mt-2" :message="form.errors.password" />
                                             </div>
 

@@ -8,7 +8,7 @@ const layoutStore = useLayoutStore();
 
 const page=usePage();
 const props =defineProps({
-    Conversations : Array,
+    Conversations : Object,
 })
 
 
@@ -92,10 +92,10 @@ window.Echo.private(`chat.${page.props.auth.user.id}`)
                     </div>
 
                     <div class="flex px-4 pt-4">
-                        <label class="relative mr-1.5 flex">
-                            <input wire:model="query"
-                                class="form-input peer h-8 w-full rounded-lg bg-slate-150 px-3 py-2 pl-9 text-xs+ ring-primary/50 placeholder:text-slate-400 hover:bg-slate-200 focus:ring dark:bg-navy-900/90 dark:ring-accent/50 dark:placeholder:text-navy-300 dark:hover:bg-navy-900 dark:focus:bg-navy-900"
-                                placeholder="Search chats" type="text" />
+                        <label class="relative hidden mr-1.5 flex">
+                            <input
+                                class="form-input peer h-8 w-full rounded-lg bg-slate-150 px-3 py-2 pl-9 text-xs+  placeholder:text-slate-400 hover:bg-slate-200 focus:ring dark:bg-navy-900/90  dark:placeholder:text-navy-300 dark:hover:bg-navy-900 dark:focus:bg-navy-900"
+                                placeholder="Recherche" type="text" />
                             <span
                                 class="absolute flex items-center justify-center w-10 h-full pointer-events-none text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-colors duration-200"
@@ -124,11 +124,11 @@ window.Echo.private(`chat.${page.props.auth.user.id}`)
 
                         <div v-for="freelance in props.Conversations.data"
                             class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
-                            <div class="w-10 h-10 avatar">
+                            <div class="relative w-12 h-12">
 
-                                <Photo :user="freelance.freelanceUser" />
+                                <Photo :user="freelance.freelanceUser" taille="12" />
                                 <div
-                                    class="absolute right-0 w-3 h-3 border-2 border-white rounded-full dark:border-navy-700">
+                                    class="absolute right-0 w-3 h-3 border-2 border-white rounded-full -top-1 dark:border-navy-700">
                                 </div>
 
 
@@ -253,9 +253,9 @@ window.Echo.private(`chat.${page.props.auth.user.id}`)
 
                             <button @click="selectConversation(freelance.id)"
                                 class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
-                                <div class="w-10 h-10 avatar" v-tooltip.right="freelance.freelanceUser.name">
+                                <div class=" avatar" v-tooltip.right="freelance.freelanceUser.name">
 
-                                      <Photo :user="freelance.freelanceUser" />
+                                      <Photo :user="freelance.freelanceUser" taille="10" />
 
                                 </div>
                             </button>

@@ -21,8 +21,8 @@
             <form @submit.prevent="sendFeedback()" class="flex flex-col-reverse gap-6 mb-8 lg:grid lg:gap-2 lg:grid-cols-2 lg:mb-4">
                 <div class="flex flex-col gap-4">
 
-                     <TextInput
-                        id="nom"
+                     <MazInput
+                        label="nom"
 
                         type="text"
                         placeholder="Nom"
@@ -30,8 +30,8 @@
                         v-model="form.name"
                         disabled
                         required />
-                        <TextInput
-                            id="nom"
+                        <MazInput
+                            label="nom"
                             v-model="form.email"
                             type="text"
                             placeholder="Email"
@@ -42,13 +42,13 @@
 
 
                     <div class="col-span-2">
-                        <textarea
-                        v-model="form.message"
-                        name="message"
-                        required
-                        class="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                        placeholder="Message">
-                    </textarea>
+                          <MazTextarea
+                            v-model="form.message"
+                            name="Message"
+                            id="comment"
+                            label="Message"
+      />
+
 
                     </div>
                     <div v-if="$page.props.auth.user">

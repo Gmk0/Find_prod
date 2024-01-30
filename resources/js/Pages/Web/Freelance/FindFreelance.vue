@@ -173,7 +173,7 @@ defineOptions({
                     <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                     </svg>
-                    Acceuil
+                    Accueil
                 </Link>
                 </li>
 
@@ -199,7 +199,7 @@ defineOptions({
 
                         <MazInput v-model="form.search"
                         placeholder="recherche"
-                                            right-iconicon='magnifying-glass' />
+                                            right-icon='magnifying-glass' />
                     </div>
                     <div class="sticky top-0 flex flex-row justify-between gap-2 px-4 lg:col-span-3">
 
@@ -222,12 +222,23 @@ defineOptions({
 
 
                                     <div class="block">
+                                         <div class="relative flex">
+                                                <MazSelect
+                                                v-model="form.orderBy"
+                                                label="Trier par"
+                                                option-value-key="code"
+                                                option-label-key="name"
+                                                option-input-value-key="name"
+                                                :options="trieElement"
+                                                />
+                                                <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-7 p-1 text-white z-[100]  rounded top-[20%] ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                </svg>
+                                                </button>
+                                            </div>
 
-                                          <Dropdown v-model="form.orderBy" optionValue="code"
-                                          :options="trieElement" showClear
-                                            optionLabel="name"
-                                           placeholder="Trier par" size="small"
-                                          class="" />
+
 
 
                                     </div>
@@ -272,14 +283,25 @@ defineOptions({
                                                 d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
                                         </svg>
                                     </button>
-                                     <Collapse :when="showCategoryFilter" class="overflow-hidden leading-normal">
+                                     <Collapse :when="showCategoryFilter" class="m-1 leading-normal">
 
-                                        <div class="m-2">
 
-                                              <Dropdown v-model="form.category" :options="categories" optionValue="id" optionLabel="name" placeholder="Votre categorie" showClear
-                                                 class="w-full border border-gray-300 md:w-12rem"/>
 
-                                        </div>
+                                            <div class="relative flex">
+                                                                <MazSelect
+                                                                v-model="form.category"
+                                                                label="Choisir une categorie"
+                                                                option-value-key="id"
+                                                                option-label-key="name"
+                                                                option-input-value-key="name"
+                                                                :options="categories"
+                                                                />
+                                                                <button v-if="form.category" @click="form.category = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                                </svg>
+                                                                </button>
+                                                            </div>
 
                                     </Collapse>
 
@@ -301,13 +323,28 @@ defineOptions({
                                                 d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
                                         </svg>
                                     </button>
-                                    <Collapse :when="Specialite" class="overflow-hidden leading-normal">
+                                    <Collapse :when="Specialite" class="m-2 leading-normal">
 
-                                        <div class="m-2">
-                                              <Dropdown v-model="form.sub_category" :options="subcategories" optionValue="id" optionLabel="name" placeholder="Votre sous categories" showClear
-                                                         class="w-full"/>
 
+                                         <div class="relative flex">
+                                            <MazSelect
+                                            v-model="form.sub_category"
+                                            label="Choisir  la specialite"
+                                            option-value-key="id"
+                                            option-label-key="name"
+                                            option-input-value-key="name"
+                                            :options="subcategories"
+                                            />
+                                            <button v-if="form.sub_category" @click="form.sub_category = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                            </button>
                                         </div>
+
+
+
+
 
 
                                       </Collapse>
@@ -330,18 +367,29 @@ defineOptions({
                                                 d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
                                         </svg>
                                     </button>
-                                    <Collapse :when="experience">
+                                    <Collapse :when="experience" class="m-2">
 
-                                     <div class="m-2">
-                                                  <Dropdown v-model="form.experience_annee"
-                                                  :options="experienceAnnee"
-                                                  optionValue="id"
-                                                  optionLabel="name"
-                                                  placeholder="Annee experience"
-                                                  showClear
-                                                    class=""/>
 
+
+                                         <div class="relative flex">
+                                                <MazSelect
+                                                v-model="form.experience_annee"
+                                                label="Année experience"
+                                                option-value-key="id"
+                                                option-label-key="name"
+                                                option-input-value-key="name"
+                                                :options="experienceAnnee"
+                                                />
+                                                <button v-if="form.experience_annee" @click="form.experience_annee = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                </svg>
+                                                </button>
                                             </div>
+
+
+
+
 
 
 
@@ -366,65 +414,29 @@ defineOptions({
                                                 d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
                                         </svg>
                                     </button>
-                                    <Collapse :when="showPriceFilter">
-
-
-                                        <div class="m-2">
-                                            <Dropdown v-model="form.price"
-                                            :options="tauxFiltres"
-                                             optionValue="id"
-                                              optionLabel="name"
-                                              placeholder="Le taux journalier"
-                                               showClear
-                                               class="" />
-
-                                        </div>
-
-
-                                                                 />
-
-
-                                    </Collapse>
-                                </div>
-
-
-
-                               <div class="relative py-3 mt-4 mb-4 border-gray-400 ">
-                                    <button @click="disponibilteFilter = !disponibilteFilter"
-                                        class="flex items-center justify-between w-full mb-2 font-bold text-gray-700 focus:outline-none">
-                                        <span class="text-base dark:text-gray-100">Disponibilte</span>
-                                        <svg v-show="!disponibilteFilter" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                d="M5.293 6.293a1 1 0 011.414 0L10 9.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" />
-                                        </svg>
-                                        <svg v-show="disponibilteFilter" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
-                                        </svg>
-                                    </button>
-                                    <Collapse :when="disponibilteFilter" class="">
-
-                                    <div class="m-2">
-
-                                        <div class="flex card justify-content-center">
-                                            <div class="flex flex-wrap gap-3">
-                                                <div class="flex align-items-center">
-                                                    <Checkbox v-model="form.disponible" value="En ligne" />
-                                                    <label for="ingredient1" class="ml-2 dark:text-white">En ligne </label>
+                                    <Collapse :when="showPriceFilter" class="m-2">
+                                          <div class="relative flex">
+                                                    <MazSelect
+                                                    v-model="form.price"
+                                                    label="Le taux journalier"
+                                                    option-value-key="id"
+                                                    option-label-key="name"
+                                                    option-input-value-key="name"
+                                                    :options="tauxFiltres"
+                                                    />
+                                                    <button v-if="form.price" @click="form.price = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                    </svg>
+                                                    </button>
                                                 </div>
 
-
-                                            </div>
-                                        </div>
-
-                                        </div>
                                     </Collapse>
                                 </div>
 
 
-                                <div class="relative py-3 mt-4 mb-4 border-t border-gray-400 ">
+
+                                <div class="relative py-3 mt-4 mb-4 border-gray-400 ">
                                     <button @click="niveauFilter = !niveauFilter"
                                         class="flex items-center justify-between w-full mb-2 font-bold text-gray-700 focus:outline-none">
                                         <span class="text-base dark:text-gray-100"> Niveau Freelannce</span>
@@ -439,15 +451,26 @@ defineOptions({
                                                 d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
                                         </svg>
                                     </button>
-                                    <Collapse :when="niveauFilter">
+                                    <Collapse :when="niveauFilter" class="m-2">
+
+                                          <div class="relative flex">
+                                                        <MazSelect
+                                                        v-model="form.level"
+                                                        label="Niveau sur la plateform"
+                                                        option-value-key="code"
+                                                        option-label-key="name"
+                                                        option-input-value-key="name"
+                                                        :options="niveauFiltre"
+                                                        />
+                                                        <button v-if="form.level" @click="form.level = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                        </button>
+                                                    </div>
 
 
 
-                                             <div class="m-2">
-                                                  <Dropdown v-model="form.level" :options="niveauFiltre" optionValue="code" optionLabel="name" placeholder="Disponibilite" showClear
-                                                    class="w-full border border-gray-300 md:w-12rem"/>
-
-                                                </div>
 
 
 
@@ -455,6 +478,40 @@ defineOptions({
 
                                     </Collapse>
                                 </div>
+                                  <div class="relative py-3 mt-4 mb-4 border-t border-gray-400 ">
+                                        <button @click="disponibilteFilter = !disponibilteFilter"
+                                            class="flex items-center justify-between w-full mb-2 font-bold text-gray-700 focus:outline-none">
+                                            <span class="text-base dark:text-gray-100">Disponibilte</span>
+                                            <svg v-show="!disponibilteFilter" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20">
+                                                <path
+                                                    d="M5.293 6.293a1 1 0 011.414 0L10 9.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" />
+                                            </svg>
+                                            <svg v-show="disponibilteFilter" class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20">
+                                                <path
+                                                    d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
+                                            </svg>
+                                        </button>
+                                        <Collapse :when="disponibilteFilter" class="">
+
+                                        <div class="m-2">
+
+                                            <div class="flex card justify-content-center">
+                                                <div class="flex flex-wrap gap-3">
+                                                    <div class="flex align-items-center">
+                                                        <Checkbox v-model="form.disponible" value="En ligne" />
+                                                        <label for="ingredient1" class="ml-2 dark:text-white">En ligne </label>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                        </Collapse>
+                                    </div>
+
 
 
 
@@ -476,12 +533,6 @@ defineOptions({
                                     <Collapse :when="localisationFilter">
                                         <div class="m-2">
 
-                                             <Dropdown v-model="form.level" :options="niveauFiltre"
-                                             optionValue="code"
-                                             optionLabel="name"
-                                             placeholder=""
-                                             showClear
-                                                      />
 
                                         </div>
 
@@ -489,16 +540,7 @@ defineOptions({
                                     </Collapse>
                                 </div>
 
-                                    <div class="hidden lg:flex"
-                                    v-if="form">
 
-
-                                    <Button size="small"
-                                    outlined
-                                    label="Effacer le filtre"
-                                     @click="clearFiltre()" />
-
-                                    </div>
 
                             </div>
                          </nav>

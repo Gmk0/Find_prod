@@ -4,14 +4,24 @@
 
 @import 'primeicons/primeicons.css';
 
+
 @import 'new.css';
 
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
+@import 'swiper/css/scrollbar';
+@import 'swiper/css/effect-cube';
+@import 'swiper/css/autoplay';
 
 .dark .swal2-popup.swal2-toast{
     @apply !bg-gray-900 !text-gray-100;
 
 }
 
+.m-input-wrapper-right{
+   @apply !border-none;
+}
   .dark #siteNav>li ul.dropdown li a {
         @apply !bg-gray-900 !text-gray-100;
     }

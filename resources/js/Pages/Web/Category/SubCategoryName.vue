@@ -11,7 +11,6 @@ import throttle from 'lodash/throttle';
 import ServiceCard from '@/Components/ServiceCard.vue';
 
 
-import Dropdown from 'primevue/dropdown';
 
 //import InputText from 'primevue/inputtext';
 
@@ -46,10 +45,10 @@ const showFiltre = ref(false);
 const sous_category = ref(null);
 
 const cities = ref([
-    { name: 'Nouveau 1', code: '1' },
-    { name: 'Nouveau 2', code: '2' },
-    { name: 'Nouveau 3', code: '3' },
-    { name: 'Nouveau 4', code: '4' },
+    { name: 'Niveau 1', code: '1' },
+    { name: 'Niveau 2', code: '2' },
+    { name: 'Niveau 3', code: '3' },
+    { name: 'Niveau 4', code: '4' },
 
 ]);
 
@@ -140,7 +139,7 @@ defineOptions({
                             <div class="flex items-center justify-center ">
                                 <h1 class="text-lg text-white font-bega-semibold lg:text-4xl">{{ props.subcategory.name }}</h1>
                             </div>
-                            <div class="flex">
+                            <div class="relative flex">
                                  <Link :href="route('createProject')"  class="relative items-center justify-center hidden h-10 px-4 mx-auto text-sm duration-300 rounded-md lg:flex bg-gray-50 before:absolute before:inset-0 before:transition hover:scale-105 active:duration-75 active:scale-95 sm:w-max">
 
                                     <span class="relative text-base font-semibold text-amber-600">Soumettre un projet</span>
@@ -220,8 +219,24 @@ defineOptions({
                                         </div>
                                     </div>
                                      <div class="block m-2 lg:hidden">
+                                                  <div class="relative flex">
+                                                        <MazSelect
+                                                        v-model="form.orderBy"
+                                                        label="Trier par"
+                                                        option-value-key="code"
+                                                        option-label-key="name"
+                                                        option-input-value-key="name"
+                                                        :options="trieElement"
+                                                        />
+                                                        <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-6 p-1 text-white z-[100]  rounded top-1/4">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                        </button>
+                                                    </div>
 
-                                      <Dropdown  v-model="form.orderBy" optionValue="code" :options="trieElement" showClear optionLabel="name" placeholder="Trier par" size="small" class="w-full !border-gray-500 border !h-[10/12] md:w-14rem" />
+
+
 
 
                                     </div>
@@ -304,11 +319,25 @@ defineOptions({
                                                 </svg>
                                             </button>
 
-                                            <Collapse :when="showCategoryFilter">
+                                            <Collapse :when="showCategoryFilter" class="m-2">
+                                                <div class="relative flex">
+                                                    <MazSelect
+                                                    v-model="form.level"
+                                                    label="Choisir un niveau"
+                                                    option-value-key="code"
+                                                    option-label-key="name"
+                                                    option-input-value-key="name"
+                                                    :options="cities"
+                                                    />
+                                                    <button v-if="form.level" @click="form.level=null" class="absolute right-9 p-1 text-white z-[100]  rounded top-[20%]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                    </svg>
+                                                    </button>
+                                                </div>
 
 
 
-                                                 <Dropdown   unstyled v-model="form.level" optionValue="code" :options="cities" showClear optionLabel="name" placeholder="Choisir un niveau" class="w-full !border-gray-500 border md:w-14rem" />
                                             </Collapse>
 
                                             <div
@@ -327,14 +356,23 @@ defineOptions({
                                                             d="M14.293 15.293a1 1 0 01-1.414 0L10 12.414l-2.293 2.293a1 1 0 01-1.414-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 010 1.414z" />
                                                     </svg>
                                                 </button>
-                                                <Collapse :when="showDeliveryFilter">
-
-                                                    <div class="m-2">
-
-                                                         <Dropdown v-model="form.deliveryTime" :options="deliveryTime" showClear optionLabel="name" optionValue="code" placeholder="Choisir un le temps" class="w-full !border-gray-500 border md:w-14rem" />
-
-
+                                                <Collapse :when="showDeliveryFilter" class="m-2">
+                                                     <div class="relative flex">
+                                                        <MazSelect
+                                                        v-model="form.deliveryTime"
+                                                        label="Choisir un le temps"
+                                                        option-value-key="code"
+                                                        option-label-key="name"
+                                                        option-input-value-key="name"
+                                                        :options="deliveryTime"
+                                                        />
+                                                        <button v-if="form.deliveryTime" @click="form.deliveryTime = null" class="absolute right-9 p-1 text-white z-[100]  rounded top-[20%]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                        </button>
                                                     </div>
+
 
 
 
@@ -410,7 +448,21 @@ defineOptions({
 
                                     <div class=" lg:block">
 
-                                            <Dropdown v-model="form.orderBy" optionValue="code" :options="trieElement" showClear optionLabel="name" placeholder="Trier par" size="small" class="w-full border md:w-14rem" />
+                                            <div class="relative flex">
+                                                            <MazSelect
+                                                            v-model="form.orderBy"
+                                                            label="Trier par"
+                                                            option-value-key="code"
+                                                            option-label-key="name"
+                                                            option-input-value-key="name"
+                                                            :options="trieElement"
+                                                            />
+                                                            <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-7 p-1 text-white z-[100]  rounded top-[20%] ">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                            </svg>
+                                                            </button>
+                                                        </div>
 
                                     </div>
                                     <div class=" lg:block">

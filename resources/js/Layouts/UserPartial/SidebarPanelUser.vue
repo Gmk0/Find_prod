@@ -123,7 +123,7 @@ const sidebarMenu = {
 
 <template>
     <div class="sidebar-panel">
-            <div class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-gray-900">
+            <div class="flex h-full grow flex-col bg-white pl-[var(--main-sidebar-width)] dark:bg-findDark-900">
                 <!-- Sidebar Panel Header -->
                 <div class="flex items-center justify-between w-full h-16 pl-4 pr-1">
                     <p class="text-base tracking-wider text-slate-800 dark:text-navy-100">

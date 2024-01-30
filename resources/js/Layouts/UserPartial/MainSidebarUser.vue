@@ -46,16 +46,16 @@ const toogleRightExpande = () => {
 </script>
 
 <template>
-    <div>
+
 
         <div class="main-sidebar ">
         <div
-            class="flex flex-col items-center w-full h-full border-r border-slate-200 dark:border-navy-700 ">
+            class="flex flex-col items-center w-full h-full bg-white border-r dark:bg-findDark-900 border-slate-200 dark:border-navy-700 ">
             <!-- Application Logo -->
             <div class="flex pt-4">
                 <Link :href="route('home')">
                     <img class="w-10 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
-                        src="/images/logo/find_01.png" alt="logo" />
+                        src="/images/logo/find_01.png" lazy alt="logo" />
                 </Link >
             </div>
 
@@ -313,7 +313,7 @@ const toogleRightExpande = () => {
     </div>
 
 
-    </div>
+
 </template>
 
 

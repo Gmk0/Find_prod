@@ -48,7 +48,7 @@ class Mission extends Model
      */
     protected $casts = [
         'id' => 'string',
-        'category_id' => 'integer',
+        'category_id' => 'string',
         'sub_category' => 'array',
         'files' => AsArrayObject::class,
         'budget' => 'decimal:2',

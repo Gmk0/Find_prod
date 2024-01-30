@@ -153,11 +153,6 @@
 
         </div>
 
-
-
-
-
-
         <div id="features" class="bg-gray-100 dark:bg-gray-800">
 
             <div data-aos="" class="z-10 px-8 py-8 overflow-hidden lg:max-w-6xl 2xl:max-w-7xl 2xl:px-2 lg:mx-auto md:px-6">
@@ -190,16 +185,16 @@
                             <h1 class="text-xl text-gray-500 font-bega-light">Nos partenaires</h1>
 
                         </div>
-                        <div class="grid grid-cols-2 gap-6 mx-6 mt-6 md:mx-0 px-auto md:gap-2 md:grid-cols-3 ">
+                        <div class="grid grid-cols-2 gap-4 mx-4 mt-6 md:mx-0 px-auto md:gap-2 md:grid-cols-3 ">
 
-                            <img src="/images/brand/influeworld.png" alt="influeworld"
-                                class="w-32 h-16 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:w-36 xl:py-auto xl:px-auto xl:h-20 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95 sm:w-36">
+                            <img src="/images/brand/influeworld.png" lazy alt="influeworld"
+                                class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
 
                               <img src="/images/brand/makutano.png" alt="makutano"
-                                    class="w-32 h-16 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-36 xl:h-20 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95 sm:w-36">
+                                    class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
 
                                 <img src="/images/brand/silikin.png" alt="silikin"
-                                    class="w-32 h-16 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-36 xl:h-20 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95 sm:w-36">
+                                    class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
 
                         </div>
 
@@ -490,7 +485,7 @@
                         <div class="p-2 mb-4 rounded-md shadow-md lg:flex-col">
                             <img class="object-cover object-center w-full h-48 bg-center bg-cover shrink-0"
                                 src="/images/illustrations/missionF.svg" alt="image" />
-                            <div class="flex flex-col w-full px-4 py-3 bg-white dark:bg-gray-900 font-bega-light grow sm:px-5">
+                            <div class="flex flex-col w-full px-4 py-3 bg-white dark:bg-findDark-800 font-bega-light grow sm:px-5">
                                 <div class="flex items-center justify-between">
                                     <a class="text-xs+ font-medium text-info" href="#">
                                         {{ mission.category.name }}</a>
@@ -510,7 +505,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <Link :href="route('freelance.missions.postuler', mission.mission_numero)"
+                                    <Link href=""
                                         class="text-lg font-bega-light text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
                                         {{ mission.title }}</Link>
                                 </div>
@@ -551,7 +546,7 @@
                                         <a href="#" class="flex items-center space-x-2 hover:text-slate-800 dark:hover:text-navy-100">
                                             <div class="w-6 h-6 avatar">
 
-                                                <Photo :user="mission.user" :taille="'16'" />
+                                                <Photo :user="mission.user" taille="18" />
 
                                             </div>
                                             <span class="line-clamp-1">{{ mission.user.name }}</span>
@@ -568,21 +563,13 @@
                                             <h1 class="text-lg font-bega-semibold text-amber-600">{{ mission.budget }} $</h1>
 
                                         </div>
-                                    <div v-if="mission.status == 'completed'">
-                                        <Button size="small" outlined severity="success" label="Mission terminer" />
-
-                                    </div>
-
-                                    <div v-else-if="mission.status == 'active'">
-                                           <Button size="small"
-                                           outlined severity="success"
-                                           label="Evolution" />
-
-                                    </div>
-                                    <div v-else-if="mission.status == 'pending' && $page.props.auth.user !=null"  class="flex gap-4 mt-4">
 
 
-                                               <Link :href="route('freelance.missions.postuler', mission.mission_numero)">
+
+                                    <div v-if="mission.status == 'pending' && $page.props.auth.freelance"  class="flex gap-4 mt-4">
+
+
+                                               <Link href="">
                                                  <Button  size="small"
                                                    outlined severity="info"
                                                    label="Postuler" />
@@ -590,6 +577,18 @@
 
 
                                     </div>
+                                       <div v-if="mission.status == 'pending' && !$page.props.auth.freelance"  class="flex gap-4 mt-4">
+
+
+                                                   <Link :href="route('register.begin')">
+                                                     <Button  size="small"
+                                                       outlined severity="info"
+                                                       label="Etre prestaire pour postuler" />
+                                                </Link>
+
+
+                                        </div>
+
 
                                     <div v-if="$page.props.auth.user ==null" class="px-4">
                                         <Link :href="route('login')">
@@ -964,12 +963,7 @@ import HomeSearch from '@/Components/HomeSearch.vue';
 
 import { Navigation, Pagination, Autoplay , EffectFade,Scrollbar, A11y, EffectCube } from 'swiper/modules';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
-import 'swiper/css/effect-cube';
-import 'swiper/css/autoplay';
+
 
 defineProps({
     categories:Array

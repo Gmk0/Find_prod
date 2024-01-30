@@ -448,8 +448,8 @@ const isLastRejectedMessage = (index) => {
                         </button>
                     </div>
                     <div @click="isShowChatInfo = true" class="flex items-center space-x-4 cursor-pointer font-inter">
-                        <div v-if="user!= null" class="avatar">
-                            <Photo :user="user" />
+                        <div v-if="user!= null" class="w-10 h-10">
+                            <Photo :user="user" taille="10" />
 
                         </div>
 
@@ -610,14 +610,14 @@ const isLastRejectedMessage = (index) => {
                                             <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">Ce message est lié à un service :</p>
 
                                             <div class="flex flex-col">
-                                                    <div class="flex items-center p-3 bg-gray-200 rounded-lg shadow-sm dark:bg-navy-700 dark:text-navy-100">
+                                                    <div class="flex items-center p-3 bg-gray-200 rounded-t-lg shadow-sm dark:bg-navy-700 dark:text-navy-100">
                                                                     <img class="w-10 h-10 mr-2 rounded-lg" :src="'/storage/'+ groupedMessage.message.service.files[0]"
                                                                         alt="Service Image">
 
                                                             <Link :href="route('oneService', groupedMessage.message.service.service_numero)"
                                                             class="truncate hover:text-amber-500 ">{{ groupedMessage.message.service.title }}</Link>
                                                     </div>
-                                                    <div class="mt-4">
+                                                    <div class="p-2 bg-gray-200 border-t border-gray-300 rounded-b-lg shadow-sm dark:bg-navy-700">
 
 
 
@@ -794,17 +794,7 @@ const isLastRejectedMessage = (index) => {
                                         Chat Info
                                     </h3>
                                     <div class="-mr-1.5 flex space-x-1">
-                                        <!--
-                                    <button @click="$store.global.isRightSidebarExpanded = true"
-                                        class="w-8 h-8 p-0 rounded-full btn2 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="h-5.5 w-5.5 text-slate-500 dark:text-navy-100" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                                d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                                        </svg>
-                                    </button>
-                                    -->
+
 
                                         <!--
 
