@@ -154,7 +154,7 @@ class ServiceResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('basic_price')
-                    ->numeric()
+                    ->money('USD',true)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('basic_support')
                     ->searchable()

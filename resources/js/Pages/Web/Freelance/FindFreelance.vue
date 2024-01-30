@@ -195,7 +195,7 @@ defineOptions({
                 </div>
 
                 <div class="relative grid col-span-12 gap-4 py-2 lg:px-6 lg:grid-cols-12 lg:col-span-9 lg:gap-2 ">
-                    <div class="px-4 lg:col-span-9">
+                    <div class="px-4 lg:col-span-12">
 
                         <MazInput v-model="form.search"
                         placeholder="recherche"
@@ -221,7 +221,7 @@ defineOptions({
                             <div class="">
 
 
-                                    <div class="block">
+                                    <div class="block lg:hidden">
                                          <div class="relative flex">
                                                 <MazSelect
                                                 v-model="form.orderBy"
@@ -231,7 +231,7 @@ defineOptions({
                                                 option-input-value-key="name"
                                                 :options="trieElement"
                                                 />
-                                                <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-7 p-1 text-white z-[100]  rounded top-[20%] ">
+                                                <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-7 p-1 tdark:ext-white  z-[100]   rounded top-[20%] ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                 </svg>
@@ -296,7 +296,7 @@ defineOptions({
                                                                 option-input-value-key="name"
                                                                 :options="categories"
                                                                 />
-                                                                <button v-if="form.category" @click="form.category = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                                <button v-if="form.category" @click="form.category = null" class="absolute right-16 p-1 dark:text-white z-[100]   rounded top-[20%]">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                                 </svg>
@@ -335,7 +335,7 @@ defineOptions({
                                             option-input-value-key="name"
                                             :options="subcategories"
                                             />
-                                            <button v-if="form.sub_category" @click="form.sub_category = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                            <button v-if="form.sub_category" @click="form.sub_category = null" class="absolute right-16 p-1 dark:text-white z-[100]   rounded top-[20%]">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                             </svg>
@@ -380,7 +380,7 @@ defineOptions({
                                                 option-input-value-key="name"
                                                 :options="experienceAnnee"
                                                 />
-                                                <button v-if="form.experience_annee" @click="form.experience_annee = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                <button v-if="form.experience_annee" @click="form.experience_annee = null" class="absolute right-16 p-1 dark:text-white z-[100]   rounded top-[20%]">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                 </svg>
@@ -424,7 +424,7 @@ defineOptions({
                                                     option-input-value-key="name"
                                                     :options="tauxFiltres"
                                                     />
-                                                    <button v-if="form.price" @click="form.price = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                    <button v-if="form.price" @click="form.price = null" class="absolute right-16 p-1 dark:text-white z-[100]   rounded top-[20%]">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                     </svg>
@@ -462,7 +462,7 @@ defineOptions({
                                                         option-input-value-key="name"
                                                         :options="niveauFiltre"
                                                         />
-                                                        <button v-if="form.level" @click="form.level = null" class="absolute right-16 p-1 text-white z-[100]  rounded top-[20%]">
+                                                        <button v-if="form.level" @click="form.level = null" class="absolute right-16 p-1 dark:text-white z-[100]   rounded top-[20%]">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                                         </svg>
@@ -571,24 +571,29 @@ defineOptions({
 
 
 
-                    <div class="px-4 py-4">
-                        <!--
-                        @if($count = $this->countFiltersApplied())
-                        <div class="flex items-center gap-4 p-2 mb-4 rounded">
+                    <div class="px-10   items-end justify-end flex py-4">
 
-                            <span class="text-sm text-amber-600">Filtres appliqués : {{ $count }}</span>
+                         <div class="lg:block hidden">
 
-
-                            <x-button.circle icon="x" wire:click='resetAll' />
+                            <div class="relative flex">
+                                                        <MazSelect
+                                                        v-model="form.orderBy"
+                                                        label="Trier par"
+                                                        option-value-key="code"
+                                                        option-label-key="name"
+                                                        option-input-value-key="name"
+                                                        :options="trieElement"
+                                                        />
+                                                        <button v-if="form.orderBy" @click="form.orderBy = null" class="absolute right-7 p-1 tdark:ext-white  z-[100]   rounded top-[20%] ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                        </button>
+                            </div>
                         </div>
-                        @
-                         -->
 
 
-                        <div class="hidden ">
-                            <pagination class="mt-6" :links="props.freelances.links" />
 
-                        </div>
 
 
                     </div>
@@ -597,10 +602,10 @@ defineOptions({
 
 
 
-                    <div class="z-0 grid gap-4 p-2 md:grid-cols-2 lg:grid-cols-3">
+                    <div class=" relative grid gap-4 p-2 md:grid-cols-2 lg:grid-cols-3">
 
 
-                        <div v-for="freelance in props.freelances.data" class="mx-auto lg:mx-0  w-[80%]">
+                        <div v-for="freelance in props.freelances.data" class="">
 
                             <FreelanceCard :freelance="freelance" :key="freelance.id" />
 
@@ -608,7 +613,7 @@ defineOptions({
 
 
 
-                        <h1 v-if="props.freelances.data.length === 0" class="text-lg text-gray-800 dark:text-gray-100 md:text-2xl">Pas de Resultat</h1>
+                        <h1 v-if="props.freelances.data.length === 0" class="text-lg text-gray-800 dark:text-gray-100 text-center md:text-2xl">Pas de resultat</h1>
 
 
 

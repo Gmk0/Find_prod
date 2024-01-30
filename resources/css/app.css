@@ -19,6 +19,10 @@
 
 }
 
+.m-select-list__scroll-wrapper{
+    @apply !z-[200];
+}
+
 .m-input-wrapper-right{
    @apply !border-none;
 }
@@ -233,3 +237,6 @@
         background-color: #697a9b
     }
 }
+
+
+
