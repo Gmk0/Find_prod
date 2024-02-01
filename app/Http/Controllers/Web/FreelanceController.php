@@ -40,8 +40,8 @@ class FreelanceController extends Controller
                 ->with('category')
                 ->with('user')
                 ->where('status_compte','=', 'actif')
-                ->orderBy($value?? 'created_at', $order??'asc')
-                ->filter(RequestFacade::only('search', 'category', 'sub_category', 'price', 'level', 'disponible', 'experience_annee'))
+               // ->orderBy($value?? 'created_at', $order??'asc')
+                ->filter(RequestFacade::only('search', 'orderBy', 'category', 'sub_category', 'price', 'level', 'disponible', 'experience_annee'))
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn ($freelance) => [

@@ -175,6 +175,20 @@ class Freelance extends Model
         })->when($filters['experience_annee'] ?? null, function ($query) use ($filters) {
 
             $query->where('experience', 'Like', '%' . $filters['experience_annee'] . '%');
+        })->when($filters['orderBy'] ?? null, function($query) use ($filters){
+
+            list($value, $order) = explode('-', $filters['orderBy']);
+
+            if($value=='populaire'){
+                $query->with(['services' => function ($q) {
+                    $q->withCount('orders')
+                        ->orderBy('orders_count', 'desc');
+                }]);
+
+            }else{
+                $query->orderBy($value, $order);
+            }
+
         });
     }
 
