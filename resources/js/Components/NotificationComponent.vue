@@ -46,21 +46,21 @@
                                 <div class="flex px-3 overflow-x-auto is-scrollbar-hidden shrink-0">
                                     <button @click="activeTab = 'tabAll'"
                                         :class="activeTab === 'tabAll' ?
-                                            'border-primary  dark:border-accent bg-transparent text-primary dark:text-accent-light' :
+                                            'border-amber-600   bg-transparent text-primary dark:text-accent-light' :
                                             'border-transparent hover:text-slate-800 focus:text-slate-800 bg-transparent dark:hover:text-navy-100 dark:focus:text-navy-100'"
                                         class=" shrink-0 rounded-none border-b-2 px-3.5 py-2.5">
                                         <span>Tout</span>
                                     </button>
                                     <button @click="activeTab = 'Commande'"
                                         :class="activeTab === 'Commande' ?
-                                            'border-primary dark:border-accent text-primary dark:text-accent-light' :
+                                            'border-amber-600  text-primary dark:text-accent-light' :
                                             'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
                                         class=" shrink-0 rounded-none border-b-2 px-3.5 py-2.5">
                                         <span>Commande</span>
                                     </button>
                                     <button @click="activeTab = 'tabEvents'"
                                         :class="activeTab === 'tabEvents' ?
-                                            'border-primary dark:border-accent text-primary dark:text-accent-light' :
+                                            'border-amber-600  text-primary dark:text-accent-light' :
                                             'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
                                         class=" shrink-0 rounded-none border-b-2 px-3.5 py-2.5">
                                         <span>Evenement</span>

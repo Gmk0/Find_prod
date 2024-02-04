@@ -1124,13 +1124,14 @@ for (let index = 1999; index < year ; index++) {
                                     class="px-4 py-5 bg-white dark:bg-gray-800 dark:border dark:border-gray-200 rounded-lg  sm:p-6 shadow {{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }}">
 
                                     <div>
-                                         <MazTextarea
-                                    v-model="freelanceElement.description"
-                                    name="Description"
-                                    id="Description"
-                                    label="Description"
+                                        <textarea
+                                        v-model="freelanceElement.description" id="message"
+                                        placeholder="Description"
+                                        rows="4"
+                                            class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
 
-                                    />
+                                            </textarea>
+
 
 
 

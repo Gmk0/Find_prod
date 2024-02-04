@@ -42,12 +42,11 @@
 
 
                     <div class="col-span-2">
-                          <MazTextarea
-                            v-model="form.message"
-                            name="Message"
-                            id="comment"
-                            label="Message"
-      />
+                        <textarea v-model="form.message" id="message" placeholder="Exigences pour la mission" rows="4"
+                                                 class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
+
+                                            </textarea>
+
 
 
                     </div>

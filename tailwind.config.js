@@ -97,6 +97,12 @@ export default {
             },
         },
     },
+    variants: {
+        extend: {
+            // Ajoutez ici d'autres variantes si nécessaire
+            borderColor: ['focus'],
+        },
+    },
 
     plugins: [forms, typography, require('flowbite/plugin'),],
 };

@@ -25,7 +25,7 @@ defineProps({
     user : Object,
     taille :  {
         type: String,
-        default: '16',
+        default: '12',
     }
 });
 

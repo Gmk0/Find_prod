@@ -114,6 +114,7 @@ import MazTextarea from 'maz-ui/components/MazTextarea'
 import MazAvatar from 'maz-ui/components/MazAvatar'
 import MazInputNumber from 'maz-ui/components/MazInputNumber'
 
+import TextAreaCustom from '@/Components/TextAreaCustom.vue'
 
 //import VuePhoneNumberInput from 'vue-phone-number-input';
 //import 'vue-phone-number-input/dist/vue-phone-number-input.css';
@@ -179,7 +180,7 @@ createInertiaApp({
             .component('ButtonMt', ButtonMt)
             .component('Dialog', Dialog)
             .component('Button', Button)
-            .component('Textarea', Textarea)
+            .component('TextAreaCustom', TextAreaCustom)
             .component('InputError', InputError)
             .component('Photo', Photo)
             .component('RadioButton', RadioButton)

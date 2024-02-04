@@ -67,7 +67,7 @@ const sidebarMenu = {
                     },
                     {
 
-                        title: 'Devenire freelance',
+                        title: 'Devenir freelance',
                         route_name: 'find_freelance',
 
                     },
@@ -84,7 +84,7 @@ const sidebarMenu = {
                     {
 
                         title: 'Afillier un membre',
-                        route_name: 'profile.show',
+                        route_name: 'user.parainage',
 
                     },
                 ],
@@ -144,7 +144,7 @@ const sidebarMenu = {
                 <div class="h-[calc(100%-4.5rem)] overflow-x-hidden pb-6">
                     <template v-for="(menuItems, key) in sidebarMenu.items">
                         <div v-if="key > 0" class="h-px mx-4 my-3 bg-slate-200 dark:bg-navy-500"></div>
-                        <ul class="flex flex-col flex-1 px-4 font-inter">
+                        <ul class="flex flex-col flex-1 px-4 font-bega-light">
 
 
                             <template v-for="(menu, keyMenu) in menuItems" :key="keyMenu">
@@ -156,7 +156,7 @@ const sidebarMenu = {
 
                                     <li>
                                         <a  @click="toggleAccordion(keyMenu)" :class="{
-                                            'text-slate-800 font-semibold dark:text-navy-50': expandedItems.includes(keyMenu),
+                                            'text-slate-800 font-bega-semibold dark:text-navy-50': expandedItems.includes(keyMenu),
                                             'text-slate-600 dark:text-navy-200': !expandedItems.includes(keyMenu)
                                         }"
                                             class="flex items-center justify-between py-2 text-xs+ tracking-wide  outline-none transition-[color,padding-left] duration-300 ease-in-out hover:text-slate-800  dark:hover:text-navy-50">
@@ -176,7 +176,7 @@ const sidebarMenu = {
                                                 <li @click="scrollToAndExpand(submenu.route_name, keyMenu)">
                                                     <Link :href="route(submenu.route_name)"
                                                         class="flex items-center justify-between p-2 text-xs+ tracking-wide outline-none transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                                                        :class="{ 'text-blue-600 dark:text-accent-light font-medium': submenu.route_name === pageName, 'text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50': submenu.route_name !== pageName }">
+                                                        :class="{ 'text-blue-600 dark:text-accent-light font-bega-medium': submenu.route_name === pageName, 'text-slate-600 hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50': submenu.route_name !== pageName }">
                                                         <div class="flex items-center space-x-2">
                                                             <div
                                                                 class="h-1.5 w-1.5 rounded-full border border-current opacity-40">
@@ -196,7 +196,7 @@ const sidebarMenu = {
                                     <li :key="keyMenu">
                                         <a :href="menu.route_name"
                                             class="flex text-xs+ py-2 tracking-wide outline-none transition-colors duration-300 ease-in-out"
-                                            :class="{ 'text-primary dark:text-accent-light font-medium': menu.route_name === pageName, 'text-slate-600  hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50': menu.route_name !== pageName }">
+                                            :class="{ 'text-primary dark:text-accent-light font-bega-medium': menu.route_name === pageName, 'text-slate-600  hover:text-slate-800 dark:text-navy-200 dark:hover:text-navy-50': menu.route_name !== pageName }">
                                             {{ menu.title }}
                                         </a>
                                     </li>

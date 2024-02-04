@@ -9,7 +9,7 @@
 
                 <div class="flex flex-col">
 
-                    <h1 class="text-2xl font-bega-semibold">DASHBOARD</h1>
+                    <h1 class="text-2xl font-bega-semibold">Tableau de Bord</h1>
 
 
                 </div>

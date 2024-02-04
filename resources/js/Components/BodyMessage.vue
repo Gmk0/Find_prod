@@ -448,8 +448,8 @@ const isLastRejectedMessage = (index) => {
                         </button>
                     </div>
                     <div @click="isShowChatInfo = true" class="flex items-center space-x-4 cursor-pointer font-inter">
-                        <div v-if="user!= null" class="w-10 h-10">
-                            <Photo :user="user" taille="10" />
+                        <div v-if="user!= null" class="w-12 h-12">
+                            <Photo :user="user" taille="12" />
 
                         </div>
 
@@ -585,7 +585,7 @@ const isLastRejectedMessage = (index) => {
                             :class="groupedMessage.message.receiver_id == props.user.id ?'justify-end ':'items-start'"
                                 class="flex  space-x-2.5 sm:space-x-5">
                             <div :class="groupedMessage.message.receiver_id == props.user.id ?'hidden':'flex'"
-                            class="avatar">
+                            class="">
                             <Photo :user="user" />
 
 
@@ -750,12 +750,12 @@ const isLastRejectedMessage = (index) => {
 
                     <input type="text" v-model="form.message"
                     class="w-full h-10 bg-transparent border-none focus:ring-0 placeholder:text-slate-400/70"
-                    placeholder="Write the message" />
+                    placeholder="Ecrivez un message" />
                 </div>
 
                 <div class="-mr-1.5 flex">
                     <button
-                        class="w-6 h-6 p-0 rounded-full btn22 shrink-0 text-slate-500 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-200 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                        class="hidden w-6 h-6 p-0 rounded-full btn22 shrink-0 text-slate-500 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-200 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -763,7 +763,7 @@ const isLastRejectedMessage = (index) => {
                         </svg>
                     </button>
                     <button @click="sendMessage()"
-                        class="w-6 h-6 p-0 rounded-full btn22 shrink-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
+                        class="w-10 h-10 p-0 rounded-full btn22 shrink-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5.5 w-5.5" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -791,7 +791,7 @@ const isLastRejectedMessage = (index) => {
 
                             <div class="flex h-[60px] items-center justify-between p-4">
                                     <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
-                                        Chat Info
+                                        Utilisateur info
                                     </h3>
                                     <div class="-mr-1.5 flex space-x-1">
 
@@ -832,7 +832,7 @@ const isLastRejectedMessage = (index) => {
                                 </div>
                                 <div class="flex flex-col items-center mt-5">
                                     <div v-if="user" class="w-20 h-20 avatar">
-                                       <Photo :user="user" taille="'20'" />
+                                       <Photo :user="user" taille="20" />
                                     </div>
                                     <h3 v-text="user?.name"
                                         class="mt-2 text-lg font-medium text-slate-700 dark:text-navy-100"></h3>
@@ -869,14 +869,14 @@ const isLastRejectedMessage = (index) => {
                                         <div class="flex tabs-list">
                                             <button @click="activeTab = 'tabImages'"
                                                 :class="activeTab === 'tabImages' ?
-                                                    'border-primary dark:border-accent text-primary dark:text-accent-light' :
+                                                    'border-amber-500  text-primary dark:text-accent-light' :
                                                     'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
                                                 class="px-3 py-2 font-medium border-b-2 rounded-none btn2 shrink-0">
                                                 Images
                                             </button>
                                             <button @click="activeTab = 'tabFiles'"
                                                 :class="activeTab === 'tabFiles' ?
-                                                    'border-primary dark:border-accent text-primary dark:text-accent-light' :
+                                                    'border-amber-500  text-primary dark:text-accent-light' :
                                                     'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
                                                 class="px-3 py-2 font-medium border-b-2 rounded-none btn2 shrink-0">
                                                 Files

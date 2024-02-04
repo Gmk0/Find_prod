@@ -180,191 +180,6 @@ defineOptions({
 
             <div class="flex flex-col w-full mx-auto h-min-72 lg:col-span-1 lg:mx-0 ">
 
-                <div class="hidden">
-
-                    <div class="p-4 border rounded-lg ">
-                        <ol class="flex flex-col w-full space-y-4 lg:flex-row lg:items-center lg:justify-around sm:flex sm:space-x-8 sm:space-y-0">
-
-                             <li :class="{ 'flex items-center text-blue-600 dark:text-blue-500 space-x-2.5': step === 1, 'flex items-center text-gray-500 dark:text-gray-400 space-x-2.5': step !== 1 }">
-
-                            <span :class="{'flex items-center justify-center w-8 h-8 border border-blue-600 rounded-full shrink-0 dark:border-blue-500': step ===1,'flex items-center justify-center w-8 h-8 border border-gray-500 rounded-full shrink-0 dark:border-gray-400': step !==1}">
-                                1
-                            </span>
-                            <span>
-                                <h3 class="font-medium leading-tight">Detail Mission</h3>
-
-                            </span>
-                         </li>
-                            <li :class="{ 'flex items-center text-blue-600 dark:text-blue-500 space-x-2.5': step === 2, 'flex items-center text-gray-500 dark:text-gray-400 space-x-2.5': step !== 2 }">
-                               <span :class="{ 'flex items-center justify-center w-8 h-8 border border-blue-600 rounded-full shrink-0 dark:border-blue-500': step === 2, 'flex items-center justify-center w-8 h-8 border border-gray-500 rounded-full shrink-0 dark:border-gray-400': step !== 2 }">
-                                    2
-                                </span>
-                                <span>
-                                    <h3 class="font-medium leading-tight">Echance & Budget</h3>
-
-                                </span>
-                            </li>
-                        </ol>
-                    </div>
-                    <div class="p-4 mt-2 border border-gray-100 rounded-md min-h-72 ">
-
-                         <transition name="fade">
-                        <div v-if="step === 1" class="flex flex-col mt-4 ">
-                            <div class="w-full">
-
-                                <MazInput
-
-
-                                    v-model="form.title"
-
-
-                                    placeholder="Titre"
-
-                                />
-                                <InputError class="mt-2" :message="form.errors.title" />
-
-                            </div>
-                            <div class="w-full mt-4 mb-4">
-
-                                <MazTextarea
-                                v-model="form.description"
-                                placeholder="Decrivez votre mission..." />
-
-                                     <InputError class="mt-2" :message="form.errors.description" />
-
-                            </div>
-                             <div class="card">
-                                <Toast />
-                                <FileUpload
-                                :auto="true"
-                                @select="onSelect"
-                                @upload="onAdvancedUpload($event)"
-                                :multiple="true"
-                                accept="image/*"
-                                :maxFileSize="1000000">
-
-                                <template #header="{ chooseCallback }">
-                                <div class="flex flex-wrap flex-1 gap-2 justify-content-between align-items-center">
-                                    <div class="flex gap-2">
-                                        <Button @click="chooseCallback()" icon="pi pi-images" rounded outlined></Button>
-
-                                    </div>
-                                </div>
-                                 </template>
-                                    <template #empty>
-                                        <p>Glissez et déposez les fichiers ici pour les uploader.</p>
-                                    </template>
-                                </FileUpload>
-                             </div>
-
-
-
-                            <div class="mt-4 mb-4 W-full">
-                                <MazSelect
-                                v-model="form.category_id"
-                                 :options="props.categories"
-                                option-value-key="id"
-                                option-label-key="name"
-                                option-input-value-key="name"
-
-
-                                  placeholder="Categories"
-                                  />
-
-                                   <InputError class="mt-2" :message="form.errors.category_id" />
-                            </div>
-
-                        </div>
-                        </transition>
-
-                        <transition name="fade">
-                         <div v-if="step === 2" class="flex flex-col w-full mt-4">
-                                <div class="flex flex-col gap-4 md:flex-row lg:gap-8">
-
-
-
-                                <div class="flex w-full ">
-
-                                        <Calendar v-model="form.dateD"
-                                        class="w-full"
-                                        placeholder="Date debut" />
-
-
-                                      <InputError class="mt-2" :message="form.errors.dateD" />
-                                </div>
-                                <div class="flex w-full">
-
-                                            <Calendar v-model="form.dateF"
-                                            class="w-full"
-                                            inputId="birth_date"
-
-                                            placeholder="Date Fin" />
-
-                                               <InputError class="mt-2" :message="form.errors.dateF" />
-
-
-                                </div>
-
-                                </div>
-
-
-
-                                <div class="mt-4 mb-4">
-                                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Exigences</label>
-                                    <Textarea id="message"
-                                    v-model="form.exigence"
-                                    rows="4"
-                                    cols="10"
-                                    class="w-full "
-                                     placeholder="Exigences pour la mission"/>
-                                </div>
-                                  <div >
-
-                                        <InputText
-                                            id="name"
-
-                                            type="text"
-                                            class="block w-full mt-1"
-                                            required
-                                            placeholder="Budget"
-                                            v-model="form.budget"
-
-                                        />
-
-                                            <InputError class="mt-2" :message="form.errors.budget" />
-
-                                    </div>
-
-
-                            </div>
-                        </transition>
-
-                    </div>
-                    <div class="flex justify-between mt-6">
-                        <div>
-
-                            <button  v-if="step ===2" @click="changeStep(1)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Retour
-                            </button>
-
-                        </div>
-                        <div>
-                             <button v-if="step ===1" @click="changeStep(2)" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    Continuer
-                            </button>
-
-                            <button type="button"
-                            @click="submit()"
-                            v-if="step ===2"
-                             class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
-                                Soumettre
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
 
 
                 <div>
@@ -389,9 +204,14 @@ defineOptions({
 
                                 </div>
                                 <div class="w-full mt-4 mb-4">
-                                    <MazTextarea
-                                    v-model="form.description"
-                                    placeholder="Decrivez votre mission..." />
+
+
+
+                                    <textarea id="message" placeholder="Decrivez votre mission" rows="4" v-model="form.description"
+        class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-amber-500 focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
+
+                                            </textarea>
+
 
                                          <InputError class="mt-2" :message="form.errors.description" />
 
@@ -486,11 +306,12 @@ defineOptions({
                                     </div>
                                     </div>
                                     <div class="mt-4 mb-4">
+                                         <textarea v-model="form.exigence" id="message" placeholder="Exigences pour la mission" rows="4"
+                                         class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
 
-                                        <MazTextarea
-                                        id="message"
-                                        v-model="form.exigence"
-                                        placeholder="Exigences pour la mission"/>
+                                            </textarea>
+
+
                                     </div>
                                       <div>
                                         <MazInputPrice

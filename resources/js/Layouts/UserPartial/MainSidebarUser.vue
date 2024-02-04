@@ -29,7 +29,7 @@ const LayoutStore = useLayoutStore();
 
 const toogleRightExpande = () => {
 
-    LayoutStore.toogleRight()
+    //LayoutStore.toogleRight()
 
     if (LayoutStore.SidebarExpanded) {
         document.body.classList.add("is-sidebar-open")
@@ -111,7 +111,7 @@ const toogleRightExpande = () => {
 
                 <!-- Components -->
                  <Link :href="route('user.missions')"
-                 @click="toogleRightExpande()"
+
                    :class="$page.component.startsWith('User/Mission') ? 'text-amber-600 hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:bg-navy-600 bg-amber-600/10 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90' : 'hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25'"
                     class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 "
                    v-tooltip.right="'Mission'">
@@ -123,7 +123,7 @@ const toogleRightExpande = () => {
 
                 <!-- Elements -->
                 <Link :href="route('user.transactions')"
-                @click="toogleRightExpande()"
+
                   :class="$page.component.startsWith('User/Transaction') ? 'text-amber-600 hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:bg-navy-600 bg-amber-600/10 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90' : 'hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25'"
                     class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11"
                     v-tooltip.right="'Transaction'">
@@ -134,7 +134,7 @@ const toogleRightExpande = () => {
                     </svg>
                </Link>
                 <Link :href="route('user.chat')"
-                @click="toogleRightExpande()"
+
                   :class="$page.component.startsWith('User/Chat') ? 'text-amber-600 hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:bg-navy-600 bg-amber-600/10 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90' : 'hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25'"
                     class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11"
                     v-tooltip.right="'Message'">

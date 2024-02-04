@@ -46,7 +46,7 @@
                <div  class="grid grid-cols-1 gap-4 mx-auto lg:grid-cols-2 xl:grid-cols-2">
                 <div v-for="mission in missions"
                 :class="{'border border-blue-500' : mission.status =='pending', 'border border-green-500': mission.status != 'pending' }"
-                class="mb-4 card lg:flex-row">
+                class="flex mb-4 card md:flex-row">
                     <img class="object-cover object-center w-full h-48 bg-center bg-cover rounded-t-lg shrink-0 lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l-lg"
                         src="/images/illustrations/missionF.svg" alt="image" />
                     <div class="flex flex-col w-full px-4 py-3 grow sm:px-5">
@@ -111,9 +111,9 @@
                         <div class="grow">
                             <div class="flex items-center mt-2 text-xs">
                                 <a href="#" class="flex items-center space-x-2 hover:text-slate-800 dark:hover:text-navy-100">
-                                    <div class="w-6 h-6 avatar">
+                                    <div class="w-12">
 
-                                        <Photo :user="mission.user" :taille="'16'" />
+                                        <Photo :user="mission.user" taille="12" />
 
                                     </div>
                                     <span class="line-clamp-1">{{mission.user.name }}</span>

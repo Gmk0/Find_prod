@@ -75,12 +75,13 @@
 
                                 </div>
                                 <div class="w-full mt-4">
+                                             <textarea v-model="form.description" id="message"
+                                              placeholder="Decrivez votre mission" rows="4"
+                                                 class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
 
-                                    <MazTextarea
-                                    v-model="form.description"
-                                    rows="4"
-                                    cols="10"
-                                    class="w-full" placeholder="Decrivez votre mission.data.." />
+                                            </textarea>
+
+
 
                                 </div>
 
@@ -131,10 +132,12 @@
                                     </div>
                                     <div class="mt-4 mb-4">
                                     <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Exigences</label>
-                                        <MazTextarea id="message"
-                                        v-model="form.exigence"
 
-                                         placeholder="Exigences pour la mission"/>
+                                                        <textarea v-model="form.exigence" id="message"
+                                                  placeholder="Exigences pour la mission" rows="4"
+                                                     class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
+
+                                            </textarea>
                                     </div>
                                       <div >
                                         <MazInputPrice

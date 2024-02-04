@@ -67,10 +67,12 @@
                                     <div class="flex flex-col w-4/12 px-4 pt-10 pb-4 bg-white border border-gray-300 dark:bg-findDark-900 rounded-l-md min-h-72">
 
                                         <template v-for="category in categories" :key="category.id">
-                                        <div  @mouseover="handleMouseover(category)" class="flex gap-4 px-2 py-4 text-gray-900 dark:text-gray-100 hover:text-skin-fill " :class="{'bg-findDark-200 dark:bg-findDark-800 dark:text-skin-fill text-skin-fill ': selectedCategory === category }">
+                                        <Link  :href="route('categoryName',category.slug)" @mouseover="handleMouseover(category)" >
+                                            <div class="flex gap-4 px-2 py-4 text-gray-900 dark:text-gray-100 hover:text-skin-fill " :class="{'bg-findDark-200 dark:bg-findDark-800 dark:text-skin-fill text-skin-fill ': selectedCategory === category }">
                                             <SvgIcon :illustration="category.illustration"></SvgIcon>
                                             <h1 class="text-lg rounded-md cursor-pointer font-bega-medium">{{ category.name }}</h1>
-                                        </div>
+                                            </div>
+                                        </Link>
                                         </template>
 
 

@@ -103,10 +103,12 @@
                                 </div>
 
                                 <div class="w-full mt-4">
+                                            <textarea v-model="form.message" id="message" placeholder="Exigences pour la mission" rows="4"
+                                             class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
 
-                                    <MazTextarea label="Message" v-model="form.message" name="message" required
+                                            </textarea>
 
-                                        placeholder="Message"></MazTextarea>
+
                                 </div>
 
                                 <button type="submit" class="

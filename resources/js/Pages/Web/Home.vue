@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <div class="absolute flex flex-col floating gap-1 right-[30%] top-1/2">
+                            <div class="absolute flex flex-col hidden floating gap-1 right-[30%] top-1/2">
                                 <h1 class="text-lg text-white font-bega-medium ">Grace K.</h1>
                                 <p class="text-base text-white font-bega-medium">Marketeuse Digital</p>
 
@@ -187,8 +187,7 @@
                         </div>
                         <div class="grid grid-cols-2 gap-4 mx-4 mt-6 md:mx-0 px-auto md:gap-2 md:grid-cols-3 ">
 
-                            <img src="/images/brand/influeworld.png" lazy alt="influeworld"
-                                class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
+
 
                               <img src="/images/brand/makutano.png" alt="makutano"
                                     class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
@@ -219,7 +218,7 @@
             <div class="container max-w-6xl p-4 m-4 mx-auto 2xl:max-w-7xl 2xl:p-2 md:p-6">
                 <div class="mb-10 text-center xl:mb-14">
                     <span class="font-bega-medium text-amber-600">Presentation</span>
-                    <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 ">Ils en Parlent mieux Que nous</h1>
+                    <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 ">Ils en parlent mieux que nous</h1>
 
                 </div>
 
@@ -318,15 +317,14 @@
                                 class="rounded-lg dark:bg-gray-800 floating bg-skin-fill" loading="lazy" width="" height="" />
                         </div>
                         <div data-aos="fade-right" data-aos-duration="300" class="md:7/12 lg:w-1/2">
-                            <h2 class="text-2xl text-gray-900 font-bega-semibold md:text-4xl dark:text-white">
+                            <div class="px-4">
+                            <h2 class="text-xl text-gray-900 font-bega-semibold md:text-4xl dark:text-white">
                                 Trouvez dès aujourd'hui la personne idéale pour votre projet !
                             </h2>
-                            <p class="my-4 text-gray-600 dark:text-gray-300">
+                            </div>
 
-
-                            </p>
                             <div class="space-y-4 divide-y divide-gray-100 font-bega-light dark:divide-gray-800">
-                                <div class="flex gap-4 mt-4 md:items-center">
+                                <div class="flex gap-4 mt-4 md:items-start">
                                     <div class="flex w-12 h-12 gap-4 rounded-full dark:bg-teal-900/20">
 
                                           <CheckCircleIcon class="text-[20px] text-amber-600 duration-200 hover:text-dark w-12 h-12 ml-2"  />
@@ -341,7 +339,7 @@
                                                 taxation en fonction de la demande de service</p>
                                     </div>
                                 </div>
-                                <div class="flex gap-4 pt-2 md:items-center">
+                                <div class="flex gap-4 pt-2 md:items-start">
                                     <div class="flex w-12 h-12 gap-4 rounded-full dark:bg-teal-900/20">
 
                                         <DocumentTextIcon class="text-[20px] text-amber-600 duration-200 hover:text-dark w-12 h-12 ml-2"  />
@@ -354,7 +352,7 @@
                                                 avec vous</p>
                                     </div>
                                 </div>
-                                <div class="flex gap-4 mt-4 md:items-center">
+                                <div class="flex gap-4 mt-4 md:items-start">
                                     <div class="flex w-12 h-12 gap-4 rounded-full dark:bg-teal-900/20">
 
 
@@ -373,7 +371,7 @@
                                                 que le travail est satisfaisant.</p>
                                     </div>
                                 </div>
-                                <div class="flex gap-4 pt-2 md:items-center">
+                                <div class="flex gap-4 pt-2 md:items-start">
                                     <div class="flex w-12 h-12 gap-4 rounded-full dark:bg-teal-900/20">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-[20px] text-amber-600 duration-200 hover:text-dark w-12 h-12 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -410,7 +408,7 @@
                 <!-- heading text -->
                 <div class="mb-10 text-center">
                     <span class="font-bega-medium text-amber-600">Categories</span>
-                    <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Découvrez les Services</h1>
+                    <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Découvrez les services</h1>
 
                 </div>
 
@@ -442,7 +440,7 @@
                     <!-- heading text -->
                     <div class="mb-10 text-center">
                         <span class="font-bega-medium text-amber-600">Mission</span>
-                        <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Découvrez Quelques Missions</h1>
+                        <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Découvrez quelques missions</h1>
 
                     </div>
 
@@ -544,9 +542,9 @@
                                 <div class="grow">
                                     <div class="flex items-center mt-2 text-xs">
                                         <a href="#" class="flex items-center space-x-2 hover:text-slate-800 dark:hover:text-navy-100">
-                                            <div class="w-6 h-6 avatar">
+                                            <div class="w-12 h-12 mb-2">
 
-                                                <Photo :user="mission.user" taille="18" />
+                                                <Photo :user="mission.user" taille="12" />
 
                                             </div>
                                             <span class="line-clamp-1">{{ mission.user.name }}</span>
@@ -577,7 +575,7 @@
 
 
                                     </div>
-                                       <div v-if="mission.status == 'pending' && !$page.props.auth.freelance"  class="flex gap-4 mt-4">
+                                       <div v-if="mission.status == 'pending' && !$page.props.auth.freelance && !$page.props.auth.user ==null"  class="flex gap-4 mt-4">
 
 
                                                    <Link :href="route('register.begin')">
@@ -790,7 +788,7 @@
                 <!-- heading text -->
                 <div class="mb-10 text-center">
                     <span class="font-bega-medium text-amber-600">Decouverte</span>
-                    <h1 class="text-2xl font-bega-semibold text-slate-700 sm:text-3xl">FIND </h1>
+                    <h1 class="text-2xl font-bega-semibold text-slate-700 sm:text-3xl">Find </h1>
 
                 </div>
                 <div class="flex flex-col ">
@@ -843,14 +841,14 @@
                             <div class="space-y-6 py-auto justify md:col-span-2 sm:p-8">
                                 <div class="px-6">
                                     <h1 class="mt-4 text-xl text-center text-gray-800 font-bega-medium dark:text-white">Comment
-                                        S'inscrire
+                                        s'inscrire
                                         comme
-                                        <span class="text-amber-800 dark:text-white">Freelance ?</span>
+                                        <span class="text-amber-800 dark:text-white">freelance ?</span>
                                     </h1>
                                 </div>
                                 <p class="mt-2 text-lg leading-none text-center text-gray-700 text-md dark:text-white">
                                     <span class="font-serif">"</span>
-                                    Apprenez à utiliser la Plateforme FIND à l'aide de ces tutoriels.
+                                    Apprenez à utiliser la Plateforme Find-freelance à l'aide de ces tutoriels.
                                     <span class="font-serif">"</span>
                                 </p>
 
@@ -879,8 +877,8 @@
             <div class="px-8 py-6 mx-auto max-w-7xl md:px-6">
 
                 <div class="mb-10 text-center">
-                    <span class="font-bega-medium text-amber-600">FAQs</span>
-                    <h1 class="text-2xl font-bega-semibold dark:text-gray-50 text-slate-700 sm:text-3xl">FAQs </h1>
+                    <span class="font-bega-medium text-amber-600">Faqs</span>
+                    <h1 class="text-2xl font-bega-semibold dark:text-gray-50 text-slate-700 sm:text-3xl">Faqs </h1>
 
                 </div>
 
