@@ -54,8 +54,7 @@ class Transaction extends Model
 
             $transaction->id =Str::uuid()->toString();
             // $transaction->user_id = auth()->user()->id;
-            $transaction->transaction_numero = 'TC' . date('YmdH')
-                . rand(10, 99);
+            $transaction->transaction_numero = 'TC' . date('YmdHms');
         });
     }
 

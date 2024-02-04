@@ -1,7 +1,7 @@
 <x-filament-panels::page>
 
 
-    <form wire:submit.prevent='testApi'>
+    <form wire:submit.prevent='verify'>
 
         {{$this->form}}
 

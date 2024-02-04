@@ -60,9 +60,11 @@
                 </div>
                 <div  v-if="totalPrice != 0" class="flex flex-col gap-4 p-4 border-t border-gray-200">
 
-                    <Link :href="route('panier')" @click="visible=!visible"
-                        class="block w-full px-2 py-2 text-center text-white align-middle rounded-md select-none font-bega-medium bg-skin-fill">
+                    <Link :href="route('panier')" @click="visible=!visible">
+
+                        <ButtonMt>
                         Paiement {{ totalPrice }} $
+                        </ButtonMt>
                     </Link>
 
 

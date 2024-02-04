@@ -30,6 +30,7 @@ class test extends Page
 
     }
 
+    //CMD20240202120236
     public function form(Form $form): Form
     {
         return $form
@@ -41,13 +42,13 @@ class test extends Page
                     // ...
                     TextInput::make('numero')
                     ->required()
-                    ->numeric(),
+                    ,
 
                     TextInput::make('montant')
-                    ->required()
+
                     ->numeric(),
                 TextInput::make('provider_id')
-                    ->required()
+
                     ->numeric(),
 
 
@@ -73,7 +74,7 @@ class test extends Page
             'amount' => $data['montant'],
             'currency' => 'CDF',
             'country' => 'CD',
-            'callback_url' => 'https://find-freelance.com/checkout/status-maxi-custom'
+            'callback_url' => env('checkoutMaxiCustom')
         ];
         $secretKey = env('SecretID');
         $signature = SignatureCalculator::calculateSignature($postData, $secretKey);
@@ -100,6 +101,42 @@ class test extends Page
 
 
     }
+
+    public function verify()
+    {
+
+
+        $data = $this->form->getState();
+        $postData = [
+            'merchant_id' => env('MerchantAvadaID'),
+            'order_id' => $data['numero'],
+
+        ];
+        $secretKey = env('SecretID');
+        $signature = SignatureCalculator::calculateSignature($postData, $secretKey);
+        $postData['signature'] = $signature;
+        $publicId = env('PublicId');
+        $url = 'https://api.unipesa.tech/' . $publicId . '/status';
+
+        try {
+            $response = Http::post($url, $postData);
+
+             dd($response->json());
+
+            if ($response->successful()) {
+
+                // dd($response->json());
+            } elseif ($response->failed()) {
+            }
+        } catch (\Exception $e) {
+            // Handle the exception here
+
+            dd($e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+    }
+
 
 
 

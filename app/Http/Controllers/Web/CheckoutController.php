@@ -26,26 +26,96 @@ class CheckoutController extends Controller
         return Inertia::render('Web/Checkout/Checkout',['userSetting' => $userSetting]);
     }
 
+    public function checkoutStatus(Request $request)
+    {
+        $transaction_numero=$request->order_id;
+        $checkout= new Paiement();
+        $response=$checkout->checkStatus($transaction_numero);
+        $response_user=$this->paiment_status($transaction_numero,$response['status']);
+        $data = $response_user->getData(true);
+        if($data['status'] ==='error')
+        {
+            return redirect()->back()->withErrors(['message' => "La transaction a échoué. Veuillez réessayer."]);
+
+        }else{
+            return redirect()->route('paiementStatus', ['transaction_numero' =>$transaction_numero]);
+
+        }
+
+
+    }
+    public function paiment_status($transaction_numero,$status)
+    {
+
+        $transaction = Transaction::where('transaction_numero', $transaction_numero)->first();
+        if($transaction ==null)
+        {
+            return response()->json(['status' => 'error',]);
+
+        }
+
+        if ($status == 3) {
+            $transaction->status = 'failed';
+            $transaction->save();
+
+            $oders = $transaction->orders;
+
+            foreach ($oders as $order) {
+                $order->status = 'failed';
+                $order->save();
+            }
+
+            return response()->json(['status'=>'error','transaction_numero'=>$transaction->transaction_numero]);
+
+
+        } else if ($status == 2) {
+
+            $transaction->status = 'completed';
+            $transaction->save();
+
+            $oders = $transaction->orders;
+
+            foreach ($oders as $order) {
+                $order->status = 'completed';
+                $order->notifyUser();
+                $order->save();
+            }
+
+            return response()->json(['status' => 'success', 'transaction_numero' => $transaction->transaction_numero]);
+        } else {
+            $transaction->status = 'failed';
+            $transaction->save();
+
+            $oders = $transaction->orders;
+
+            foreach ($oders as $order) {
+                $order->status = 'failed';
+                $order->save();
+            }
+
+            return response()->json(['status' => 'error', 'transaction_numero' => $transaction->transaction_numero]);
+        }
+    }
+
+    function returnBrand($provider):String
+    {
+        if ($provider == 10) {
+            return 'ORANGE MONEY';
+        } else if ($provider == 15) {
+            return 'AIRTEL MONEY';
+        } else {
+            return 'M-PESA';
+        }
+    }
 
     public function checkoutMaxi(Request $request)
     {
 
 
-        dd($request->all());
+
         try{
 
             DB::beginTransaction();
-
-            $userSeeting = auth()->user()->userSetting;
-
-            $localisation = [
-                'adresse' => $request->adresse,
-                'commune' => $request->commune,
-                'ville' => $request->ville,
-                'pays' => $request->pays,
-            ];
-            $userSeeting->addresse_facturation = $localisation;
-            $userSeeting->save();
 
             $form =$request->form;
             $total =$request->total;
@@ -54,7 +124,7 @@ class CheckoutController extends Controller
             $payment = new Transaction();
             $payment->user_id = auth()->id();
             $payment->amount = $total;
-            $payment->payment_method = ['last4' => "Maxi", 'brand' => "maxicash"];
+            $payment->payment_method = ['last4' => $form['numero'], 'brand' => $this->returnBrand($form['provider'])];
             $payment->payment_token = $this->references();
             $payment->type = "paiement";
             $payment->save();
@@ -73,33 +143,19 @@ class CheckoutController extends Controller
                 $datas[] =Order::create($data);
             }
 
-
-
             DB::commit();
-
-
-            $succesUrl
-            =route('checkoutStatusMaxiService'); ;
-            $faileurUrl =
-            route('checkoutStatusMaxiService');
-
-            $cancelurl =
-            route('checkoutStatusMaxiService');;
+            $callback =route('checkoutStatusMaxiService');
             $checkout = new Paiement();
-
-
-
-
-            $url = $checkout->checkoutmaxi($total * 100, $form['numero'], $payment->payment_token, $succesUrl, $cancelurl, $faileurUrl);
-
+            //$checkout->pa
+            $response=$checkout->paidAvada($total,$form['numero'], $form['provider'],$callback, $payment->transaction_numero);
                // dd($url);
-
-            return Inertia::location($url);
+             return response()->json($response);
 
 
         }catch(\Exception $e){
             DB::rollBack();
 
+            return response()->json(['error' => $e->getMessage()], 500);
            // dd($e->getMessage());
 
         }
@@ -110,6 +166,8 @@ class CheckoutController extends Controller
     public function paiment_maxi(Request $request)
     {
 
+
+        dd($request->all());
 
         $reference = $request->reference;
         $methode = $request->method;
@@ -239,6 +297,8 @@ class CheckoutController extends Controller
 
         try {
 
+            dd($request->all());
+
             $form = $request->form;
             DB::beginTransaction();
 
@@ -254,8 +314,8 @@ class CheckoutController extends Controller
 
 
 
-            $userSeeting['addresse_facturation'] = $localisation;
-            $userSeeting->update();
+           // $userSeeting['addresse_facturation'] = $localisation;
+           // $userSeeting->update();
 
 
 
@@ -301,7 +361,7 @@ class CheckoutController extends Controller
 
             //dd($url->body());
 
-            return Inertia::location($url);
+           // return Inertia::location($url);
         } catch (\Exception $e) {
             DB::rollBack();
 

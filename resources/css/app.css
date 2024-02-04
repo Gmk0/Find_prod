@@ -12,7 +12,7 @@
 @import 'swiper/css/navigation';
 @import 'swiper/css/scrollbar';
 @import 'swiper/css/effect-cube';
-@import 'swiper/css/autoplay';
+
 
 .dark .swal2-popup.swal2-toast{
     @apply !bg-gray-900 !text-gray-100;

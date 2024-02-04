@@ -201,6 +201,7 @@ Route::middleware([
 
         Route::get('/panier',  'checkout')->name('panier');
         Route::post('/checkoutMaxi', 'checkoutMaxi')->name('checkoutMaxi');
+        Route::post('/checkout-status','checkoutStatus')->name('checkoutStatus');
         Route::post('/checkoutMaxiCustom', 'checkoutMaxiCustom')->name('checkoutMaxiCustom');
         Route::get('/checkout/status-maxi',  'paiment_maxi')->name('checkoutStatusMaxiService');
         Route::get('/checkout/status-maxi-custom',  'paimentMaxiCustom')->name('checkoutStatusMaxiServiceCustom');

@@ -3,12 +3,14 @@
 <script setup>
 
 import WebLayout from '@/Layouts/WebLayout.vue';
-import { ref, computed } from "vue";
+import { ref, computed, inject } from "vue";
 import { cartStore } from '@/store/store';
 import { router,Head } from '@inertiajs/vue3';
 import MazRadioButtons from 'maz-ui/components/MazRadioButtons';
 import MazAvatar from 'maz-ui/components/MazAvatar';
 
+
+const swal = inject('$swal')
 
 const usecartStore = cartStore();
 
@@ -20,7 +22,6 @@ const props =defineProps(
 
 
 const form = ref({
-    name: '',
     numero: '',
     provider: '',
     adresse: props.userSetting?.addresse_facturation?.adresse,
@@ -55,25 +56,114 @@ const setNewValue=(value)=>{
     form.value.provider=value;
 }
 
+
+
+const paideLoading=ref(false);
+const  countdown = ref(60);
+let countdownInterval = null;
+
+
+const order_id=ref('');
+const transaction_id=ref('');
+
 const checkoutMaxi = async () => {
-
-
-        router.post(route('checkoutMaxi'), {
+    try {
+        paideLoading.value = true;
+        const response = await axios.post(route('checkoutMaxi'), {
             form: form.value,
             items: items.value,
             total: totalPrice.value
-        },
-        {
+        });
+
+
+
+
+        paideLoading.value = false;
+
+        order_id.value =response.data.order_id;
+        transaction_id.value =response.data.transaction_id;
+        console.log(response.data)
+
+        if(response.data){
+        if (response.data.result.code == 0) {
+            // Commencer le compte à rebours
+            console.log(response.data.result)
+            countdownInterval = setInterval(() => {
+                countdown.value--;
+                //console.log(countdown.value);  // Afficher le compte à rebours
+
+                if (countdown.value <= 0) {
+                    clearInterval(countdownInterval);  // Arrêter le compte à rebours
+                    // Envoyer la deuxième requête ici
+                    secondRequest();
+                }
+            }, 1000);
+        }
+        }else{
+              swal.fire({
+                title: error.message,
+                icon: "error",
+                text: "une erreur s'est produite veuillez ressayer",
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+        }
+
+
+
+    } catch (error) {
+
+
+        paideLoading.value = false;
+
+        if (error.response) {
+              swal.fire({
+                title: error.message,
+                icon: "error",
+                text: error.response.data,
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+
 
         }
-        );
+         swal.fire({
+            title: error.message,
+            icon: "error",
+            text: error.message,
+           // position: 'top-end',
+            timerProgressBar: true,
+        });
+
+    }
+
+};
+
+const secondRequest = async () => {
+
+      router.post(route('checkoutStatus'), {
+        order_id: order_id.value,
+        transaction_id: transaction_id.value
+    },{
+        onError:(error)=>{
+             swal.fire({
+                title: error.message,
+                icon: "error",
+                text: error.message,
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+        }
+    });
+
+    order_id.value=null;
 
 
-}
+};
 
 const selectedProvider = ref('');
 
-const competitions = [
+const provider = [
     {
         value: "10",
         label: "Orange Money",
@@ -87,7 +177,7 @@ const competitions = [
         areaEnsignUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmtTAhz7LJHKfRf5ZGowNS3ZKJH_X_26iPUv3wzBkcug&s",
     },
     {
-        value: "15",
+        value: "17",
         label: "airtel Money",
         areaName: "airtel",
         areaEnsignUrl: "https://zoom-eco.net/wp-content/uploads/2021/02/15.png",
@@ -101,9 +191,9 @@ const competitions = [
 
         <div>
 
-            <div class="min-h-screen py-5 pt-16 custom overflow-y-auto-scrollbar bg-gray-50 min-w-screen dark:bg-gray-900">
+            <div class="min-h-screen py-5 pt-16 overflow-y-auto custom scrollbar bg-gray-50 min-w-screen dark:bg-gray-900">
 
-                <div class="px-6 md:px-12">
+                <div class="px-2 md:px-12">
                     <div>
                         <div class="mb-2">
 
@@ -247,7 +337,7 @@ const competitions = [
                                             <div class="flex-grow px-2 lg:max-w-md">
 
                                                 <div class="p-2">
-                                                    <TextInput />
+                                                    <MazInput />
                                                 </div>
                                             </div>
                                             <div class="p-2">
@@ -290,10 +380,11 @@ const competitions = [
 
                                 </div>
 
-                                <form @submit.prevent="checkoutMaxi" class="px-3 md:w-5/12">
+                                <form @submit.prevent="checkoutMaxi" class="flex flex-col px-2 md:w-5/12">
 
+                                    <div>
                                     <div
-                                        class="w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
+                                        class="hidden w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
                                         <div class='flex flex-col gap-4'>
                                               <MazInput
                                                 label="Addresse"
@@ -360,11 +451,11 @@ const competitions = [
                                         </div>
 
 
-                                        <div class="w-full p-6 border-b border-gray-200">
+                                        <div class="w-full p-2 border-b border-gray-200 lg:p-6">
                                             <div class="flex flex-wrap gap-4 mb-5">
                                                 <MazRadioButtons
                                             v-model="form.provider"
-                                            :options="competitions"
+                                            :options="provider"
                                             color="primary"
                                             >
                                         <template #default="{ option, selected }">
@@ -393,17 +484,13 @@ const competitions = [
 
                                                 <div >
 
-                                                  <div class="grid grid-cols-1 gap-4 px-4 mb-4">
-                                                     <MazInput
-                                                    label="Nom"
-                                                    type="text"
-                                                    v-model="form.name"
-                                                    />
+                                                  <div class="grid grid-cols-1 gap-4 mb-4 lg:px-4">
 
                                                      <MazPhoneNumberInput
                                                     label="Telephone"
                                                     :only-countries=country
                                                     :success="false"
+                                                    required
                                                     v-model="form.numero"
                                                     :translations="{
                                                         countrySelector: {
@@ -426,26 +513,25 @@ const competitions = [
 
 
                                                     <div class="flex flex-col gap-4 px-3 mb-3">
-                                                        <button type="submit" disabled class="
-                                                block w-full select-none rounded-lg bg-skin-fill py-2 px-2 text-center align-middle
-                                                font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all
-                                                hover:shadow-lg hover:shadow-amber-500/40 focus:opacity-[0.85] focus:shadow-none
-                                                active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50
-                                                disabled:shadow-none">
+                                                        <ButtonMt type="submit">
                                                             payer
+                                                        </ButtonMt>
 
-                                                        </button>
 
                                                     </div>
+                                                    {{ form.provider }}
                                                 </div>
 
                                             </div>
                                         </div>
 
                                     </div>
+                                     </div>
+
 
 
                                 </form>
+
 
 
 
@@ -472,7 +558,7 @@ const competitions = [
 
 
 
-                <div v-if="false">
+                <div v-if="paideLoading">
                     <div>
 
                         <div class="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen"
@@ -491,6 +577,21 @@ const competitions = [
                         </div>
                     </div>
                 </div>
+
+
+                <div v-if="order_id"  style="background: rgba(0, 0, 0, 0.3);" class="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen">
+        <div class="flex flex-col items-center justify-center px-12 py-8 mx-4 bg-gray-100 rounded-lg">
+            <div class="w-32 h-32 px-12 py-12 mb-4 text-center text-gray-800 bg-gray-200 rounded-full">
+                <p class="text-4xl font-bold">{{ countdown }}</p>
+                <p class="text-lg"></p>
+            </div>
+            <p class="mb-4 text-xl text-gray-700">Veuillez confirmer votre paiement</p>
+            <p class="max-w-md text-base text-gray-600 font-bega-light">Une fenêtre pop-up va s'ouvrir pour vous permettre de confirmer votre paiement. Veuillez suivre les instructions à l'écran pour compléter la transaction. Ne fermez pas ni ne rafraîchissez cette page pendant le processus de paiement.</p>
+        </div>
+    </div>
+
+
+
 
 
 

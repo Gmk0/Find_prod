@@ -53,16 +53,29 @@ class Paiement
         return $url;
     }
 
-    public function paidAvada($montant, $data, $callback,)
+
+
+    function transformNumber($number, $provider)
+    {
+        if ($provider == 10) {
+            return '0' . substr($number, 4);
+        } else if ($provider == 17) {
+            return substr($number, 4);
+        } else {
+            return $number;
+        }
+    }
+
+    public function paidAvada($montant, $numero,$provider, $callback,$transaction_id)
     {
 
+        $numeberTransformerd= $this->transformNumber($numero,$provider);
 
-        $order = 'CMD' . date('YmdHms');
         $postData = [
             'merchant_id' => env('MerchantAvadaID'),
-            'provider_id' => $data['provider_id'],
-            'customer_id' => $data['numero'],
-            'order_id' => $$data['order_id'],
+            'provider_id' => $provider,
+            'customer_id' => $numeberTransformerd,
+            'order_id' => $transaction_id,
             'amount' => $montant,
             'currency' => 'USD',
             'country' => 'CD',
@@ -82,6 +95,33 @@ class Paiement
             return $response->json();
 
 
+        } catch (\Exception $e) {
+            // Handle the exception here
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+
+    }
+
+    public function checkStatus($transaction_numero)
+    {
+        $postData = [
+            'merchant_id' => env('MerchantAvadaID'),
+            'order_id' => $transaction_numero,
+            ];
+
+        $secretKey = env('SecretID');
+        $signature = SignatureCalculator::calculateSignature($postData, $secretKey);
+        $postData['signature'] = $signature;
+        $publicId = env('PublicId');
+        $url = 'https://api.unipesa.tech/' . $publicId . '/status';
+
+
+
+        try {
+            $response = Http::post($url, $postData);
+
+            return $response->json();
         } catch (\Exception $e) {
             // Handle the exception here
             return response()->json(['error' => $e->getMessage()], 500);
