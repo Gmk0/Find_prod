@@ -11,6 +11,8 @@ import OtherPanelUser from '@/Layouts/UserPartial/OtherPanelUser.vue';
 import Footer from '@/Components/Footer.vue';
 
 
+import { initFlowbite } from 'flowbite'
+
 const categoryStore = useCategoryStore();
 const Parainage = useParrainage();
 const layoutStore = useLayoutStore();
@@ -23,6 +25,7 @@ onMounted(()=>{
     categoryStore.fetchCategories();
     notification.fetchLastNotification();
     notification.getNotificationParametres();
+        initFlowbite();
 
 
 

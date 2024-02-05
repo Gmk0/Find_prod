@@ -1822,7 +1822,7 @@ for (let index = 1999; index < year ; index++) {
 
                                 <MazInput
                                v-model="freelanceElement.phone"
-                                disabled
+
 
                                 />
                                      <div v-if="$page.props.auth.user.phone_verified_at != null" class="flex gap-4 text-base italic text-gray-600">

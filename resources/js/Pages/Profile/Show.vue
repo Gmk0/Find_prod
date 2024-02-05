@@ -9,7 +9,7 @@ import SectionBorder from '@/Components/SectionBorder.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
 
 
-
+import Info from '@/Components/Info.vue';
 
 import ProfileSetting from '@/Components/ProfileSetting.vue';
 
@@ -32,6 +32,7 @@ defineOptions({
 
      <div class="flex flex-col min-h-screen gap-6 px-4 lg:mx-auto md:p-6 md:max-w-7xl md:container px-auto bg-inherit">
 
+         <Info />
            <BreadUser
                 title="Profile"
                 first_title="Profile"

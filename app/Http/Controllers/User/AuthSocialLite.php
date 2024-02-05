@@ -64,7 +64,9 @@ class AuthSocialLite extends Controller
                 Mail::to($newUser->email)->send(new WelcomeMailSocial($newUser->name, $password));
                 Auth::login($newUser);
 
-                return redirect()->route('categories');
+                return redirect()
+                ->route('profile.show')
+                ->with('message', 'Bienvenue sur Find-freelance. Un mot de passe a été envoyé dans votre boîte mail. Veuillez ajouter votre numéro de téléphone dans votre profil.');
             }
         } catch (\Exception $e) {
 

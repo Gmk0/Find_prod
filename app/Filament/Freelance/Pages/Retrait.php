@@ -2,6 +2,9 @@
 
 namespace App\Filament\Freelance\Pages;
 
+use App\Filament\Freelance\Resources\TransactionResource\Widgets\SoldeFreelance;
+
+use Filament\Forms\Components\Grid;
 use Filament\Pages\Page;
 
 use Filament\Forms\Components\TextInput;
@@ -14,13 +17,16 @@ use Filament\Notifications\Notification;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Illuminate\Support\Facades\Http;
+use Filament\Actions\Action;
+use Filament\Widgets\AccountWidget;
 
 class Retrait extends Page
 {
     use InteractsWithForms;
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-s-credit-card';
 
     protected static string $view = 'filament.freelance.pages.retrait';
+    protected static ?string $navigationGroup = 'Transactions';
 
 
     public ?array $data = [];
@@ -39,19 +45,28 @@ class Retrait extends Page
         return $form
             ->schema([
 
-                Section::make('Information')
+                Section::make('Retrait')
                 ->description('')
                     ->schema([
+                        Grid::make(['md'=>2])->schema([
+                    TextInput::make('numero')
+                    ->placeholder('2430844720350')
+                    ->required(),
+                    Select::make('provider_id')->label('Operateur')
+                        ->options(['9'=>'Orange Money','10'=>'M-pesa','17'=>'Airtel Money'])
+                        ->native(false),
+
+                        ]),
                         // ...
-                        TextInput::make('numero')
-                        ->required(),
 
-                        TextInput::make('montant')
 
-                        ->numeric(),
-                        TextInput::make('provider_id')
 
-                        ->numeric(),
+                    TextInput::make('montant')
+
+                     ->numeric(),
+                TextInput::make('password')
+
+                ->password(),
 
 
 
@@ -60,5 +75,35 @@ class Retrait extends Page
 
 
             ->statePath('data');
+    }
+
+    public function retrait()
+    {
+        $this->form->validate();
+        $data = $this->form->getState();
+
+
+
+       // dd($data);
+
+    }
+
+
+
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            SoldeFreelance::class
+        ];
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('edit')
+         ,
+
+        ];
     }
 }

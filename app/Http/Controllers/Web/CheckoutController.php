@@ -297,25 +297,10 @@ class CheckoutController extends Controller
 
         try {
 
-            dd($request->all());
+
 
             $form = $request->form;
             DB::beginTransaction();
-
-            $userSeeting = auth()->user()->userSetting;
-
-            $localisation = [
-                'adresse' => $form['adresse'],
-                'commune' => $form['commune'],
-                'ville' => $form['ville'],
-                'pays' => $form['pays'],
-
-            ];
-
-
-
-           // $userSeeting['addresse_facturation'] = $localisation;
-           // $userSeeting->update();
 
 
 

@@ -42,12 +42,11 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 import NotificationComponent from '@/components/NotificationComponent.vue';
 
-import MultiSelect from 'primevue/multiselect';
+
 
 import Checkbox from '@/components/Checkbox.vue';
 
 import Skeleton from 'primevue/skeleton';
-import InputText from 'primevue/InputText';
 import Sidebar from 'primevue/sidebar';
 
 import Dropdown from 'primevue/dropdown';
@@ -63,13 +62,13 @@ import Tailwind from 'primevue/passthrough/tailwind';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import InputError from '@/Components/InputError.vue';
-import Textarea from 'primevue/textarea';
 import Photo from '@/Components/Photo.vue';
 import CardGift from '@/Components/CardGift.vue';
 import RadioButton from 'primevue/radiobutton';
 import Tooltip from 'primevue/tooltip';
 
 import Error from '@/Components/Error.vue';
+
 import Tag from 'primevue/tag';
 import FileUpload from 'primevue/fileupload';
 
@@ -170,7 +169,7 @@ createInertiaApp({
             .component('MazInputNumber', MazInputNumber)
             .component('Skeleton', Skeleton)
             .component('Dropdown', Dropdown)
-            .component('InputText', InputText)
+            .component('Message', Message)
             .component('Toast', Toast)
             .component('Sidebar', Sidebar)
             .component('Collapse', Collapse)
@@ -201,7 +200,7 @@ createInertiaApp({
             .component('FooterGuest', FooterGuest)
             .component('CardGuest', CardGuest)
             .component('NavGuest', NavGuest)
-            .component('Message',Message)
+
             .component('CardGift', CardGift)
             .component('MazInput', MazInput)
             .component('MazSelect', MazSelect)

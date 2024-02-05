@@ -188,6 +188,7 @@ const clearPhotoFileInput = () => {
                     <MazInput
                         v-model="form.phone"
                         type="text"
+                        placeholder="243844720350"
                         required
                         label="Telephone"
 

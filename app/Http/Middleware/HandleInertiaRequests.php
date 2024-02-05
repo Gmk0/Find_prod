@@ -40,7 +40,8 @@ class HandleInertiaRequests extends Middleware
             'auth.freelance'=>fn()=>$request->user()
             ? $request->user()->freelanceExit() : false,
             'flash'=>fn()=>[
-                'error' => fn ()=>$request->session()->get('error')
+                'error' => fn ()=>$request->session()->get('error'),
+                'message'=>fn ()=>$request->session()->get('message'),
                 ],
             'urlPrev'    => function () {
                 if (url()->previous() !== route('login') && url()->previous() !== '' && url()->previous() !== url()->current()) {

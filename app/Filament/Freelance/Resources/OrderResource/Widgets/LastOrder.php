@@ -44,7 +44,7 @@ class LastOrder extends BaseWidget
             ])->actions([
                 Tables\Actions\Action::make('Gerer')
                     ->url(fn (ModelsOrder $record): string => OrderResource::getUrl('edit', ['record' => $record])),
-            ]);
+            ])->heading('Derniere commande');
     }
 
 

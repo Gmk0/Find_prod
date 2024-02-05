@@ -71,6 +71,8 @@
 
                             </DropdownLink>
 
+                            <!--
+
                                      <DropdownLink  :href="route('user.chat')">
 
 
@@ -82,6 +84,7 @@
                                               <span class="ml-2">  favoris</span>
                                               </span>
                                         </DropdownLink>
+                                        -->
 
                                      <DropdownLink :href="route('user.chat')">
 

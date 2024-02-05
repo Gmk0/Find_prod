@@ -6,6 +6,8 @@ import WebLayout from '@/Layouts/WebLayout.vue';
 import { ref, computed } from "vue";
 import { cartStore } from '@/store/store';
 import { router,Head } from '@inertiajs/vue3';
+import MazRadioButtons from 'maz-ui/components/MazRadioButtons';
+import MazAvatar from 'maz-ui/components/MazAvatar';
 
 
 const usecartStore = cartStore();
@@ -41,7 +43,7 @@ const isCard = ref(false);
 const isOther = ref(false);
 const loadingPayement = ref(false);
 
-const checkoutMaxi = async () => {
+const checkoutMaxi2 = async () => {
 
         loadingPayement.value =true;
         router.post(route('checkoutMaxiCustom'), {
@@ -65,6 +67,156 @@ const checkoutMaxi = async () => {
 
 
 }
+
+
+const country = ref(['CD']);
+
+
+
+
+
+const isOrange = ref(false);
+const isVoda = ref(false);
+const isAirtel = ref(false);
+
+
+
+
+const setNewValue = (value) => {
+    form.value.provider = value;
+}
+
+
+
+const paideLoading = ref(false);
+const countdown = ref(60);
+let countdownInterval = null;
+
+
+const order_id = ref('');
+const transaction_id = ref('');
+
+const checkoutMaxi = async () => {
+    try {
+        paideLoading.value = true;
+        const response = await axios.post(route('checkoutMaxiCustom'), {
+            form: form.value,
+            service_id: props.proposal.service.id,
+            proposal_id: props.proposal.id,
+            //items: items.value,
+            total: props.proposal.proposed_price
+        });
+
+
+
+
+        paideLoading.value = false;
+
+        order_id.value = response.data.order_id;
+        transaction_id.value = response.data.transaction_id;
+        console.log(response.data)
+
+        if (response.data) {
+            if (response.data.result.code == 0) {
+                // Commencer le compte à rebours
+                console.log(response.data.result)
+                countdownInterval = setInterval(() => {
+                    countdown.value--;
+                    //console.log(countdown.value);  // Afficher le compte à rebours
+
+                    if (countdown.value <= 0) {
+                        clearInterval(countdownInterval);  // Arrêter le compte à rebours
+                        // Envoyer la deuxième requête ici
+                        secondRequest();
+                    }
+                }, 1000);
+            }
+        } else {
+            swal.fire({
+                title: error.message,
+                icon: "error",
+                text: "une erreur s'est produite veuillez ressayer",
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+        }
+
+
+
+    } catch (error) {
+
+
+        paideLoading.value = false;
+
+        if (error.response) {
+            swal.fire({
+                title: error.message,
+                icon: "error",
+                text: error.response.data,
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+
+
+        }
+        swal.fire({
+            title: error.message,
+            icon: "error",
+            text: error.message,
+            // position: 'top-end',
+            timerProgressBar: true,
+        });
+
+    }
+
+};
+
+const secondRequest = async () => {
+
+    router.post(route('checkoutStatus'), {
+        order_id: order_id.value,
+        transaction_id: transaction_id.value
+    }, {
+        onError: (error) => {
+            swal.fire({
+                title: error.message,
+                icon: "error",
+                text: error.message,
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+        }
+    });
+
+    order_id.value = null;
+
+
+};
+
+const selectedProvider = ref('');
+
+const provider = [
+    {
+        value: "10",
+        label: "Orange Money",
+        areaName: "orange",
+        areaEnsignUrl: "https://www.jordanfinancialservices.com/2021/sites/default/files/images/logos/orange_money-01.jpg",
+    },
+    {
+        value: "9",
+        label: "Vodacom Mpesa",
+        areaName: "Vodacom",
+        areaEnsignUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmtTAhz7LJHKfRf5ZGowNS3ZKJH_X_26iPUv3wzBkcug&s",
+    },
+    {
+        value: "17",
+        label: "airtel Money",
+        areaName: "airtel",
+        areaEnsignUrl: "https://zoom-eco.net/wp-content/uploads/2021/02/15.png",
+    },
+
+]
+
 
 
 </script>
@@ -183,105 +335,157 @@ const checkoutMaxi = async () => {
 
                                 </div>
 
-                                <form @submit.prevent="checkoutMaxi" class="px-3 md:w-5/12">
+                                <form @submit.prevent="checkoutMaxi" class="flex flex-col px-2 md:w-5/12">
 
-                                    <div
-                                        class="w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
-                                        <div class='flex flex-col gap-4'>
+                                        <div>
+                                        <div
+                                            class="hidden w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
+                                            <div class='flex flex-col gap-4'>
+                                                  <MazInput
+                                                    label="Addresse"
+                                                    type="Addresse"
+                                                    v-model="form.adresse"
+                                                    />
+                                                    <MazInput
+                                                        label="commune"
+                                                        type="commune"
+                                                        v-model="form.commune"
+                                                        />
+                                                        <MazInput
+                                                            label="ville"
+                                                            type="ville"
+                                                            v-model="form.ville"
+                                                            />
+                                                          <MazInput
+                                                                label="Pays"
+                                                                type="Pays"
+                                                                v-model="form.pays"
+                                                                />
 
-                                            <InputText required v-model="form.adresse" placeholder="Addresse" />
-                                            <InputText required v-model="form.commune" placeholder="commune" />
-                                            <InputText required v-model="form.ville"  placeholder="ville"/>
-                                            <InputText required v-model="form.pays" placeholder="Pays"/>
+
+
+                                            </div>
 
 
                                         </div>
 
 
-                                    </div>
-
-
-                                    <div
-                                        class="w-full mx-auto mb-6 text-gray-800 bg-white border border-gray-200 rounded-lg top-8 dark:bg-gray-900">
-                                        <div class="hidden w-full p-3 border-b border-gray-200 ">
-                                            <div class="mb-5">
-                                                <label for="type1" class="flex items-center cursor-pointer">
-                                                    <input type="checkbox" class="w-5 h-5 text-indigo-500 form-radio"
-                                                        id="type1" v-model="isCard" @click="isOther = false">
-                                                    <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
-                                                        class="h-6 ml-3">
-                                                </label>
-                                            </div>
-                                            <div class="px-2" v-if="isCard">
-                                                <div class="relative grid grid-cols-3 gap-2 mb-3 ">
+                                        <div
+                                            class="w-full mx-auto mb-6 text-gray-800 bg-white border border-gray-200 rounded-lg top-8 dark:bg-gray-900">
+                                            <div class="hidden w-full p-6 border-b border-gray-200 ">
+                                                <div class="mb-5">
+                                                    <label for="type1" class="flex items-center cursor-pointer">
+                                                        <input type="checkbox" class="w-5 h-5 text-indigo-500 form-radio"
+                                                            id="type1" v-model="isOrange" @click="isProviderToogle('orange')">
+                                                        <img src="https://www.jordanfinancialservices.com/2021/sites/default/files/images/logos/orange_money-01.jpg"
+                                                            class="h-6 ml-3">
+                                                    </label>
                                                 </div>
+                                                <div class="px-2" v-if="isOrange">
+                                                    <div class="relative grid grid-cols-3 gap-2 mb-3 ">
+                                                    </div>
 
-                                                <div class="mt-4">
+                                                    <div class="mt-4">
 
-                                                    <button
-                                                        class=" block w-full select-none rounded-lg bg-amber-600 py-2 px-2 text-center align-middle
+                                                        <button
+                                                            class=" block w-full select-none rounded-lg bg-amber-600 py-2 px-2 text-center align-middle
                                                                                                                                                                 font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all
                                                                                                                                                                 hover:shadow-lg hover:shadow-amber-500/40 focus:opacity-[0.85] focus:shadow-none
                                                                                                                                                                 active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50
                                                                                                                                                                 disabled:shadow-none"
-                                                        data-ripple-light="true">
-                                                        <span>PAYER
-                                                            ($)</span>
-
-                                                    </button>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-
-                                        <div class="w-full p-6 border-b border-gray-200">
-                                            <div class="mb-5">
-                                                <label for="type2" class="flex items-center cursor-pointer">
-                                                    <input type="checkbox" class="w-5 h-5 text-indigo-500 form-radio"
-                                                        id="type2" v-model="isOther" @click="isCard = false">
-
-                                                    <img src="/images/icon/maxicash.png" class="h-6 ml-3">
-
-                                                </label>
-                                            </div>
-                                            <div v-if="isOther">
-
-                                                <div >
-
-                                                  <div class="grid grid-cols-1 gap-4 px-4 mb-4">
-                                                    <InputText required v-model="form.name" placeholder="Nom"   class="rounded-md"  />
-                                                         <InputText v-model="form.numero" placeholder="Telephone"  required class="rounded-md" />
-
-                                                  </div>
-
-
-
-
-                                                    <div class="flex flex-col gap-4 px-3 mb-3">
-                                                        <button type="submit" class="
-                                                block w-full select-none rounded-lg bg-amber-600 py-2 px-2 text-center align-middle
-                                                font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all
-                                                hover:shadow-lg hover:shadow-amber-500/40 focus:opacity-[0.85] focus:shadow-none
-                                                active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50
-                                                disabled:shadow-none">
-                                                            payer
+                                                            data-ripple-light="true">
+                                                            <span>PAYER
+                                                                ($)</span>
 
                                                         </button>
 
                                                     </div>
+
                                                 </div>
 
                                             </div>
+
+
+                                            <div class="w-full p-2 border-b border-gray-200 lg:p-6">
+                                                <div class="flex flex-wrap gap-4 mb-5">
+                                                    <MazRadioButtons
+                                                v-model="form.provider"
+                                                :options="provider"
+                                                color="primary"
+                                                >
+                                            <template #default="{ option, selected }">
+                                                <div style="display: flex;">
+                                                <MazAvatar
+                                                    v-if="option.areaEnsignUrl"
+                                                    :src="option.areaEnsignUrl"
+                                                    style="margin-right: 16px;"
+                                                    size="0.8rem"
+                                                />
+                                                <div style="display: flex; flex-direction: column;">
+                                                    <span class="dark:text-gray-200">
+                                                    {{ option.label }}
+                                                    </span>
+                                                    <span :class="{ 'maz-text-muted': !selected }">
+                                                    {{ option.areaName }}
+                                                    </span>
+                                                </div>
+                                                </div>
+                                            </template>
+                                            </MazRadioButtons>
+
+
+                                                </div>
+                                                <div v-if="form.provider !== ''">
+
+                                                    <div >
+
+                                                      <div class="grid grid-cols-1 gap-4 mb-4 lg:px-4">
+
+                                                         <MazPhoneNumberInput
+                                                        label="Telephone"
+                                                        :only-countries=country
+                                                        :success="false"
+                                                        required
+                                                        v-model="form.numero"
+                                                        :translations="{
+                                                            countrySelector: {
+                                                                placeholder: 'Code pays',
+                                                                error: 'Choisissez un pays',
+                                                                searchPlaceholder: 'Rechercher un pays',
+                                                            },
+                                                            phoneInput: {
+                                                                placeholder: 'Numéro de téléphone',
+                                                                example: 'Exemple :',
+                                                            },
+                                                        }"
+
+                                                        />
+
+
+                                                      </div>
+
+
+
+
+                                                        <div class="flex flex-col gap-4 px-3 mb-3">
+                                                            <ButtonMt type="submit">
+                                                                payer
+                                                            </ButtonMt>
+
+
+                                                        </div>
+                                                        {{ form.provider }}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
                                         </div>
+                                         </div>
 
-                                    </div>
 
 
-                                </form>
-
+                                    </form>
 
 
 
@@ -310,25 +514,37 @@ const checkoutMaxi = async () => {
 
 
 
-                <div v-if="loadingPayement">
-                    <div>
+                 <div v-if="paideLoading">
+                        <div>
 
-                        <div class="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen"
-                            style="background: rgba(0, 0, 0, 0.3);">
-                            <div class="flex flex-col items-center px-5 py-2 bg-white border rounded-lg">
-                                <div class="relative block w-20 h-5 mt-2 loader-dots">
-                                    <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
-                                    <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
-                                    <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
-                                    <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
-                                </div>
-                                <div class="mt-2 text-xs font-medium text-center text-gray-500">
-                                    Paiement en cours...
+                            <div class="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen"
+                                style="background: rgba(0, 0, 0, 0.3);">
+                                <div class="flex flex-col items-center px-5 py-2 bg-white border rounded-lg">
+                                    <div class="relative block w-20 h-5 mt-2 loader-dots">
+                                        <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
+                                        <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
+                                        <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
+                                        <div class="absolute top-0 w-3 h-3 mt-1 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <div class="mt-2 text-xs font-medium text-center text-gray-500">
+                                        Paiement en cours...
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+                    <div v-if="order_id"  style="background: rgba(0, 0, 0, 0.3);" class="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen">
+            <div class="flex flex-col items-center justify-center px-12 py-8 mx-4 bg-gray-100 rounded-lg">
+                <div class="w-32 h-32 px-12 py-12 mb-4 text-center text-gray-800 bg-gray-200 rounded-full">
+                    <p class="text-4xl font-bold">{{ countdown }}</p>
+                    <p class="text-lg"></p>
                 </div>
+                <p class="mb-4 text-xl text-gray-700">Veuillez confirmer votre paiement</p>
+                <p class="max-w-md text-base text-gray-600 font-bega-light">Une fenêtre pop-up va s'ouvrir pour vous permettre de confirmer votre paiement. Veuillez suivre les instructions à l'écran pour compléter la transaction. Ne fermez pas ni ne rafraîchissez cette page pendant le processus de paiement.</p>
+            </div>
+        </div>
 
 
 

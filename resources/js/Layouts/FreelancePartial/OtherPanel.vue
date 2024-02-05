@@ -134,7 +134,7 @@ const LayoutStore = useLayoutStore();
 
 
                                     </div>
-                                    <h3 class="mt-2 text-lg font-medium text-slate-700 dark:text-navy-100">{{ Auth:: user() -> name }}
+                                    <h3 class="mt-2 text-lg font-bega-medium text-slate-700 dark:text-navy-100">{{ Auth:: user() -> name }}
                                     </h3>
                                     <p>{{ Auth:: user() -> freelance ? -> category -> name }}</p>
 
@@ -149,7 +149,7 @@ const LayoutStore = useLayoutStore();
                                             <h1>Solde</h1>
                                         </div>
                                         <div class="text-white">
-                                            <p class="text-lg font-semibold tracuking-wide">
+                                            <p class="text-lg font-bega-semibold tracuking-wide">
                                             {{ $soldeFreelance }} $
                                             </p>
 
@@ -171,7 +171,7 @@ const LayoutStore = useLayoutStore();
 
                         <div class="mt-4">
                             <h2
-                                class="px-3 text-xs+ font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
+                                class="px-3 text-xs+ font-bega-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
                                 Dernier messages
                             </h2>
 
@@ -186,7 +186,7 @@ const LayoutStore = useLayoutStore();
                                     <div class="flex flex-col justify-between px-3 mb-2 px-auto ">
                                         <div class="mb-1 line-clamp-2">
                                             <Link :href="route('user.chat', message.conversation_id)"
-                                                class="font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
+                                                class="font-bega-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
                                             <span v-html="message.body"></span>
                                         </Link>
                                         </div>
@@ -196,7 +196,7 @@ const LayoutStore = useLayoutStore();
                                                 <div class="flex items-center gap-3 mb-4 ">
 
                                                     <Photo :user="message.senderUser" :taille="'12'" />
-                                                    <p class="text-xs font-medium line-clamp-1">
+                                                    <p class="text-xs font-bega-medium line-clamp-1">
                                                         {{ message.senderUser.name }}
                                                     </p>
 
@@ -205,7 +205,7 @@ const LayoutStore = useLayoutStore();
 
                                                 <div>
 
-                                                    <p class="text-xs font-medium line-clamp-1">
+                                                    <p class="text-xs font-bega-medium line-clamp-1">
                                                         {{ getHourFromDate(message.created_at)}}
                                                     </p>
 
@@ -225,7 +225,7 @@ const LayoutStore = useLayoutStore();
                         </div>
 
                         <div class="px-3 mt-3">
-                            <h2 class="text-xs+ font-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
+                            <h2 class="text-xs+ font-bega-medium tracking-wide text-slate-700 line-clamp-1 dark:text-navy-100">
                                 Settings
                             </h2>
                             <div class="flex flex-col mt-2 space-y-2">
@@ -248,11 +248,11 @@ const LayoutStore = useLayoutStore();
                             <div class="p-3 rounded-lg bg-slate-100 dark:bg-navy-600">
                                 <div class="flex items-center justify-between">
                                     <p>
-                                        <span class="font-medium text-slate-600 dark:text-navy-100">35GB</span>
+                                        <span class="font-bega-medium text-slate-600 dark:text-navy-100">35GB</span>
                                         of 1TB
                                     </p>
                                     <a href="#"
-                                        class="text-xs+ font-medium text-primary outline-none transition-colors duration-300 hover:text-primary/70 focus:text-primary/70 dark:text-accent-light dark:hover:text-accent-light/70 dark:focus:text-accent-light/70">Upgrade</a>
+                                        class="text-xs+ font-bega-medium text-primary outline-none transition-colors duration-300 hover:text-primary/70 focus:text-primary/70 dark:text-accent-light dark:hover:text-accent-light/70 dark:focus:text-accent-light/70">Upgrade</a>
                                 </div>
 
                                 <div class="h-2 mt-2 progress bg-slate-150 dark:bg-navy-500">
@@ -271,7 +271,7 @@ const LayoutStore = useLayoutStore();
                         <div class="grid grid-cols-2 gap-3">
                             <div class="p-3 rounded-lg bg-slate-100 dark:bg-navy-600">
                                 <div class="flex justify-between space-x-1">
-                                    <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
+                                    <p class="text-xl font-bega-semibold text-slate-700 dark:text-navy-100">
                                         {{ lastData.total }}
                                     </p>
                                     <svg xmlns="http://www.w3.org/2000/svg" stroke-width="1.5"
@@ -285,7 +285,7 @@ const LayoutStore = useLayoutStore();
                             </div>
                             <div class="p-3 rounded-lg bg-slate-100 dark:bg-navy-600">
                                 <div class="flex justify-between">
-                                    <p class="text-xl font-semibold text-slate-700 dark:text-navy-100">
+                                    <p class="text-xl font-bega-semibold text-slate-700 dark:text-navy-100">
                                         {{ lastData.totalEnAttente }}
                                     </p>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-success" fill="none"
@@ -308,7 +308,7 @@ const LayoutStore = useLayoutStore();
                                 <img class="object-cover object-center w-10 h-10 rounded-lg"
                                     src="{{ asset('images/illustrations/lms-ui.svg') }}" alt="image" />
                                 <div>
-                                    <p class="font-medium leading-snug text-slate-700 dark:text-navy-100">
+                                    <p class="leading-snug font-bega-medium text-slate-700 dark:text-navy-100">
                                         {{ $orderP -> order -> service -> title }}
                                     </p>
                                     <p class="text-xs text-slate-400 dark:text-navy-300">
@@ -324,7 +324,7 @@ const LayoutStore = useLayoutStore();
                                     <div style="width: {{$orderP->order->progress}}%;"
                                         class="w-4/12 rounded-full bg-primary dark:bg-accent"></div>
                                 </div>
-                                <p class="mt-2 text-right text-xs+ font-medium text-primary dark:text-accent-light">
+                                <p class="mt-2 text-right text-xs+ font-bega-medium text-primary dark:text-accent-light">
                                     {{ $orderP -> order -> progress }} %
                                 </p>
                             </div>
@@ -347,7 +347,7 @@ const LayoutStore = useLayoutStore();
                                     </div>
                                 </div>
                                 <a href="{{route('freelance.Order.view', $orderP->order->order_numero)}}"
-                                    class="p-0 font-medium rounded-full btn2 h-7 w-7 bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                                    class="p-0 rounded-full font-bega-medium btn2 h-7 w-7 bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rotate-45" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

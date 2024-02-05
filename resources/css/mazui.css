@@ -13,8 +13,7 @@ button {
 button,
 input,
 optgroup,
-select,
-textarea {
+select, {
     font-family: inherit;
     font-size: 1em;
     line-height: 1.15;
