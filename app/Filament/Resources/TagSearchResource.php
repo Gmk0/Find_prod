@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class TagSearchResource extends Resource
 {
     protected static ?string $model = TagSearch::class;
+    protected static ?string $navigationGroup = 'Categories';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

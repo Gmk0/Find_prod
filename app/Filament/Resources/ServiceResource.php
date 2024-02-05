@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Freelance\Resources\ServiceResource\Pages;
-use App\Filament\Freelance\Resources\ServiceResource\RelationManagers;
+use App\Filament\Resources\ServiceResource\Pages;
+use App\Filament\Resources\ServiceResource\RelationManagers;
 use App\Models\Service;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
@@ -39,7 +39,7 @@ class ServiceResource extends Resource
 
                     Select::make('tags')->label('tags')
                     ->options(function () {
-                        return TagSearch::where('category_id', auth()->user()->freelance->category_id)->pluck('tag', 'tag');
+                        return TagSearch::all()->pluck('tag', 'tag');
                     })->multiple()
                         ->native(false),
 
@@ -47,7 +47,7 @@ class ServiceResource extends Resource
                 Fieldset::make('Sous categories')
                 ->schema([
                     Forms\Components\Select::make('category_id')->label('categorie')
-                    ->options(Category::where('id', auth()->user()->freelance->category_id)->pluck('name', 'id'))
+                    ->options(Category::All()->pluck('name', 'id'))
                     ->live()
                         ->searchable()
                         ->native(false),
@@ -68,7 +68,7 @@ class ServiceResource extends Resource
                     ->label('Prix du Service')
                     ->numeric()
                         ->inputMode('decimal')
-                        ->helperText('3.5% sera ajouter a votre prix pour les frais de transaction ')
+                        //->helperText('3.5% sera ajouter a votre prix pour les frais de transaction ')
                         ->required(),
 
                     TextInput::make('basic_revision')->label('Revisions')
@@ -86,14 +86,14 @@ class ServiceResource extends Resource
                 ])
                     ->columnSpanFull(),
 
-                FileUpload::make('files')->label('Image Decrivant le service')
+                FileUpload::make('files')->label('Image Decrivant votre service')
                 ->multiple()
                     ->directory('service')
                     ->imagePreviewHeight('100')
                     ->image()
                     ->columnSpanFull()
                     ->imageEditor(),
-                Fieldset::make('Realisation')->schema([
+                Fieldset::make('Realisation faites avec ce service')->schema([
                     FileUpload::make('example.image')
                     ->imagePreviewHeight('100')
                     ->image()
@@ -129,9 +129,10 @@ class ServiceResource extends Resource
                 ]),
 
 
+                Toggle::make('is_publish')->label('Publier'),
 
-
-
+                Toggle::make('is_gift')->label('cadeaux')
+                ->visible(fn (): bool => str_ends_with(auth()->user()->email, '@find-freelance.com')),
 
 
             ]);
@@ -143,86 +144,86 @@ class ServiceResource extends Resource
         return $table
             ->columns([
 
-                Tables\Columns\TextColumn::make('category.name')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            Tables\Columns\TextColumn::make('freelance.user.name')
-            ->searchable(),
-                Tables\Columns\TextColumn::make('service_numero')
+                Tables\Columns\TextColumn::make('freelance.user.name'),
+            Tables\Columns\TextColumn::make('category.name')
+                ->numeric()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('service_numero')
                 ->searchable(),
-                Tables\Columns\TextColumn::make('title')
+            Tables\Columns\TextColumn::make('title')
                 ->searchable(),
-                Tables\Columns\TextColumn::make('basic_price')
+            Tables\Columns\TextColumn::make('basic_price')
                 ->money('USD', true)
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('basic_support')
+                ->sortable(),
+            Tables\Columns\TextColumn::make('basic_support')
                 ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('basic_revision')
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('basic_revision')
                 ->numeric()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('basic_delivery_time')
-                ->numeric()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('premium_price')
-                ->numeric()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('premium_support')
-                ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('premium_revision')
-                ->numeric()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('premium_delivery_time')
-                ->numeric()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('extra_price')
-                ->numeric()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('extra_support')
                 ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('extra_revision')
-                ->toggleable(isToggledHiddenByDefault: true)
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('extra_delivery_time')
-                ->toggleable(isToggledHiddenByDefault: true)
-                    ->numeric()
-                    ->sortable(),
+                ->sortable(),
+            Tables\Columns\TextColumn::make('basic_delivery_time')
+            ->numeric()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('premium_price')
+                ->numeric()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('premium_support')
+            ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('premium_revision')
+            ->numeric()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('premium_delivery_time')
+            ->numeric()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('extra_price')
+                ->numeric()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('extra_support')
+            ->toggleable(isToggledHiddenByDefault: true)
+                ->searchable(),
+            Tables\Columns\TextColumn::make('extra_revision')
+            ->toggleable(isToggledHiddenByDefault: true)
+                ->numeric()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('extra_delivery_time')
+            ->toggleable(isToggledHiddenByDefault: true)
+                ->numeric()
+                ->sortable(),
 
 
 
-                Tables\Columns\TextColumn::make('delivery_time_unit')
-                ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('video_url')
-                ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('view_count')
+            Tables\Columns\TextColumn::make('delivery_time_unit')
+            ->toggleable(isToggledHiddenByDefault: true)
+                ->searchable(),
+            Tables\Columns\TextColumn::make('video_url')
+            ->toggleable(isToggledHiddenByDefault: true)
+                ->searchable(),
+            Tables\Columns\TextColumn::make('view_count')
                 ->numeric()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('like')
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('like')
                 ->numeric()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->sortable(),
-                Tables\Columns\IconColumn::make('is_publish')
+                ->toggleable(isToggledHiddenByDefault: true)
+                ->sortable(),
+            Tables\Columns\IconColumn::make('is_publish')
                 ->boolean(),
-                Tables\Columns\TextColumn::make('created_at')
+            Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
                 ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -237,6 +238,7 @@ class ServiceResource extends Resource
                 ]),
             ]);
     }
+
     public static function getRelations(): array
     {
         return [
