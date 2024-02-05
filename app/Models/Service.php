@@ -82,10 +82,7 @@ class Service extends Model
 
 
 
-    public function favoris(): BelongsTo
-    {
-        return $this->belongsTo(Favoris::class);
-    }
+
 
     public function freelance(): BelongsTo
     {
