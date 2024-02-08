@@ -13,9 +13,9 @@
 
                         <img class="object-cover w-16 h-16 rounded-lg" :src="item.image" alt="Service 1">
                         <div class="flex-1">
-                            <h3 class="mb-2 font-semibold text-gray-800 break-before-auto dark:text-gray-100">{{ item.name
+                            <h3 class="mb-2 font-semibold text-gray-800 dark:text-gray-100">{{ item.name
                             }}</h3>
-                            <p class="text-gray-500 dark:text-gray-100">{{ item.price }} $</p>
+                            <p class="text-gray-500 truncate dark:text-gray-100">{{ item.price }} $</p>
 
                             <div class="mt-4">
                                 <label for="Quantity" class="sr-only"> Quantity </label>
@@ -31,7 +31,7 @@
                                     <input disabled type="number" id="Quantity" :value="item.quantity"
                                         class="h-8 w-10 rounded border-gray-200 dark:bg-gray-700 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none" />
 
-                                    <button type="button" x-on:click=""
+                                    <button type="button" disabled
                                         @click="usecartStore.updateItemQuantity(item.id, item.quantity++)"
                                         class="w-8 h-8 leading-10 text-gray-600 transition hover:opacity-75">
                                         &plus;

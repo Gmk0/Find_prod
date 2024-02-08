@@ -216,6 +216,8 @@ class ServiceResource extends Resource
                 ->sortable(),
             Tables\Columns\IconColumn::make('is_publish')
                 ->boolean(),
+            Tables\Columns\ToggleColumn::make('use_coupon'),
+           // ->boolean(),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()

@@ -200,6 +200,7 @@ Route::middleware([
     Route::controller(CheckoutController::class)->group(function(){
 
         Route::get('/panier',  'checkout')->name('panier');
+        Route::post('/apply-coupon','applyCoupon')->name('applyCoupon');
         Route::post('/checkoutMaxi', 'checkoutMaxi')->name('checkoutMaxi');
         Route::post('/checkout-status','checkoutStatus')->name('checkoutStatus');
         Route::post('/checkoutMaxiCustom', 'checkoutMaxiCustom')->name('checkoutMaxiCustom');

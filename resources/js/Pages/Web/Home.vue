@@ -242,7 +242,7 @@
                                     <div class="w-full m-2 h-50 xl:h-72 aspect-w-8 aspect-h-9 md:col-span-2 rounded-2xl">
 
                                         <iframe class="w-full h-full rounded-sm aspect-video hover:aspect-square"
-                                            src="https://www.youtube.com/embed/rw_3Yv-rhZM" frameborder="0"
+                                            src="" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                     </div>
@@ -275,7 +275,7 @@
                                     <div class="w-full m-2 xl:h-72 h-50 aspect-w-8 aspect-h-9 md:col-span-2 rounded-2xl">
 
                                         <iframe class="w-full h-full rounded-sm aspect-video hover:aspect-square"
-                                            src="https://www.youtube.com/embed/rw_3Yv-rhZM" frameborder="0"
+                                            src="" frameborder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowfullscreen></iframe>
                                     </div>
@@ -480,7 +480,7 @@
                         >
                         <swiper-slide v-for="mission in getMissions" class="p-2">
 
-                        <div class="p-2 mb-4 rounded-md shadow-md lg:flex-col">
+                        <div class="p-2 mb-4 rounded-md shadow-md h-[25rem] lg:flex-col">
                             <img class="object-cover object-center w-full h-48 bg-center bg-cover shrink-0"
                                 src="/images/illustrations/missionF.svg" alt="image" />
                             <div class="flex flex-col w-full px-4 py-3 bg-white dark:bg-findDark-800 font-bega-light grow sm:px-5">
@@ -503,14 +503,14 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <Link href=""
-                                        class="text-lg font-bega-light text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
-                                        {{ mission.title }}</Link>
+                                    <p href="#"
+                                        class="max-w-xs text-base break-words truncate font-bega-light text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 ">
+                                        {{ mission.title }}</p>
                                 </div>
                                 <p  class="mt-1 line-clamp-3">
 
                                     <template v-if="!showMore">
-                                        <div class="max-w-xs break-words font-bega-light">
+                                        <div class="max-w-xs truncate font-bega-light">
 
                                             {{ truncateText(mission.description, 70) }}
                                         </div>
@@ -532,19 +532,13 @@
                                     </button>
 
                                 </div>
-
-
-
-
-
-
                                 </p>
                                 <div class="grow">
                                     <div class="flex items-center mt-2 text-xs">
                                         <a href="#" class="flex items-center space-x-2 hover:text-slate-800 dark:hover:text-navy-100">
-                                            <div class="w-12 h-12 mb-2">
+                                            <div class="w-10 h-10 mb-2">
 
-                                                <Photo :user="mission.user" taille="12" />
+                                                <Photo :user="mission.user" taille="10" />
 
                                             </div>
                                             <span class="line-clamp-1">{{ mission.user.name }}</span>
@@ -567,11 +561,11 @@
                                     <div v-if="mission.status == 'pending' && $page.props.auth.freelance"  class="flex gap-4 mt-4">
 
 
-                                               <Link href="">
+                                               <a href="/freelance-gestion/missions">
                                                  <Button  size="small"
                                                    outlined severity="info"
                                                    label="Postuler" />
-                                            </Link>
+                                               </a>
 
 
                                     </div>
@@ -589,10 +583,10 @@
 
 
                                     <div v-if="$page.props.auth.user ==null" class="px-4">
-                                        <Link :href="route('login')">
+                                        <Link :href="route('register')">
                                               <Button size="small"
                                                outlined severity="info"
-                                               label="connexion" />
+                                               label="postuler" />
                                         </Link>
                                     </div>
 
@@ -623,8 +617,7 @@
                 <div class="container text-gray-600 dark:text-gray-300 ">
                     <div class="mb-10 text-center">
                         <span class="font-bega-medium text-amber-600">Comentaire</span>
-                        <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Ils avaient confiance en
-                            nous</h1>
+                        <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Ils nous font confiance</h1>
 
                     </div>
                     <div class="container flex flex-col mx-auto my-10 overflow-hidden shadow-sm md:my-24 md:flex-row"

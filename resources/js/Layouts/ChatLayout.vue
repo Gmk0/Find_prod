@@ -8,12 +8,18 @@ import SidebarPanelUser from '@/Layouts/UserPartial/SidebarPanelUser.vue';
 import PartialHeaderUser from '@/Layouts/UserPartial/PartialHeaderUser.vue';
 import OtherPanelUser from '@/Layouts/UserPartial/OtherPanelUser.vue';
 
+import { initFlowbite } from 'flowbite'
+
 //const categoryStore = useCategoryStore();
 const layoutStore = useLayoutStore();
 //const userStore = useAuthStore();
 
 
 
+onMounted(()=>{
+
+    initFlowbite();
+})
 
 function resize() {
     if (window.innerWidth < 768) {

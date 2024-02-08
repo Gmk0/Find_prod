@@ -7,6 +7,8 @@ use App\Http\Resources\TransactionResourceData;
 use App\Models\ClientLink;
 use App\Models\Order;
 use App\Models\Proposal;
+use App\Models\coupon;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -421,6 +423,40 @@ class CheckoutController extends Controller
 
 
 
+
+    }
+
+    public function applyCoupon(Request $request)
+    {
+       // dd($request->all());
+
+        $coupon=$request->coupon;
+        $items=$request->items;
+
+        $service=Service::find($items[0]['id']);
+        if(!$service->use_coupon)
+        {
+
+           return response()->json(['error' => 'Coupon inexistant ou non applicable à ce service'], 400);
+        }
+
+        $price=0;
+        $couponModel=Coupon::where('coupon',$coupon)->first();
+
+        if(!$couponModel)
+        {
+            return response()->json(['error' => 'Coupon inexistant ou non applicable à ce service'], 400);
+        }
+        if($items[0]['price'] < $service->basic_price)
+        {
+            return response()->json(['error' => 'Un coupon a déjà été utilisé sur ce prix'], 400);
+
+        }
+
+        $price= $items[0]['price'] * $items[0]['quantity']* $couponModel->pourcentage /100;
+        $total= $items[0]['price'] * $items[0]['quantity']- $price;
+
+        return response()->json(['prix'=> $total,'id'=> $items[0]['id'],'status'=>1,'reduction'=> $couponModel->pourcentage.' %']);
 
     }
 

@@ -187,6 +187,17 @@ export const cartStore = defineStore('cart', {
                 item.quantity = newQuantity;
             }
         },
+        async updatePriceCoupons({ itemId, price }) {
+
+            console.log(itemId, price);
+            const item = this.items.find((i) => i.id === itemId);
+
+
+
+            if (item) {
+                item.price = price;
+            }
+        },
         async clearCart() {
             this.items = []; // Remise à zéro du tableau d'articles du panier
         },
@@ -218,6 +229,12 @@ export const cartStore = defineStore('cart', {
 
             }
 
+        },
+         updateTotalCost(newTotalCost) {
+             console.log('Nouveau prix total :', newTotalCost);
+            this.$patch((state) => {
+                state.totalCost = newTotalCost;
+            });
         },
 
 

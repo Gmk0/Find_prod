@@ -8,6 +8,7 @@ import { cartStore } from '@/store/store';
 import { router,Head } from '@inertiajs/vue3';
 import MazRadioButtons from 'maz-ui/components/MazRadioButtons';
 import MazAvatar from 'maz-ui/components/MazAvatar';
+import axios from 'axios';
 
 
 const swal = inject('$swal')
@@ -40,16 +41,55 @@ defineOptions({
 const country=ref(['CD']);
 
 
+const coupon=ref('');
+const reduction=ref(null);
 const items = computed(() => usecartStore.items);
 
-const totalPrice = computed(() => usecartStore.totalCost);
+const errorMessage=ref(null);
+
 
 const isShow = ref(false);
 const isOrange = ref(false);
-const isVoda = ref(false);
-const isAirtel= ref(false);
 
 
+const totalPrice = computed(() => usecartStore.totalCost);
+
+const applyCoupon= async  ()=>{
+    try{
+    const response= await  axios.post(route('applyCoupon'),{
+            coupon: coupon.value,
+            items: items.value
+        });
+
+        updateItemPrice(response.data['id'], response.data['prix']);
+        reduction.value = response.data['reduction'];
+    }catch(e) {
+        errorMessage.value = e.response.data.error; // Récupérer le message d'erreur de la réponse
+        console.error(e);
+    }
+}
+
+const updateItemPrice = (itemId, newPrice) => {
+    usecartStore.updatePriceCoupons({ itemId, price: newPrice });
+};
+
+const applyCoupon2 = () => {
+
+
+    try {
+
+
+         router.post(route('applyCoupon'), {
+            coupon: coupon.value,
+            items: items.value
+        });
+
+
+    } catch (e) {
+        console.log(e);
+    }
+
+}
 
 
 const setNewValue=(value)=>{
@@ -183,6 +223,7 @@ const provider = [
         areaEnsignUrl: "https://zoom-eco.net/wp-content/uploads/2021/02/15.png",
     },
 
+
 ]
 
 
@@ -191,7 +232,7 @@ const provider = [
 
         <div>
 
-            <div class="min-h-screen py-5 pt-16 overflow-y-auto custom scrollbar bg-gray-50 min-w-screen dark:bg-gray-900">
+            <div class="min-h-screen py-5 pt-16 overflow-y-auto custom scrollbar bg-gray-50 min-w-screen dark:bg-findDark-950">
 
                 <div class="px-2 md:px-12">
                     <div>
@@ -226,17 +267,16 @@ const provider = [
                                                 <div class="flex flex-col justify-between w-full pb-4">
                                                     <div class="flex justify-between w-full pb-2 space-x-2">
                                                         <div class="space-y-1">
-                                                            <h3 class="text-lg font-semibold leading-snug dark:text-gray-100 sm:pr-8">
+                                                            <h3 class="text-lg leading-snug font-bega-semibold dark:text-gray-100 sm:pr-8">
                                                                 {{ item.name }}
                                                             </h3>
                                                             <p class="text-sm dark:text-gray-100">{{ item.basic }}</p>
                                                         </div>
 
                                                         <div class="text-right dark:text-gray-100">
-                                                            <p class="text-lg font-semibold">${{ item.price *
-                                                                item.quantity }}</p>
-                                                            <p class="text-sm line-through ">
-                                                                $</p>
+                                                            <p class="text-lg font-bega-semibold"> {{ item.price *
+                                                                item.quantity }} $</p>
+
                                                         </div>
                                                     </div>
                                                     <div class="flex text-sm divide-x dark:text-white">
@@ -260,30 +300,7 @@ const provider = [
 
                                                         <div>
 
-                                                            <div x-data="{ productQuantity: @json($item['quantity']) }">
-                                                                <label for="Quantity" class="sr-only"> Quantity </label>
 
-                                                                <div class="flex items-center gap-1">
-                                                                    <button type="button" :disabled="item.quantity === 1"
-                                                                        @click="usecartStore.updateItemQuantity(item.id, item.quantity--)"
-                                                                        class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
-                                                                        &minus;
-                                                                    </button>
-
-
-                                                                    <input disabled type="number" id="Quantity"
-                                                                        :value="item.quantity"
-                                                                        class="h-10 w-16 rounded border-gray-200 dark:bg-gray-700 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none" />
-
-                                                                    <button type="button"
-                                                                        @click="usecartStore.updateItemQuantity(item.id, item.quantity++)"
-                                                                        class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
-                                                                        &plus;
-                                                                    </button>
-
-
-                                                                </div>
-                                                            </div>
 
                                                         </div>
 
@@ -303,9 +320,9 @@ const provider = [
 
                                         <button @click="isShow = !isShow"  class="">
                                             <label
-                                                class="flex gap-1 mb-2 ml-1 text-sm font-semibold text-gray-600 dark:text-gray-200">Coupon
+                                                class="flex gap-1 mb-2 ml-1 text-sm text-gray-600 font-bega-semibold dark:text-gray-200">Coupon
                                                 de reduction
-                                                code <span class="py-1.5">
+                                                code <span class="py-1">
                                                     <svg v-show="!isShow" class="w-4 h-4 fill-current"
                                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                         <path
@@ -313,7 +330,7 @@ const provider = [
                                                     </svg>
 
                                                 </span>
-                                                <span class="py-1.5">
+                                                <span class="py-1">
                                                     <svg v-show="isShow" class="w-4 h-4 fill-current"
                                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                         <path
@@ -331,20 +348,26 @@ const provider = [
                                         </button>
 
 
-                                        <div class="flex items-end justify-end " v-show="isShow">
+                                        <form  @submit.prevent="applyCoupon()" class="flex flex-col w-full " v-show="isShow">
 
 
-                                            <div class="flex-grow px-2 lg:max-w-md">
+
+                                            <div class="w-3/4 ">
 
                                                 <div class="p-2">
-                                                    <MazInput />
+                                                    <MazInput v-model="coupon" />
+                                                    <div v-if="errorMessage" class="text-red-600">
+                                                        {{ errorMessage }}
+                                                        </div>
                                                 </div>
+
                                             </div>
-                                            <div class="p-2">
-                                                <button
-                                                    class="block w-full max-w-xs px-5 py-2 mx-auto font-semibold text-white bg-gray-400 border border-transparent rounded-md hover:bg-gray-500 focus:bg-gray-500">APPLIQUER</button>
+                                            <div class="w-2/4 px-4">
+                                                <button type="submit"
+                                                    class="block w-full max-w-xs px-5 py-2 text-white bg-gray-400 border border-transparent rounded-md font-bega-semibold hover:bg-gray-500 focus:bg-gray-500">APPLIQUER</button>
                                             </div>
-                                        </div>
+
+                                        </form>
                                     </div>
                                     <div class="pb-6 mb-6 text-gray-800 border-b border-gray-200">
                                         <div class="flex items-center w-full mb-3">
@@ -352,17 +375,26 @@ const provider = [
                                                 <span class="text-gray-600 dark:text-gray-200">Sous total</span>
                                             </div>
                                             <div class="pl-3">
-                                                <span class="font-semibold dark:text-gray-50">{{ totalPrice }} $</span>
+                                                <span class="font-bega-semibold dark:text-gray-50">{{ totalPrice }} $</span>
                                             </div>
                                         </div>
+                                        <div v-if="reduction" class="flex items-center w-full">
+                                                <div class="flex-grow">
+                                                    <span class="text-gray-600 dark:text-gray-200">Reduction</span>
+                                                </div>
+                                                <div class="pl-3">
+                                                    <span class="font-bega-semibold dark:text-gray-50">{{ reduction }}</span>
+                                                </div>
+                                            </div>
                                         <div class="flex items-center w-full">
                                             <div class="flex-grow">
                                                 <span class="text-gray-600 dark:text-gray-200">Taxes(GST)</span>
                                             </div>
                                             <div class="pl-3">
-                                                <span class="font-semibold dark:text-gray-50">$0</span>
+                                                <span class="font-bega-semibold dark:text-gray-50">0 $</span>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="pb-6 mb-6 text-xl text-gray-800 border-b border-gray-200 md:border-none">
                                         <div class="flex items-center w-full">
@@ -370,8 +402,8 @@ const provider = [
                                                 <span class="text-gray-600 dark:text-gray-200">Total</span>
                                             </div>
                                             <div class="pl-3">
-                                                <span class="text-sm font-semibold text-gray-400 dark:text-gray-20"></span>
-                                                <span class="font-semibold">{{ totalPrice }} $</span>
+
+                                                <span class="text-gray-400 font-bega-semibold dark:text-gray-200">{{ totalPrice }}$</span>
                                             </div>
                                         </div>
                                     </div>
@@ -384,7 +416,7 @@ const provider = [
 
                                     <div>
                                     <div
-                                        class="hidden w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
+                                        class="hidden w-full p-4 mb-4 bg-white border border-gray-200 rounded-md font-bega-semibold dark:bg-gray-900">
                                         <div class='flex flex-col gap-4'>
                                               <MazInput
                                                 label="Addresse"
@@ -519,7 +551,7 @@ const provider = [
 
 
                                                     </div>
-                                                    {{ form.provider }}
+
                                                 </div>
 
                                             </div>

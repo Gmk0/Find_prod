@@ -46,7 +46,7 @@
                <div  class="grid grid-cols-1 gap-4 mx-auto lg:grid-cols-2 xl:grid-cols-2">
                 <div v-for="mission in missions"
                 :class="{'border border-blue-500' : mission.status =='pending', 'border border-green-500': mission.status != 'pending' }"
-                class="flex mb-4 card md:flex-row">
+                class="flex flex-col mb-4 card md:flex-row">
                     <img class="object-cover object-center w-full h-48 bg-center bg-cover rounded-t-lg shrink-0 lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-l-lg"
                         src="/images/illustrations/missionF.svg" alt="image" />
                     <div class="flex flex-col w-full px-4 py-3 grow sm:px-5">

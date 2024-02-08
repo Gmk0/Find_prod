@@ -52,6 +52,7 @@ class Service extends Model
         'freelance_id',
         'category_id',
         'is_gift',
+        'use_coupon',
     ];
 
     /**
@@ -76,6 +77,7 @@ class Service extends Model
         'example'=> 'array',
         'category_id' => 'string',
         'is_gift'=> 'boolean',
+        'use_coupon'=> 'boolean',
     ];
 
 
