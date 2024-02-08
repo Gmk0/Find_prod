@@ -133,7 +133,7 @@
                 </div>
                 <div class="mt-5 lg:mx-6 lg:p-4">
 
-                     <swiper class="flex py-8"
+                     <swiper class="flex px-4 py-8"
                         :modules="[Navigation, Pagination, Scrollbar, EffectCube, A11y]"
 
                         :spaceBetween="30"
@@ -141,7 +141,7 @@
                         :space-between="25"
                         @swiper="onSwiperInitializedFreelance"
                         >
-                        <swiper-slide v-for="freelance in props.freelances" class="p-2">
+                        <swiper-slide v-for="freelance in props.freelances" class="p-4 mx-4">
 
                         <FreelanceCard :freelance="freelance" />
                         </swiper-slide>
