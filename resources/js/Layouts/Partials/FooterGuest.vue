@@ -20,21 +20,17 @@
 
                         </div>
                         <div class="flex-shrink-0 w-full max-w-full mx-auto mt-2 mb-6 text-center lg:flex-0 lg:w-8/12">
-                            <a href="" target="_blank" class="mr-6 text-slate-400">
-                                <span class="text-lg fab fa-dribbble"></span>
+                            <a href="https://www.facebook.com/profile.php?id=100087893680900&mibextid=LQQJ4d" target="_blank" class="mr-6 text-slate-400">
+                                <span class="text-lg fab fa-facebook"></span>
                             </a>
-                            <a href="" target="_blank" class="mr-6 text-slate-400">
+                            <a href="https://twitter.com/find_freelance_?s=11&t=qv6NIovEcQsLxmQv9mo_Zw" target="_blank" class="mr-6 text-slate-400">
                                 <span class="text-lg fab fa-twitter"></span>
                             </a>
-                            <a href="" target="_blank" class="mr-6 text-slate-400">
+                            <a href="https://instagram.com/find_freelance?igshid=YmMyMTA2M2Y=" target="_blank" class="mr-6 text-slate-400">
                                 <span class="text-lg fab fa-instagram"></span>
                             </a>
-                            <a href="" target="_blank" class="mr-6 text-slate-400">
-                                <span class="text-lg fab fa-pinterest"></span>
-                            </a>
-                            <a href="" target="_blank" class="mr-6 text-slate-400">
-                                <span class="text-lg fab fa-github"></span>
-                            </a>
+
+
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3">

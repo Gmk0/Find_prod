@@ -113,8 +113,6 @@ class CheckoutController extends Controller
     public function checkoutMaxi(Request $request)
     {
 
-
-
         try{
 
             DB::beginTransaction();

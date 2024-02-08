@@ -182,16 +182,16 @@ realisation.media.forEach((media) => {
                             <p class="px-2 py-1 text-xl text-center text-gray-800 dark:text-gray-100 lg:text-start rounded-xl font-bega-medium"> {{ freelance.prenom }}
                                 {{ freelance.nom }}</p>
                         </div>
-                        <div class="flex flex-wrap gap-6 ">
-                             <div class="flex gap-3 px-2">
+                        <div class="flex flex-wrap gap-6 mt-4 ">
+                             <div class="flex flex-wrap gap-3 px-2">
                             <template v-for="(subCategory, index) in freelance.subCategorie" :key="subCategory.id">
                                             <span v-tooltip.top="subCategory.name"
                                                     class=" flex gap-2 p-2 transition-all transform rounded-lg shadow-sm bg-gray-50  items-center py-1 cursor-default px-3  text-[12px] lg:text-sm  border border-secondary-200   text-gray-700 dark:bg-secondary-700 dark:text-secondary-400 dark:border-none">
                                                 {{ subCategory.name }}
                                             </span>
-                                    <span v-if="index === 4 && props.freelance.data.subCategorie?.length > 5"
+                                    <span v-if="index === 3 && props.freelance.data.subCategorie?.length > 4"
                                             class="ml-2 text-sm text-gray-500">
-                                        (+{{ props.freelance.data.subCategorie.length - 5 }} de plus)
+                                        (+{{ props.freelance.data.subCategorie.length - 4 }} de plus)
                                     </span>
                             </template>
 

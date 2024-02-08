@@ -80,7 +80,7 @@ const like = ref(props.freelance.like);
                 </template>
 
 
-                <img v-if="props.freelance.user.profile_photo_path != null"   class="w-full h-full object-fit"  :src="'/storage/' + props.freelance.user.profile_photo_path" :alt="props.freelance.user.name" />
+                <img v-if="props.freelance.user.profile_photo_path != null"   class="object-cover w-full h-full"  :src="'/storage/' + props.freelance.user.profile_photo_path" :alt="props.freelance.user.name" />
                 <img v-else class="object-cover w-full h-48" :src="props.freelance.user.profile_photo_url" alt="">
 
                 <div v-if="props.freelance.user.profile_photo_path !=null"
