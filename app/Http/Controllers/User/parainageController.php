@@ -54,6 +54,7 @@ class parainageController extends Controller
             $user->referral_code = $generatedCode;
             $user->save();
 
+            return redirect()->route('user.parainage');
             //return response()->json(['referral_code' => $user->referral_code], 200);
 
         }
