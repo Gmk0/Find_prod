@@ -161,7 +161,7 @@ const updatePopover = () => {
                                         <h5>Inscrivez-vous</h5>
                                     </div>
                                     <div v-if="props.code===''" class="flex flex-wrap px-3 -mx-3 sm:px-6 xl:px-12">
-                                        <div class="w-3/12 max-w-full px-1 ml-auto flex-0">
+                                        <div class="hidden w-3/12 max-w-full px-1 ml-auto flex-0">
                                             <a class="inline-block w-full px-6 py-3 mb-4 text-xs font-bold text-center text-gray-200 uppercase align-middle transition-all bg-transparent border border-gray-200 border-solid rounded-lg shadow-none cursor-pointer hover:scale-102 leading-pro ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:bg-transparent hover:opacity-75"
                                                 href="auth/facebook">
                                                 <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1"
@@ -181,7 +181,7 @@ const updatePopover = () => {
                                             </a>
                                         </div>
 
-                                        <div class="w-3/12 max-w-full px-1 mr-auto flex-0">
+                                        <div class="max-w-full px-1 mx-auto  flex-0">
                                             <a class="inline-block w-full px-6 py-3 mb-4 text-xs font-bold text-center text-gray-200 uppercase align-middle transition-all bg-transparent border border-gray-200 border-solid rounded-lg shadow-none cursor-pointer hover:scale-102 leading-pro ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:bg-transparent hover:opacity-75"
                                                 href="auth/google">
                                                 <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1"

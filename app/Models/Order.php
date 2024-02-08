@@ -63,6 +63,13 @@ class Order extends Model
 
             FeedbackService::create(['order_id' => $order->id]);
         });
+
+        static::deleting(function ($order) {
+
+           $order->feedback()->delete();
+        });
+
+
     }
 
 

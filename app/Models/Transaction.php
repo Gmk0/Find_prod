@@ -56,6 +56,15 @@ class Transaction extends Model
             // $transaction->user_id = auth()->user()->id;
             $transaction->transaction_numero = 'TC' . date('YmdHms');
         });
+        static::deleting(function ($transaction) {
+            if ($transaction->status !== 'failed') {
+                // Si le statut n'est pas "failed", annulez la suppression de la transaction
+                return false;
+            }
+
+            // Si le statut est "failed", supprimez toutes les commandes liées à cette transaction
+            $transaction->orders()->delete();
+        });
     }
 
     public function sendMail()

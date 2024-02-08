@@ -110,12 +110,12 @@
                                         <div class="relative w-full max-w-full px-3 mt-2 text-center shrink-0">
                                             <p
                                                 class="z-20 inline px-4 mb-2 text-sm font-semibold leading-normal bg-white rounded text-slate-400">
-                                                or </p>
+                                                Ou </p>
                                         </div>
                                         <div class="flex flex-wrap px-3 mt-3 -mx-3 sm:px-6 xl:px-12">
 
-                                            <div class="w-4/12 max-w-full px-1 ml-auto flex-0">
-                                                <a class="inline-block w-full px-6 py-1 mb-2 text-xs font-bold text-center text-gray-200 uppercase align-middle transition-all bg-transparent border border-gray-200 border-solid rounded-lg shadow-none cursor-pointer dark:border-gray-400 hover:scale-102 leading-pro ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:bg-transparent hover:opacity-75"
+                                            <div class="hidden w-4/12 max-w-full px-1 ml-auto flex-0">
+                                                <a class="hidden inline-block w-full px-6 py-1 mb-2 text-xs font-bold text-center text-gray-200 uppercase align-middle transition-all bg-transparent border border-gray-200 border-solid rounded-lg shadow-none cursor-pointer dark:border-gray-400 hover:scale-102 leading-pro ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:bg-transparent hover:opacity-75"
                                                     href="auth/facebook">
                                                     <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1"
                                                         xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@
                                                 </a>
                                             </div>
 
-                                            <div class="w-4/12 max-w-full px-1 mr-auto flex-0">
+                                            <div class="w-4/12 max-w-full px-1 mx-auto flex-0">
                                                 <a class="inline-block w-full px-6 py-1 mb-2 text-xs font-bold text-center text-gray-200 uppercase align-middle transition-all bg-transparent border border-gray-200 border-solid rounded-lg shadow-none cursor-pointer dark:border-gray-400 hover:scale-102 leading-pro ease-soft-in tracking-tight-soft bg-150 bg-x-25 hover:bg-transparent hover:opacity-75"
                                                     href="auth/google">
                                                     <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1"
