@@ -64,7 +64,7 @@
             </div>
          </div>
 
-         <div class="py-8 mx-2 mb-4 bg-white rounded-lg dark:bg-findDark-800 lg:mx-6">
+         <div class="py-8 mx-2 mb-4 bg-white rounded-lg dark:bg-findDark-800 lg:mx-4">
                     <div class="flex items-center justify-between px-4">
                         <p class="text-xl font-bega_medium text-slate-700 dark:text-navy-100">
                             Les Services populaire
@@ -109,7 +109,7 @@
                     </div>
             </div>
 
-           <div class="py-8 mx-2 mb-4 bg-white rounded-lg dark:bg-findDark-800 lg:mx-6">
+           <div class="py-8 mx-2 mb-4 bg-white rounded-lg dark:bg-findDark-800 lg:mx-4">
                 <div class="flex items-center justify-between px-4">
                     <p class="text-xl font-bega_medium text-slate-700 dark:text-navy-100">
                         Les Freelance populaire
@@ -131,17 +131,27 @@
                         </button>
                     </div>
                 </div>
-                <div class="mt-5 lg:mx-6 lg:p-4">
+                <div class="mt-5 lg:mx-2 lg:py-4">
 
                      <swiper class="flex px-4 py-8"
-                        :modules="[Navigation, Pagination, Scrollbar, EffectCube, A11y]"
+                        :modules="[Navigation, Pagination,]"
+                        :watchSlidesProgress="true"
+                        :cssMode="true"
+                        :mousewheel="true"
 
-                        :spaceBetween="30"
-                        :breakpoints="{ 500: { slidesPerView: 1 }, 600: { slidesPerView: 2 }, 768: { slidesPerView: 2, }, 992: { slidesPerView: 4, } }"
-                        :space-between="25"
+                        :watchOverflow="true"
+                        :spaceBetween="10"
+                        :breakpoints="{
+                            500: { slidesPerView: 1
+                            },
+                            600: { slidesPerView: 1 },
+                            768: { slidesPerView: 2, },
+                             992:{ slidesPerView: 4, }
+                             }"
+
                         @swiper="onSwiperInitializedFreelance"
                         >
-                        <swiper-slide v-for="freelance in props.freelances" class="p-4 mx-4">
+                        <swiper-slide v-for="freelance in props.freelances" class="p-4 lg:mx-4">
 
                         <FreelanceCard :freelance="freelance" />
                         </swiper-slide>
@@ -304,4 +314,11 @@ defineOptions({
 
 
 </script>
-<style lang="scss" scoped></style>
+<style>
+
+
+
+.swiper-slide{
+    box-sizing: border-box !important;
+}
+</style>
