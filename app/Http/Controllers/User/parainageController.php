@@ -42,7 +42,7 @@ class parainageController extends Controller
     {
         $user=auth()->user();
 
-        dd($request);
+
 
         if($user->referral_code !=null)
         {
