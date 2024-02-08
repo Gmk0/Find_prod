@@ -533,7 +533,7 @@ defineOptions({
 
 
                                                 <div  class="py-5 min-h-64">
-                                                    <div class="mb-4 prose text-gray-800 md:text-base dark:text-gray-200">
+                                                    <div class="mb-4 prose text-justify text-gray-800 md:text-base dark:text-gray-200">
 
 
 
@@ -588,7 +588,7 @@ defineOptions({
                                                             <p class="text-base text-gray-500 font-bega-semibold dark:text-gray-200">Besoin pour ce service :</p>
 
 
-                                                            <div class="prose" v-html="service.need_service"></div>
+                                                            <div class="text-base prose text-justify text-gray-700 dark:text-gray-300" v-html="service.need_service"></div>
                                                             </div>
                                                     </div>
 

@@ -32,7 +32,7 @@ class ServiceController extends Controller
         'servicesBest'=>$servicesBest->with('freelance')
                     ->whereHas('freelance',function($q){
                         $q->where('status_compte', '=', 'actif');
-                    })
+                    })->where('is_publish',true)
 
                         ->take(10)
                         ->get()

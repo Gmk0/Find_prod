@@ -62,8 +62,9 @@ class CategoryController extends Controller
                             $q->where('status_compte', '=', 'actif');
                         })
 
-                //->with('freelance.user')
-                //->orderBy('created_at', 'asc')
+                        //->with('freelance.user')
+                        //->orderBy('created_at', 'asc')
+                ->where('is_publish', true)
                 ->filter(RequestFacade::only('search', 'sub_category', 'orderBy', 'price', 'level', 'deliveryTime', 'priceMin', 'tag'))
                 ->paginate(10)
                 ->withQueryString()
@@ -137,7 +138,7 @@ class CategoryController extends Controller
         if ($subcategoryElement != null) {
 
             $service = Service::query();
-            $service->where('sub_category', 'like', '%' . $subcategoryElement->id . '%');
+            $service->where('sub_category', 'like', '%' . $subcategoryElement->id . '%')->where('is_publish', true);
 
 
 
@@ -149,6 +150,7 @@ class CategoryController extends Controller
                         ->whereHas('freelance', function ($q) {
                             $q->where('status_compte', '=', 'actif');
                         })
+                        ->where('is_publish', true)
                         //->with('freelance.user')
                         //->orderBy('created_at', 'asc')
                         ->filter(RequestFacade::only('search','orderBy', 'price', 'level', 'deliveryTime', 'tag'))
@@ -235,7 +237,8 @@ class CategoryController extends Controller
         $otherService=Service::where('id','!=' ,$service->id)
             ->whereHas('freelance', function ($q) {
                 $q->where('status_compte', '=', 'actif');
-            })->where('category_id', $service->category_id)->take(6)->get();
+            })->where('category_id', $service->category_id)
+            ->where('is_publish', true)->take(6)->get();
 
 
 
