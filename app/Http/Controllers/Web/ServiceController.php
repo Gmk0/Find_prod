@@ -65,6 +65,7 @@ class ServiceController extends Controller
                             'prenom' => $freelance->prenom,
                             'level' => $freelance->level,
                             'identifiant' => $freelance->identifiant,
+                            'nomComplet' => ucfirst($freelance->prenom) . ' ' . $freelance->nom,
                             'sub_categorie' => $freelance->subcategories(),
                             'like' => $freelance->isFavorite(),
                             'user' => $freelance->user ? $freelance->user->only('name', 'profile_photo_url', 'profile_photo_path') : null,
