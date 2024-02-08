@@ -43,16 +43,7 @@ const layoutStore = useLayoutStore();
                 <!-- Right: Header buttons -->
                 <div class="-mr-1.5 flex items-center  space-x-2">
                     <!-- Mobile Search Toggle -->
-                    <button
-                       class="w-8 h-8 p-0 rounded-full btn1 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
 
-                       <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-red-600  !dark:text-navy-100"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-
-                    </button>
 
                     <!-- Main Searchbar
                     <template x-if="$store.breakpoints.smAndUp">
