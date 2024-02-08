@@ -22,6 +22,7 @@ use ShuvroRoy\FilamentSpatieLaravelHealth\FilamentSpatieLaravelHealthPlugin;
 use Amendozaaguiar\FilamentRouteStatistics\FilamentRouteStatisticsPlugin;
 use Brickx\MaintenanceSwitch\MaintenanceSwitchPlugin;
 use App\Filament\Widgets\InfoUser;
+use \Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -71,6 +72,9 @@ class AdminPanelProvider extends PanelProvider
             FilamentSpatieLaravelHealthPlugin::make(),
             FilamentRouteStatisticsPlugin::make(),
             MaintenanceSwitchPlugin::make(),
+            FilamentJobsMonitorPlugin::make(),
+
+
           //  \Hasnayeen\Themes\ThemesPlugin::make(),
         ])
             ->authMiddleware([

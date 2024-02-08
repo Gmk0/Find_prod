@@ -17,6 +17,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Jobs\CheckTransactionStatus;
 
 class CheckoutController extends Controller
 {
@@ -148,7 +149,9 @@ class CheckoutController extends Controller
             $checkout = new Paiement();
             //$checkout->pa
             $response=$checkout->paidAvada($total,$form['numero'], $form['provider'],$callback, $payment->transaction_numero);
-               // dd($url);
+            // dd($url);
+
+            CheckTransactionStatus::dispatch($payment)->delay(now()->addSeconds(30));
              return response()->json($response);
 
 

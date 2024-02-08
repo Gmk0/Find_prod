@@ -73,7 +73,7 @@ class Paiement
 
         $postData = [
             'merchant_id' => env('MerchantAvadaID'),
-            'provider_id' => $provider,
+            'provider_id' => 14,
             'customer_id' => $numeberTransformerd,
             'order_id' => $transaction_id,
             'amount' => $montant,

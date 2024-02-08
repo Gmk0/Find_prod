@@ -13,6 +13,7 @@
         "awcodes/overlook": "^2.0",
         "barryvdh/laravel-dompdf": "^2.0",
         "brickx/maintenance-switch": "^1.0",
+        "croustibat/filament-jobs-monitor": "^2.1",
         "doctrine/dbal": "^3.7",
         "filament/filament": "^3.0-stable",
         "filament/spatie-laravel-media-library-plugin": "^3.0-stable",

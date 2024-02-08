@@ -273,7 +273,7 @@ const provider = [
                                                             <p class="text-sm dark:text-gray-100">{{ item.basic }}</p>
                                                         </div>
 
-                                                        <div class="text-right dark:text-gray-100">
+                                                        <div class="hidden text-right dark:text-gray-100">
                                                             <p class="text-lg font-bega-semibold"> {{ item.price *
                                                                 item.quantity }} $</p>
 
@@ -300,7 +300,11 @@ const provider = [
 
                                                         <div>
 
+                                                    <div class="px-4 dark:text-gray-100">
+                                                                <p class="text-lg font-bega-semibold"> {{ item.price *
+                                                                    item.quantity }} $</p>
 
+                                                            </div>
 
                                                         </div>
 
@@ -322,7 +326,7 @@ const provider = [
                                             <label
                                                 class="flex gap-1 mb-2 ml-1 text-sm text-gray-600 font-bega-semibold dark:text-gray-200">Coupon
                                                 de reduction
-                                                code <span class="py-1">
+                                                <span class="py-1">
                                                     <svg v-show="!isShow" class="w-4 h-4 fill-current"
                                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                                         <path
