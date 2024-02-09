@@ -1925,7 +1925,7 @@ for (let index = 1999; index < year ; index++) {
              <InputError class="mt-2" :message="code.errors.code" />
         </div>
 
-        <div class="flex gap-2 mt-4 ">
+        <div class="flex gap-4 mt-4 ">
 
 
               <Button
@@ -1938,6 +1938,15 @@ for (let index = 1999; index < year ; index++) {
               :loading="loadingVerif"
               @click="validerMail"
               />
+
+               <Button
+                    severity="info"
+                    outlined
+                    label="Renvoyer"
+                        @click="verification()"
+                    :loading="loadingVerifEmail"
+
+                    />
         </div>
 
         </div>
