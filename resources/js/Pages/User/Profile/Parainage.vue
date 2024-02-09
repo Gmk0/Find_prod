@@ -52,11 +52,11 @@
                                     <div class="">
                                         <div v-if="!skeleton" class="mb-6">
                                             <h2 v-if="codeParainage != null"
-                                                class="mb-2 text-2xl font-bega-medium dark:text-gray-100">Votre code Parainage :
+                                                class="mb-2 text-2xl font-bega-medium text-gray-700 dark:text-gray-100">Votre code Parainage :
                                                 <span class="dark:text-gray-50 ">{{ codeParainage }}</span></h2>
 
                                             <div v-else class="flex flex-col gap-4">
-                                                <p class="text-base text-gray-800 dark:text-gray-50">Vous n'avez pas encore
+                                                <p class="text-base font-bega-medium text-gray-800 dark:text-gray-50">Vous n'avez pas encore
                                                     de code de parainage veuillez en generer Un</p>
 
                                                 <div>
