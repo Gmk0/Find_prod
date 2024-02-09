@@ -38,7 +38,7 @@
                             <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">support@find-freelance.com</p>
                         </div>
 
-                        <div>
+                        <div class="hidden">
                             <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" class="w-5 h-5">
@@ -93,17 +93,38 @@
                             <form @submit.prevent="contacter()">
 
                                 <div class="mt-4">
-                                    <MazInput v-model="form.name" label="Name" />
+                                    <MazInput v-model="form.name" required label="Name" />
 
                                 </div>
 
                                 <div class="mt-4">
-                                    <MazInput type="email" v-model="form.email" label="e-mail" />
+                                    <MazInput type="email" v-model="form.email" required label="e-mail" />
 
+                                </div>
+                                <div class="mt-4">
+                                    <MazPhoneNumberInput
+                                                    label="Telephone"
+                                                    country-locale="fr-FR"
+                                                    required
+                                                    :success="false"
+                                                    v-model="form.phone"
+                                                    :translations="{
+                                                        countrySelector: {
+                                                            placeholder: 'Code pays',
+                                                            error: 'Choisissez un pays',
+                                                            searchPlaceholder: 'Rechercher un pays',
+                                                        },
+                                                        phoneInput: {
+                                                            placeholder: 'Numéro de téléphone',
+                                                            example: 'Exemple :',
+                                                        },
+                                                    }"
+
+                                                    />
                                 </div>
 
                                 <div class="w-full mt-4">
-                                            <textarea v-model="form.message" id="message" placeholder="Exigences pour la mission" rows="4"
+                                            <textarea v-model="form.message" required id="message" placeholder="Message" rows="4"
                                              class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
 
                                             </textarea>
@@ -143,15 +164,18 @@ import BreadCumbWeb from '@/Components/BreadCumbWeb.vue';
 
 
 import {useForm} from '@inertiajs/vue3';
+import { inject } from 'vue';
 
 
 
 
+const swal = inject('$swal')
 
 const form = useForm({
     name: '',
     email:'',
     message:'',
+    phone:'',
 });
 
 
@@ -162,7 +186,19 @@ const form = useForm({
 
 const contacter = ()=>{
 
-    alert('ok');
+
+    form.post('/send-contact',{
+        onSuccess: () => {
+            form.reset('message','name','email'),
+
+                swal.fire({
+                    title: "Votre message a été envoyé avec succès. Merci !",
+                    icon: "success",
+                    timerProgressBar: true
+                });
+
+        },
+    });
 
 };
 

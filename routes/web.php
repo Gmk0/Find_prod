@@ -46,6 +46,8 @@ Route::controller(WebController::class)->group(function(){
     Route::get('/feed-back', 'feedBack')->name('feedBack');
      Route::post('/send-feedback','sendFedback')->name('sendFeedbackPost')->middleware('auth');
 
+    Route::post('/send-contact','sendMessage');
+
 });
 
 

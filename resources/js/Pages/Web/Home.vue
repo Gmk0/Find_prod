@@ -1,4 +1,5 @@
 <template>
+    <he
 
          <div class="relative min-h-screen 2xl:min-h-full slideshow slideshow-wrapper pb-section sliderFull">
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\ContactFeedback;
 use App\Models\Faq;
 use App\Notifications\testNotify;
 use App\Notifications\verificationPhone;
@@ -57,8 +58,30 @@ class WebController extends Controller
     public function sendFedback(Request $request)
     {
 
-        $user=auth()->user()->UserSetting;
 
+
+        try{
+
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'message' => 'required|string',
+            ]);
+
+            // Ajouter l'ID de l'utilisateur s'il est authentifié
+            if ($request->user()) {
+                $validatedData['user_id'] = $request->user()->id;
+            }
+            $validatedData['type']='feedback';
+
+            // Créer un nouveau feedback avec les données validées
+            $feedback = ContactFeedback::create($validatedData);
+
+        }catch(\Exception $e){
+
+            return redirect()->back()->withErrors('message','une erreur s\'est produite');
+
+        }
 
 
         //dd($request->user());
@@ -106,8 +129,37 @@ class WebController extends Controller
                 //echo "The message failed with status: " . $message->getStatus() . "\n";
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
+           // dd($e->getMessage());
         }
+    }
+
+    public function sendMessage(Request $request)
+    {
+
+        try {
+
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'message' => 'required|string',
+                'telephone' => 'required',
+            ]);
+
+            // Ajouter l'ID de l'utilisateur s'il est authentifié
+            if ($request->user()) {
+                $validatedData['user_id'] = $request->user()->id;
+            }
+            $validatedData['type'] = 'contact';
+
+            // Créer un nouveau feedback avec les données validées
+            $message = ContactFeedback::create($validatedData);
+
+
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('message', 'une erreur s\'est produite');
+        }
+
     }
 
 }

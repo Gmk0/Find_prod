@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
         <title inertia>{{ config('app.name', 'FIND') }}</title>
         <link  rel="stylesheet" href="/css/new.css">
         <link rel="stylesheet" href="/css/plugin.css">

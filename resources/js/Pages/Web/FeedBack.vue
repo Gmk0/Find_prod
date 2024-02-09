@@ -2,7 +2,7 @@
     <div class="min-h-screen pt-20 lg:mx-auto 2xl:mx-0 2xl:px-2 lg:px-8">
 
         <section class="relative  overflow-hidden  pt-8 pb-12  lg:pb-[90px]">
-            <div class="container px-4 mx-auto">
+            <div class="container px-4 lg:mx-auto">
                 <div class="flex flex-wrap -mx-4">
                     <div class="w-full px-4">
                         <div class="mx-auto mb-[20px] max-w-[520px] text-center lg:mb-20">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="max-w-6xl px-8 pt-2 mx-auto">
+                 <div class="max-w-6xl lg:px-8 px-4 pt-2 lg:mx-auto">
 
             <form @submit.prevent="sendFeedback()" class="flex flex-col-reverse gap-6 mb-8 lg:grid lg:gap-2 lg:grid-cols-2 lg:mb-4">
                 <div class="flex flex-col gap-4">
@@ -42,7 +42,7 @@
 
 
                     <div class="col-span-2">
-                        <textarea v-model="form.message" id="message" placeholder="Exigences pour la mission" rows="4"
+                        <textarea v-model="form.message" id="message" placeholder="Message" rows="4"
                                                  class="block w-full rounded-lg border border-gray-300 border-spacing-x-0.5 bg-gray-50 p-2.5 text-sm text-gray-900 focus:  focus:ring-amber-500 dark:border-gray-800 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-amber-500 dark:focus:ring-amber-500">
 
                                             </textarea>
@@ -131,11 +131,15 @@ import BreadCumbWeb from '@/Components/BreadCumbWeb.vue';
 
 import { useForm, usePage } from '@inertiajs/vue3';
 
+import { inject } from 'vue';
 
-import TextInput from '@/Components/TextInput.vue';
+
+
 import { useStore } from '@/store/store';
 
 
+
+const swal = inject('$swal')
 
 const userStateLogin = useStore();
 const page= usePage();
@@ -157,9 +161,17 @@ defineOptions({
 const sendFeedback = () => {
 
     form.post(route('sendFeedbackPost'),{
-        onFinish:()=>{
-            form.reset('message')
-        }
+         onSuccess: () => {
+            form.reset('message'),
+
+        swal.fire({
+                    title: "Votre feedback a été envoyé avec succès. Merci !",
+                    icon: "success",
+                    timerProgressBar: true
+                });
+
+        },
+
     })
 
 
