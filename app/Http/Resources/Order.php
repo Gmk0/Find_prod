@@ -32,7 +32,7 @@ class Order extends JsonResource
             'status' => $this->status,
             'feedback'=>$this->feedback,
             'rapports'=>$this->rapports,
-            'freelance'=>$this->service?->freelance->only('id','nom','prenom','identifiant'),
+            'freelance'=>$this->service?->freelance->only('id','nom', 'nom_complet','prenom','identifiant'),
             'freelance_user'=>$this->service->freelance->user->only('id','name','email',
                 'profile_photo_url',
                 'profile_photo_path'),

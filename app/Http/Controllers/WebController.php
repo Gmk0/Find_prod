@@ -142,7 +142,7 @@ class WebController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
                 'message' => 'required|string',
-                'telephone' => 'required',
+                'phone' => 'required',
             ]);
 
             // Ajouter l'ID de l'utilisateur s'il est authentifié
@@ -150,6 +150,7 @@ class WebController extends Controller
                 $validatedData['user_id'] = $request->user()->id;
             }
             $validatedData['type'] = 'contact';
+            $validatedData['telephone']=$request->phone;
 
             // Créer un nouveau feedback avec les données validées
             $message = ContactFeedback::create($validatedData);

@@ -661,7 +661,7 @@ const isLastRejectedMessage = (index) => {
 
                                 <div v-if="groupedMessage.message.file !=null">
                                     <template v-if="isImage(groupedMessage.message.file[0])">
-                                    <div class="relative group">
+                                    <div class="relative mt-2 group">
                                     <img class="object-cover rounded-lg h-44"
                                         :src="'/storage/'+ groupedMessage.message.file[0]" alt="image" />
 
@@ -879,7 +879,7 @@ const isLastRejectedMessage = (index) => {
                                                     'border-amber-500  text-primary dark:text-accent-light' :
                                                     'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
                                                 class="px-3 py-2 font-medium border-b-2 rounded-none btn2 shrink-0">
-                                                Files
+                                                Fichier
                                             </button>
                                         </div>
                                     </div>

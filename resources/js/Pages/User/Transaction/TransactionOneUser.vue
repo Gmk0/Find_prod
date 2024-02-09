@@ -10,7 +10,7 @@
                     <ol class="inline-flex items-center space-x-1 md:space-x-3">
                         <li class="inline-flex items-center">
                             <Link :href="route('user.dashboard')"
-                                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                                class="inline-flex items-center text-sm font-bega-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                             <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor" viewBox="0 0 20 20">
                                 <path
@@ -25,7 +25,7 @@
                                     <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                     </svg>
-                                    <span class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Transactions</span>
+                                    <span class="ml-1 text-sm font-bega-medium text-gray-700 md:ml-2 dark:text-gray-400">Transactions</span>
                                 </Link>
                             </li>
 
@@ -35,7 +35,7 @@
                                 <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                 </svg>
-                                <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ transaction.transaction_numero }}</span>
+                                <span class="ml-1 text-sm font-bega-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ transaction.transaction_numero }}</span>
                             </div>
                             </li>
                     </ol>
@@ -60,23 +60,23 @@
 
             <div >
 
-                <h2 class="mb-4 text-xl font-semibold">Récapitulatif de la transaction</h2>
+                <h2 class="mb-4 text-xl font-bega-semibold">Récapitulatif de la transaction</h2>
 
-                <div class="flex items-center mb-4">
+                <div class="flex items-center font-bega-medium mb-4">
                     <span class="mr-2 text-gray-600 dark:text-gray-400">Numéro de transaction :</span>
                     <span class="text-gray-900 dark:text-gray-100">{{ transaction.transaction_numero }}</span>
                 </div>
 
-                <div class="flex items-center mb-4">
+                <div class="flex items-center font-bega-medium mb-4">
                     <span class="mr-2 text-gray-600 dark:text-gray-400">Montant :</span>
-                    <span class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ transaction.amount
+                    <span class="text-lg font-bega-semibold text-gray-900 dark:text-gray-100">{{ transaction.amount
                     }} $</span>
                 </div>
 
 
 
                 <div class="flex items-center mb-4">
-                    <span class="mr-2 text-gray-600 dark:text-gray-400">Méthode de paiement :</span>
+                    <span class="mr-2 text-gray-600 font-bega-medium dark:text-gray-400">Méthode de paiement :</span>
                     <span class="flex gap-1 text-gray-900 dark:text-gray-100">
 
 
@@ -131,22 +131,22 @@
 
 
 
-                <div class="flex items-center mb-4">
+                <div class="flex items-center  font-bega-medium mb-4">
                     <span class="mr-2 text-gray-600 dark:text-gray-400">Statut :</span>
 
 
 
                     <span v-if="transaction.status === 'completed'"
-                        class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500">Reussie</span>
+                        class="bg-green-100 text-green-800 text-xs font-bega-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 border border-green-100 dark:border-green-500">Reussie</span>
 
 
                     <span v-else-if="transaction.status ==='pending'"
-                        class="bg-yellow-100 text-yellow-400 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-yellow-400 border border-green-100 dark:border-yellow-500">en
+                        class="bg-blue-100 text-blue-400 text-xs font-bega-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-blue-400 border border-green-100 dark:border-blue-500">en
                         attente</span>
 
 
                     <span v-else
-                        class="bg-green-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-red-700 dark:text-red-400 border border-green-100 dark:border-red-500">Echouer</span>
+                        class="bg-green-100 text-red-800 text-xs font-bega-medium mr-2 px-2.5 py-0.5 rounded-md dark:bg-red-700 dark:text-red-400 border border-green-100 dark:border-red-500">Echouer</span>
 
                 </div>
 
@@ -164,7 +164,7 @@
 
                 <div v-if="!transaction.orders !=null" class="p-6 bg-white rounded-lg dark:bg-gray-700 ">
 
-                    <h2 class="mb-4 text-xl font-semibold">Service Commander</h2>
+                    <h2 class="mb-4 text-xl font-bega-semibold">Service Commander</h2>
 
 
 
@@ -173,7 +173,7 @@
 
 
                     <div class="flex items-center gap-2 mb-4">
-                        <span class="mr-2 text-gray-600 dark:text-gray-400">Numéro de commande :</span>
+                        <span class="mr-2 font-bega-medium text-gray-600 dark:text-gray-400">Numéro de commande :</span>
                         <span class="text-gray-900 dark:text-gray-200">{{ order.order_numero }}</span>
                             <div class="px-2">
                                 <Link  :href="route('user.commandes.one', [order.order_numero])">
@@ -183,18 +183,18 @@
                     </div>
 
                     <div class="flex items-center mb-4">
-                        <span class="mr-2 text-gray-600 dark:text-gray-400">Date de commande :</span>
+                        <span class="mr-2 text-gray-600 font-bega-medium dark:text-gray-400">Date de commande :</span>
                         <span class="text-gray-900 dark:text-gray-200">{{ order.created_at }}</span>
                     </div>
 
-                    <div class="flex items-center mb-4">
-                        <span class="mr-2 text-gray-600 dark:text-gray-400">Détails de la commande :</span>
+                    <div class="flex items-center font-bega-medium mb-4">
+                        <span class="mr-2 text-gray-600  dark:text-gray-400">Détails de la commande :</span>
                         <span class="text-gray-900 dark:text-gray-200">{{ order.service.title }}</span>
 
                     </div>
-                    <div class="flex items-center mb-4">
+                    <div class="flex items-center font-bega-medium mb-4">
                         <span class="mr-2 text-gray-600 dark:text-gray-400">Montant de la commande :</span>
-                        <span class="text-gray-900 dark:text-gray-200"> <span class="text-lg font-semibold">{{
+                        <span class="text-gray-900 dark:text-gray-200"> <span class="text-lg font-bega-semibold">{{
                             order.total_amount}} $</span> </span>
 
                     </div>
@@ -203,14 +203,14 @@
                 </div>
 
              </div>
-             <div v-else class="flex items-start">
+             <div v-else class="flex font-bega-medium items-start">
                 <h1 class="text-lg text-gray-200 dark:text-gray-400">Pas de service</h1>
             </div>
 
 
                 <div v-if="transaction.missions != null"  class="p-6 bg-white rounded-lg ">
 
-                    <h2 class="mb-4 text-xl font-semibold">MISSION</h2>
+                    <h2 class="mb-4 text-xl font-bega-semibold">MISSION</h2>
                     <div class="flex items-center gap-2 mb-4">
                         <span class="mr-2 text-gray-600 dark:text-gray-400"> Projet :</span>
                         <span class="text-gray-900 dark:text-gray-200">{{ transaction.mission.mission_numero }}</span>
@@ -231,7 +231,7 @@
                     </div>
                     <div class="flex items-center mb-4">
                         <span class="mr-2 text-gray-600 dark:text-gray-400">Montant de la commande :</span>
-                        <span class="text-gray-900 dark:text-gray-200"> <span class="text-lg font-semibold">{{
+                        <span class="text-gray-900 dark:text-gray-200"> <span class="text-lg font-bega-semibold">{{
                             transaction.amount }}</span> </span>
 
                     </div>

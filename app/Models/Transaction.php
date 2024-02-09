@@ -43,7 +43,9 @@ class Transaction extends Model
         'user_id' => 'string',
         'payment_method' => 'array',
         'amount' => 'decimal:2',
+        'created_at' => 'datetime:Y--d',
     ];
+
 
 
     public static function boot()

@@ -42,7 +42,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
             <div class="p-4">
 
-                <div class="mb-4 text-sm text-gray-600 dark:text-white">
+                <div class="mb-4 text-base font-bega-medium text-gray-600 dark:text-white">
                 Avant de continuer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu l'e-mail, nous serons heureux de vous en envoyer un autre.
                 </div>
 
@@ -53,7 +53,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                 <form @submit.prevent="submit">
                     <div class="flex flex-col items-center justify-between gap-3 mt-4">
                         <PrimaryButton class="gradient2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                          Renvoyer le code.
+                          Renvoyer le code
                         </PrimaryButton>
 
                         <div>

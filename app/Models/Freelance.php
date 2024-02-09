@@ -26,6 +26,7 @@ class Freelance extends Model
      */
     protected $fillable = [
         'nom',
+        'nom_complet',
         'prenom',
         'identifiant',
         'description',
@@ -77,6 +78,11 @@ class Freelance extends Model
         'realisations' =>
         AsArrayObject::class,
     ];
+
+    public function getNomCompletAttribute()
+    {
+        return ucfirst($this->nom) . ' ' . ucfirst($this->prenom);
+    }
 
     public function user(): BelongsTo
     {

@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use Carbon\Carbon;
 class TransactionResourceData extends JsonResource
 {
     /**
@@ -22,6 +23,7 @@ class TransactionResourceData extends JsonResource
             'status'=>$this->status,
             'description'=>$this->description,
             'type'=>$this->type,
+            'date' => $this->created_at instanceof Carbon ? $this->created_at->format('Y-m-d') : null,
             'mission'=>$this->mission??null,
             'orders'=>$this->orders? Order::collection($this->orders):null,
 

@@ -9,10 +9,8 @@
                 <nav class="flex" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-3">
                         <li class="inline-flex items-center">
-                        <Link :href="route('user.dashboard')" Fclass="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
-                            </svg>
+                        <Link :href="route('user.dashboard')" Fclass="inline-flex items-center text-sm font-bega-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+
                             Dashboard
                         </Link>
                         </li>
@@ -21,7 +19,7 @@
                                 <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                 </svg>
-                                <span class="ml-1 text-sm font-medium text-gray-700 md:ml-2 dark:text-gray-400">Commande</span>
+                                <span class="ml-1 text-sm font-bega-medium text-gray-700 md:ml-2 dark:text-gray-400">Commande</span>
                             </Link>
                         </li>
 
@@ -31,14 +29,14 @@
                             <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                             </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ order.order_numero }}</span>
+                            <span class="ml-1 text-sm font-bega-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ order.order_numero }}</span>
                         </div>
                         </li>
                     </ol>
                 </nav>
             </div>
 
-            <h1 class="mt-4 text-3xl font-bold text-black dark:text-white">Commandes</h1>
+            <h1 class="mt-4 text-3xl font-bega-semibold text-black dark:text-white">Commandes</h1>
 
         </div>
 
@@ -52,21 +50,21 @@
             <div class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
                         <!-- Informations sur la commande -->
                         <div class="grid grid-cols-1 px-6 py-4 lg:grid-cols-2">
-                            <p class="mb-4 font-sans text-lg text-gray-800 dark:text-gray-300">Commande
-                                <span class="font-bold font-inter ">{{ order.order_numero }}</span>
+                            <p class="mb-4 font-bega-bold text-lg text-gray-800 dark:text-gray-300">Commande :
+                                <span class="font-bega-semibold ">{{ order.order_numero }}</span>
                             </p>
-                            <p class="mb-4 text-lg text-gray-800 md:mb-2 dark:text-gray-300">Service : <span>
+                            <p class="mb-4 text-lg text-gray-800 font-bega-semibold md:mb-2 dark:text-gray-300">Service : <span class="font-bega-semibold">
                                     {{ order.service.title }}</span> </p>
-                            <p class="mb-4 text-base text-gray-600 dark:text-gray-400 md:mb-2">Date de commande :
+                            <p class="mb-4 text-base text-gray-600 font-bega-medium dark:text-gray-300 md:mb-2">Date de commande :
                                 <span>{{ order.created_at }}</span>
                             </p>
-                            <p class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Date de livraison :
+                            <p class="mb-4 text-base text-gray-600 font-bega-medium md:mb-2 dark:text-gray-300">Date de livraison :
 
                                 <span class="text-green-500">{{ order.feedback?.delai_livraison_estimee }}</span>
                             </p>
 
 
-                            <p class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Paiement :
+                            <p class="mb-4 text-base text-gray-600 md:mb-2 font-bega-medium dark:text-gray-300">Paiement :
 
 
                                 <span v-if="order.status==='pending'" class="text-red-300 px-1.5 py-0.5 rounded-lg ">en Attente</span>
@@ -80,7 +78,7 @@
                             </p>
 
 
-                            <p class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Paiement au Freelance :
+                            <p class="mb-4 text-base text-gray-600 md:mb-2 font-bega-medium dark:text-gray-300">Paiement au Freelance :
 
 
 
@@ -92,7 +90,7 @@
 
                             </p>
 
-                            <p v-if="order.feedback !=null" class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">statut :
+                            <p v-if="order.feedback !=null" class="mb-4 text-base text-gray-600 md:mb-2 font-bega-medium dark:text-gray-300">Etat :
 
 
 
@@ -117,7 +115,7 @@
                             </p>
 
                         </div>
-                    <div class="px-6 py-4 border-t border-gray-200">
+                    <div class="px-6 py-4 border-t font-bega-medium border-gray-200">
                         <p class="mb-2 text-lg text-gray-800">Avancement</p>
                         <div class="flex items-center">
                             <div class="flex-1">
@@ -128,7 +126,7 @@
                     </div>
                       <div class="px-6 py-4 border-t border-gray-300">
 
-                        <h1 class="flex items-start gap-2 text-lg font-bold cursor-pointer lg:text-xl">
+                        <h1 class="flex items-start font-bega-medium gap-2 text-lg  cursor-pointer lg:text-xl">
                             Freelance lié
 
                         </h1>
@@ -137,7 +135,7 @@
                                 <Photo :user="order.freelance_user" :taille="'20'" />
 
                             <div class="ml-4">
-                                <a href="" class="text-sm text-gray-600 dark:text-gray-300">{{ order.freelance_user.name }}
+                                <a href="" class="text-base font-bega-medium text-gray-600 dark:text-gray-300">{{ order.freelance.nom_complet }}
                                 </a>
 
                             </div>
@@ -147,7 +145,7 @@
 
 
                         <h1 @click="open = !open"
-                            class="flex items-start gap-2 text-lg font-bold cursor-pointer lg:text-xl">
+                            class="flex items-start gap-2 text-lg font-bega-semibold cursor-pointer lg:text-xl">
                             Rapport Envoyer
                             <button>
                                 <svg :class="{ 'rotate-180': open }" class="w-6 h-6 fill-current"
@@ -193,14 +191,14 @@
 
 
                             <div v-if="order.transaction ==null">
-                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Contact</button>
+                                    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bega-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Contacter</button>
 
 
                             </div>
 
                                 <div  class="w-full">
                                     <div>
-                                          <Button outlined severity="info" @click="contacterUser" label="Contact"  />
+                                          <Button outlined severity="info" @click="contacterUser" label="Contacter"  />
                                     </div>
 
 
@@ -231,7 +229,7 @@
 
                             <div class="hidden">
 
-                                  <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Payer</button>
+                                  <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bega-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Payer</button>
 
                             </div>
 
@@ -247,7 +245,7 @@
                     <div>
                         <div  class="px-6 py-4 border-t border-gray-200">
 
-                            <h1 class="flex items-start gap-2 text-xl font-bold cursor-pointer">
+                            <h1 class="flex items-start gap-2 text-xl font-bega-semibold cursor-pointer">
                                 Transaction de paiement liée
                                 <button @click="open2 = !open2">
                                     <svg :class="{ 'rotate-180': open2 }" class="w-6 h-6 fill-current"
@@ -267,11 +265,11 @@
 
                             <div  v-if="order.transaction != null"
                              class="pt-4">
-                                <p class="text-base text-gray-600 dark:text-gray-300">Numéro de transaction :
-                                    <span class="text-lg font-bold">#{{ order.transaction.transaction_numero }}</span>
+                                <p class="text-base text-gray-600 font-bega-medium dark:text-gray-300">Numéro de transaction :
+                                    <span class="text-lg font-bega-medium">#{{ order.transaction.transaction_numero }}</span>
 
                                 </p>
-                                <p class="text-base text-gray-600 dark:text-gray-300">Méthode de paiement :
+                                <p class="text-base text-gray-600 font-bega-medium dark:text-gray-300">Méthode de paiement :
 
 
 
@@ -285,9 +283,9 @@
                                 </p>
                                 <div class="flex gap-4">
                                     <div class="">
-                                        <p class="text-base text-gray-600 dark:text-gray-300">Montant payé :
+                                        <p class="text-base text-gray-600 font-bega-medium dark:text-gray-300">Montant payé :
 
-                                            <span class="p-2 text-xl font-extrabold text-green-400 rounded">
+                                            <span class="p-2 text-xl font-bega-semibold text-green-400 rounded">
                                                 {{ order.transaction.amount }} $
                                             </span>
                                         </p>

@@ -39,7 +39,7 @@ class Message extends Model
         'file' => 'array',
         'service_id' => 'string',
         'proposal_id' => 'integer',
-        'order_id' => 'integer',
+        'order_id' => 'string',
         'receiver_id' => 'string',
         'sender_id' => 'string',
         'is_read' => 'boolean',

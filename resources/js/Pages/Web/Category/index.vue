@@ -1,4 +1,9 @@
 <template>
+
+      <Head title="Categories">
+
+        <meta name="description" content="Explorez nos catégories pour trouver des freelances qualifiés dans des domaines tels que le développement web, le design graphique, la photographie et bien plus encore. Trouvez le talent dont vous avez besoin pour vos projets sur FIND.">
+        </Head>
     <div>
 
         <div class="min-h-full px-4 py-20 mb-8 md:px-8">
@@ -127,7 +132,8 @@
 
 <script setup>
 import WebLayout from '@/Layouts/WebLayout.vue';
-import { Link  } from '@inertiajs/vue3';
+
+import { Head, Link, usePage } from '@inertiajs/vue3';
 // Assurez-vous d'ajuster le chemin d'importation
 //import { onMounted } from 'vue';
 

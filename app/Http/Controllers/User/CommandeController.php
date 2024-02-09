@@ -141,6 +141,7 @@ class CommandeController extends Controller
 
 
 
+
             $conversation = Conversation::where('freelance_id', $request->freelance_id)
                 ->whereHas('user', function ($query) {
                     $query->where('id', auth()->id());
@@ -151,28 +152,36 @@ class CommandeController extends Controller
 
 
 
-            if (!$conversation) {
+            if ($conversation==null) {
                 $conversation = new Conversation();
+                $conversation->user_id = auth()->id();
                 $conversation->freelance_id= $request->freelance_id;
                 $conversation->last_time_message = now();
                 $conversation->status = 'pending';
                 $conversation->save();
             }
 
+
+            $order=Order::find($request->order);
+
+
+
             $createdMessage = Message::create([
                 'sender_id' => auth()->user()->id,
                 'receiver_id' => $request->freelance_user_id,
                 'conversation_id' => $conversation->id,
-                'body' => "conversation relater de la commande ::". $request->order_id,
+                'body' => "conversation relater de la commande :<strong>". $order->order_numero. '</strong>',
                 'is_read' => false,
                 'type' => "text",
-                'order_id' => $request->order_id,
+                'order_id' => $request->order,
 
             ]);
 
             return redirect()->route('user.chat', $conversation->id);
 
         } catch (\Exception $e) {
+
+
 
             return redirect()->back()->withErrors(['message' => $e->getMessage()]);
         }

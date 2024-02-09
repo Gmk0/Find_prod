@@ -151,7 +151,7 @@
                     <H1 class="mb-4 text-lg text-gray-700 font-bega-medium dark:text-gray-200">Dernier commande</H1>
                     </div>
                 <div>
-                    <div class="card">
+                    <div class="card font-bega-medium">
                         <DataTable stripedRows   paginator :rows="10" :rowsPerPageOptions="[10, 20, 50,100]" :value="commandes.data" tableStyle="min-width: 50rem"
                         >
 
@@ -167,7 +167,7 @@
                             </Column>
                             <Column  header="Status">
                                 <template #body="slotProps">
-                                <Tag :value="slotProps.data.status" :severity="getSeverity(slotProps.data)"/>
+                                <Tag :value="getStatus(slotProps.data)" :severity="getSeverity(slotProps.data)"/>
 
                                 </template>
 
@@ -226,7 +226,7 @@ const formatCurrency = (value) => {
 const getSeverity = (commande) => {
     switch (commande.status) {
         case 'pending':
-            return 'warning';
+            return 'info';
             break;
         case 'completed':
             return 'success';
@@ -234,6 +234,23 @@ const getSeverity = (commande) => {
 
          case 'failed':
             return 'danger';
+            break;
+        default:
+            return null;
+
+    }
+}
+const getStatus = (commande) => {
+    switch (commande.status) {
+        case 'pending':
+            return 'en Attente';
+            break;
+        case 'completed':
+            return 'Reussie';
+            break;
+
+        case 'failed':
+            return 'Echouer';
             break;
         default:
             return null;

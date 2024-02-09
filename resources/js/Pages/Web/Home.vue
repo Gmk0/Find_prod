@@ -1,5 +1,9 @@
 <template>
-    <he
+
+    <Head title="Accueil">
+         <meta name="description" content="FIND est une plateforme qui met en relation des freelances qualifiés avec des clients à la recherche de compétences spécifiques pour leurs projets.">
+    </Head>
+
 
          <div class="relative min-h-screen 2xl:min-h-full slideshow slideshow-wrapper pb-section sliderFull">
 
@@ -942,6 +946,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { useStore, useMissions, homeSetting } from '@/store/store';// Assurez-vous d'ajuster le chemin d'importation
 import { onMounted } from 'vue';
 
+import { Head, usePage } from '@inertiajs/vue3';
 import { Collapse } from 'vue-collapsed';
 import {ref, computed } from 'vue';
 
@@ -976,6 +981,7 @@ const decrementTestimonial = () => {
 const setTestimonialActive = (index) => {
     testimonialActive.value = index;
 };
+
 
 
 
