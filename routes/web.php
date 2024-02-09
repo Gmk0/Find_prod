@@ -82,7 +82,7 @@ Route::controller(CategoryController::class)->group(function(){
 
 Route::controller(ServiceController::class)->group(function(){
 
-    Route::get('/services', 'allServices')->name('Allservices');
+    Route::get('/services', 'allServices')->name('Allservices')->middleware(['auth','verified']);
 
     Route::post('/service-like', 'likeService')->name('like.service');
 

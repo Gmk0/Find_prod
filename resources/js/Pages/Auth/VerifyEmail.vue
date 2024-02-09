@@ -27,7 +27,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
              <CardGuest>
                 <template #title>
-                   Authentification a double facteur
+                   Verification
                 </template>
                    <template #description>
                           <span class="hidden">Trouvez les services parfaits dont vous avez besoin</span>

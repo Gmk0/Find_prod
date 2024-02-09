@@ -24,7 +24,7 @@ use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable as AuthTwoFactorA
 
 use Filament\Panel;
 
-class User extends Authenticatable implements  HasAvatar, FilamentUser
+class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
