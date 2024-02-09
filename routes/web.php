@@ -322,6 +322,14 @@ Route::get('/view-cache', function () {
     Artisan::call('view:cache');
 });
 
+Route::get('/queue-work', function(){
+    Artisan::call('queue:work');
+});
+Route::get('/config-cache', function () {
+    Artisan::call('config:cache');
+});
+
+
 
 Route::get('/test', function () {
     return Inertia::render('Test/Test');

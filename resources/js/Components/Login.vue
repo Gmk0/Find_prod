@@ -170,7 +170,7 @@
                                 <div
                                     class="hidden p-2 px-1 pt-0 text-center bg-transparent border-t-0 border-t-solid rounded-b-2xl lg:px-2">
                                     <p class="mx-auto mb-2 text-sm leading-normal">
-                                        Vous avez déjà un compte?
+                                        Vous n'avez pas encore de compte?
                                         <Link :href="route('register')"
                                             class="relative z-10 font-semibold text-transparent bg-gradient-to-tl from-amber-600 to-amber-400 bg-clip-text">S'inscrire</Link>
                                     </p>

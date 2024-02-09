@@ -110,7 +110,7 @@
                                                         <p class="mb-4 text-lg text-amber-500">Félicitations! Vous avez
                                                             parrainé 10 utilisateurs et vous avez gagné un cadeau spécial!
                                                             🥳​🥳​</p>
-                                                        <Link class="mt-6 text-lg text-green-500 ">
+                                                        <Link class="hidden mt-6 text-lg text-green-500 ">
                                                         <Link :href="route('gift', $page.props.auth.user.id)">Recuperez
                                                         votre cadeau 🎁</Link>
 
