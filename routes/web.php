@@ -224,7 +224,7 @@ Route::middleware([
 
 
     Route::controller(RegistrationController::class)->group(function(){
-        Route::get('/registration/freelance', 'Registration')->name('freelancer.register')->middleware('freelance_exist');
+        Route::get('/registration/freelance', 'Registration')->name('freelancer.register')->middleware(['freelance_exist','verified']);
         Route::put('/updateProfileUser', 'updateProfileUser')->name('updateProfileUser');
         Route::post('/register/freelance', 'register')->name('register.freelance');
     });

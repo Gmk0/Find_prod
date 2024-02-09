@@ -39,7 +39,7 @@ class VerificationMailPhone extends Notification
     {
         return (new MailMessage)
             ->line('Cher utilisateur,')
-            ->line('Votre code de vérification est : ' . $this->code . '')
+            ->line('Votre code de vérification est : ' . $this->code . ' ')
             ->line('Ce code est valable pour une durée de 5 minutes.');
     }
 

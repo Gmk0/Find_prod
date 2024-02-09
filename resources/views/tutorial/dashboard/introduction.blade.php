@@ -8,6 +8,8 @@
     <p class="mb-4 ">Nous sommes là pour vous accompagner à chaque étape de votre parcours. Si vous avez
         des questions ou avez besoin d'aide, n'hésitez pas à consulter nos ressources d'aide ou à contacter notre équipe
         de support.</p>
+    <p class="mb-4 ">Veuillez noter que votre compte est en cours d'examen et sera validé après approbation.
+        Nous vous prions de bien vouloir patienter pendant ce processus.</p>
     <p class="mb-4 ">Profitez pleinement de votre expérience sur Find Freelance, et bonne chance dans toutes vos
         missions ! 🌟</p>
 </div>
