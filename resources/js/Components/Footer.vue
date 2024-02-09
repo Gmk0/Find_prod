@@ -7,15 +7,15 @@
         </p>
         <ul class="flex flex-wrap justify-center s-center">
             <li>
-                <a href="{{url('/terms-of-service')}}"
-                    class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6 dark:text-gray-400">Terms</a>
+                <Link href="/terms-of-service"
+                    class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6 dark:text-gray-400">Termes</Link>
             </li>
-            <li><a href="{{url('/privacy-policy')}}"
-                    class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6 dark:text-gray-400">Policy</a>
+            <li><Link href="/privacy-policy"
+                    class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6 dark:text-gray-400">Politique de confidentialité</Link>
             </li>
 
-            <li><a href="{{url('/contact')}}"
-                    class="text-sm font-normal text-gray-500 hover:underline dark:text-gray-400">Contact</a>
+            <li><Link href="/contact"
+                    class="text-sm font-normal text-gray-500 hover:underline dark:text-gray-400">Contact</Link>
             </li>
         </ul>
     </footer>

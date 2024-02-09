@@ -28,7 +28,7 @@
                                 <li>
                                     <Link :href="route('profile.show')"
                                         :class="$page.component.startsWith('Profile/Show') ? 'border-amber-600 border-b' : 'hover:bg-slate-100 hover:text-slate-800 text-gray-700 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100'"
-                                        class=" group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide text-white outline-none transition-all "
+                                        class=" group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide font-bega-medium text-white outline-none transition-all "
                                         href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             :class="$page.component.startsWith('Profile/Show') ? 'dark:text-white text-slate-800' : 'transition-colors text-slate-400 group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200'"
@@ -45,7 +45,7 @@
                                 <li>
                                     <Link :href="route('user.parainage')"
                                         :class="$page.component.startsWith('User/Profile/Parainage') ? 'border-amber-600 border-b text-slate-800 ' : 'hover:bg-slate-100  hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100'"
-                                        class=" group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide text-white outline-none transition-all "
+                                        class=" group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide font-bega-medium text-white outline-none transition-all "
                                         >
 
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@
                                 <li>
                                     <Link :href="route('user.notifications')"
                                         :class="$page.component.startsWith('User/Profile/NotificationSetting') ? 'border-amber-600 border-b text-slate-800 ' : 'hover:bg-slate-100  hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100'"
-                                        class=" group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide text-white outline-none transition-all "
+                                        class=" group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide font-bega-medium text-white outline-none transition-all "
                                         href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             :class="$page.component.startsWith('User/Profile/NotificationSetting') ? 'dark:text-white text-slate-800' : 'transition-colors text-slate-400 group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200'"
@@ -80,7 +80,7 @@
                                 <li>
                                     <Link :href="route('user.security')"
                                         :class="$page.component.startsWith('User/Profile/Security') ? 'border-amber-600 border-b' : 'hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100'"
-                                        class="group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide text-white outline-none transition-all "
+                                        class="group flex items-center space-x-2 rounded-lg  px-4 py-2.5 tracking-wide font-bega-medium text-white outline-none transition-all "
                                         href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             :class="$page.component.startsWith('User/Profile/Security') ? 'dark:text-white text-slate-800' : 'transition-colors text-slate-400 group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200'"

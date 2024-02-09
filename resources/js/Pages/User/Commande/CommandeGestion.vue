@@ -8,17 +8,10 @@
             <div>
                 <nav class="flex" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                        <li class="inline-flex items-center">
-                        <Link :href="route('user.dashboard')" Fclass="inline-flex items-center text-sm font-bega-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
 
-                            Dashboard
-                        </Link>
-                        </li>
                         <li aria-current="page">
                             <Link :href="route('user.commandes')" class="flex items-center">
-                                <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                                </svg>
+
                                 <span class="ml-1 text-sm font-bega-medium text-gray-700 md:ml-2 dark:text-gray-400">Commande</span>
                             </Link>
                         </li>
@@ -36,7 +29,7 @@
                 </nav>
             </div>
 
-            <h1 class="mt-4 text-3xl font-bega-semibold text-black dark:text-white">Commandes</h1>
+            <h1 class="mt-4 text-3xl font-bega-semibold text-gray-800 dark:text-white">Commandes</h1>
 
         </div>
 
@@ -50,10 +43,10 @@
             <div class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
                         <!-- Informations sur la commande -->
                         <div class="grid grid-cols-1 px-6 py-4 lg:grid-cols-2">
-                            <p class="mb-4 font-bega-bold text-lg text-gray-800 dark:text-gray-300">Commande :
-                                <span class="font-bega-semibold ">{{ order.order_numero }}</span>
+                            <p class="mb-4 font-bega-medium text-lg text-gray-700 dark:text-gray-300">Commande :
+                                <span class="font-bega-medium ">{{ order.order_numero }}</span>
                             </p>
-                            <p class="mb-4 text-lg text-gray-800 font-bega-semibold md:mb-2 dark:text-gray-300">Service : <span class="font-bega-semibold">
+                            <p class="mb-4 text-lg text-gray-700 font-bega-medium md:mb-2 dark:text-gray-300">Service : <span class="font-bega-semibold">
                                     {{ order.service.title }}</span> </p>
                             <p class="mb-4 text-base text-gray-600 font-bega-medium dark:text-gray-300 md:mb-2">Date de commande :
                                 <span>{{ order.created_at }}</span>
