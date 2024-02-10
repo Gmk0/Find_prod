@@ -20,7 +20,7 @@
                         <template #content>
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400 dark:text-gray-50">
-                                Manage Account
+                                Compte
                             </div>
 
                             <DropdownLink :href="route('profile.show')">

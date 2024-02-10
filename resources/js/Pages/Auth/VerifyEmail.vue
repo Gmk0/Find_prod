@@ -43,7 +43,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
             <div class="p-4">
 
                 <div class="mb-4 text-base font-bega-medium text-gray-600 dark:text-white">
-                Avant de continuer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu l'e-mail, nous serons heureux de vous en envoyer un autre.
+                Avant de continuer, pourriez-vous vérifier votre adresse mail en cliquant sur le lien que nous venons de vous envoyer par e-mail ? Si vous n'avez pas reçu l'e-mail, nous serons heureux de vous en envoyer un autre.
                 </div>
 
                 <div v-if="verificationLinkSent" class="mb-4 text-sm font-medium text-green-600">
