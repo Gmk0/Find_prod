@@ -117,7 +117,7 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
 
             UserSetting::create(['user_id' => $user->id]);
 
-            Mail::to($user->email)->send(new welcomeMail($user));
+//          Mail::to($user->email)->send(new welcomeMail($user));
         });
         Static::deleted(function($user){
             UserSetting::where('user_id', $user->id)->delete();

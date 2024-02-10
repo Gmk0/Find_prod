@@ -102,7 +102,7 @@ class Order extends Model
                 }
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
+           // dd($e->getMessage());
         }
     }
     public function brodacastFreelance()

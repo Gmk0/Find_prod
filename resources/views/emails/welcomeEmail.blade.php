@@ -214,34 +214,24 @@
                                                                     </table>
 
                                                                     <p style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;"
-                                                                        align="left">Nous vous souhaitons la bienvenue
-                                                                        sur FIND, la plateforme de mise en relation
-                                                                        entre freelances et demandeurs de service.
-                                                                        Nous sommes ravis de vous compter parmi notre
-                                                                        communauté de professionnels indépendants..</p>
+                                                                        align="left">Bienvenue sur FIND, la plateforme de mise en relation entre freelances et demandeurs de service. Nous sommes ravis de
+                                                                        vous accueillir parmi nous.</p>
                                                                     <br>
 
                                                                     <p style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;"
-                                                                        align="left">Votre inscription en tant que
-                                                                        freelance sur FIND ouvre de nouvelles
-                                                                        perspectives et opportunités professionnelles.
-                                                                        Nous
-                                                                        sommes là pour vous accompagner dans votre
-                                                                        parcours et vous aider à trouver des projets
-                                                                        stimulants qui correspondent à
-                                                                        vos compétences.</p><br>
+                                                                        align="left">Votre inscription en tant qu'utilisateur sur FIND vous ouvre les portes vers de nouvelles opportunités. Que vous
+                                                                        recherchiez des services ou que vous souhaitiez offrir les vôtres, notre plateforme est là pour vous aider à trouver ce
+                                                                        dont vous avez besoin..</p><br>
 
 
 
                                                                     <p style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;"
-                                                                        align="left">Nous vous souhaitons beaucoup de
-                                                                        succès dans votre carrière freelance sur FIND.
-                                                                        N'hésitez pas à nous contacter si vous
-                                                                        avez des questions ou besoin d'assistance. Notre
-                                                                        équipe est là pour vous aider.</p><br>
+                                                                        align="left">NNous vous souhaitons une expérience enrichissante sur FIND. N'hésitez pas à explorer toutes les fonctionnalités de notre
+                                                                        plateforme et à nous contacter si vous avez des questions ou besoin d'assistance. Nous sommes là pour vous accompagner à
+                                                                        chaque étape.</p><br>
 
                                                                     <p style="line-height: 24px; font-size: 16px; width: 100%; margin: 0;"
-                                                                        align="left">Bienvenue dans la communauté FIND !
+                                                                        align="left">Bienvenue sur FIND !
                                                                     </p>
                                                                     <table class="w-full s-4" role="presentation"
                                                                         border="0" cellpadding="0" cellspacing="0"

@@ -2,7 +2,7 @@
     <div class="bg-white dark:bg-gray-800 font-bega_light">
 
 
-
+        <Head :title="titlePage" />
 
 
         <div class="pageWrapper">
