@@ -301,8 +301,10 @@ Route::controller(ApiUserController::class)->group(function(){
     Route::get('/api/fetchLastMissions','lastMissions')->name('lastMissions');
     Route::get('/api/getNotificationParametres','getNotificationParametres');
     Route::post('/api/UpdateNotificationParametres', 'updateNotificationParametres')->name('updateNotificationParametres');
-
     Route::get('/api/getLastFaq', 'fetchLastFaq');
+
+    Route::get('/api/fetchLastUserCommentaire', 'fetchLastUserCommentaire');
+    //Route::get('/fetchLastUserTalkAbout', 'fetchLastUserTalkAbout');
 
 });
 
@@ -341,5 +343,3 @@ Route::get('/test', function () {
 });
 
 
-Route::post('/paidTest',[ApiController::class,'paidTest'])->name('paidTest');
-Route::get('/callBack',[ApiController::class, 'callbackPaid'])->name('callbackPaid');

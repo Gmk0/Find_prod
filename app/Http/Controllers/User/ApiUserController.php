@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MissionResourceData;
+use App\Models\AffichageElement;
 use App\Models\Faq;
 use App\Models\Message;
 use App\Models\Mission;
@@ -164,5 +165,34 @@ class ApiUserController extends Controller
         }
 
     }
+
+
+    public function fetchLastUserCommentaire()
+    {
+        try {
+            $element = AffichageElement::latest()->first();
+
+            // Vérifie si un élément a été trouvé
+            if ($element) {
+                return response()->json([
+                    'success' => true,
+                    'commentaire' => $element->commentaire_user,
+                    'talk_about'=>$element->talk_about,
+                    'about'=>$element->about,
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Aucun commentaire trouvé.'
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur est survenue : ' . $e->getMessage()
+            ]);
+        }
+    }
+
 
 }

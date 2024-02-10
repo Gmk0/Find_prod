@@ -491,5 +491,38 @@ export const homeSetting = defineStore('homeSetting',{
 });
 
 
+export const getLastComment = defineStore('getLastComment', {
+    state: () => ({
+        lastComment: null,
+        loading: false,
+        error: null,
+    }),
+
+    getters: {
+        getLastComment: state => state.lastComment,
+        isLoading: state => state.loading,
+        hasError: state => state.error !== null,
+        getError: state => state.error,
+    },
+
+    actions: {
+        async fetchLastComment() {
+            this.loading = true;
+            try {
+                const response = await fetch('/api/getLastComment'); // Remplacez '/api/getLastComment' par votre endpoint réel
+                if (!response.ok) {
+                    throw new Error('Failed to fetch last comment');
+                }
+                const data = await response.json();
+                this.lastComment = data.commentaire;
+            } catch (error) {
+                this.error = error.message;
+            } finally {
+                this.loading = false;
+            }
+        },
+    },
+});
+
 
 

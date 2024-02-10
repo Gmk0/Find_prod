@@ -66,8 +66,7 @@ class FreelanceAcount extends Page implements HasForms
                     '5 + ans' => '5 + ans',
                 ])
                 ->native(false),
-                TextInput::make('site')
-                ->required(),
+                TextInput::make('site')->label('lien portefolio'),
                 TextInput::make('taux_journalier')
                 ->numeric()
                 ->required(),

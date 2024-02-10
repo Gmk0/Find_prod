@@ -218,98 +218,7 @@
         </div>
 
 
-         <div id="talkAbout" class="bg-white dark:bg-gray-900 lg:min-h-screen xl:min-h-full">
-
-            <div class="container max-w-6xl p-4 m-4 mx-auto 2xl:max-w-7xl 2xl:p-2 md:p-6">
-                <div class="mb-10 text-center xl:mb-14">
-                    <span class="font-bega-medium text-amber-600">Presentation</span>
-                    <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 ">Ils en parlent mieux que nous</h1>
-
-                </div>
-
-                <div class="my-10">
-
-                      <swiper class="flex py-8 xl:py-12"
-                            :modules="[Navigation, Pagination, Scrollbar, EffectCube, A11y]"
-
-                            :spaceBetween="30"
-                            :slides-per-view="1"
-                            :space-between="25"
-                            :pagination="{ clickable: true }"
-                            >
-
-                    <swiper-slide class="mb-8 xl:mb-12">
-                        <div class="!bg-transparent px-2 md:px-0">
-                            <div
-                                class="px-2 bg-white border border-gray-300 dark:border-gray-300 rounded-3xl dark:bg-gray-900 dark:shadow-none md:mx-auto lg:w-11/12 xl:w-8/12">
-                                <div class="grid md:grid-cols-5">
-
-                                    <div class="w-full m-2 h-50 xl:h-72 aspect-w-8 aspect-h-9 md:col-span-2 rounded-2xl">
-
-                                        <iframe class="w-full h-full rounded-sm aspect-video hover:aspect-square"
-                                            src="" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                    </div>
-                                    <div class="p-6 mx-auto space-y-6 text-center md:col-span-3 sm:p-8">
-                                        <div class="w-20 mx-auto xl:w-28">
-                                            <img src="images/brand/influnet.jpg" alt="company logo" loading="lazy" />
-                                        </div>
-                                        <p class="dark:text-gray-200 font-bega-light xl:text-lg">
-                                            <span class=""></span> Find est une plateforme incontournable pour tous
-                                            les demandeurs de services. J'ai été impressionné par la qualité des
-                                            freelances proposés.
-                                            <span class="font-serif">"</span>
-                                        </p>
-                                        <h6 class="text-lg leading-none font-bega-semibold dark:text-gray-200">Georges Mk</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </swiper-slide>
-
-                        <swiper-slide class="mb-8">
-
-                        <div class=" !bg-transparent px-2 md:px-0">
-                            <div
-                                class="px-2 bg-white border border-gray-100 dark:border-gray-300 rounded-3xl dark:bg-gray-900 dark:shadow-none md:mx-auto lg:w-11/12 xl:w-8/12">
-                                <div class="grid md:grid-cols-5">
-
-
-                                    <div class="w-full m-2 xl:h-72 h-50 aspect-w-8 aspect-h-9 md:col-span-2 rounded-2xl">
-
-                                        <iframe class="w-full h-full rounded-sm aspect-video hover:aspect-square"
-                                            src="" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                    </div>
-                                    <div class="p-6 mx-auto space-y-6 text-center md:col-span-3 sm:p-8">
-                                        <div class="w-20 mx-auto xl:w-28">
-                                            <img src="images/brand/influnet.jpg" alt="company logo" loading="lazy" />
-                                        </div>
-                                        <p class="dark:text-gray-200 font-bega-light xl:text-lg">
-                                            <span class="font-serif "></span> Find est un outil essentiel pour tous ceux qui
-                                            cherchent à trouver des freelances qualifiés. La plateforme est vraiment
-                                            bien conçue et facile à utiliser
-                                            <span class="font-serif">"</span>
-                                        </p>
-                                        <h6 class="text-lg leading-none font-bega-semibold dark:text-gray-200">Ulrich Lukemba</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        </swiper-slide>
-
-
-
-                    </swiper>
-
-                </div>
-            </div>
-
-        </div>
+        <TalkAboutUs />
 
           <div  id="monde2" class=" xl:min-h-full lg:min-h-screen dark:bg-gray-900">
 
@@ -617,124 +526,9 @@
 
         </div>
 
-          <div id="confiance" class="bg-white dark:bg-gray-800">
-            <div class="px-4 py-4 mx-auto sm:mx-2 md:px-auto">
-                <div class="container text-gray-600 dark:text-gray-300 ">
-                    <div class="mb-10 text-center">
-                        <span class="font-bega-medium text-amber-600">Comentaire</span>
-                        <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Ils nous font confiance</h1>
 
-                    </div>
-                    <div class="container flex flex-col mx-auto my-10 overflow-hidden shadow-sm md:my-24 md:flex-row"
-                        >
-                        <div
-                            class="relative flex flex-col justify-center w-full py-2 bg-indigo-700 md:py-24 md:w-1/2 item-center">
+        <CommentaireUser />
 
-                            <div class="absolute top-0 left-0 z-10 w-16 h-16 grid-indigo md:w-40 md:h-40 md:ml-20 md:mt-24">
-                            </div>
-
-                            <div
-                                class="relative z-20 px-6 py-2 mb-0 text-2xl leading-tight tracking-tight text-indigo-100 font-bega-semibold md:text-5xl md:py-6 md:px-1 md:w-64 md:mx-auto">
-                                <span class="md:block">Ce que</span>
-
-                                <span class="md-block">disent</span>
-                                <span class="block">nos clients !</span>
-
-
-                            </div>
-
-                            <div class="absolute bottom-0 right-0 hidden mb-4 mr-4 md:block">
-                                <button
-                                    class="w-12 h-10 text-gray-500 bg-gray-100 border-r rounded-l-full font-bega-semibold focus:outline-none hover:text-indigo-500"
-                                     @click="decrementTestimonial">
-                                    &#8592;
-                                </button><button
-                                    class="w-12 h-10 text-gray-500 bg-gray-100 rounded-r-full font-bega-semibold focus:outline-none hover:text-indigo-500"
-                                   @click="incrementTestimonial">
-                                    &#8594;
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="bg-gray-100 md:w-1/2">
-                            <div class="relative flex flex-col h-full">
-
-                                <div class="absolute top-0 left-0 mt-3 ml-4 md:mt-5 md:ml-12">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="w-12 h-12 text-indigo-200 fill-current md:w-16 md:h-16" viewBox="0 0 24 24">
-                                        <path
-                                            d="M6.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L9.758 4.03c0 0-.218.052-.597.144C8.97 4.222 8.737 4.278 8.472 4.345c-.271.05-.56.187-.882.312C7.272 4.799 6.904 4.895 6.562 5.123c-.344.218-.741.4-1.091.692C5.132 6.116 4.723 6.377 4.421 6.76c-.33.358-.656.734-.909 1.162C3.219 8.33 3.02 8.778 2.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C2.535 17.474 4.338 19 6.5 19c2.485 0 4.5-2.015 4.5-4.5S8.985 10 6.5 10zM17.5 10c-.223 0-.437.034-.65.065.069-.232.14-.468.254-.68.114-.308.292-.575.469-.844.148-.291.409-.488.601-.737.201-.242.475-.403.692-.604.213-.21.492-.315.714-.463.232-.133.434-.28.65-.35.208-.086.39-.16.539-.222.302-.125.474-.197.474-.197L20.758 4.03c0 0-.218.052-.597.144-.191.048-.424.104-.689.171-.271.05-.56.187-.882.312-.317.143-.686.238-1.028.467-.344.218-.741.4-1.091.692-.339.301-.748.562-1.05.944-.33.358-.656.734-.909 1.162C14.219 8.33 14.02 8.778 13.81 9.221c-.19.443-.343.896-.468 1.336-.237.882-.343 1.72-.384 2.437-.034.718-.014 1.315.028 1.747.015.204.043.402.063.539.017.109.025.168.025.168l.026-.006C13.535 17.474 15.338 19 17.5 19c2.485 0 4.5-2.015 4.5-4.5S19.985 10 17.5 10z" />
-                                    </svg>
-                                </div>
-
-                                <div class="relative z-10 h-full">
-                                    <div v-show="testimonialActive === 1">
-                                        <p class="px-6 py-6 text-xl italic text-gray-600 font-bega-light md:px-16 md:py-10 md:text-2xl"
-                                            x-show.transition="testimonialActive == 1">
-                                            Votre plateforme m'a permis de trouver rapidement et facilement le freelance idéal
-                                            pour mon projet. C'était vraiment
-                                            simple à utiliser et j'ai apprécié la transparence dans le processus de sélection."
-                                        </p>
-                                    </div>
-
-                                    <div v-show="testimonialActive === 2">
-                                        <p class="px-6 py-6 text-xl italic text-gray-600 font-bega-light md:px-16 md:py-10 md:text-2xl"
-                                            x-show.transition="testimonialActive == 2">
-                                            Je suis très satisfaite des résultats que j'ai obtenus grâce à votre plateforme.
-                                            J'ai pu trouver un freelance
-                                            expérimenté qui a su répondre parfaitement à mes besoins et à mes attentes.
-                                        </p>
-                                    </div>
-
-                                    <div v-show="testimonialActive === 3">
-                                        <p class="px-6 py-6 text-xl italic text-gray-600 font-bega-light serif md:px-16 md:py-10 md:text-2xl"
-                                            x-show.transition="testimonialActive == 3">
-                                            Je recommande vivement votre plateforme à tous ceux qui cherchent à trouver des
-                                            freelances de qualité. J'ai été très
-                                            satisfait des résultats obtenus et je n'hésiterai pas à utiliser à nouveau votre
-                                            service à l'avenir.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center justify-center my-4">
-                                    <button @click="setTestimonialActive(1)"
-                                        class="inline-block mx-2 text-center rounded-full shadow-xs font-bega-semibold focus:outline-none focus:shadow-outline"
-                                        :class="{ 'h-12 w-12 opacity-25 bg-indigo-300 text-gray-600': testimonialActive != 1, 'h-16 w-16 opacity-100 bg-indigo-600 text-white': testimonialActive == 1 }">JD</button>
-                                    <button @click="setTestimonialActive(2)"
-                                        class="inline-block w-16 h-16 mx-2 text-center bg-indigo-600 rounded-full shadow-xs font-bega-semibold focus:outline-none focus:shadow-outline"
-                                        :class="{ 'h-12 w-12 opacity-25 bg-indigo-300 text-gray-600': testimonialActive != 2, 'h-16 w-16 opacity-100 bg-indigo-600 text-white': testimonialActive == 2 }">WM</button>
-                                    <button @click="setTestimonialActive(3)"
-                                        class="inline-block w-12 h-12 mx-2 text-center bg-indigo-600 rounded-full shadow-xs font-bega-semibold focus:outline-none focus:shadow-outline"
-                                        :class="{ 'h-12 w-12 opacity-25 bg-indigo-300 text-gray-600': testimonialActive != 3, 'h-16 w-16 opacity-100 bg-indigo-600 text-white': testimonialActive == 3 }">JW</button>
-                                </div>
-
-                                <div class="flex justify-center px-6 pt-2 pb-6 md:py-6">
-                                    <div class="text-center" v-show="testimonialActive == 1">
-                                        <h2 class="text-sm leading-tight text-gray-700 font-bega-semibold md:text-base">Jean Dongo</h2>
-                                        <small class="text-xs text-gray-500 truncate md:text-sm">CEO, ABC Inc.</small>
-                                    </div>
-
-                                    <div class="text-center" v-show="testimonialActive == 2">
-                                        <h2 class="text-sm leading-tight text-gray-700 font-bega-semibold md:text-base">William Muka
-                                        </h2>
-                                        <small class="text-xs text-gray-500 truncate md:text-sm">CTO, Ack Corp.</small>
-                                    </div>
-
-                                    <div class="text-center" v-show="testimonialActive == 3">
-                                        <h2 class="text-sm leading-tight text-gray-700 font-bega-semibold md:text-base">John Wata</h2>
-                                        <small class="text-xs text-gray-500 truncate md:text-sm">Product Manager, Fortran
-                                            Corp.</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
 
           <div id="getStarted" class="bg-gray-900 lg:min-h-screen">
             <div class="py-16 ">
@@ -950,11 +744,15 @@ import { Head, usePage } from '@inertiajs/vue3';
 import { Collapse } from 'vue-collapsed';
 import {ref, computed } from 'vue';
 
+import CommentaireUser from '@/Components/CommentaireUser.vue';
+
 import {DocumentTextIcon, CheckCircleIcon } from '@heroicons/vue/24/solid'
 
 
 
 import HomeSearch from '@/Components/HomeSearch.vue';
+
+import TalkAboutUs from '@/Components/TalkAboutUs.vue';
 
 
 
@@ -966,21 +764,7 @@ defineProps({
     categories:Array
 });
 
-const testimonialActive = ref(1);
 
-const incrementTestimonial = () => {
-    testimonialActive.value =
-        testimonialActive.value >= 3 ? 1 : testimonialActive.value + 1;
-};
-
-const decrementTestimonial = () => {
-    testimonialActive.value =
-        testimonialActive.value === 1 ? 3 : testimonialActive.value - 1;
-};
-
-const setTestimonialActive = (index) => {
-    testimonialActive.value = index;
-};
 
 
 

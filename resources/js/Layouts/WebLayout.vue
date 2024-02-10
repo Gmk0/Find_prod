@@ -39,6 +39,7 @@ import Navbar from '@/Layouts/Partials/Navbar.vue';
 import Footer from '@/Layouts/Partials/Footer.vue';
 import { onMounted, computed } from 'vue';
 import Login from '@/Components/Login.vue';
+import { getLastComment } from '@/store/otherStore';
 
 
 
@@ -48,6 +49,9 @@ import { initFlowbite } from 'flowbite'
 
 
 import { useSubcategoriesStore, useCategoryStore } from '@/store/store';
+
+
+const useStoreLast = getLastComment();
 
 
 const categoriesStore = useCategoryStore();
@@ -72,6 +76,7 @@ defineProps({
 onMounted(() => {
     subcategoriesStore.fetchSubCategories();
     categoriesStore.fetchCategories();
+    useStoreLast.fetchLastComment();
     initFlowbite();
 
 

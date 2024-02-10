@@ -24,13 +24,7 @@
                     <div class="flex flex-wrap -mx-4">
 
                              <p class="max-w-2xl mt-4 text-lg text-findDark-500 dark:text-findDark-200 lg:mx-auto">
-                        FIND est une plateforme qui met en relation des freelances qualifiés avec des clients à la recherche
-                        de
-                        compétences spécifiques pour leurs projets. Que vous ayez besoin d'un développeur, d'un designer,
-                        d'un
-                        responsable financier ou d'un autre professionnel, nous avons les talents qu'il vous faut pour mener
-                        à
-                        bien votre projet.
+                       <span v-html="about"></span>
                     </p>
 
 
@@ -55,8 +49,14 @@ import WebLayout from '@/Layouts/WebLayout.vue';
 import BreadCumbWeb from '@/Components/BreadCumbWeb.vue';
 
 
+import { computed } from 'vue';
 
 
+import { getLastComment } from '@/store/otherStore';
+
+const useStoreLast = getLastComment();
+
+const about = computed(()=> useStoreLast.getAbout)
 
 defineOptions({
     layout: WebLayout,
