@@ -5,10 +5,10 @@ import WebLayout from '@/Layouts/WebLayout.vue';
 //import  SelectCategory from '@/Components/SelectCategory.vue';
 import Pagination from '@/Components/Pagination.vue';
 import FreelanceCard from '@/Components/FreelanceCard.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { ref ,watch, computed } from 'vue';
+
+import { ref ,watch, onMounted, computed } from 'vue';
 import { router } from '@inertiajs/vue3';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
+
 import { Collapse } from 'vue-collapsed'
 //import Checkbox from '@/Components/Checkbox.vue';
 import pickBy from 'lodash/pickBy';
@@ -124,6 +124,16 @@ watch(form, () => {
 
 
 
+const isSticky = ref(false);
+
+onMounted(() => {
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        isSticky.value = currentScroll < lastScrollTop || currentScroll <= 0;
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    })});
+
 
 
 
@@ -190,7 +200,7 @@ defineOptions({
                 </nav>
             </div>
 
-            <div class="sticky top-0 z-30 grid h-auto grid-cols-12 px-4 py-2 bg-white dark:bg-gray-800 lg:z-0 lg:bg-transparent lg:relative ">
+            <div :class="{'sticky': isSticky }" class=" transition-all duration-300 ease-in-out top-0 z-30 grid h-auto grid-cols-12 px-4 py-2 bg-white dark:bg-gray-800 lg:z-0 lg:bg-transparent lg:relative ">
                 <div class="hidden lg:col-span-3 lg:flex">
                 </div>
 
@@ -646,5 +656,10 @@ defineOptions({
 <style>
 .collapse {
     transition: height var(--vc-auto-duration) cubic-bezier(0.3, 0, 0.6, 1);
+}
+
+
+.sticky-bar {
+  transition: all 0.3s ease;
 }
 </style>

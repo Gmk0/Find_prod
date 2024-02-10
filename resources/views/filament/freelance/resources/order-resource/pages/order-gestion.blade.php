@@ -16,8 +16,14 @@
                 %B %G')}}</span>
         </p>
 
-        <p class="mt-4 text-base text-gray-600 dark:text-gray-300">Paiement : <span
-                class="font-bold text-green-600">{{$record->status}}</span>
+        <p class="mt-4 text-base text-gray-600 dark:text-gray-300">Paiement :
+            @if($record->status=='completed')
+               <span class="font-bold text-green-600">Reussie</span>
+            @elseif ($record->status=='pending')
+            <span class="font-bold text-blue-600">En attente</span>
+            @else
+                <span class="font-bold text-red-600">Echouer</span>
+            @endif
         </p>
         <p class="mt-4 text-base text-gray-600 dark:text-gray-300">Versement Paiement :
 
@@ -115,11 +121,21 @@
 
         {{ $this->form }}
 
+        @if($record->status !='failed')
         <div class="text-right">
             <x-filament::button type="submit" form="submit" class="align-right">
                 Modifier
             </x-filament::button>
         </div>
+        @else
+        <div class="text-right">
+            <x-filament::button disabled class="align-right">
+                Le paiement a echoué
+            </x-filament::button>
+        </div>
+
+        @endif
+
     </form>
 </x-filament::card>
 

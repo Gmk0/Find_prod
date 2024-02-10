@@ -42,8 +42,10 @@ class LastOrder extends BaseWidget
                 ]),
                 // ...
             ])->actions([
-                Tables\Actions\Action::make('Gerer')
-                    ->url(fn (ModelsOrder $record): string => OrderResource::getUrl('edit', ['record' => $record])),
+                Tables\Actions\Action::make('Gestion')
+                ->button()
+                ->outlined()
+                ->url(fn (ModelsOrder $record): string => route('filament.freelance.resources.orders.gestion', ['record' => $record])),
             ])->heading('Derniere commande');
     }
 

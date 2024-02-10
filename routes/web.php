@@ -327,6 +327,9 @@ Route::get('/view-cache', function () {
 Route::get('/queue-work', function(){
     Artisan::call('queue:work');
 });
+Route::get('/queue-stop', function () {
+    Artisan::call('queue:stop');
+});
 Route::get('/config-cache', function () {
     Artisan::call('config:cache');
 });

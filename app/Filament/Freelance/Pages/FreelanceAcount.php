@@ -196,9 +196,9 @@ class FreelanceAcount extends Page implements HasForms
     {
         Notification::make()
             ->success()
-            ->title('Vos modifications ont ete pris en charge')
-            ->send()
-            ->sendToDatabase(auth()->user());
+            ->title('Vos modifications ont été prises en compte')
+            ->send();
+            //->sendToDatabase(auth()->user());
     }
 
 

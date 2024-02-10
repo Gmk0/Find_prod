@@ -133,7 +133,7 @@ realisation.media.forEach((media) => {
                               <nav class="flex" aria-label="Breadcrumb">
                             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                                 <li class="inline-flex items-center">
-                                <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                                <a href="#" class="inline-flex items-center text-sm font-bega-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                                     <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                                     </svg>
@@ -146,7 +146,7 @@ realisation.media.forEach((media) => {
                                     <svg class="w-3 h-3 mx-1 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                     </svg>
-                                    <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">freelance</span>
+                                    <span class="ml-1 text-sm font-bega-medium text-gray-500 md:ml-2 dark:text-gray-400">freelance</span>
                                 </Link>
                                 </li>
                                  <li aria-current="page">
@@ -154,7 +154,7 @@ realisation.media.forEach((media) => {
                                         <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                         </svg>
-                                        <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 break-before-auto dark:text-gray-400">{{ freelance.identifiant }}</span>
+                                        <span class="ml-1 text-sm font-bega-medium text-gray-500 md:ml-2 break-before-auto dark:text-gray-400">{{ freelance.identifiant }}</span>
                                     </div>
                                     </li>
                             </ol>
@@ -184,12 +184,14 @@ realisation.media.forEach((media) => {
                         </div>
                         <div class="flex flex-wrap gap-6 mt-4 ">
                              <div class="flex flex-wrap gap-3 px-2">
-                            <template v-for="(subCategory, index) in freelance.subCategorie" :key="subCategory.id">
+                            <template v-for="(subCategory, index) in freelance.subCategorie.slice(0, 3)" :key="subCategory.id">
                                             <span v-tooltip.top="subCategory.name"
                                                     class=" flex gap-2 p-2 transition-all transform rounded-lg shadow-sm bg-gray-50  items-center py-1 cursor-default px-3  text-[12px] lg:text-sm  border border-secondary-200   text-gray-700 dark:bg-secondary-700 dark:text-secondary-400 dark:border-none">
                                                 {{ subCategory.name }}
                                             </span>
-                                    <span v-if="index === 3 && props.freelance.data.subCategorie?.length > 4"
+
+
+                                    <span v-if="props.freelance.data.subCategorie?.length > 4"
                                             class="ml-2 text-sm text-gray-500">
                                         (+{{ props.freelance.data.subCategorie.length - 4 }} de plus)
                                     </span>
@@ -254,7 +256,7 @@ realisation.media.forEach((media) => {
                 <div class="w-full min-h-screen lg:w-8/12">
 
                      <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+            <ul class="flex flex-wrap -mb-px text-sm font-bega-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
                 <li class="me-2" role="presentation">
                     <button @click="toogleTab('profile')" :class="{'active-tab': tab ==='profile'}" class="inline-block p-4 text-lg border-b-2 rounded-t-lg font-bega-medium" id="profile-tab" data-tabs-target="#profile" type="button" role="tab"
                     aria-controls="profile" aria-selected="false">Resume</button>
@@ -276,7 +278,7 @@ realisation.media.forEach((media) => {
                     <div class="px-4 mx-auto mb-4 max-w-7xl">
                     <div class="max-w-5xl p-4 mx-auto">
                         <h2
-                            class="my-4 text-lg text-gray-800 text-start font-bega-semibold Apropos de Moimd:text-xl dark:text-gray-200">
+                            class="my-4 text-lg text-gray-800 text-start font-bega-semibold md:text-xl dark:text-gray-200">
                             Apropos de Moi
                         </h2>
 
@@ -312,18 +314,18 @@ realisation.media.forEach((media) => {
 
                                                 <div class="max-w-4xl px-4 py-4 mb-3 text-base text-gray-700 border-l border-gray-300 dark:text-gray-300">
 
-                                                        <div v-for="(diplome, index) in freelance.diplome " class="flex flex-col gap-3">
+
+                                                        <div v-for="(diplome, index) in freelance.diplome " class="flex mb-3 flex-col gap-3">
                                                             <div class="flex flex-wrap gap-3">
 
-                                                                 <h2 class="px-2 text-base font-bega-medium">{{ diplome['diplome'] }}</h2>
-                                                                  <h2 class="px-2 text-base font-bega-medium">{{ diplome['universite'] }}</h2>
-                                                                    <h2 class="text-base">{{ diplome['annee'] }}</h2>
+                                                                 <li class="px-2 text-base font-bega-medium">{{ diplome['diplome'] }}</li>
+                                                                  <h2 class="px-2  flex gap-1 font-bega-medium">{{ diplome['universite'] }} / <span>{{ diplome['annee'] }}</span></h2>
+
 
                                                             </div>
 
 
                                                         </div>
-
 
                                                 </div>
                                             </div>
@@ -339,11 +341,11 @@ realisation.media.forEach((media) => {
 
                                                 <div class="max-w-4xl px-4 py-4 mb-4 text-base text-gray-700 border-l border-gray-300 dark:text-gray-300">
 
-                                                        <div v-for="(certificat, index) in freelance.certificat" class="flex flex-col gap-3">
+                                                        <div v-for="(certificat, index) in freelance.certificat" class="flex flex-col mb-3 gap-3">
                                                             <div class="flex flex-wrap gap-3">
-                                                                 <h2 class="px-2 text-base font-bega-medium">{{ certificat['certifier'] }}</h2>
-                                                                <h2 class="px-2 text-base font-bega-medium"> {{ certificat['delivrer'] }}</h2>
-                                                                <h2 class="text-base"> {{ certificat['annee'] }}</h2>
+                                                                 <li class="px-2 text-base font-bega-medium">{{ certificat['certifier'] }}</li>
+                                                                <h2 class="px-2 flex gap-1 font-bega-medium"> {{ certificat['delivrer'] }} /<span>{{ certificat['annee'] }}</span></h2>
+
 
 
                                                             </div>
@@ -368,10 +370,10 @@ realisation.media.forEach((media) => {
 
                                                     <div class="max-w-4xl px-6 mb-4 text-base text-gray-700 border-l border-gray-300 dark:text-gray-300">
 
-                                                            <div v-for="(compt, index) in freelance.competences" class="flex flex-col gap-4">
+                                                            <div v-for="(compt, index) in freelance.competences" class="flex flex-col mb-3 gap-4">
                                                                 <div class="flex flex-wrap gap-4">
-                                                                    <h2 class="px-2 text-base font-bega-medium">{{ compt.title }}</h2>
-                                                                    <h2 class="text-base">{{ compt.level }}</h2>
+                                                                    <li class="px-2 text-base font-bega-medium">{{ compt.title }}</li>
+                                                                    <h2 class="">{{ compt.level }}</h2>
 
                                                                 </div>
 
@@ -591,7 +593,9 @@ realisation.media.forEach((media) => {
                                         <h1 class="text-lg text-gray-500 dark:text-gray-200 font-bega-semibold ">Langue</h1>
                                          <h1 class="text-lg text-gray-800 font-bega-light dark:text-gray-100">
                                             <template v-for="(langue,index) in freelance.langue">
-                                                    {{ langue['langue'] }} ,
+                                                    {{ langue['langue'] }}
+
+                                                <span v-if="index !== freelance.langue.length - 1">, </span>
                                             </template>
 
                                         </h1>
@@ -601,13 +605,13 @@ realisation.media.forEach((media) => {
                           <div class="flex items-center gap-4 mx-auto space-x-4 text-lg">
                             <template v-for="(compte,index) in freelance.comptes">
 
-                                <a v-if="compte['compte']==='Facebook'" :href="compte['lien']" class="px-3 py-2 text-center transition-colors bg-gray-200 rounded-full hover:bg-skin-fill hover:text-white">
+                                <a v-if="compte['compte']==='Facebook'" :href="compte['lien']" class="px-3 py-1.5 text-center transition-colors bg-gray-200 rounded-full hover:bg-skin-fill hover:text-white">
                                     <i class=" fab fa-facebook-f"></i>
                                 </a>
-                                 <a v-if="compte['compte'] === 'Twitter'" :href="compte['lien']" class="px-3 py-2 text-center transition-colors bg-gray-200 rounded-full hover:bg-skin-fill hover:text-white">
+                                 <a v-if="compte['compte'] === 'Twitter'" :href="compte['lien']" class="px-3 py-1.5 text-center transition-colors bg-gray-200 rounded-full hover:bg-skin-fill hover:text-white">
                                         <i class=" fab fa-twitter"></i>
                                     </a>
-                                    <a v-if="compte['instagram'] === 'Instagram'" :href="compte['lien']" class="px-3 py-2 text-center transition-colors bg-gray-200 rounded-full hover:bg-skin-fill hover:text-white">
+                                    <a v-if="compte['instagram'] === 'Instagram'" :href="compte['lien']" class="px-3 py-1.5 text-center transition-colors bg-gray-200 rounded-full hover:bg-skin-fill hover:text-white">
                                             <i class=" fab fa-instagram"></i>
                                         </a>
 

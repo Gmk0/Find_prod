@@ -36,7 +36,7 @@ class Order extends JsonResource
             'freelance_user'=>$this->service->freelance->user->only('id','name','email',
                 'profile_photo_url',
                 'profile_photo_path'),
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            'created_at' => $this->created_at->format('Y-m-d'),
 
             ];
     }
