@@ -191,11 +191,12 @@ realisation.media.forEach((media) => {
                                             </span>
 
 
-                                    <span v-if="props.freelance.data.subCategorie?.length > 4"
-                                            class="ml-2 text-sm text-gray-500">
-                                        (+{{ props.freelance.data.subCategorie.length - 4 }} de plus)
-                                    </span>
+
                             </template>
+                            <span v-if="props.freelance.data.subCategorie?.length > 4"
+                                                class="ml-2 text-sm text-gray-500">
+                                            (+{{ props.freelance.data.subCategorie.length - 4 }} de plus)
+                            </span>
 
                             </div>
 

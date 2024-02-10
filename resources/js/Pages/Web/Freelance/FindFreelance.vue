@@ -127,12 +127,19 @@ watch(form, () => {
 const isSticky = ref(false);
 
 onMounted(() => {
-    let lastScrollTop = 0;
+   let lastScrollTop = 0;
+    let timeout;
+
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        isSticky.value = currentScroll < lastScrollTop || currentScroll <= 0;
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    })});
+        clearTimeout(timeout); // Effacer le délai précédent
+        timeout = setTimeout(() => { // Mettre à jour après un court délai
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            isSticky.value = currentScroll < lastScrollTop || currentScroll <= 0;
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        }, 200); // 100ms de délai
+    });
+
+});
 
 
 
