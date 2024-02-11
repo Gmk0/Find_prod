@@ -16,7 +16,7 @@ return new class extends Migration
             $table->json('commentaire_user')->nullable();
             $table->json('tutorial')->nullable();
             $table->json('talk_about')->nullable();
-            $table->string('about')->nullable();
+            $table->longText('about')->nullable();
             $table->timestamps();
         });
     }

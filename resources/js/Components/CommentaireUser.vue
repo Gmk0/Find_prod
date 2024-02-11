@@ -53,11 +53,11 @@
 
 
                                     <div  class="relative z-10 h-full">
-                                        <div v-for="(comment, index) in commentaires" class="lg:min-h-full">
-                                            <p v-if="incrementTestimonialExist(index)" class="px-6 py-6 text-xl italic text-gray-600 font-bega-light md:px-16 md:py-10 md:text-2xl">
+                                        <div v-for="(comment, index) in commentaires" class="">
+                                            <p v-if="incrementTestimonialExist(index)" class="px-6 py-6 text-xl italic text-gray-600 font-bega-light md:px-16  md:text-2xl">
 
 
-                                                <span class="prose" v-html="comment.commentaire"></span>
+                                                <span class="" v-html="comment.commentaire"></span>
                                             </p>
                                         </div>
 
@@ -167,6 +167,8 @@ const incrementTestimonialExist =(index)=>{
 
 
 const setTestimonialActive = (index) => {
+
+
     testimonialActive.value = index;
 };
 </script>
