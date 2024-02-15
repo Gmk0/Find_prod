@@ -11,7 +11,7 @@
                                 Tutorial
                             </span>
                             <h2 class="mb-4 text-lg font-bega-medium text-dark md:text-xl">
-                                Apprenez a utiliser la plateforme find a traves ces tutorial
+                               Apprenez à utiliser la plateforme grâce à ces tutoriels.
 
                             </h2>
 

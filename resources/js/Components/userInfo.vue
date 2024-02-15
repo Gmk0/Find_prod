@@ -87,7 +87,7 @@
                                         </DropdownLink>
                                         -->
 
-                                     <DropdownLink :href="route('user.chat')">
+                                     <DropdownLink as="a" href="/user/chat">
 
                                               <span class="flex">
 

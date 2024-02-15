@@ -133,7 +133,7 @@ const toogleRightExpande = () => {
                             d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                     </svg>
                </Link>
-                <Link :href="route('user.chat')"
+                <a href="/user/chat"
 
                   :class="$page.component.startsWith('User/Chat') ? 'text-amber-600 hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:bg-navy-600 bg-amber-600/10 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90' : 'hover:bg-amber-600/20 focus:bg-amber-600/20 active:bg-amber-600/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25'"
                     class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11"
@@ -143,7 +143,7 @@ const toogleRightExpande = () => {
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
-                </Link>
+                </a>
             </div>
 
             <!-- Bottom Links -->
@@ -200,7 +200,7 @@ const toogleRightExpande = () => {
                                                         </div>
                                                     </div>
                                                 </Link>
-                                                <Link :href="route('user.chat')"
+                                                <a href="/user/chat"
                                                     class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all outline-none group hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
                                                     <div class="flex items-center justify-center w-8 h-8 rounded-lg text-findDark-500 ">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -218,7 +218,7 @@ const toogleRightExpande = () => {
                                                             Vos messages
                                                         </div>
                                                     </div>
-                                                </Link>
+                                                </a>
 
                                                 <Link :href="route('profile.show')"
                                                     class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all outline-none group hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600">
