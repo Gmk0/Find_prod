@@ -126,8 +126,9 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
         });
         Static::deleting(function($user){
 
-            Order::where('user_id', $user->id)->where('status', '=', 'failed')
-                ->OrWhere('status', '=', 'pending')->delete();
+            $user->transactions()->delete();
+
+
 
 
         });
