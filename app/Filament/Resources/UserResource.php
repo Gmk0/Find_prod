@@ -114,7 +114,7 @@ class UserResource extends Resource
     }
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->orderBy('created','desc');
+        return parent::getEloquentQuery()->orderBy('created_at','desc');
     }
 
     public static function getWidgets(): array
