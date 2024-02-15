@@ -54,8 +54,8 @@
                                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                     allowfullscreen></iframe>
                                             </div>
-                                            <div class="w-full mt-4 text-base prose text-justify font-bega-light">
-                                                <p v-html="tuto.content">
+                                            <div class="w-full mt-4 text-base prose text-justify dark:text-gray-200 font-bega-light">
+                                                <p v-html="tuto.content" class="mx-auto">
 
                                                 </p>
                                             </div>
