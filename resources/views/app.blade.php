@@ -44,6 +44,14 @@
 
         gtag('config', 'G-TCWE5CRXH1');
         </script>
+        <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+
+
+
+</script>
+<!--End of Tawk.to Script-->
+
 
     </head>
     <body class="font-sans antialiased">
@@ -52,15 +60,16 @@
 
 
 
-        <script>
-            const beamsClient = new PusherPushNotifications.Client({
-                    instanceId: '92c75cc8-3936-4286-9bc2-68b9958a4b2b',
-                  });
+    <script>
 
-                  beamsClient.start()
-                    .then(() => beamsClient.addDeviceInterest('App.Models.User.{{ auth()->id() }}'))
-                    .then(() => console.log('Successfully registered and subscribed!'))
-                    .catch(console.error);
-        </script>
+        const beamsClient = new PusherPushNotifications.Client({
+        instanceId: '92c75cc8-3936-4286-9bc2-68b9958a4b2b',
+        });
+
+        beamsClient.start()
+        .then(() => beamsClient.addDeviceInterest('App.Models.User.{{ auth()-> id()}}'))
+        .then(() => console.log('Ok'))
+        .catch(console.error);
+    </script>
     </body>
 </html>

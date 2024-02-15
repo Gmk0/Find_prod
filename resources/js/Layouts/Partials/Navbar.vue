@@ -190,6 +190,12 @@
 
 
                             </li>
+                            <li>
+
+                                        <Link :href="route('tutorial')">Tutoriel</Link>
+
+
+                                </li>
                         </ul>
                     </li>
 
@@ -413,7 +419,7 @@
                                                     class="flex items-center justify-between w-full px-3 py-2 mt-1 text-lg text-left text-gray-800 rounded-md font-bega-medium dark:text-gray-50 hover:dark:text-white hover:bg-findDark-200 dark:hover:bg-findDark-600 focus:dark:text-white focus:text-white focus:bg-amber-600">
                                                     <span class="flex gap-2 ml-3">
                                                         <template v-if="!isDark">
-                                                     <SvgIcon :illustration="category.illustration" fillColor="#000" />
+                                                     <SvgIcon :illustration="category.illustration"  />
                                                      </template>
                                                       <template v-else>
                                                          <SvgIcon :illustration="category.illustration" fillColor="#FFF" />
@@ -508,6 +514,15 @@
 
                                         <span class="ml-2">Foire aux Questions</span>
                                     </Link>
+                                    <Link :href="route('tutorial')" @click="navOpen = false"
+                                            class="flex flex-row items-center px-3 py-2 mt-1 text-base text-gray-800 rounded-md font-bega-medium dark:text-gray-50 hover:dark:text-white hover:bg-findDark-200 dark:hover:bg-findDark-600 focus:outline-none focus:dark:text-white focus:text-white focus:bg-amber-600">
+                                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                                                </svg>
+
+
+                                            <span class="ml-2">Tutoriels</span>
+                                        </Link>
 
 
                                 <button

@@ -50,4 +50,9 @@ resize();
 
 
 
-<style ></style>
+<style scoped>
+
+.tawk-min-container{
+    @apply !hidden;
+}
+</style>

@@ -10,6 +10,7 @@ use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Freelance;
+use App\Models\Tutorial;
 use Illuminate\Support\Facades\Request as RequestFacade;
 
 class FreelanceController extends Controller
@@ -127,6 +128,38 @@ class FreelanceController extends Controller
 
 
     }
+
+    public function tutorialUtilisateur()
+    {
+        $tutorial = Tutorial::where('type', 'user')->where('publier', true)->get();
+
+        return Inertia::render(
+            'Freelance/TutorialUser',
+            [
+                'tutorial' => $tutorial,
+            ]
+        );
+
+    }
+
+    public function tutorialFreelance()
+    {
+
+        $tutorial=Tutorial::where('type','freelance')->where('publier',true)->get();
+
+        return Inertia::render(
+            'Freelance/TutorielFreelance',
+            [
+                'tutorial'=>$tutorial,
+            ]
+        );
+
+
+    }
+
+
+
+
 
 
 

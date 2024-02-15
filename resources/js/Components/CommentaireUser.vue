@@ -1,5 +1,5 @@
 <template>
-    <div v-if="commentaires.length > 0" id="confiance" class="bg-white dark:bg-gray-800">
+    <div v-if="commentaires !=null && commentaires.length > 0" id="confiance" class="bg-white dark:bg-gray-800">
                 <div class="px-4 py-4 mx-auto sm:mx-2 md:px-auto">
                     <div class="container text-gray-600 dark:text-gray-300 ">
                         <div class="mb-10 text-center">
@@ -54,7 +54,7 @@
 
                                     <div  class="relative z-10 h-full">
                                         <div v-for="(comment, index) in commentaires" class="">
-                                            <p v-if="incrementTestimonialExist(index)" class="px-6 py-6 text-xl italic text-gray-600 font-bega-light md:px-16  md:text-2xl">
+                                            <p v-if="incrementTestimonialExist(index)" class="px-6 py-6 text-xl italic text-gray-600 font-bega-light md:px-16 md:text-2xl">
 
 
                                                 <span class="" v-html="comment.commentaire"></span>
@@ -88,7 +88,7 @@
 
 
                                 </div>
-                                <div v-else class="animate-pulse h-full w-full">
+                                <div v-else class="w-full h-full animate-pulse">
 
                                 </div>
                             </div>

@@ -21,9 +21,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap -mx-4">
+                    <div class="flex flex-wrap mx-4">
 
-                             <p class="max-w-4xl mt-4  text-justify prose text-lg text-findDark-500 dark:text-findDark-200 lg:mx-auto">
+                             <p class="max-w-4xl mt-4 text-lg prose text-justify text-findDark-500 dark:text-findDark-200 lg:mx-auto">
                        <span v-html="about"></span>
                     </p>
 

@@ -69,6 +69,15 @@ Route::controller(FreelanceController::class)->group(function(){
     Route::get('/find-freelance/profile/{identifiant}', 'portefolio')->where('identifiant', '(.*)')->name('profileFreelance')->middleware('auth');
     Route::post('/like-freelance','Like')->name('like.freelance')->middleware('auth');
 
+    Route::get('/tutorials/freelances', 'tutorialFreelance')->name('tutorialsFrealance');
+
+    Route::get('/tutorials/utilisateurs', 'tutorialUtilisateur')->name('tutorialUtilisateur');
+
+    Route::get('/tutorials', function(){
+        return Inertia::render(
+            'Freelance/Tutorial'
+        );
+    })->name('tutorial');
 
 
 });
