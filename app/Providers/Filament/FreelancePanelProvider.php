@@ -75,7 +75,7 @@ class FreelancePanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
               \App\Http\Middleware\FreelanceAccessPanel::class,
-            \App\Http\Middleware\acountStatus::class,
+            \App\Http\Middleware\AcountStatus::class,
             //\Hasnayeen\Themes\Http\Middleware\SetTheme::class,
             ])->plugins([
 
