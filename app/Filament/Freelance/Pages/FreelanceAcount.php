@@ -15,6 +15,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
+use Illuminate\Support\Facades\Http;
 
 class FreelanceAcount extends Page implements HasForms
 {
@@ -30,10 +31,15 @@ class FreelanceAcount extends Page implements HasForms
 
     public Freelance $record;
     public ?array $data = [];
+    public $countries=[];
     public function mount()
     {
 
         $this->record = auth()->user()->freelance;
+
+        $this->countries = $this->getCountries();
+
+       // dd($this->countries);
 
 
 
@@ -66,7 +72,7 @@ class FreelanceAcount extends Page implements HasForms
                     '5 + ans' => '5 + ans',
                 ])
                 ->native(false),
-                TextInput::make('site')->label('lien portefolio'),
+
                 TextInput::make('taux_journalier')
                 ->numeric()
                 ->required(),
@@ -74,6 +80,11 @@ class FreelanceAcount extends Page implements HasForms
             ]),
 
             Grid::make('3')->schema([
+                Select::make('pays')
+                        ->options($this->getCountries())
+                        ->searchable()
+                        ->preload()
+                        ->native(false),
                 TextInput::make('localisation.ville')
                 ->required(),
                 TextInput::make('localisation.commune')
@@ -82,6 +93,9 @@ class FreelanceAcount extends Page implements HasForms
                 ->required(),
 
             ]),
+                TextInput::make('site')->label('lien portefolio')
+                ->url()
+                ->columnSpanFull(),
 
 
 
@@ -108,7 +122,7 @@ class FreelanceAcount extends Page implements HasForms
 
             Repeater::make('competences')
             ->schema([
-                TextInput::make('skill')->required(),
+                TextInput::make('title')->label('Compentences')->required(),
                 Select::make('level')
                     ->options([
                         'Debutant' => 'Debutant',
@@ -150,9 +164,12 @@ class FreelanceAcount extends Page implements HasForms
                         'Twitter' => 'Twitter',
                         'Youtube' => 'Youtube',
                         'Tiktok' => 'Tiktok',
+                        'Instagram' => 'Instagram',
+                        'Dribbble' => 'Dribbble',
+                        'Github' => 'Github',
 
                     ])->native(false),
-                TextInput::make('lien')->required(),
+                TextInput::make('lien')->url()->required(),
 
 
             ])
@@ -177,6 +194,35 @@ class FreelanceAcount extends Page implements HasForms
 
         $this->sendNotification();
 
+    }
+
+    public function getCountries()
+    {
+        try {
+            $response = Http::get('https://restcountries.com/v3.1/all');
+
+            $data = $response->json();
+
+
+
+            // Filtrer les pays d'Afrique
+            $africanCountries = array_filter($data, function ($country) {
+                return isset($country['region']) && $country['region'] === 'Africa' && isset($country['flags']['png']);
+            });
+
+
+
+            // Mapper les données pour récupérer le nom, le code et le drapeau de chaque pays
+            $formattedCountries = [];
+            foreach ($africanCountries as $country) {
+                $formattedCountries[]= $country['name']['common'];
+            }
+
+            return  $formattedCountries;
+        } catch (\Exception $e) {
+            // Gérer l'erreur
+           // return response()->json([], 500);
+        }
     }
 
     public function dateAnne()

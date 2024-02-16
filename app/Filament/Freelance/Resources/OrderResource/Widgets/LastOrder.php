@@ -23,22 +23,24 @@ class LastOrder extends BaseWidget
             Tables\Columns\TextColumn::make('order_numero')
                 ->searchable(),
             Tables\Columns\TextColumn::make('service.title')
+            ->label('Service')
             ->searchable(),
 
             Tables\Columns\TextColumn::make('total_amount')
+            ->label('Montant')
             ->searchable()
             ->money('usd',true)
                 ->sortable(),
             Tables\Columns\TextColumn::make('user.name')
+                ->label('Client')
             ->searchable(),
             Tables\Columns\TextColumn::make('status')
+                ->label('Etat')
                 ->badge()
                 ->colors([
-
                     'primary' => 'pending',
                     'danger' => 'failed',
                     'success' => 'completed',
-
                 ]),
                 // ...
             ])->actions([

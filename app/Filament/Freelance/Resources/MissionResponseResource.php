@@ -20,6 +20,8 @@ class MissionResponseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Missions';
+    protected static ?string $label = 'Mission en Cours';
+    protected static ?string $modelLabel = 'Mission en Cours';
 
     public static function form(Form $form): Form
     {
@@ -81,16 +83,14 @@ class MissionResponseResource extends Resource
                 ->searchable(),
 
                 Tables\Columns\TextColumn::make('is_paid')
+
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //

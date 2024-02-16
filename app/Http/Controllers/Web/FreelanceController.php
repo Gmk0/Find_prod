@@ -48,7 +48,7 @@ class FreelanceController extends Controller
                 ->through(fn ($freelance) => [
                     'id' => $freelance->id,
                     'nom' => $freelance->nom,
-                    'nomComplet'=>ucfirst($freelance->prenom).' '.$freelance->nom,
+                    'nomComplet'=>  $freelance->nom_complet,
                     'prenom' => $freelance->prenom,
                     'level' => $freelance->level,
                     'identifiant' => $freelance->identifiant,
@@ -77,6 +77,7 @@ class FreelanceController extends Controller
             $realisations = $freelance->user->realisations;
 
 
+
             $realisationsWithMedia = $realisations->map(function ($realisation) {
                 return [
                     'id' => $realisation->id,
@@ -89,6 +90,10 @@ class FreelanceController extends Controller
                     }),
                 ];
             });
+
+
+
+
 
 
 

@@ -65,11 +65,14 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('service.title')
+            ->label('Service')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('order_numero')
+            ->label('Commande Numero')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('total_amount')
+            ->label('Montant')
                     ->numeric()
                     ->sortable()
                 ->summarize([
@@ -80,9 +83,11 @@ class OrderResource extends Resource
                 ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('progress')
+            ->label('Progression')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('is_paid')
+            ->label('payé au freelance')
                     ->dateTime()
                     ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
@@ -105,13 +110,11 @@ class OrderResource extends Resource
                     ])
                 ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
+            ->label('Date commande')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //Tables\Filters\TrashedFilter::make(),

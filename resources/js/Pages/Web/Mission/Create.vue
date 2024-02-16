@@ -269,7 +269,7 @@ defineOptions({
                       Échéance & Budget
                     </template>
                     <template #subtitle-2>
-                   Date d'échéance & Budge
+                   Date d'échéance & Budget
                     </template>
                     <template #title-info-2>
 

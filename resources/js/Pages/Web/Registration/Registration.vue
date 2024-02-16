@@ -10,6 +10,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 
 import SecondaryButton from '@/Components/SecondaryButton.vue'
 import {  useCategoryStore, useStore } from '@/store/store';
+import MazAvatar from 'maz-ui/components/MazAvatar'
 
 
 import axios from 'axios';
@@ -375,12 +376,32 @@ function getWorldLanguages() {
             // Transformez l'ensemble en un tableau et renvoyez-le
             languagesArray.value = uniqueLanguagesArray;
 
-            console.log(languagesArray.value);
+
             //return languagesArray;
         })
         .catch(error => {
             console.error('Erreur lors de la récupération des langues', error);
             languagesArray.value = [];
+        });
+}
+
+const countries = ref([]);
+
+
+function getAfricanCountries() {
+    // Effectuer la requête GET vers l'API restcountries
+    return axios.get('https://restcountries.com/v3.1/all')
+        .then(response => {
+            const data = response.data;
+            return data.filter(country => country.region.includes("Africa")).map(country => ({
+                label: country.name.common,
+                value: country.name.common,
+                flag: country.flags.png
+            }));
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des pays africains', error);
+            return []; // Retourner un tableau vide en cas d'erreur
         });
 }
 
@@ -393,9 +414,11 @@ const comptesSelector = ref([
 ]);
 
 
-onMounted(() => {
+onMounted( async () => {
 
     getWorldLanguages();
+    countries.value= await  getAfricanCountries();
+
 });
 
 
@@ -929,16 +952,27 @@ for (let index = 1999; index < year ; index++) {
 
                         <div class="mt-5 md:mt-0 md:col-span-2">
                             <div>
+
                                 <div
+
                                     class="px-4 py-5 bg-white rounded-lg shadow dark:bg-gray-800 dark:border dark:border-gray-200 sm:p-6 ">
                                     <div class="grid gap-2 lg:grid-cols-3">
+                                         <MazSelect
+                                    label="Pays"
+                                    v-model="localisation.pays"
+                                    :options="countries"
+                                    v-slot="{ option, isSelected }"
+                                    search
+                                >
+                                    <div class="flex items-center" style="width: 100%; gap: 1rem">
+                                    <MazAvatar size="0.8rem" :src="option.flag" />
+                                    <strong>
+                                        {{ option.label }}
+                                    </strong>
+                                    </div>
+                                </MazSelect>
 
 
-
-                                            <MazInput
-
-                                            label="Adresse"
-                                            v-model="localisation.addresse"/>
                                             <MazInput
 
                                             label="ville"
@@ -949,6 +983,10 @@ for (let index = 1999; index < year ; index++) {
                                            label="Commune"
 
                                            v-model="localisation.commune" />
+                                                       <MazInput
+                                               label="adresse"
+
+                                               v-model="localisation.addresse" />
 
                                     </div>
 

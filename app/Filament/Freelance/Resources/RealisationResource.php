@@ -57,10 +57,7 @@ class RealisationResource extends Resource
 
 
             ->collection('realisations'),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //

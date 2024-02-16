@@ -46,14 +46,16 @@ class TransactionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('transaction_numero')
+            ->label('Numero Transaction')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('amount')
+            ->label('Montant')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('payment_method')
+            ->label('Paiement Methode')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
@@ -63,10 +65,7 @@ class TransactionResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //

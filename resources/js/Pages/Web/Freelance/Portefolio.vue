@@ -133,7 +133,7 @@ realisation.media.forEach((media) => {
                               <nav class="flex" aria-label="Breadcrumb">
                             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                                 <li class="inline-flex items-center">
-                                <a href="#" class="inline-flex items-center text-sm font-bega-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                                <a href="#" class="inline-flex items-center text-sm text-gray-700 font-bega-medium hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                                     <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                                     </svg>
@@ -146,7 +146,7 @@ realisation.media.forEach((media) => {
                                     <svg class="w-3 h-3 mx-1 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                     </svg>
-                                    <span class="ml-1 text-sm font-bega-medium text-gray-500 md:ml-2 dark:text-gray-400">freelance</span>
+                                    <span class="ml-1 text-sm text-gray-500 font-bega-medium md:ml-2 dark:text-gray-400">freelance</span>
                                 </Link>
                                 </li>
                                  <li aria-current="page">
@@ -154,7 +154,7 @@ realisation.media.forEach((media) => {
                                         <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                         </svg>
-                                        <span class="ml-1 text-sm font-bega-medium text-gray-500 md:ml-2 break-before-auto dark:text-gray-400">{{ freelance.identifiant }}</span>
+                                        <span class="ml-1 text-sm text-gray-500 font-bega-medium md:ml-2 break-before-auto dark:text-gray-400">{{ freelance.identifiant }}</span>
                                     </div>
                                     </li>
                             </ol>
@@ -257,7 +257,7 @@ realisation.media.forEach((media) => {
                 <div class="w-full min-h-screen lg:w-8/12">
 
                      <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-            <ul class="flex flex-wrap -mb-px text-sm font-bega-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+            <ul class="flex flex-wrap -mb-px text-sm text-center font-bega-medium" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
                 <li class="me-2" role="presentation">
                     <button @click="toogleTab('profile')" :class="{'active-tab': tab ==='profile'}" class="inline-block p-4 text-lg border-b-2 rounded-t-lg font-bega-medium" id="profile-tab" data-tabs-target="#profile" type="button" role="tab"
                     aria-controls="profile" aria-selected="false">Resume</button>
@@ -316,11 +316,11 @@ realisation.media.forEach((media) => {
                                                 <div class="max-w-4xl px-4 py-4 mb-3 text-base text-gray-700 border-l border-gray-300 dark:text-gray-300">
 
 
-                                                        <div v-for="(diplome, index) in freelance.diplome " class="flex mb-3 flex-col gap-3">
+                                                        <div v-for="(diplome, index) in freelance.diplome " class="flex flex-col gap-3 mb-3">
                                                             <div class="flex flex-wrap gap-3">
 
                                                                  <li class="px-2 text-base font-bega-medium">{{ diplome['diplome'] }}</li>
-                                                                  <h2 class="px-2  flex gap-1 font-bega-medium">{{ diplome['universite'] }} / <span>{{ diplome['annee'] }}</span></h2>
+                                                                  <h2 class="flex gap-1 px-2 font-bega-medium">{{ diplome['universite'] }} / <span>{{ diplome['annee'] }}</span></h2>
 
 
                                                             </div>
@@ -342,10 +342,10 @@ realisation.media.forEach((media) => {
 
                                                 <div class="max-w-4xl px-4 py-4 mb-4 text-base text-gray-700 border-l border-gray-300 dark:text-gray-300">
 
-                                                        <div v-for="(certificat, index) in freelance.certificat" class="flex flex-col mb-3 gap-3">
+                                                        <div v-for="(certificat, index) in freelance.certificat" class="flex flex-col gap-3 mb-3">
                                                             <div class="flex flex-wrap gap-3">
                                                                  <li class="px-2 text-base font-bega-medium">{{ certificat['certifier'] }}</li>
-                                                                <h2 class="px-2 flex gap-1 font-bega-medium"> {{ certificat['delivrer'] }} /<span>{{ certificat['annee'] }}</span></h2>
+                                                                <h2 class="flex gap-1 px-2 font-bega-medium"> {{ certificat['delivrer'] }} /<span>{{ certificat['annee'] }}</span></h2>
 
 
 
@@ -371,7 +371,7 @@ realisation.media.forEach((media) => {
 
                                                     <div class="max-w-4xl px-6 mb-4 text-base text-gray-700 border-l border-gray-300 dark:text-gray-300">
 
-                                                            <div v-for="(compt, index) in freelance.competences" class="flex flex-col mb-3 gap-4">
+                                                            <div v-for="(compt, index) in freelance.competences" class="flex flex-col gap-4 mb-3">
                                                                 <div class="flex flex-wrap gap-4">
                                                                     <li class="px-2 text-base font-bega-medium">{{ compt.title }}</li>
                                                                     <h2 class="">{{ compt.level }}</h2>
@@ -417,9 +417,11 @@ realisation.media.forEach((media) => {
                                                     <h2 class="my-4 text-lg text-gray-800 text-start font-bega-semibold Apropos de Moimd:text-xl dark:text-gray-200">Mes réalisations</h2>
 
                                             </div >
-                                 <div v-if="props.realisations.length != 0" class="flex items-center justify-between">
 
-                                    <div v-if="props.realisations.length != 0" class="mb-4">
+
+                                 <div v-if="props.realisations.length > 0" class="flex items-center justify-between">
+
+                                    <div v-if="props.realisations.length > 0" class="mb-4">
 
 
                                         <FsLightbox
@@ -445,7 +447,7 @@ realisation.media.forEach((media) => {
                                         </button>
                                     </div>
                                 </div>
-                                    <div v-if="props.realisations.lenght >0 " class="">
+                                    <div v-if="props.realisations.length > 0 " class="">
                                         <div class="p-4 bg-white rounded-md shadow dark:bg-gray-800">
 
                                                 <Swiper
@@ -469,13 +471,13 @@ realisation.media.forEach((media) => {
                                                                 <a  href="#" @click="toggler = !toggler"
                                                                         :class="{ 'md:!col-span-2': index === 1, 'md:col-span-2': index === 2, }"
                                                                         class="relative flex items-end h-48 overflow-hidden bg-gray-100 rounded-lg shadow-lg group md:h-80">
-                                                                        <img :src="media.url" loading="lazy" alt="Photo by Minh Pham" class="absolute inset-0 object-cover object-center w-full h-full transition duration-200 group-hover:scale-110" />
+                                                                        <img :src="media.url" loading="lazy" :alt="media.alt" class="absolute inset-0 object-cover object-center w-full h-full transition duration-200 group-hover:scale-110" />
 
                                                                         <div
                                                                             class="absolute inset-0 opacity-50 pointer-events-none bg-gradient-to-t from-gray-800 via-transparent to-transparent">
                                                                         </div>
 
-                                                                        <span class="relative inline-block mb-3 ml-4 text-sm text-white md:ml-5 md:text-lg">VR</span>
+                                                                        <span class="relative inline-block mb-3 ml-4 text-sm text-white md:ml-5 md:text-lg">{{ media.alt}}</span>
                                                                 </a>
 
 

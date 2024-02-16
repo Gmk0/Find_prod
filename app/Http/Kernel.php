@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'freelance_exist' => \App\Http\Middleware\FreelanceExist::class,
         'freelance' => \App\Http\Middleware\FreelanceAccess::class,
         'freelancePanel' => \App\Http\Middleware\FreelanceAccessPanel::class,
+        'acountStatus'=> \App\Http\Middleware\AcountStatus::class,
     ];
 }

@@ -53,9 +53,11 @@
                                                     allowfullscreen></iframe>
                             </div>
                                     <div class="w-full mt-4 text-base prose text-justify dark:text-gray-200 font-bega-light">
-                            <p v-html="tuto.content" class="mx-auto dark:!text-gray-200 ">
 
-                            </p>
+                                                                   <div v-html="tuto.content" class="mx-auto prose prose-p:dark:!text-gray-200  prose-strong:dark:!text-gray-100 prose-h2:dark:text-gray-100 prose-h1:dark:text-gray-100 dark:!text-gray-200">
+
+                                                    </div>
+
                         </div>
                         </div>
 

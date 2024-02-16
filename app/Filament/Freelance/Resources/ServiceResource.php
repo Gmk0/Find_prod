@@ -91,6 +91,7 @@ class ServiceResource extends Resource
             ->multiple()
                 ->directory('service')
                 ->imagePreviewHeight('100')
+                ->optimize('webp')
                 ->image()
                 ->columnSpanFull()
                 ->imageEditor(),
@@ -98,6 +99,8 @@ class ServiceResource extends Resource
                 FileUpload::make('example.image')
                     ->imagePreviewHeight('100')
                     ->image()
+
+                    ->optimize('webp')
                     ->imageEditor()
                     ->directory('examples')
                     ->multiple(),
