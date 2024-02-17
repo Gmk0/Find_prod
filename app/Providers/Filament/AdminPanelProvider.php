@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->spa(true)
             ->domain(env('FILAMENT_DOMAIN',''))
+            ->viteTheme('resources/css/filament/freelance/theme.css')
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -46,7 +47,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                InfoUser::class
+                InfoUser::class,
                 //Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
@@ -58,7 +59,7 @@ class AdminPanelProvider extends PanelProvider
                 VerifyCsrfToken::class,
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
-                DispatchServingFilamentEvent::class,
+                DispatchServingFilamentEvent::class
 
             ])
             ->plugins([

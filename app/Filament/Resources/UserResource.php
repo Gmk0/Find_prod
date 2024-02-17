@@ -10,6 +10,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -77,7 +78,8 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('facebook_id')
                     ->searchable()
                 ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('profile_photo_path')
+                Tables\Columns\ImageColumn::make('profile_photo_path')
+                ->rounded()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -93,8 +95,14 @@ class UserResource extends Resource
                 ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+            //
+            Filter::make('is_online')->label('En ligne')
+            ->query(fn (Builder $query): Builder => $query->where('is_online', true)),
+            Filter::make('Freelance')->label('Freelance')
+            ->query(fn (Builder $query): Builder => $query->whereHas('freelance')),
+
             ])
+
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

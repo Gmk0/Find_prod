@@ -16,12 +16,17 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Forms\Get;
 use Illuminate\Support\Collection;
 use App\Models\SubCategory;
 use Filament\Forms\Components\Fieldset;
 use Illuminate\Support\HtmlString;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Actions\ActionGroup;
+
 
 class FreelanceResource extends Resource
 {
@@ -41,6 +46,8 @@ class FreelanceResource extends Resource
                     ->required()
                     ->native(false)
                     ->columnSpanFull(),
+
+
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
                     ->live()
@@ -201,9 +208,20 @@ class FreelanceResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('prenom')
                     ->searchable(),
+            Tables\Columns\ImageColumn::make('user.profile_photo_path')
+            ->rounded()
+                ->label('PHOTO'),
                 Tables\Columns\TextColumn::make('identifiant')
+
                     ->searchable(),
+            Tables\Columns\TextColumn::make('user.realisations.description')
+             ->toggleable(isToggledHiddenByDefault: true)
+                ->wrap(),
+
+
                 Tables\Columns\TextColumn::make('site')
+
+
                 ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('taux_journalier')
@@ -211,6 +229,7 @@ class FreelanceResource extends Resource
                 ->toggleable(isToggledHiddenByDefault: true)
                     ->sortable(),
                 Tables\Columns\TextColumn::make('level')
+
                     ->searchable(),
                 Tables\Columns\TextColumn::make('solde')
                     ->numeric()
@@ -231,12 +250,38 @@ class FreelanceResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+
+
+
+            SelectFilter::make('status_compte')
+                ->multiple()
+                ->options([
+                'actif' => 'actif',
+                'en_attente' => 'en_attente',
+                'suspendu' => 'suspendu',
+                ]),Filter::make('is_online')->label('En ligne')
+                ->query(fn (Builder $query): Builder => $query->whereHas('user', function($q){
+                    $q->where('is_online',true);
+                })),
+            Filter::make('Freelance')->label('Avec un Portefolio')
+                ->query(fn (Builder $query): Builder => $query->whereHas('user.realisations')),
+
                 //
             ])
             ->actions([
+
+            ActionGroup::make([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('Realisation')
+                ->outlined()
+                    ->url(fn (Freelance $record): string => static::getUrl('realiasations', ['record' => $record]))
+
             ])
+            ->button()
+            ->label('Actions'),
+
+                ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -247,6 +292,9 @@ class FreelanceResource extends Resource
     public static function getRelations(): array
     {
         return [
+
+            RelationManagers\ServicesRelationManager::class,
+            //RelationManagers\RealisationsRelationManager::class,
             //
         ];
     }
@@ -262,6 +310,7 @@ class FreelanceResource extends Resource
             'create' => Pages\CreateFreelance::route('/create'),
             'view' => Pages\ViewFreelance::route('/{record}'),
             'edit' => Pages\EditFreelance::route('/{record}/edit'),
+            'realiasations'=>Pages\Realisations::route('/{record}/realiasations')
         ];
     }
 }

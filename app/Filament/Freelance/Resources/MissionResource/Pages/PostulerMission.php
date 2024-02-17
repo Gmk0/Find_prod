@@ -186,12 +186,16 @@ class PostulerMission extends Page implements HasInfolists,HasForms, HasActions
 
 
 
-        $missionRespone= MissionResponse::create([
-            'freelance_id'=>auth()->user()->freelance->id,
-            'content'=>$data['postuler'],
-            'budget'=>$this->record->budget,
-            'mission_id'=>$this->record->id,
-            ]);
+            $missionRespone=new MissionResponse();
+            $missionRespone->freelance_id =auth()->user()->freelance->id;
+            $missionRespone->content=$data['postuler'];
+            $missionRespone->budget=$this->record->budget;
+            $missionRespone->mission_id=$this->record->id;
+
+            $missionRespone->save();
+
+            $missionRespone->notifyUser();
+
 
 
             $this->sendNotification();

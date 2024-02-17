@@ -31,6 +31,7 @@ class MissionResourceData extends JsonResource
             'status'=>$this->status,
             'masquer'=>$this->masquer,
             'MissionResponses'=>$this->missionResponses,
+            'countMissionResponses'=>$this->missionResponses->count(),
             'missionApproved'=>$this->getApprovedMissionResponse() ? $this->getApprovedMissionResponse():null,
             'nombreResponses'=>$this->whenCounted('missionResponses'),
             'created_at'=>$this->created_at->format('d/m/Y'),

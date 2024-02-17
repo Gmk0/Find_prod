@@ -39,6 +39,7 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
     protected $keyType = 'string';
 
 
+
     /**
      * The attributes that are mass assignable.
      *

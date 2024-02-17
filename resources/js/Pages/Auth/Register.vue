@@ -222,7 +222,7 @@ const updatePopover = () => {
 
                                          <div class="mb-4">
                                             <MazInput
-                                            label="Nom"
+                                            label="Nom d'utilisateur"
                                             type="text"
                                             v-model="form.name"
                                             :color="'#9acd32'" />

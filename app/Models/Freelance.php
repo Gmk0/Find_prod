@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use App\Mail\welcomeFreelance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Freelance extends Model
@@ -47,6 +48,7 @@ class Freelance extends Model
         'realisations',
         'status_compte',
         'type_compte',
+        'image',
     ];
 
     /**
@@ -78,6 +80,11 @@ class Freelance extends Model
         'realisations' =>
         AsArrayObject::class,
     ];
+
+    public function getImageAttribute()
+    {
+        return $this->user->profile_photo_path ? Storage::url($this->user->profile_photo_path) : $this->user->profile_photo_url;
+    }
 
     public function getNomCompletAttribute()
     {

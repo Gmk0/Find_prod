@@ -50,7 +50,7 @@ class MissionResponse extends Model
      */
     protected $casts = [
         'id' => 'string',
-        'freelance_id' => 'integer',
+        'freelance_id' => 'string',
         'mission_id' => 'string',
         'budget' => 'decimal:2',
         'is_paid' => 'datetime',
@@ -62,14 +62,11 @@ class MissionResponse extends Model
         try {
 
             $user = $this->mission->user;
+            $user->notify(new MissionStatus($this));
 
-            if ($user) {
-
-               //     $user->notify(new MissionStatus($this));
-            }
         } catch (Exception $e) {
 
-            // dd($e->getMessage());
+             dd($e->getMessage());
 
         }
     }

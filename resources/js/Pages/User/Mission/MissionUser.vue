@@ -101,6 +101,7 @@
                                 </span>
                             </div>
                         </div>
+
                         <div class="flex justify-end gap-4 mt-1">
 
                             <div v-if="mission.status =='completed'">
@@ -118,12 +119,13 @@
                             </div>
 
 
+
                             <div v-else-if="mission.status == 'pending'" class="flex gap-4 mt-4">
 
                                 <Link :href="route('user.missions.candidature', mission.mission_numero)">
                                  <Button size="small"
                                        outlined severity="success"
-                                       label="Proposition" :badge="mission.nombreResponses ? mission.nombreResponses:0" />
+                                       label="Proposition" :badge="mission.countMissionResponses" />
                                 </Link>
                                        <Link :href="route('user.missionEdit', mission.mission_numero)">
                                          <Button  size="small"
@@ -141,7 +143,7 @@
         </div>
 
         <div v-if="missions.length  === 0 " class="flex flex-col items-center justify-center col-span-2 text-xl font-bega-medium">
-                <div class="flex flex-col gap-4 px-4 mx-4 lg:mx-12 text-gray-800 rounded-md dark:text-white dark:bg-gray-800 bg-gray-50">
+                <div class="flex flex-col gap-4 px-4 mx-4 text-gray-800 rounded-md lg:mx-12 dark:text-white dark:bg-gray-800 bg-gray-50">
                     <p>Si vous avez besoin d'un service particulier, n'hésitez pas à
                         soumettre
                         votre projet et
