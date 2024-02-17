@@ -72,13 +72,14 @@ class GestionMission extends Page  implements HasForms
             $feedback = $this->record->mission->feedbackmission;
             $feedback->update(['etat' => $data['etat'], 'delai_livraison_estimee' => $data['delai_livraison_estimee']]);
             $this->sendNotification();
+            $this->sendNotificationToclient($this->record->mission->user);
         } catch (\Exception $e) {
 
             Notification::make()
                 ->danger()
                 ->title($e->getMessage())
-                ->send()
-                ->sendToDatabase(auth()->user());
+                ->send();
+                //->sendToDatabase(auth()->user());
         }
 
 
@@ -91,7 +92,16 @@ class GestionMission extends Page  implements HasForms
         Notification::make()
             ->success()
             ->title("Etat d'avancement soumis avec success")
+            ->send();
+           // ->sendToDatabase($user);
+    }
+
+    protected function sendNotificationToclient($user): void
+    {
+        Notification::make()
+            ->success()
+            ->title("Avacement de votre Projet")
             ->send()
-            ->sendToDatabase(auth()->user());
+            ->sendToDatabase($user);
     }
 }

@@ -260,6 +260,10 @@ class ServiceResource extends Resource
             $q->where('id', auth()->user()->freelance->id);
         });
     }
+    public static function getNavigationBadge(): ?string
+    {
+        return 'Important';
+    }
 
 
     public static function getPages(): array

@@ -4,52 +4,14 @@
 <template>
     <div class="flex flex-col min-h-screen gap-6 px-4 lg:mx-auto md:p-6 md:max-w-7xl md:container px-auto bg-inherit">
 
-        <div class="flex flex-col">
-            <div>
-                <nav class="flex" aria-label="Breadcrumb">
-                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                        <li class="inline-flex items-center">
-                            <Link :href="route('user.dashboard')"
-                                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                            </svg>
-                            Dashboard
-                            </Link>
-                        </li>
-
-                        <li aria-current="page">
-                            <Link :href="route('user.missions')" class="flex items-center">
-                            <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 9 4-4-4-4" />
-                            </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Mission</span>
-                            </Link>
-                        </li>
-                        <li aria-current="page">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 9 4-4-4-4" />
-                                </svg>
-                                <span
-                                    class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Candidature</span>
-                            </div>
-                        </li>
-                    </ol>
-                </nav>
+       <BreadUser
+            title="Mission Gestion"
+            first_title="Mission"
+            :first_url="route('user.missions')"
+            second_title="Gestion"
 
 
-            </div>
-
-            <h1 class="mt-4 text-3xl text-black font-bega_semibold dark:text-white">Candidature</h1>
-
-        </div>
+            />
 
 
 
@@ -67,30 +29,30 @@
                     <!-- Contenu de la section -->
                     <div class="overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
                         <!-- Informations sur la commande -->
-                        <div class="grid grid-cols-1 px-6 py-4 lg:grid-cols-2">
+                        <div class="grid grid-cols-1 px-6 py-4 font-bega-light lg:grid-cols-2">
 
                             <p class="mb-4 text-lg text-gray-800 md:mb-2 dark:text-gray-300">Mission : <span>
                                     {{ missionResponse.mission.title }}</span> </p>
-                            <p class="mb-4 text-base text-gray-600 dark:text-gray-400 md:mb-2">Date de creation :
+                            <p class="mb-4 text-base text-gray-600 dark:text-gray-300 md:mb-2">Date de creation :
                                 <span>{{ missionResponse.mission.created_at }}</span>
                             </p>
-                            <p class="mb-4 text-base font-medium text-gray-600 md:mb-2 dark:text-gray-300">Debut :
+                            <p class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Debut :
                                 Du {{ missionResponse.mission.begin_mission }}
 
                             </p>
-                            <p class="mb-4 text-base font-medium text-gray-600 md:mb-2 dark:text-gray-300">Fin  :
+                            <p class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Fin  :
 
                                     {{ missionResponse.mission.end_mission }}
                                 </p>
 
                             <p class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Budjet :
-                                <span class="text-lg font-bold text-amber-600 ">{{ missionResponse.budget }}$</span>
+                                <span class="text-lg font-bega-semibold text-amber-600 ">{{ missionResponse.budget }}$</span>
 
 
 
                             </p>
                             <p class="hidden mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Proposition :
-                                <span class="font-bold">{{ missionResponse.budget }}$</span>
+                                <span class="font-bega-semibold">{{ missionResponse.budget }}$</span>
 
 
 
@@ -100,22 +62,22 @@
 
 
                                 <span v-if="missionResponse.mission.is_paid !=null"
-                                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Payer</span>
+                                    class="bg-green-100 text-green-800 text-xs font-bega-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Payer</span>
 
 
                                 <span v-else
-                                    class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">en
+                                    class="bg-blue-100 text-blue-800 text-xs font-bega-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">en
                                     Attente</span>
 
 
 
                             </p>
 
-                            <p v-if="missionResponse.mission.statuS ==='completed'&&  missionResponse.mission.missionResponse.mission.statu != null"
-                             class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Paiement :
+                            <p v-if="missionResponse.is_paid != null"
+                             class="mb-4 text-base text-gray-600 md:mb-2 dark:text-gray-300">Paiement Debloquer :
 
                                 <span
-                                    class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Paiement veser</span>
+                                    class="bg-green-100 text-green-800 text-xs font-bega-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Paiement veser</span>
                             </p>
 
 
@@ -154,7 +116,7 @@
                         <!-- Freelance lié à la commande -->
                         <div class="px-6 py-4 bprojet-t bprojet-gray-300">
 
-                            <h1 class="flex items-start gap-2 text-lg font-bold cursor-pointer lg:text-xl">
+                            <h1 class="flex items-start gap-2 text-lg cursor-pointer font-bega-semibold lg:text-xl">
                                 Freelance lié
 
                             </h1>
@@ -164,7 +126,7 @@
                                 <div class="ml-4">
                                     <p class="text-sm text-gray-600 dark:text-gray-300">{{ missionResponse.freelance_user.name }}
                                     </p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-300">
+                                    <p class="hidden text-sm text-gray-600 dark:text-gray-300">
                                         {{ missionResponse.freelance_user.email }}</p>
                                 </div>
                             </div>
@@ -225,11 +187,8 @@
 
                                     </div>
 
-
-
-
-                                    <div class="lg:w-1/2">
-
+                                    <div v-if="missionResponse.mission.is_paid != null && missionResponse.feedbackmission.etat==='Livré' && missionResponse.is_paid==null"  class="lg:w-1/2">
+                                         <Button outlined @click="missionDebloquer=true"  severity="success" label="Debloquer Paiement" />
 
                                     </div>
 
@@ -251,7 +210,7 @@
                          <div>
                             <div  class="px-6 py-4 border-t border-gray-200">
 
-                                <h1 class="flex items-start gap-2 text-xl font-bold cursor-pointer">
+                                <h1 class="flex items-start gap-2 text-xl cursor-pointer font-bega-semibold">
                                     Transaction de paiement liée
                                     <button @click="open2= !open2">
                                         <svg :class="{ 'rotate-180': open2 }" class="w-6 h-6 fill-current"
@@ -272,7 +231,7 @@
                                 <div  v-if="missionResponse.transaction != null"
                                  class="pt-4">
                                     <p class="text-base text-gray-600 dark:text-gray-300">Numéro de transaction :
-                                        <span class="text-lg font-bold">#{{ missionResponse.transaction.transaction_numero }}</span>
+                                        <span class="text-lg font-bega-semibold">#{{ missionResponse.transaction.transaction_numero }}</span>
 
                                     </p>
                                     <p class="text-base text-gray-600 dark:text-gray-300">Méthode de paiement :
@@ -291,7 +250,7 @@
                                         <div class="">
                                             <p class="text-base text-gray-600 dark:text-gray-300">Montant payé :
 
-                                                <span class="p-2 text-xl font-extrabold text-green-400 rounded">
+                                                <span class="p-2 text-xl text-green-400 rounded font-bega-semibolde">
                                                     {{ missionResponse.transaction.amount }} $
                                                 </span>
                                             </p>
@@ -301,11 +260,15 @@
 
 
                                     </div>
-                                    <div class="p-2">
+                                    <div class="flex flex-col gap-4 p-2">
 
                                          <Link :href="route('user.transactions.one', [missionResponse.transaction.transaction_numero])">
-                                            <span><i class="pi pi-eye"></i></span>
+
+                                             <Button size="small" outlined severity="success"  label="voir la transaction" />
                                         </Link>
+                                        <div v-if="missionResponse.transaction.status==='pending'">
+                                            <Button size="small" outlined label="verifier l'etat" @click="verification()" />
+                                        </div>
 
 
                                     </div>
@@ -349,7 +312,7 @@
 
         </div>
 
-        <Dialog v-model:visible="mission" position="'bottom'" modal header="Confirmer Comannde Finis"
+        <Dialog v-model:visible="missionDebloquer" position="'bottom'" modal header="Confirmer Comannde Finis"
             :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
             <div class="flex flex-col w-full mt-4">
                 <div>
@@ -371,7 +334,7 @@
                 </div>
                 <div class="flex items-center justify-center gap-4 mt-4">
 
-                    <Button @click="debloquerPaiement" severity="success" label="Oui, je confirme" />
+                    <Button @click="debloquerPaiement" outlined severity="success" label="Oui, je confirme" />
                 </div>
             </div>
 
@@ -387,8 +350,9 @@
 import UserLayout from '@/Layouts/UserLayout.vue';
 import { Link, useForm, router } from '@inertiajs/vue3';
 
-import { computed, ref } from 'vue';
+import { computed, ref,inject } from 'vue';
 
+const swal=inject('$swal');
 
 const props = defineProps({
     missionResponse: Object,
@@ -408,6 +372,8 @@ const mission = ref(false);
 const form = useForm({
     responce_id: null,
 })
+
+const missionDebloquer=ref(false);
 
 
 const open2 = ref(false);
@@ -429,7 +395,66 @@ const contacter = () => {
 }
 
 
+const debloquerPaiement=()=>{
 
+    router.post(route('debloquerPaiementMission'),{
+        mission_id: props.missionResponse.data.mission_id,
+        mission_response_id:props.missionResponse.data.id,
+    }),{
+        onSuccess:()=>{
+            missionDebloquer.value=false;
+
+            swal.fire({
+                title: 'Success',
+                icon: "success",
+                text: 'Deblocage effectuer avec succees',
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+
+        },
+        onError :(error)=>{
+             swal.fire({
+                title: 'une erreur s\'est produite',
+                icon: "error",
+                text: error.message,
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+
+        }
+    };
+    missionDebloquer.value=false;
+
+}
+
+
+const verification=()=>{
+
+    router.post(route('checkoutStatusMission'),{
+        order_id: props.missionResponse.data.transaction.transaction_numero
+    },{
+        onSuccess:()=>{
+              swal.fire({
+                title: 'Etat du paiement',
+                icon: "success",
+                text: 'Votre Paiement a éte effectuer avec succees',
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+        },
+        onError:(error)=>{
+              swal.fire({
+                title: 'une erreur s\'est produite',
+                icon: "error",
+                text: 'votre paimeent n\'a pas aboutie',
+                // position: 'top-end',
+                timerProgressBar: true,
+            });
+
+        }
+    })
+}
 
 
 defineOptions({

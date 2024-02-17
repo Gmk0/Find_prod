@@ -159,6 +159,8 @@ Route::middleware([
             Route::get('/mission-paiement-status/{transaction_numero}', 'statusPaiement')->name('statusPaiementMission');
 
             Route::post('/mission-paiement', 'missionPaiementMaxi')->name('user.missions.missionPaiementMaxi');
+            Route::post('/checkoutStatusMission', 'checkoutStatusMission')->name('checkoutStatusMission');
+            Route::post('/debloquerPaiement', 'debloquerPaiement')->name('debloquerPaiementMission');
 
             Route::get('/mission/edit/{mission_numero}', 'missionEdit')->name('user.missionEdit');
             Route::post('/mission/edit', 'missionEditSave')->name('missionEdit');

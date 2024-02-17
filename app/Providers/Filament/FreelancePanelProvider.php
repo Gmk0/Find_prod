@@ -38,7 +38,7 @@ class FreelancePanelProvider extends PanelProvider
             ->brandLogo(asset('images/logo/find_02.png'))
             ->login()
             ->sidebarCollapsibleOnDesktop(true)
-            ->databaseNotifications()
+            ->databaseNotifications(true)
             ->viteTheme('resources/css/filament/freelance/theme.css')
             ->profile()
 

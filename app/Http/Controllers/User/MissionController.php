@@ -14,6 +14,8 @@ use App\Models\Transaction;
 use App\Tools\Paiement;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\CheckTransactionStatus;
+use App\Models\Commission;
 
 class MissionController extends Controller
 {
@@ -282,182 +284,239 @@ class MissionController extends Controller
 
 
     }
+    function returnBrand($provider): String
+    {
+        if ($provider == 10) {
+            return 'ORANGE MONEY';
+        } else if ($provider == 15) {
+            return 'AIRTEL MONEY';
+        } else {
+            return 'M-PESA';
+        }
+    }
+
 
     public function missionPaiementMaxi(Request $request)
     {
 
-        $request->validate(
-            ['response'=>'required',
-                'adresse'=>'required',
-                'ville'=>'required',
-                'commune'=>'required',
-                'pays'=>'required'
-            ]);
 
-
+       ;
 
 
 
         try {
 
             DB::beginTransaction();
-
-            $userSeeting = auth()->user()->userSetting;
-
-            $localisation=[
-                'adresse'=> $request->adresse,
-                'commune' => $request->commune,
-                'ville' => $request->ville,
-                'pays' => $request->pays,
-                ];
-
-
-            $userSeeting->addresse_facturation = $localisation;
-
-            $userSeeting->save();
-
             $mission_response=MissionResponse::find($request->response);
-
-
-            $numero = $request->numero;
-            $nom = $request->nom;
-
-            $total = $request->montant;
+            $form = $request->form;
+            $total = $request->solde;
             $payment = new Transaction();
             $payment->user_id = auth()->id();
             $payment->amount = $total;
-            $payment->payment_method = ['last4' => $request->numero, 'brand' => "maxicash"];
+            $payment->payment_method = ['last4' => $request->numero, 'brand' => $this->returnBrand($form['provider'])];
             $payment->payment_token = $this->references();
             $payment->type = "paiement";
             $payment->save();
-
            // $mission_response->is_paid = now();
            // $mission_response->update();
             $mission = $mission_response->mission;
-
             //$mission->is_paid = now();
             $mission->transaction_id = $payment->id;
             $mission->update();
-
-
             DB::commit();
-
-
-            $succesUrl
-                = route('checkoutStatusMaxiMission');
-            $faileurUrl =
-                route('checkoutStatusMaxiMission');
-
-            $cancelurl =
-                route('checkoutStatusMaxiMission');
+            $callback= route('checkoutStatusMaxiMission');
             $checkout = new Paiement();
-
-
-
-            $url = $checkout->checkoutmaxi($total * 100, $numero, $payment->payment_token, $succesUrl, $cancelurl, $faileurUrl);
-
-            // dd($url);
-
-            return Inertia::location($url);
-
+            $response = $checkout->paidAvada($total, $form['numero'], $form['provider'], $callback, $payment->transaction_numero);
+           // CheckTransactionStatus::dispatch($payment)->delay(now()->addSeconds(30));
+            return response()->json($response);
 
         } catch (\Exception $e) {
 
             DB::rollback();
 
-            dd($e->getMessage());
 
-           return redirect()->back()->withErrors(['messsge'=>'une erreur s\est produite']);
+            return response()->json(['message' => $e->getMessage()]);
+
+          // return redirect()->back()->withErrors(['messsage'=>'une erreur s\est produite'. $e->getMessage()]);
         }
     }
 
 
 
+     public function checkoutStatusMission(Request $request)
+    {
+        $transaction_numero=$request->order_id;
 
-        function references()
+
+        $checkout= new Paiement();
+        $response=$checkout->checkStatus($transaction_numero);
+        //dd($response['status']);
+        $response_user=$this->paiement_status($transaction_numero,$response['status']);
+
+        $data = $response_user->getData(true);
+
+
+
+        if($data['status'] ==='error')
         {
-            // Générer une chaîne aléatoire unique de 16 caractères
-            $randomString = uniqid();
-            // Extraire les 8 premiers caractères de la chaîne aléatoire pour obtenir l'ID unique de 8 caractères
-            $uniqueId = substr($randomString, 0, 8);
-            // Compteur pour incrémenter la fin de l'ID unique
-            $counter = DB::table('transactions')->count() + 1;
-            // Concaténer le compteur à la fin de l'ID unique
-            return  $finalId = 'TR' . $uniqueId . $counter;
+            return redirect()->back()->withErrors(['message' => "La transaction a échoué. Veuillez réessayer."]);
+
+        }else{
+
+            //return redirect()->route('paiementStatus', ['transaction_numero' =>$transaction_numero]);
+
         }
+
+
+    }
+
+
 
         public function statusPaiement($transaction_numero)
         {
+            $transaction = Transaction::where('transaction_numero', $transaction_numero)->first();
+            return Inertia::render('User/Mission/MissionStatut', ['transaction' => TransactionResourceData::make($transaction)]);
+        }
+
+        public function paiement_status($transaction_numero, $status)
+        {
+            $transaction = Transaction::where('transaction_numero', $transaction_numero)->first();
+            if ($status == 3) {
+                $transaction->status = 'failed';
+                $transaction->save();
+                $mission = $transaction->mission;
+                $missionResponse =MissionResponse::where('mission_id',$mission->id)
+                ->where('status','approved')->first();
+                //$mission->is_paid = now();
+                $mission->transaction_id = null;
+                $mission->save();
+            return response()->json(['status' => 'error', 'transaction_numero' => $transaction->transaction_numero]);
+
+            } else if ($status == 2) {
+                $transaction->status = 'completed';
+                $transaction->save();
+                $mission = $transaction->mission;
+                $mission->is_paid = now();
+                $mission->status= "active";
+                $mission->save();
+               // $missionResponse= MissionResponse::where('mission_id',$mission->id)->where('status','approved')->first();
+                //$missionResponse->is_paid = now();
+               // $missionResponse->update();
+            return response()->json(['status' => 'success', 'transaction_numero' => $transaction->transaction_numero]);
+
+            } else {
+                $transaction->status = 'failed';
+                $transaction->save();
+                $mission = $transaction->mission;
+                //$mission->is_paid = now();
+                $mission->transaction_id = null;
+                $mission->save();
+            return response()->json(['status' => 'error', 'transaction_numero' => $transaction->transaction_numero]);
+            }
+        }
+
+
+    function references()
+    {
+        // Générer une chaîne aléatoire unique de 16 caractères
+        $randomString = uniqid();
+        // Extraire les 8 premiers caractères de la chaîne aléatoire pour obtenir l'ID unique de 8 caractères
+        $uniqueId = substr($randomString, 0, 8);
+        // Compteur pour incrémenter la fin de l'ID unique
+        $counter = DB::table('transactions')->count() + 1;
+        // Concaténer le compteur à la fin de l'ID unique
+        return  $finalId = 'TR' . $uniqueId . $counter;
+    }
+
+    public function debloquerPaiement(Request $request)
+    {
+
+
+        $request->validate(['mission_id' => 'required']);
 
 
 
-        $transaction = Transaction::where('transaction_numero', $transaction_numero)->first();
-        return Inertia::render('User/Mission/MissionStatut', ['transaction' => TransactionResourceData::make($transaction)]);
 
+
+        $mission = Mission::FindOrFail($request->mission_id);
+        $missionResponse=MissionResponse::FindOrFail($request->mission_response_id);
+
+
+
+
+        if ($mission->is_paid == null) {
+            return redirect()->back()->withErrors(['message' => 'le paiement n\'a pas encore ete effectuer']);
+        }
+
+        if ($missionResponse->is_paid != null) {
+            return redirect()->back()->withErrors(['message' => 'le paiement a  ete effectuer']);
+        }
+
+        $transaction = $mission->transaction;
+
+        if($transaction->status !='completed')
+        {
+            return redirect()->back()->withErrors(['message' => 'le paiement n\'a pas encore ete effectuer']);
 
         }
 
-        public function checkoutStatusMaxiMission(Request $request)
-        {
-        $reference = $request->reference;
-        $methode = $request->method;
-        $status = $request->status;
-
-        $transaction = Transaction::where('payment_token', $reference)->first();
 
 
 
-        if ($status == 'failed') {
-            $transaction->status = 'failed';
-            $transaction->save();
-
-            $mission = $transaction->mission;
 
 
-            $missionResponse =MissionResponse::where('mission_id',$mission->id)
-            ->where('status','approved')->first();
-
-            //$mission->is_paid = now();
-            $mission->transaction_id = null;
-
-            $mission->save();
 
 
-            return redirect()->route('user.missions.missionPaiement',[$mission->mission_numero, $missionResponse->response_numero])->with('error', 'une erreur s\'est produite');
-        } else if ($status == 'success') {
-
-            $transaction->status = 'completed';
-            $transaction->save();
+        DB::beginTransaction();
+        try {
 
 
-            $mission = $transaction->mission;
-            $mission->is_paid = now();
-            $mission->status= "active";
-            $mission->save();
-
-            $missionResponse= MissionResponse::where('mission_id',$mission->id)->where('status','approved')->first();
 
             $missionResponse->is_paid = now();
             $missionResponse->update();
+            $mission->status = 'completed';
+            $mission->update();
 
-            return redirect()->route('statusPaiementMission', ['transaction_numero' => $transaction->transaction_numero]);
-        } else {
-            $transaction->status = 'failed';
-            $transaction->save();
+            $freelance = $missionResponse->freelance;
 
-            $mission = $transaction->mission;
-            //$mission->is_paid = now();
-            $mission->transaction_id = null;
+            // Calculer 80% du montant total de la commande
+            $amountToAdd = $transaction->amount * 0.80;
+            $commissionAmount = $transaction->amount * 0.20;
 
-            $mission->save();
+            $freelance->solde += $amountToAdd;
+            $freelance->save();
 
-            return redirect()->route('panier')->with('error', 'une erreur s\'est produite');
+            // 20% de commission
+
+            $transactionFait = Transaction::create([
+                'user_id' => $freelance->user_id,
+                'type' => 'debiter',
+                'amount' => $amountToAdd,
+                'description' => 'Débit pour la mission #' . $mission->mission_numero . ' après déduction de la commission',
+                'status' => 'completed'
+
+            ]);
+            $commission = new Commission();
+            $commission->mission_id = $mission->id;
+            $commission->amount = $commissionAmount;
+            $commission->user_id = $freelance->user_id;
+            $commission->net_amount = $amountToAdd;
+            $commission->percent = '20%';
+            $commission->description = 'Commission de 20% prélevée sur la commande.';
+            $commission->transaction_id = $transactionFait->id;
+            $commission->save();
+
+
+
+            DB::commit();
+        } catch (\Exception $e) {
+
+
+
+            DB::rollback();
+
+            return redirect()->back()->withErrors(['message' => 'une erreur s\'est produite' . $e->getMessage()]);
         }
-
-
-
-
-
-        }
+    }
 
 }

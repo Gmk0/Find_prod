@@ -114,10 +114,6 @@ const checkoutMaxi = async () => {
             items: items.value,
             total: totalPrice.value
         });
-
-
-
-
         paideLoading.value = false;
 
         order_id.value =response.data.order_id;

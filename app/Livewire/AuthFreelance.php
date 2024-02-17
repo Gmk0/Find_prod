@@ -66,6 +66,7 @@ class AuthFreelance extends MyProfileComponent
 
     protected function sendNotification(): void
     {
+
         Notification::make()
             ->success()
             ->title(__('filament-breezy::default.profile.personal_info.notify'))

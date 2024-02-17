@@ -4,53 +4,16 @@
 <template>
     <div class="flex flex-col min-h-screen gap-6 px-4 lg:mx-auto md:p-6 md:max-w-7xl md:container px-auto bg-inherit">
 
-        <div class="flex flex-col">
-            <div>
-                <nav class="flex" aria-label="Breadcrumb">
-                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
-                        <li class="inline-flex items-center">
-                            <Link :href="route('user.dashboard')"
-                                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
-                            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                            </svg>
-                            Dashboard
-                            </Link>
-                        </li>
-
-                        <li aria-current="page">
-                            <Link :href="route('user.missions')" class="flex items-center">
-                            <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 6 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m1 9 4-4-4-4" />
-                            </svg>
-                            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Mission</span>
-                            </Link>
-                        </li>
-                        <li aria-current="page">
-                            <div class="flex items-center">
-                                <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 9 4-4-4-4" />
-                                </svg>
-                                <span
-                                    class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Candidature</span>
-                            </div>
-                        </li>
-                    </ol>
-                </nav>
 
 
-            </div>
+        <BreadUser
+                title="Mission Paiement"
+                first_title="Mission"
+                :first_url="route('user.missions')"
+                second_title="Paiement"
 
-            <h1 class="mt-4 text-3xl text-black font-bega_semibold dark:text-white">Paiement</h1>
 
-        </div>
-
+                />
 
 
 
@@ -210,19 +173,12 @@
                 </div>
 
                 <div class="flex flex-col gap-2 lg:flex-row">
-                    <div class="w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
-                        <div class="grid grid-cols-1 gap-4">
+                    <div class="hidden w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
+                        <div class="grid hidden grid-cols-1 gap-4">
                             <h1>Address de Facturation / Livraison</h1>
 
 
-                                                <InputText v-model="paiement.adresse" placeholder="Addresse" />
-                                                 <InputError :message="paiement.errors.adresse" />
-                                                <InputText v-model="paiement.commune" placeholder="commune" />
-                                                  <InputError :message="paiement.errors.commune" />
-                                                <InputText  v-model="paiement.ville" placeholder="ville"/>
-                                                  <InputError :message="paiement.errors.ville" />
-                                                <InputText v-model="paiement.pays" placeholder="Pays"/>
-                                                  <InputError :message="paiement.errors.pays" />
+
 
 
                         </div>
@@ -232,39 +188,7 @@
 
                     <div
                         class="w-full mx-auto mb-6 font-light text-gray-800 bg-white border border-gray-200 rounded-lg top-8 dark:bg-gray-900">
-                        <div class="hidden w-full p-3 border-b border-gray-200 ">
-                            <div class="mb-5">
-                                <label for="type1" class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="w-5 h-5 text-indigo-500 form-radio" id="type1"
-                                        x-model="isCard" @click="isOther = false">
-                                    <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
-                                        class="h-6 ml-3">
-                                </label>
-                            </div>
-                        <div x-collapse class="px-2" x-cloak x-show="isCard">
 
-
-
-
-                            <div class="mt-4">
-
-                                <button wire:click="pay()" wire:loading.attr='disabled'
-                                    class=" block w-full select-none rounded-lg bg-amber-600 py-2 px-2 text-center align-middle
-                                                                                                                                                                                    font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all
-                                                                                                                                                                                   hover:shadow-lg hover:shadow-amber-500/40 focus:opacity-[0.85] focus:shadow-none
-                                                                                active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50
-                                                                                                                                                                                    disabled:shadow-none"
-                                    data-ripple-light="true">
-                                    <span wire:loading.remove>PAYER
-                                        (450)</span>
-                                    <span wire:loading wire:target='pay'>PAIEMENT...</span>
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        </div>
 
                         <div class="w-full p-6 border-b border-gray-200">
                             <div class="mb-5">
@@ -277,33 +201,11 @@
                                 </label>
                             </div>
 
-                            <div x-collapse x-cloak x-show="isOther">
+                            <div>
 
-                            <form @submit.prevent="checkoutMaxi">
-
-                                                      <div class="grid grid-cols-1 gap-4 px-4 mb-4">
-                                                        <InputText required v-model="paiement.nom" placeholder="Nom"   class="rounded-md"  />
-                                                             <InputText v-model="paiement.numero" placeholder="Telephone"  required class="rounded-md" />
-
-                                                             <InputError :message="paiement.errors.numero" />
-
-                                                      </div>
-
-
-
-
-                                    <button
-                                        class=" block w-full select-none rounded-lg bg-amber-600 py-2 px-2 text-center align-middle
-                                                                                                                                                font-sans text-sm font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all
-                                                                                                                                                hover:shadow-lg hover:shadow-amber-500/40 focus:opacity-[0.85] focus:shadow-none
-                                                                                                                                                active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50
-                                                                                                                                                disabled:shadow-none" data-ripple-light="true">
-                                        <span>PAYER
-                                            ({{ missionResponse.budget }}) $</span>
-
-                                    </button>
-
-                                </form>
+                            <PaiementC :solde="missionResponse.budget"
+                            route="Mission"
+                            :response="missionResponse.id" />
 
                             </div>
                         </div>
@@ -362,6 +264,8 @@ import { Link, useForm, router } from '@inertiajs/vue3';
 
 import { computed, ref } from 'vue';
 
+import PaiementC from '@/Components/PaiementC.vue';
+
 
 const props = defineProps({
     missionResponse: Object,
@@ -394,14 +298,14 @@ const open2 = ref(false);
 const open = ref(false);
 
 const paiement = useForm({
-numero :'',
-nom:'',
-montant : props.missionResponse.data.budget,
-response : props.missionResponse.data.id,
-adresse: props.userSetting.addresse_facturation?.adresse,
-commune: props.userSetting.addresse_facturation?.commune,
-ville: props.userSetting.addresse_facturation?.ville,
-pays: props.userSetting.addresse_facturation?.pays,
+    numero :'',
+    nom:'',
+    montant : props.missionResponse.data.budget,
+    response : props.missionResponse.data.id,
+    adresse: props.userSetting.addresse_facturation?.adresse,
+    commune: props.userSetting.addresse_facturation?.commune,
+    ville: props.userSetting.addresse_facturation?.ville,
+    pays: props.userSetting.addresse_facturation?.pays,
 
 });
 const checkoutMaxi =()=>{
@@ -414,6 +318,31 @@ const checkoutMaxi =()=>{
 
 }
 
+
+const selectedProvider = ref('');
+
+const provider = [
+    {
+        value: "10",
+        label: "Orange Money",
+        areaName: "orange",
+        areaEnsignUrl: "https://www.jordanfinancialservices.com/2021/sites/default/files/images/logos/orange_money-01.jpg",
+    },
+    {
+        value: "9",
+        label: "Vodacom Mpesa",
+        areaName: "Vodacom",
+        areaEnsignUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmtTAhz7LJHKfRf5ZGowNS3ZKJH_X_26iPUv3wzBkcug&s",
+    },
+    {
+        value: "17",
+        label: "airtel Money",
+        areaName: "airtel",
+        areaEnsignUrl: "https://zoom-eco.net/wp-content/uploads/2021/02/15.png",
+    },
+
+
+]
 
 
 

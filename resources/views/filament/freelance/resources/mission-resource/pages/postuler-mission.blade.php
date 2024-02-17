@@ -23,6 +23,7 @@
 
     {{$this->postulerForm}}
 
+    @if($response->is_paid ==null)
     @if($response !=null)
 
     <div class="flex gap-6 p-4 mt-4 text-center">
@@ -44,6 +45,7 @@
     </div>
 
 
+    @endif
     @endif
 
 
