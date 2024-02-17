@@ -76,8 +76,8 @@ class Paiement
             'provider_id' => $provider,
             'customer_id' => $numeberTransformerd,
             'order_id' => $transaction_id,
-            'amount' => 1000,
-            'currency' => 'CDF',
+            'amount' => $montant,
+            'currency' => 'USD',
             'country' => 'CD',
             'callback_url' => $callback,
         ];
