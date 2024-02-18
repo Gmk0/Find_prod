@@ -1,7 +1,7 @@
 <template>
 
     <Head title="Accueil">
-         <meta name="description" content="FIND est une plateforme qui met en relation des freelances qualifiés avec des clients à la recherche de compétences spécifiques pour leurs projets.">
+         <meta name="description" content="Find-freelance regorge des excellents professionnels africains. Gagner du temps et soyez satisfait des services de nos freelances à des prix équitables.">
     </Head>
 
 

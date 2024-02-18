@@ -2,11 +2,13 @@
 
 import { useLayoutStore, useCategoryStore, useNotification, useParrainage } from '@/store/store';
 
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import MainSidebarUser from '@/Layouts/UserPartial/MainSidebarUser.vue';
 import SidebarPanelUser from '@/Layouts/UserPartial/SidebarPanelUser.vue';
 import PartialHeaderUser from '@/Layouts/UserPartial/PartialHeaderUser.vue';
 import OtherPanelUser from '@/Layouts/UserPartial/OtherPanelUser.vue';
+
+import { Head, usePage } from '@inertiajs/vue3';
 
 import Footer from '@/Components/Footer.vue';
 
@@ -20,6 +22,15 @@ const notification = useNotification();
 //const userStore = useAuthStore();
 
 
+const page = usePage();
+const titlePage = computed(() => {
+    const urlPath = page.url.split('/');
+    if (urlPath.length <= 1 || urlPath[1] === '') {
+        return 'Accueil';
+    } else {
+        return urlPath[1];
+    }
+})
 onMounted(()=>{
 
     categoryStore.fetchCategories();
@@ -50,6 +61,7 @@ resize();
 </script>
 
 <template>
+     <Head :title="titlePage" />
     <div class="font-bega-light" :class="{ 'is-sidebar-open': layoutStore.SidebarExpanded }">
 
 

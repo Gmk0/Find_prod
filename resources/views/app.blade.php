@@ -7,6 +7,7 @@
 
 
         <title inertia>{{ config('app.name', 'FIND') }}</title>
+
         <link  rel="stylesheet" href="/css/new.css">
         <link rel="stylesheet" href="/css/plugin.css">
         <link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
