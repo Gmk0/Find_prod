@@ -52,11 +52,11 @@
                                     <div class="">
                                         <div v-if="!skeleton" class="mb-6">
                                             <h2 v-if="codeParainage != null"
-                                                class="mb-2 text-2xl font-bega-medium text-gray-700 dark:text-gray-100">Votre code Parainage :
+                                                class="mb-2 text-2xl text-gray-700 font-bega-medium dark:text-gray-100">Votre code Parainage :
                                                 <span class="dark:text-gray-50 ">{{ codeParainage }}</span></h2>
 
                                             <div v-else class="flex flex-col gap-4">
-                                                <p class="text-base font-bega-medium text-gray-800 dark:text-gray-50">Vous n'avez pas encore
+                                                <p class="text-base text-gray-800 font-bega-medium dark:text-gray-50">Vous n'avez pas encore
                                                     de code de parainage veuillez en generer Un</p>
 
                                                 <div>
@@ -106,9 +106,9 @@
                                                 <div v-if="!$page.props.auth.user.gift_used">
 
 
-                                                    <div v-if="utilisateurParainer.length >= 3" class="mt-4 ">
+                                                    <div v-if="utilisateurParainer.length >= 10" class="mt-4 ">
                                                         <p class="mb-4 text-lg text-amber-500">Félicitations! Vous avez
-                                                            parrainé 10 utilisateurs et vous avez gagné un cadeau spécial!
+                                                            parrainé 10 utilisateurs et vous avez gagné un cadeau spécial vous allez etre notifier!
                                                             🥳​🥳​</p>
                                                         <Link class="hidden mt-6 text-lg text-green-500 ">
                                                         <Link :href="route('gift', $page.props.auth.user.id)">Recuperez
