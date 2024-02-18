@@ -290,14 +290,14 @@
 
                     </a>
 
-                        <Link :href="route('register',['code'])"  class="relative items-center justify-center hidden w-full h-12 px-8 mx-auto rounded-full lg:flex bg-skin-fill group dark:bg-skin-fill hover:scale-105 active:duration-75 active:scale-95 sm:w-max">
+                        <Link :href="route('register')"  class="relative items-center justify-center hidden w-full h-12 px-8 mx-auto rounded-full lg:flex bg-skin-fill group dark:bg-skin-fill hover:scale-105 active:duration-75 active:scale-95 sm:w-max">
 
                              <span
                                     class="relative text-base font-semibold text-white dark:text-white underline-none">S'inscrire</span>
 
                         </Link>
 
-                        <Link :href="route('register',['code'])"  class="relative flex items-center justify-center h-10 px-4 mx-auto text-sm duration-300 rounded-md lg:hidden bg-findDark-50 before:absolute before:inset-0 before:transition hover:scale-105 active:duration-75 active:scale-95 sm:w-max">
+                        <Link :href="route('register')"  class="relative flex items-center justify-center h-10 px-4 mx-auto text-sm duration-300 rounded-md lg:hidden bg-findDark-50 before:absolute before:inset-0 before:transition hover:scale-105 active:duration-75 active:scale-95 sm:w-max">
 
                                   <span class="relative text-base font-semibold text-amber-600">S'inscrire</span>
 
