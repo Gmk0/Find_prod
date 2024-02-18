@@ -31,7 +31,7 @@ implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return [PusherChannel::class];
+        return ['database'];
     }
 
     /**
@@ -54,6 +54,15 @@ implements ShouldQueue
     {
         return [
             //
+        ];
+    }
+    public function toDatabase($notifiable)
+    {
+        return [
+            'title' => "Commande",
+            'body' => 'Votre Commande de telle montant a reussie avec succes vous avec bien chosis Commande de telle montant a reussie avec succes vous avec bien chosis ',
+            'url' => '/user/transaction',
+            'icon' => 'fa fa-cart-shopping',
         ];
     }
     public function toPushNotification($notifiable)

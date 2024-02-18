@@ -49,7 +49,7 @@ implements ShouldQueue
     {
         return [
             'title' => "Mission",
-            'message' => 'Nouvelle proposition de votre mission ' . $this->projectResponse->mission->title,
+            'body' => 'Nouvelle proposition de votre mission ' . $this->projectResponse->mission->title,
             'url' => '/user/mission-list/' . $this->projectResponse->mission->mission_numero,
             'icon' => 'fa fa-bars-progress',
         ];

@@ -176,7 +176,7 @@ import {computed, ref} from 'vue';
 
 
 const props= defineProps({
-    missions:Array,
+    missions:Object,
 })
 
 

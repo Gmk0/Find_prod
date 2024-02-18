@@ -37,7 +37,7 @@ class OrderProgress extends Notification implements ShouldQueue
     {
         return [
             'title' => "Progression Commande",
-            'message' => 'Nouvelle progression de ' . $this->feedback->order->progress . '% pour le service ' . $this->feedback->order->service->title,
+            'body' => 'Nouvelle progression de ' . $this->feedback->order->progress . '% pour le service ' . $this->feedback->order->service->title,
             'url' => '/user/commandes/' . $this->feedback->order->order_numero,
             'icon' => 'fa fa-bars-progress',
         ];

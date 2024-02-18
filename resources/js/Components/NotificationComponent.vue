@@ -3,9 +3,9 @@
 
 
         <div>
-            <Popper>
 
-                <button class="flex p-2 text-gray-100 rounded-lg hover:text-gray-900 dark:text-gray-400 ">
+
+                <button @click="isOpenedTop=true" class="flex p-2 text-gray-100 rounded-lg hover:text-gray-900 dark:text-gray-400 ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" stroke="currentColor" fill="none"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -18,6 +18,97 @@
                         </span>
                     </sub>
                 </button>
+
+                 <Sidebar :baseZIndex="1000"  v-model:visible="isOpenedTop" position="right">
+
+                    <div v-if="notifications.length >0">
+                     <div class="flex items-center mb-2 space-x-2">
+                            <h3 class="text-base font-bega-medium text-slate-700 dark:text-navy-100">
+                                Notifications
+                            </h3>
+                            <div
+                                class="badge h-5 rounded-full bg-red-500 px-1.5 text-white dark:bg-accent-light/15 dark:text-accent-light">
+                                {{ notifications.length }}
+                            </div>
+                            <div class="px-3">
+                                <button @click="refresh">
+                                        <i class="w-4 pi pi-undo"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                        <div class="flex gap-4 mt-2">
+                            <button @click="marquerToutLue" class="py-1 text-green-500 font-bega-medium">
+                                Tout marquer comme lu
+                            </button>
+                             <button @click="deleteAll" class="py-1 text-red-600 font-bega-medium">
+                                    Effacer
+                                </button>
+
+                        </div>
+                       <template v-for="notification in notifications">
+                    <div class="w-full z-[1000] py-2 border-t border-gray-300">
+                        <div class="flex items-center justify-between">
+                            <div class="text-base truncate font-bega-medium">{{ notification.data.title }}</div>
+                            <div class="text-red-500">
+                               <MazDropdown
+
+                                position="left"
+                                trigger="click"
+                                size="xs"
+                                    :items="[
+                                        { label: 'Effacer', action: () => remove(notification.id) },
+                                        { label: 'Lien', action: () => newLink(notification.data.url,notification.id), target: '_blank' },
+
+                                    ]"
+                                >
+                                     <template #menuitem-label="{ item }">
+                                        <div class="maz-flex dark:text-gray-200 !text-gray-700 maz-items-center maz-gap-2">
+
+                                        <span >
+                                            {{ item.label }}
+                                        </span>
+                                        </div>
+                                    </template>
+
+
+                                </MazDropdown>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-200 break-before-auto">{{ notification.body }}</p>
+                    </div>
+                        </template>
+
+                        </div>
+
+                        <div v-else class="pb-8 mt-4 text-center">
+                            <div class="mb-4">
+                                 <div class="px-3">
+                                    <button @click="refresh">
+                                            <i class=" pi pi-undo" style="width: 3rem;"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                            <img class="mx-auto w-36" src="/images/illustrations/empty.svg" alt="image" />
+                            <div class="mt-5 ">
+                                <p class="text-base font-semibold text-slate-700 dark:text-navy-100">
+                                   Aucune notification
+
+                                </p>
+                                <span>Veuillez revérifier ultérieurement</span>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                </Sidebar>
+
+
+                <!--
                 <template #content="props">
 
                     <div>
@@ -219,8 +310,9 @@
                         </div>
                     </div>
                 </template>
+                -->
 
-            </Popper>
+
         </div>
 
 
@@ -233,27 +325,46 @@
 import { ref, computed } from 'vue';
 import Popper from "vue3-popper";
 import { router } from '@inertiajs/vue3';
+import MazDrawer from 'maz-ui/components/MazDrawer'
+import MazDropdown from 'maz-ui/components/MazDropdown'
 
 import { useLayoutStore, useCategoryStore, useNotification } from '@/store/store';
 const useNotify = useNotification();
 
 
-const newLink =async(id,url)=>{
+const isOpenedTop = ref(false)
+const newLink =async(url,id)=>{
 
 
-
-    router.get(url);
-
+    if(url!=null){
+        router.get(url);
+    }
 
 
     useNotify.removeNotification(id);
 }
 
+const remove=(id)=>{
+    useNotify.removeNotification(id);
+}
+
+const deleteAll=()=>{
+
+    useNotify.removeAll();
+}
+
+const marquerToutLue=()=>{
+    useNotify.removeAllRead();
+}
+
+const refresh=()=>{
+    useNotify.fetchLastNotification();
+
+}
 
 const notifications =computed(()=> useNotify.lastNotificationGet)
 
 
-console.log(useNotify.lastNotificationGet);
 
 const activeTab = ref('tabAll')
 

@@ -12,7 +12,9 @@ use App\Models\Notification;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\UserSetting;
+use App\Notifications\testNotify;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiUserController extends Controller
 {
@@ -65,10 +67,64 @@ class ApiUserController extends Controller
 
     public function fetchLastNotification()
     {
-        $notifications = auth()->user()->unreadNotifications()->latest()->get();
+        if(Auth::check())
+        {
+            $notifications = auth()->user()->unreadNotifications()->latest()->get();
 
-        return response()->json(['notifications' => $notifications], 200);
+            return response()->json(['notifications' => $notifications], 200);
+        }else{
 
+            return response()->json([], 203);
+        }
+
+
+
+    }
+    public function ReadAllNotification()
+    {
+        if (Auth::check()) {
+
+            try {
+                $notifications = auth()->user()->unreadNotifications()->latest()->get();
+
+                foreach ($notifications as $notification) {
+                    $notification->markAsRead();
+                }
+
+
+                return response()->json([], 200);
+            } catch (\Exception $e) {
+                return response()->json([], 422);
+            }
+        } else {
+
+            return response()->json([], 422);
+        }
+    }
+
+    public function RemoveAllNotification()
+    {
+        if (Auth::check()) {
+
+            try{
+                $notifications = auth()->user()->unreadNotifications()->latest()->get();
+
+                foreach ($notifications as $notification) {
+                    $notification->delete();
+                }
+
+
+                return response()->json([], 200);
+
+            }catch(\Exception $e){
+                return response()->json([], 422);
+
+            }
+
+        } else {
+
+            return response()->json([], 422);
+        }
     }
 
     public function removeNotification($id)
@@ -193,6 +249,26 @@ class ApiUserController extends Controller
             ]);
         }
     }
+
+    public function TestAll(Request $request)
+    {
+
+
+        try{
+
+            $user=$request->user();
+
+
+
+
+            $user->notify(new testNotify());
+
+
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
 
 
 }

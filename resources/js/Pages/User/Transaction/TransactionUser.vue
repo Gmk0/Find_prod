@@ -74,7 +74,7 @@ import UserLayout from '@/Layouts/UserLayout.vue';
 
 defineProps(
     {
-        transactions:Array
+        transactions:Object
     });
 
 

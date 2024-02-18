@@ -3,7 +3,7 @@
 <template>
     <div class="flex card justify-content-center">
         <Sidebar v-model:visible="visible" position="right">
-            <h2>CART</h2>
+            <h2>Panier</h2>
             <div class="flex-1 max-h-full p-4 soft-scrollbar">
                 <div v-if="items" class="flex-1 overflow-x-hidden overflow-y-auto ">
 
@@ -18,7 +18,7 @@
                             <p class="text-gray-500 truncate dark:text-gray-100">{{ item.price }} $</p>
 
                             <div class="mt-4">
-                                <label for="Quantity" class="sr-only"> Quantity </label>
+                                <label for="Quantity" class="sr-only"> Quantité </label>
 
                                 <div class="flex items-center gap-1">
                                     <button type="button" :disabled="item.quantity === 1"
@@ -55,7 +55,7 @@
                 </div>
                 <div v-else>
 
-                    la carte est vide
+                     Votre panier est vide
 
                 </div>
                 <div  v-if="totalPrice != 0" class="flex flex-col gap-4 p-4 border-t border-gray-200">
@@ -77,7 +77,7 @@
                 </div>
                 <div v-else>
 
-                    votre panier est vide
+                    Votre panier est vide
 
                 </div>
 

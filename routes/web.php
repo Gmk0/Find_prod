@@ -313,9 +313,13 @@ Route::controller(ApiUserController::class)->group(function(){
     Route::get('/api/getNotificationParametres','getNotificationParametres');
     Route::post('/api/UpdateNotificationParametres', 'updateNotificationParametres')->name('updateNotificationParametres');
     Route::get('/api/getLastFaq', 'fetchLastFaq');
+    Route::get('/api/RemoveAllNotification', 'RemoveAllNotification');
+    Route::get('/api/ReadAllNotification', 'ReadAllNotification');
 
     Route::get('/api/fetchLastUserCommentaire', 'fetchLastUserCommentaire');
     //Route::get('/fetchLastUserTalkAbout', 'fetchLastUserTalkAbout');
+
+    Route::post('/TestAll', 'TestAll')->name('TestAll');
 
 });
 

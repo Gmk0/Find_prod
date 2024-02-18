@@ -10,6 +10,8 @@ use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\{FileUpload,Select,Toggle, Textarea};
+use Filament\Notifications\Notification;
+
 
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
@@ -29,7 +31,9 @@ class ServiceResource extends Resource
     protected static ?string $model = Service::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox-stack';
+
     protected static ?string $navigationGroup = 'Services';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
@@ -75,6 +79,15 @@ class ServiceResource extends Resource
                     TextInput::make('basic_revision')->label('Revisions')
                 ])
                 ->columns(2),
+
+            FileUpload::make('files')->label('Image Decrivant votre service')
+            ->multiple()
+            ->directory('service')
+            ->imagePreviewHeight('100')
+            ->optimize('webp')
+            ->image()
+            ->columnSpanFull()
+            ->imageEditor(),
             RichEditor::make('description')
             ->columnSpanFull(),
 
@@ -87,14 +100,7 @@ class ServiceResource extends Resource
             ])
             ->columnSpanFull(),
 
-            FileUpload::make('files')->label('Image Decrivant votre service')
-            ->multiple()
-                ->directory('service')
-                ->imagePreviewHeight('100')
-                ->optimize('webp')
-                ->image()
-                ->columnSpanFull()
-                ->imageEditor(),
+
                 Fieldset::make('Realisation faites avec ce service')->schema([
                 FileUpload::make('example.image')
                     ->imagePreviewHeight('100')
@@ -241,6 +247,24 @@ class ServiceResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+
+                Tables\Actions\Action::make('Supprimer')
+                ->requiresConfirmation()
+                        ->action(function (Service $service) {
+                            if($service->orders ==null)
+                            {
+                                $service->delete();
+                            }else{
+
+                    Notification::make()
+                        ->title('Impossible de supprimer')
+                        ->danger()
+                        ->body('Le service a déjà été commandé.')
+                        ->send();
+
+                            }
+                            // ...
+                })->icon('heroicon-s-trash'),
             ])
             ->bulkActions([
 

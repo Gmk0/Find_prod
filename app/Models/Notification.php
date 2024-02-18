@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Str;
 class Notification extends Model
 {
     use HasFactory;
+
+
+
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $fillable = [
         'notifiable_id',
         'type',
@@ -15,6 +21,20 @@ class Notification extends Model
         'data',
         'is_read',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($notification) {
+
+           // dd($notification);
+            $notification->id = Str::uuid()->toString();
+
+        });
+
+
+    }
+
 
 
 

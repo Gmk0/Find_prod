@@ -48,7 +48,7 @@ import { initFlowbite } from 'flowbite'
 
 
 
-import { useSubcategoriesStore, useCategoryStore } from '@/store/store';
+import { useSubcategoriesStore, useCategoryStore, useNotification } from '@/store/store';
 
 
 const useStoreLast = getLastComment();
@@ -56,6 +56,7 @@ const useStoreLast = getLastComment();
 
 const categoriesStore = useCategoryStore();
 const subcategoriesStore = useSubcategoriesStore();
+const useNotificationStore = useNotification();
 
 const page = usePage();
 const titlePage=computed(()=> {
@@ -77,6 +78,7 @@ onMounted(() => {
     subcategoriesStore.fetchSubCategories();
     categoriesStore.fetchCategories();
     useStoreLast.fetchLastComment();
+    useNotificationStore.fetchLastNotification();
     initFlowbite();
 
 

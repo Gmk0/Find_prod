@@ -43,7 +43,7 @@ implements ShouldQueue
     {
         return [
             'title' => "Commande",
-            'message' => 'Votre Commande de ' . $this->transaction->amount . ' a ete passee avec success  ',
+            'body' => 'Votre Commande de ' . $this->transaction->amount . ' a ete passee avec success  ',
             'url' => '/user/transaction',
             'icon' => 'fa fa-cart-shopping',
         ];

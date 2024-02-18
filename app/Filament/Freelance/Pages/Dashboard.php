@@ -13,7 +13,7 @@ class Dashboard extends PagesDashboard
     use HasTour;
 
 
-    protected static ?string $title = 'Dashboard Freelance';
+    protected static ?string $title = 'Tableau de Bord Freelance';
 
 
     public function tours(): array

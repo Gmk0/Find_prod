@@ -101,6 +101,7 @@ class GestionMission extends Page  implements HasForms
         Notification::make()
             ->success()
             ->title("Avacement de votre Projet")
+            ->body('Avacement de votre Projet')
             ->send()
             ->sendToDatabase($user);
     }

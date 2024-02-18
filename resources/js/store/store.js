@@ -411,6 +411,30 @@ export const useNotification = defineStore('useNotification',{
                 console.error('Erreur lors de la récupération des element :', error);
             }
         },
+        async removeAll(){
+            try {
+                const response = await axios.get(`/api/RemoveAllNotification`);
+                if (response.status === 200) {
+
+                    this.fetchLastNotification()
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des element :', error);
+            }
+
+        },
+        async removeAllRead() {
+            try {
+                const response = await axios.get(`/api/ReadAllNotification`);
+                if (response.status === 200) {
+
+                    this.fetchLastNotification()
+                }
+            } catch (error) {
+                console.error('Erreur lors de la récupération des element :', error);
+            }
+
+        },
         async getNotificationParametres()
         {
             try{
@@ -427,7 +451,8 @@ export const useNotification = defineStore('useNotification',{
 
             }
         },
-    }
+    },
+    persist:true,
 
 });
 

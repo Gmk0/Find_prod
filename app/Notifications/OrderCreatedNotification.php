@@ -32,7 +32,7 @@ class OrderCreatedNotification extends Notification implements ShouldQueue
     {
         return [
             'title' => "Commande",
-            'message' => 'Nouvelle commande de ' . $this->order->getMontant() . ' pour le service ' . $this->order->service->title . ' a été passée.',
+            'body' => 'Nouvelle commande de ' . $this->order->getMontant() . ' pour le service ' . $this->order->service->title . ' a été passée.',
             'url' => '/freelance/commande/' . $this->order->order_numero,
             'icon' => 'fa fa-cart-shopping',
 

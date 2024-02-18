@@ -32,7 +32,7 @@ const submit = () => {
 
     <CardGuest>
         <template #title>
-            Mot de passe Oublier
+            Mot de passe oublié
         </template>
            <template #description>
                   <span>Trouvez les services parfaits dont vous avez besoin</span>
@@ -42,7 +42,7 @@ const submit = () => {
 
             <div class="relative z-0 flex flex-col min-w-0 break-words bg-white border-0 dark:bg-gray-800 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="p-6 mb-0 text-center bg-white border-b-0 dark:bg-gray-800 rounded-t-2xl">
-                    <h5 class="text-gray-600 dark:text-gray-300">Mot de passe Oublier </h5>
+                    <h5 class="text-gray-600 dark:text-gray-300">Mot de passe oublié </h5>
                 </div>
                         <div class="flex-auto px-6 py-2 pb-12">
 

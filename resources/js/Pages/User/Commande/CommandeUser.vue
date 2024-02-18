@@ -73,7 +73,7 @@ import UserLayout from '@/Layouts/UserLayout.vue';
 
 
 defineProps({
-    commandes : Array
+    commandes : Object
 });
 
 const formatCurrency = (value) => {
