@@ -107,8 +107,7 @@
 
 
                                                     <div v-if="utilisateurParainer.length >= 10" class="mt-4 ">
-                                                        <p class="mb-4 text-lg text-amber-500">Félicitations! Vous avez
-                                                            parrainé 10 utilisateurs et vous avez gagné un cadeau spécial vous allez etre notifier!
+                                                        <p class="mb-4 text-lg text-amber-500">Félicitations ! Vous avez parrainé 10 utilisateurs et vous avez gagné un cadeau spécial. Vous allez être notifié
                                                             🥳​🥳​</p>
                                                         <Link class="hidden mt-6 text-lg text-green-500 ">
                                                         <Link :href="route('gift', $page.props.auth.user.id)">Recuperez
