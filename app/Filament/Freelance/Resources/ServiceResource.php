@@ -251,7 +251,7 @@ class ServiceResource extends Resource
                 Tables\Actions\Action::make('Supprimer')
                 ->requiresConfirmation()
                         ->action(function (Service $service) {
-                            if($service->orders ==null)
+                            if($service->orders->count() == 0)
                             {
                                 $service->delete();
                             }else{
