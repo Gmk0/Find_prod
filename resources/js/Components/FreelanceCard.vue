@@ -64,7 +64,7 @@ const like = ref(props.freelance.like);
     <div class="m-1 lg:mx-0">
         <div class="relative flex w-full min-w-[19rem] flex-col font-bega-light rounded-xl bg-white dark:bg-gray-900 bg-clip-border text-gray-700 shadow-lg">
             <div
-                class="relative h-[14rem] mx-4 mt-2 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
+                class="relative h-[14rem] mx-4 mt-2 overflow-hidden text-white shadow-lg rounded-xl blue-gray-100 bg-clip-border shadow-blue-gray-500/40">
                 <template  v-if="props.freelance.user.profile_photo_path != null">
 
                       <FsLightbox
@@ -75,7 +75,7 @@ const like = ref(props.freelance.like);
                 </template>
 
 
-                <img v-if="props.freelance.user.profile_photo_path != null"   class="object-containzegDV w-full h-full"  :src="'/storage/' + props.freelance.user.profile_photo_path" :alt="props.freelance.user.name" />
+                <img v-if="props.freelance.user.profile_photo_path != null"   class="object-contain w-full h-full"  :src="'/storage/' + props.freelance.user.profile_photo_path" :alt="props.freelance.user.name" />
                 <img v-else class="object-cover w-full h-full " :src="props.freelance.user.profile_photo_url" alt="">
 
                 <div v-if="props.freelance.user.profile_photo_path !=null"
