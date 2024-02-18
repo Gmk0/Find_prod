@@ -36,9 +36,9 @@ class UserResource extends Resource
                     ->email()
                     ->required(),
             Forms\Components\TextInput::make('referral_by')
-                ->required(),
+                ,
             Forms\Components\TextInput::make('referral_code')
-            ->required(),
+        ,
                 Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\DateTimePicker::make('phone_verified_at'),
 
