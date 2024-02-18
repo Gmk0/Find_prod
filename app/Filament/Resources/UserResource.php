@@ -35,15 +35,16 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required(),
+            Forms\Components\TextInput::make('referral_by')
+                ->required(),
+            Forms\Components\TextInput::make('referral_code')
+            ->required(),
                 Forms\Components\DateTimePicker::make('email_verified_at'),
                 Forms\Components\DateTimePicker::make('phone_verified_at'),
 
 
-                Forms\Components\TextInput::make('current_team_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('google_id'),
-                Forms\Components\TextInput::make('facebook_id'),
-                Forms\Components\TextInput::make('profile_photo_path'),
+
+                Forms\Components\FileUpload::make('profile_photo_path'),
 
 
 
@@ -93,7 +94,7 @@ class UserResource extends Resource
                     ->searchable()
                 ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\ImageColumn::make('profile_photo_path')
-                ->rounded()
+                ->circular()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

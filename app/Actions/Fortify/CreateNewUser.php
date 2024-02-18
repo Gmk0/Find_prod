@@ -39,6 +39,7 @@ class CreateNewUser implements CreatesNewUsers
             ],
         ])->validate();
 
+
         $referrer = User::where('referral_code', $input['referral_code'])->first();
         $generatedReferralCode = $this->generateReferralCode($input['name']);
 
@@ -48,7 +49,7 @@ class CreateNewUser implements CreatesNewUsers
             'phone'=>$input['phone'],
             'password' => Hash::make($input['password']),
             'referral_code' => $generatedReferralCode,
-            'referral_by'=> $referrer->id??null
+            'referral_by'=> $referrer->id ? $referrer->id : null,
         ]);
     }
 
