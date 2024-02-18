@@ -45,6 +45,8 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('facebook_id'),
                 Forms\Components\TextInput::make('profile_photo_path'),
 
+
+
             ]);
     }
 
@@ -65,8 +67,15 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('phone_verified_at')
                     ->dateTime()
                     ->sortable(),
+            Tables\Columns\ImageColumn::make('referrals.name')->label('Parainé')
+                ->circular()
+                ->stacked()
+                ->limit(10)
+                ->limitedRemainingText()
+            ->toggleable(isToggledHiddenByDefault: true)
+            ,
 
-            Tables\Columns\TextColumn::make('referrals_count')->label('Parainé')
+            Tables\Columns\TextColumn::make('referrals_count')->label('Nombre d\'utilisateur Parainé')
             ->counts('referrals')
             ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
@@ -123,6 +132,7 @@ class UserResource extends Resource
     {
         return [
             //
+            RelationManagers\ReferralsRelationManager::class,
         ];
     }
     public static function getEloquentQuery(): Builder

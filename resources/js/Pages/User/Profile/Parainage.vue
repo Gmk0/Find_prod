@@ -95,7 +95,7 @@
                                                 <div class="py-4">
                                                     <h1 class="text-base dark:text-gray-100">Utilisateurs Parrainés</h1>
                                                 </div>
-                                                <div v-for="user in utilisateurParainer" :key="user.id"
+                                                <div v-for="(user, index) in utilisateurParainer.slice(0, 10)" :key="user.id"
                                                     class="flex items-center mt-4">
                                                     <Photo :user="user" />
                                                     <div class="ml-4">
