@@ -65,8 +65,10 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('phone_verified_at')
                     ->dateTime()
                     ->sortable(),
-            Tables\Columns\IconColumn::make('referrals.user.profile_photo_path')
-                ->boolean()->toggleable(isToggledHiddenByDefault: true),
+
+            Tables\Columns\TextColumn::make('referrals_count')->label('Parainé')
+            ->counts('referrals')
+                ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('is_online')
                     ->boolean()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('last_activity')
