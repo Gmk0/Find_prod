@@ -68,6 +68,7 @@ class UserResource extends Resource
 
             Tables\Columns\TextColumn::make('referrals_count')->label('Parainé')
             ->counts('referrals')
+            ->sortable()
                 ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('is_online')
                     ->boolean()->toggleable(isToggledHiddenByDefault: true),
