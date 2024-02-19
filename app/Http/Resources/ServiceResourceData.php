@@ -17,6 +17,8 @@ class ServiceResourceData extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'slug' => $this->slug,
+            'userSlug' => $this->userSlug(),
             'basic_price' => $this->basic_price,
             'service_numero' => $this->service_numero,
             'image' => $this->files,

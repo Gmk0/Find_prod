@@ -40,7 +40,12 @@ class ServiceResource extends Resource
         return $form
             ->schema([
                 Fieldset::make('Titre')->schema([
-                TextInput::make('title')->label('Titre')->helperText('Donner un titre a votre service ')->required(),
+                TextInput::make('title')->label('Titre')
+
+                    ->minLength(2)
+                    ->maxLength(50)
+                ->helperText('Donner un titre a votre service ')->required(),
+
 
                 Select::make('tags')->label('tags')
                 ->options(function () {

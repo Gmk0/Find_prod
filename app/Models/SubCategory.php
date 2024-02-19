@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 
 class SubCategory extends Model
 {
     use HasFactory;
-
+    use HasSlug;
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -25,6 +27,7 @@ class SubCategory extends Model
         'category_id',
         'description',
         'illustration',
+        'slug',
     ];
 
     /**
@@ -36,6 +39,14 @@ class SubCategory extends Model
         'id' => 'string',
         'category_id' => 'string',
     ];
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->slugsShouldBeNoLongerThan(50);
+    }
 
     public function category(): BelongsTo
     {

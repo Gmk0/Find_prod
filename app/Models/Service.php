@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Service extends Model
 {
     use HasFactory;
+    use HasSlug;
 
     public $incrementing = false;
     protected $keyType = 'string';
@@ -25,6 +28,7 @@ class Service extends Model
         'id',
         'service_numero',
         'title',
+        'slug',
         'tags',
         'description',
         'basic_price',
@@ -63,6 +67,7 @@ class Service extends Model
     protected $casts = [
         'id'=>'string',
         'tags' => 'array',
+        'slug'=>'string',
         'basic_price' => 'decimal:2',
         'sub_category' => 'array',
         'files' => 'array',
@@ -81,6 +86,13 @@ class Service extends Model
     ];
 
 
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug')
+            ->slugsShouldBeNoLongerThan(50);
+    }
 
 
 
@@ -214,6 +226,30 @@ class Service extends Model
 
 
     }
+
+    public function userSlug()
+    {
+        // Récupérer le nom d'utilisateur
+        $username = $this->freelance->user->name;
+
+        // Convertir le nom d'utilisateur en minuscules
+        $username = strtolower($username);
+
+        // Remplacer les espaces par des tirets
+        $username = str_replace(' ', '-', $username);
+
+        // Supprimer les caractères spéciaux
+        $username = preg_replace('/[^a-z0-9-]/', '', $username);
+
+        // Si le slug est vide, utiliser l'identifiant de l'utilisateur
+        if (empty($username)) {
+            $username = $this->freelance->user->id;
+        }
+
+        // Retourner le slug
+        return $username;
+    }
+
 
     public static function boot()
     {

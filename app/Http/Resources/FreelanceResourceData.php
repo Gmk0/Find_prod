@@ -18,6 +18,7 @@ class FreelanceResourceData extends JsonResource
             'id' => $this->id,
             'nom' =>$this->nom,
             'prenom' => $this->prenom,
+            'slugUser'=> $this->userSlug(),
             'identifiant' => $this->identifiant,
             'description' => $this->description,
             'experience' =>$this->experience,

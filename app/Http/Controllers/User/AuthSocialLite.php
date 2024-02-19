@@ -40,6 +40,9 @@ class AuthSocialLite extends Controller
 
             $user = Socialite::driver('google')->user();
 
+            $name = $user->name;
+
+
 
 
             $finduser = User::where('google_id', $user->id)->first();
@@ -50,9 +53,16 @@ class AuthSocialLite extends Controller
 
                 return redirect()->route('home');
             } else {
+
+                // Vérifiez si le nom d'utilisateur existe déjà
+                if (User::where('name', $name)->exists()) {
+                    // Si le nom d'utilisateur existe, ajoutez un horodatage à la fin
+                    $name = $user->name . '-' . time();
+                }
+
                 $password = Str::random(8);
                 $newUser = User::updateOrCreate(['email' => $user->email], [
-                    'name' => $user->name,
+                    'name' => $name,
                     'google_id' => $user->id,
                     'password' => Hash::make($password),
                     'profile_photo_url' => $user->getAvatar(),

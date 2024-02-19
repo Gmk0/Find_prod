@@ -37,6 +37,8 @@
         "pxlrbt/filament-spotlight": "^1.0",
         "shuvroroy/filament-spatie-laravel-health": "^2.0",
         "spatie/laravel-medialibrary": "^10.15",
+        "spatie/laravel-sitemap": "^7.2",
+        "spatie/laravel-sluggable": "^3.5",
         "tightenco/ziggy": "^1.0",
         "vonage/vonage-laravel": "^1.0"
     },

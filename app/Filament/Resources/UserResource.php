@@ -30,6 +30,8 @@ class UserResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
+
+
                 Forms\Components\TextInput::make('phone')
                     ->tel(),
                 Forms\Components\TextInput::make('email')
@@ -60,6 +62,9 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
+            Tables\Columns\TextColumn::make('slug')
+                ->toggleable(isToggledHiddenByDefault: true)
+                ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email_verified_at')

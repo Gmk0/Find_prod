@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Storage;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable as AuthTwoFactorAuthenticatable;
 
 use Filament\Panel;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerifyEmail
 {
@@ -38,6 +40,8 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
     public $incrementing = false;
     protected $keyType = 'string';
 
+    use HasSlug;
+
 
 
     /**
@@ -48,6 +52,7 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
     protected $fillable = [
         'name',
         'email',
+        'slug',
         'password',
         'email_verified_at',
         'phone',
@@ -63,6 +68,13 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
             return str_ends_with($this->email, '@find-freelance.com') ;
         }
         return true;
+    }
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug')
+            ->slugsShouldBeNoLongerThan(50);
     }
 
 
@@ -141,6 +153,10 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
     public function freelance()
     {
         return $this->hasOne(Freelance::class);
+    }
+    public function freelanceActiver()
+    {
+        return $this->hasOne(Freelance::class)->where('status_compte','=','actif');;
     }
 
     public function userSetting()
