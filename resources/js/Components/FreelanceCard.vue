@@ -157,7 +157,7 @@ const like = ref(props.freelance.like);
                      data-ripple-light="true">
                     Contacter
                 </button>
-                <Link :href="route('profileFreelance', props.freelance.identifiant)"
+                <Link :href="route('profileFreelance', props.freelance.slugUser)"
                     class="block w-full select-none rounded-lg  py-2 px-2 text-center align-middle  text-sm font-bega_medium uppercase dark:text-white shadow-md dark:shadow-white-500/20 text-amber-600 transition-all hover:shadow-lg  focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                     profile
             </Link>

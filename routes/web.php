@@ -66,7 +66,7 @@ Route::get('/auth/register/{code?}',[AuthController::class,'register'])->name('a
 Route::controller(FreelanceController::class)->group(function(){
 
     Route::get('/find-freelance','index')->name('find_freelance');
-    Route::get('/find-freelance/profile/{identifiant}', 'portefolio')->where('identifiant', '(.*)')->name('profileFreelance')->middleware('auth');
+    Route::get('/find-freelance/profile/{slugUser}', 'portefolio')->name('profileFreelance')->middleware('auth');
     Route::post('/like-freelance','Like')->name('like.freelance')->middleware('auth');
 
     Route::get('/tutorials/freelances', 'tutorialFreelance')->name('tutorialsFrealance');
@@ -88,7 +88,8 @@ Route::controller(CategoryController::class)->group(function(){
     Route::get('/categories/{category}', 'categoryName')->name('categoryName');
 
     Route::get('/categories','index')->name('categories');
-    Route::get('/services/{service_numero}', 'oneService')->name('oneService')->middleware('auth');
+    Route::get('/services/{slugUser}/{slug}', 'oneService')->name('oneService')->middleware('auth');
+    Route::get('/services/{slugUser}', 'OtherPortefolio')->name('OtherPortefolio')->middleware('auth');
 });
 
 Route::controller(ServiceController::class)->group(function(){

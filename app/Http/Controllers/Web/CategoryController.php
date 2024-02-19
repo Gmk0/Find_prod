@@ -9,9 +9,11 @@ use App\Models\FeedbackService;
 use Illuminate\Http\Request;
 
 use Inertia\Inertia;
+use App\Http\Resources\FreelanceResourceData;
 use App\Models\Freelance;
 use App\Models\Service;
 use App\Models\SubCategory;
+use App\Models\User;
 use Illuminate\Support\Facades\Request as RequestFacade;
 
 
@@ -71,6 +73,8 @@ class CategoryController extends Controller
                 ->through(fn ($service) => [
                     'id' => $service->id,
                     'title' => $service->title,
+                    'userSlug' => $service->userSlug(),
+                    'slug' => $service->slug,
                     'basic_price' => $service->basic_price,
                     'service_numero' => $service->service_numero,
                     'image' => $service->files,
@@ -80,7 +84,7 @@ class CategoryController extends Controller
                     'orderCount'=>$service->orderCount(),
                     'average' => $service->averageFeedback(),
                     'freelance' => $service->freelance ? $service->freelance->only('nom', 'prenom', 'identifiant','level') : null,
-                    'user'=>$service->freelance->user ? $service->freelance->user->only('name', 'profile_photo_path', 'profile_photo_url') : null,
+                    'user'=>$service->freelance->user ? $service->freelance->user->only('name', 'profile_photo_path', 'profile_photo_url','slug') : null,
                     'category' => $service->category ? $service->category->only('name', 'id','slug') : null,
                     'url_default' => $service->category->getFirstMediaUrl('categories') ?? null,
                 ]),
@@ -159,6 +163,8 @@ class CategoryController extends Controller
                         ->through(fn ($service) => [
                             'id' => $service->id,
                             'title' => $service->title,
+                            'slug' => $service->slug,
+                            'userSlug' => $service->userSlug(),
                             'basic_price' => $service->basic_price,
                             'service_numero' => $service->service_numero,
                             'image' => $service->files,
@@ -168,7 +174,7 @@ class CategoryController extends Controller
                             'orderCount' => $service->orderCount(),
                             'average' => $service->averageFeedback(),
                             'freelance' => $service->freelance ? $service->freelance->only('nom', 'prenom', 'identifiant', 'level') : null,
-                            'user' => $service->freelance->user ? $service->freelance->user->only('name', 'profile_photo_path', 'profile_photo_url') : null,
+                            'user' => $service->freelance->user ? $service->freelance->user->only('name', 'profile_photo_path', 'profile_photo_url', 'slug') : null,
                             'category' => $service->category ? $service->category->only('name', 'id', 'slug') : null,
                             'url_default'=> $service->category->getFirstMediaUrl('categories')??null,
                         ]),
@@ -208,13 +214,16 @@ class CategoryController extends Controller
     }
 
 
-    public function oneService($service_numero)
+    public function oneService($slugUser,$slug)
     {
 
-        $service = Service::where('service_numero', $service_numero)
-            ->first();
+        $service = Service::findBySlug($slug);
 
         if($service == null){
+            return redirect()->back();
+        }
+
+        if(!$service->userSlug()==$slugUser){
             return redirect()->back();
         }
 
@@ -250,5 +259,70 @@ class CategoryController extends Controller
             'commentaires'=>$commentaires,
 
         ]);
+    }
+
+
+
+    public function OtherPortefolio($slugUser)
+    {
+
+        $user = User::findBySlug($slugUser);
+
+        if($user ==null)
+        {
+            return redirect()->back();
+        }
+
+        $freelance=$user->freelanceActiver;
+
+
+
+
+
+
+        if ($freelance ==null) {
+
+            return redirect()->back();
+        }
+
+            $services = $freelance->services;
+
+            $realisations = $freelance->user->realisations;
+
+
+
+            $realisationsWithMedia = $realisations->map(function ($realisation) {
+                return [
+                    'id' => $realisation->id,
+                    'description' => $realisation->description,
+                    'media' => $realisation->getMedia('realisations')->map(function ($media) {
+                        return [
+                            'url' => $media->getUrl(),
+                            'alt' => $media->name,
+                        ];
+                    }),
+                ];
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+            return Inertia::render(
+                'Web/Freelance/Portefolio',
+                [
+                    'freelance' => FreelanceResourceData::make($freelance),
+                    'services' => ServiceResourceData::collection($services),
+                    'realisations' => $realisationsWithMedia,
+                ]
+            );
+
     }
 }

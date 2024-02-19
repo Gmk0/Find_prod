@@ -614,14 +614,14 @@ const isLastRejectedMessage = (index) => {
                                                                     <img class="w-10 h-10 mr-2 rounded-lg" :src="'/storage/'+ groupedMessage.message.service.files[0]"
                                                                         alt="Service Image">
 
-                                                            <Link :href="route('oneService', groupedMessage.message.service.service_numero)"
+                                                            <Link :href="route('oneService', [groupedMessage.message.user_service.slug, groupedMessage.message.service.slug])"
                                                             class="truncate hover:text-amber-500 ">{{ groupedMessage.message.service.title }}</Link>
                                                     </div>
                                                     <div class="p-2 bg-gray-200 border-t border-gray-300 rounded-b-lg shadow-sm dark:bg-navy-700">
 
 
 
-                                                        <template v-if="$page.props.auth.user.id != groupedMessage.message.user_service">
+                                                        <template v-if="$page.props.auth.user.id != groupedMessage.message.user_service.id">
                                                         <Button size="small" outlined @click="DiscuterPrice(groupedMessage.message.service.id)" label="Discuter prix"/>
                                                         </template>
 

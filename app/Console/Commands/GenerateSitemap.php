@@ -7,6 +7,8 @@ use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
 use App\Models\Category;
+use App\Models\Service;
+use App\Models\Freelance;
 
 class GenerateSitemap extends Command
 {
@@ -53,6 +55,25 @@ class GenerateSitemap extends Command
                     //->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
             );
         });
+
+        Service::get()->each(function(Service $Service) use($categoryMap){
+            $categoryMap->add(
+                Url::create("/services/{$Service->userSlug()}/{$Service->slug}")
+                    ->setPriority(0.9)
+                    //->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+
+            );
+
+        });
+        Freelance::get()->each(function (Freelance $reelance) use ($categoryMap) {
+            $categoryMap->add(
+                Url::create("/find-freelance/profile/{$reelance->userSlug()}")
+                ->setPriority(0.9)
+                //->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+
+            );
+        });
+
 
         $categoryMap->writeToFile(public_path('sitemap.xml'));
     }

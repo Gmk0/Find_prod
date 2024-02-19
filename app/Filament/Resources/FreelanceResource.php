@@ -192,8 +192,7 @@ class FreelanceResource extends Resource
                 // main options
                 ->trigger('mouseenter focus') // for more: https://atomiks.github.io/tippyjs/v6/all-props/#trigger
                 ->placement('top') // for more: https://atomiks.github.io/tippyjs/v6/all-props/#placement
-                ->offset([0, 10
-                ]) // for more: https://atomiks.github.io/tippyjs/v6/all-props/#offset
+                //->offset([0, 10]) // for more: https://atomiks.github.io/tippyjs/v6/all-props/#offset
                 ->popOverMaxWidth('none') // for more: https://atomiks.github.io/tippyjs/v6/all-props/#maxwidth
                 ->icon('heroicon-o-chevron-right')
             ->content(fn ($record) => new HtmlString($record->user->name . '<br>' . $record->user->email)),
@@ -209,7 +208,7 @@ class FreelanceResource extends Resource
                 Tables\Columns\TextColumn::make('prenom')
                     ->searchable(),
             Tables\Columns\ImageColumn::make('user.profile_photo_path')
-            ->rounded()
+            ->circular()
                 ->label('PHOTO'),
                 Tables\Columns\TextColumn::make('identifiant')
 

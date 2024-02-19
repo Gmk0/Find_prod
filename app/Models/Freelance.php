@@ -207,24 +207,12 @@ class Freelance extends Model
 
     public function userSlug()
     {
-        // Récupérer le nom d'utilisateur
-        $username = $this->user->name;
 
-        // Convertir le nom d'utilisateur en minuscules
-        $username = strtolower($username);
-
-        // Remplacer les espaces par des tirets
-        $username = str_replace(' ', '-', $username);
-
-        // Supprimer les caractères spéciaux
-        $username = preg_replace('/[^a-z0-9-]/', '', $username);
-
-        // Si le slug est vide, utiliser l'identifiant de l'utilisateur
+        $username = $this->user->slug;
         if (empty($username)) {
-            $username = $this->user->id;
+            $username = $this->user->name;
         }
 
-        // Retourner le slug
         return $username;
     }
     public static function getFilteredFreelances(Request $request, $perPage = 10)

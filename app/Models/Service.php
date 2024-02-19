@@ -230,17 +230,7 @@ class Service extends Model
     public function userSlug()
     {
         // Récupérer le nom d'utilisateur
-        $username = $this->freelance->user->name;
-
-        // Convertir le nom d'utilisateur en minuscules
-        $username = strtolower($username);
-
-        // Remplacer les espaces par des tirets
-        $username = str_replace(' ', '-', $username);
-
-        // Supprimer les caractères spéciaux
-        $username = preg_replace('/[^a-z0-9-]/', '', $username);
-
+        $username = $this->freelance->user->slug;
         // Si le slug est vide, utiliser l'identifiant de l'utilisateur
         if (empty($username)) {
             $username = $this->freelance->user->id;

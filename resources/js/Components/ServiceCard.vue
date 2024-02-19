@@ -146,10 +146,12 @@ const addToCart = () => {
                 {{ props.service.title }}
 
             </Link>
-            <Link v-else :href="route('oneService', props.service.service_numero)" class="mr-1 text-gray-600 dark:text-gray-100 hover:text-amber-600 ">
+
+            <Link v-else :href="route('oneService', [props.service.userSlug , props.service.slug])" class="mr-1 text-gray-600 dark:text-gray-100 hover:text-amber-600 ">
                     {{ props.service.title }}
 
             </Link>
+
 
 
         </div>
@@ -158,11 +160,11 @@ const addToCart = () => {
                 <Photo :user="props.service.user" taille="8" />
 
 
-                <a href="" class="flex flex-col items-center gap-2">
+                <Link :href="route('profileFreelance', props.service.userSlug)" class="flex flex-col items-center gap-2">
 
                     <span class="text-xs md:flex">{{ props.service.user.name }}</span>
 
-                </a>
+                </Link>
 
             </div>
         </div>

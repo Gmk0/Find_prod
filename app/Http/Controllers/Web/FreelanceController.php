@@ -8,6 +8,7 @@ use App\Http\Resources\RealisationResource;
 use App\Http\Resources\ServiceResourceData;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Freelance;
 use App\Models\Tutorial;
@@ -49,28 +50,37 @@ class FreelanceController extends Controller
                     'id' => $freelance->id,
                     'nom' => $freelance->nom,
                     'nomComplet'=>  $freelance->nom_complet,
+                    'slugUser'=> $freelance->userSlug(),
                     'prenom' => $freelance->prenom,
                     'level' => $freelance->level,
                     'identifiant' => $freelance->identifiant,
                     'sub_categorie' => $freelance->subcategories(),
                     'like' => $freelance->isFavorite(),
                     //'' => $contact->deleted_at,
-                    'user' => $freelance->user ? $freelance->user->only('name', 'profile_photo_url', 'profile_photo_path') : null,
+                    'user' => $freelance->user ? $freelance->user->only('name', 'profile_photo_url', 'profile_photo_path','slug') : null,
                     'category' => $freelance->category ? $freelance->category->only('name', 'id') : null,
                 ]),
 
             ]);
     }
 
-    public function portefolio($portefolio)
+    public function portefolio($slugUser)
     {
 
 
-        $freelance = Freelance::where('identifiant', $portefolio)->where('status_compte', '=', 'actif')->first();
+        $user=User::findBySlug($slugUser);
 
-
-        if($freelance !=null)
+        if(empty($user))
         {
+            return redirect()->back();
+        }
+        $freelance=$user->freelanceActiver;
+
+
+        if(empty($freelance)){
+
+            return redirect()->back();
+        }
 
             $services = $freelance->services;
 
@@ -108,9 +118,7 @@ class FreelanceController extends Controller
               'realisations'=> $realisationsWithMedia,
              ]);
 
-        }else{
-            return redirect()->back();
-        }
+
 
     }
 

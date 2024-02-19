@@ -33,11 +33,15 @@
                     <div v-if="searchPerformed"
                         class="absolute w-full mt-1 overflow-y-auto bg-white border divide-y rounded-lg shadow z-[60] custom-scrollbar max-h-72">
                         <div v-if="results.length > 0">
+
+
                             <div v-for="result in results" :key="result.id">
-                                <Link :href="route('oneService', result.service_numero)"
+
+                                <Link :href="route('oneService', [result.userSlug, result.slug])"
                                     class="block p-2 text-sm text-gray-800 cursor-pointer hover:bg-amber-700 hover:text-white">
                                     {{ result.title }} - {{ result.category.name }}
                             </Link>
+
                             </div>
 
 
@@ -102,7 +106,7 @@
 import { ref } from 'vue';
 
 import axios from 'axios';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
 
 const search = ref('');
@@ -126,6 +130,15 @@ const afficher=()=>{
 
 }
 
+const searchResults =()=>{
+    router.post(route('searchElement'), {
+
+        search: search.value
+
+    });
+
+}
+
 const searchResult = async () => {
     try {
         loading.value = true;
@@ -139,15 +152,16 @@ const searchResult = async () => {
 
         });
         results.value = response.data.results;
-        loading.value = false;
+        //loading.value = false;
 
-        console.log(response.data)
+        console.log(results.value)
 
 
     } catch (e) {
+        console.log(e);
 
         loading.value = false;
-        results.value = [];
+
     }
 
 

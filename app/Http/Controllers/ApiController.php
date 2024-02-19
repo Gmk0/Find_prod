@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SignatureCalculator;
+use App\Http\Resources\ServiceResourceData;
 use App\Models\Category;
 use App\Models\Service;
 use App\Models\SubCategory;
@@ -63,26 +64,23 @@ class ApiController extends Controller
 
 
             $value  = $request->search;
-            $results = [];
-            $results = Service::with('category')
-                ->where(function ($query) use ($value) {
 
-                    $keywords = explode(' ', $value);
-                    foreach ($keywords as $keyword) {
-                        $query->orWhere('title', 'like', '%' . $keyword . '%')
-                            ->orWhereHas('category', function ($query) use ($keyword) {
-                                $query->where('name', 'like', '%' . $keyword . '%');
-                            });
-                    }
-                })
+            $results = [];
+            $results = Service::Where('title', 'like', '%' . $value . '%')
+                    ->orWhereHas('category', function ($query) use ($value) {
+                        $query->where('name', 'like', '%' . $value . '%');
+                    })
                 ->limit(10)
                 ->get();
 
 
+            $results = ServiceResourceData::collection($results);
+
             return response()->json(['results' => $results], 200);
 
        }catch (\Exception $e){
-            return response()->json(['results' => []], 203);
+
+            return response()->json(['error' => $e->getMessage()]);
 
 
        }
