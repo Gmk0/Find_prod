@@ -41,7 +41,7 @@
 
         .button {
             background-color: #0073b7;
-            color: #fff;
+            color: #fff !important;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;

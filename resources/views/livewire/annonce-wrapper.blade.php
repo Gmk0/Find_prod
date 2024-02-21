@@ -19,7 +19,7 @@
     <div class="flex gap-4">
         @empty(!$annonce->link)
 
-        <x-filament::button a="{{$annonce->link}}" icon="heroicon-m-globe"
+        <x-filament::button a="{{$annonce->link}}" icon="heroicon-o-globe-alt"
           size="sm"
          icon-position="after"
             color="primary">
