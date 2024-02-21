@@ -19,15 +19,15 @@
     <div class="flex gap-4">
         @empty(!$annonce->link)
 
+        <a href="{{$annonce->link}}">
         <x-filament::button
-        href="{{$annonce->link}}"
-        tag="a"
          icon="heroicon-o-globe-alt"
           size="sm"
          icon-position="after"
             color="primary">
             voir plus
         </x-filament::button>
+        </a>
         @endempty
 
 
