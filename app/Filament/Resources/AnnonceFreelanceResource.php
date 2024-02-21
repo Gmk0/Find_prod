@@ -92,6 +92,11 @@ class AnnonceFreelanceResource extends Resource
         return $table
             ->columns([Tables\Columns\TextColumn::make('name')
                 ->searchable(),
+            Tables\Columns\TextColumn::make('type_freelance')
+                ->searchable(),
+            Tables\Columns\ToggleColumn::make('afficher')
+                ->searchable(),
+
                 //
 
             ])
@@ -100,6 +105,7 @@ class AnnonceFreelanceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
