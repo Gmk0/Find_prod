@@ -68,16 +68,14 @@
             <p>Bonjour {{$user->name}},</p>
             <p>Félicitations ! Votre compte freelance sur Find-freelance a été activé avec succès !</p>
             <p>Vous pouvez désormais commencer à proposer vos services et à trouver des clients.</p>
-            <a href="{{url('/freelance-gestion')}}" class="button">Voir mon profil</a>
+            <a href="https://www.find-freelance.com/freelance-gestion" class="button">Voir mon profil</a>
             <p>Cordialement,</p>
             <p>L'équipe de Find-freelance</p>
         </div>
         <div class="footer">
           Copyright ©
-        <script>
-            document.write(new Date().getFullYear());
-        </script>
-        Find
+            2024
+            Find
         </div>
     </div>
 </body>
