@@ -45,7 +45,7 @@ class CompteFreelanceActiver extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         try {
-            return (new MailMessage)->view('emails.acount-activer')
+            return (new MailMessage)->view('emails.acount-activer',['user' => $notifiable])
                 ->subject('ACTIVATION COMPTE');
         } catch (\Exception $e) {
             // dd($e->getMessage());
