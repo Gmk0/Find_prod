@@ -16,11 +16,11 @@
 
                 <div  class="grid grid-cols-2 gap-4 px-auto lg:grid-cols-4">
                     <Link :href="route('user.transactions')"
-                        class="px-4 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-gray-900 lg:px-6 lg:py-6">
+                        class="px-4 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-findDark-900 lg:px-6 lg:py-6">
                         <div class="flex items-center justify-between">
                             <span class="text-sm text-indigo-600 font-bega-medium">Total Depense</span>
                             <span
-                                class="hidden px-2 py-1 text-xs text-gray-500 transition duration-200 bg-gray-200 rounded-lg cursor-default dark:bg-gray-500 md:flex hover:bg-gray-500 dark:text-gray-900 hover:text-gray-200">Today</span>
+                                class="hidden px-2 py-1 text-xs text-findDark-500 transition duration-200 bg-findDark-200 rounded-lg cursor-default dark:bg-findDark-500 md:flex hover:bg-findDark-500 dark:text-findDark-900 hover:text-findDark-200">Today</span>
                         </div>
                         <div class="flex items-center justify-between mt-6">
                             <div>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <div class="flex items-end">
-                                    <span class="text-xl text-gray-800 font-bega-medium dark:text-gray-100 2xl:text-3xl">{{ depense }}</span>
+                                    <span class="text-xl text-findDark-800 font-bega-medium dark:text-findDark-100 2xl:text-3xl">{{ depense }}</span>
                                     <div class="flex items-center hidden mb-1 ml-2">
 
                                         <svg class="w-12 h-12 p-1 text-green-600 bg-green-400 border border-green-600 rounded-full 2xl:w-16 2xl:h-16 2xl:p-3 bg-opacity-20"
@@ -42,7 +42,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                                                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                                         </svg>
-                                        <span class="font-bega-medium text-sm text-gray-500 ml-0.5">2</span>
+                                        <span class="font-bega-medium text-sm text-findDark-500 ml-0.5">2</span>
 
 
                                     </div>
@@ -50,11 +50,11 @@
                             </div>
                         </div>
                     </Link>
-                    <Link :href="route('user.commandes')" class="px-6 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-gray-900">
+                    <Link :href="route('user.commandes')" class="px-6 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-findDark-900">
                         <div class="flex items-center justify-between">
                             <span class="text-sm text-green-600 font-bega-medium">Commande</span>
                             <span
-                                class="hidden px-2 py-1 text-xs text-gray-500 transition duration-200 bg-gray-200 rounded-lg cursor-default dark:bg-gray-600 md:hidden dark:text-gray-900 hover:bg-gray-500 hover:text-gray-200">7
+                                class="hidden px-2 py-1 text-xs text-findDark-500 transition duration-200 bg-findDark-200 rounded-lg cursor-default dark:bg-findDark-600 md:hidden dark:text-findDark-900 hover:bg-findDark-500 hover:text-findDark-200">7
                                 days</span>
                         </div>
                         <div class="flex items-center justify-between mt-6">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="flex flex-col">
                                 <div class="flex items-end">
-                                    <span class="text-2xl text-gray-800 font-bega-medium dark:text-gray-100 2xl:text-4xl">{{ commandeTotal }}</span>
+                                    <span class="text-2xl text-findDark-800 font-bega-medium dark:text-findDark-100 2xl:text-4xl">{{ commandeTotal }}</span>
                                     <div class="flex items-center mb-1 ml-2">
 
                                     </div>
@@ -77,11 +77,11 @@
                     </Link>
 
                     <Link :href="route('user.transactions')"
-                        class="px-6 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-gray-900">
+                        class="px-6 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-findDark-900">
                         <div class="flex items-center justify-between">
                             <span class="text-sm text-blue-600 font-bega-medium">Transaction</span>
                             <span
-                                class="hidden px-2 py-1 text-xs text-gray-500 transition duration-200 bg-gray-200 rounded-lg cursor-default dark:bg-gray-600 md:flex dark:text-gray-900 hover:bg-gray-500 hover:text-gray-200">7
+                                class="hidden px-2 py-1 text-xs text-findDark-500 transition duration-200 bg-findDark-200 rounded-lg cursor-default dark:bg-findDark-600 md:flex dark:text-findDark-900 hover:bg-findDark-500 hover:text-findDark-200">7
                                 days</span>
                         </div>
                         <div class="flex items-center justify-between mt-6">
@@ -94,25 +94,25 @@
                             </div>
                             <div class="flex-col ">
                                 <div class="flex items-end ">
-                                    <span class="text-2xl text-gray-800 font-bega-medium dark:text-gray-100 2xl:text-4xl">{{ transactionTotal }}</span>
+                                    <span class="text-2xl text-findDark-800 font-bega-medium dark:text-findDark-100 2xl:text-4xl">{{ transactionTotal }}</span>
                                     <div class="items-center hidden mb-1 ml-2 ">
                                         <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                                         </svg>
-                                        <span class="font-bega-medium text-sm text-gray-500 ml-0.5">7%</span>
+                                        <span class="font-bega-medium text-sm text-findDark-500 ml-0.5">7%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </Link>
                     <Link :href="route('user.missions')"
-                        class="px-6 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-gray-900">
+                        class="px-6 py-6 bg-white rounded-lg shadow-xl cursor-pointer dark:bg-findDark-900">
                         <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-800 dark:text-gray-100 font-bega-medium">Mission en attente</span>
+                            <span class="text-sm text-findDark-800 dark:text-findDark-100 font-bega-medium">Mission en attente</span>
                             <span
-                                class="hidden px-2 py-1 text-xs text-gray-500 transition duration-200 bg-gray-200 rounded-lg cursor-default dark:bg-gray-00 6md:flex dark:text-gray-900 hover:bg-gray-500 hover:text-gray-200">
+                                class="hidden px-2 py-1 text-xs text-findDark-500 transition duration-200 bg-findDark-200 rounded-lg cursor-default dark:bg-findDark-00 6md:flex dark:text-findDark-900 hover:bg-findDark-500 hover:text-findDark-200">
                                 days</span>
                         </div>
                         <div class="flex items-center justify-between mt-6">
@@ -128,14 +128,14 @@
                             </div>
                             <div class="flex flex-col">
                                 <div class="flex items-end">
-                                    <span class="text-2xl text-gray-800 font-bega-medium dark:text-gray-100 2xl:text-4xl">{{ missionAttente }}</span>
+                                    <span class="text-2xl text-findDark-800 font-bega-medium dark:text-findDark-100 2xl:text-4xl">{{ missionAttente }}</span>
                                     <div class="flex items-center hidden mb-1 ml-2">
                                         <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
                                         </svg>
-                                        <span class="font-bega-medium text-sm text-gray-500 ml-0.5">-1%</span>
+                                        <span class="font-bega-medium text-sm text-findDark-500 ml-0.5">-1%</span>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +148,7 @@
 
             <div class="mt-4">
                     <div>
-                    <H1 class="mb-4 text-lg text-gray-700 font-bega-medium dark:text-gray-200">Dernier commande</H1>
+                    <H1 class="mb-4 text-lg text-findDark-700 font-bega-medium dark:text-findDark-200">Dernier commande</H1>
                     </div>
                 <div>
                     <div class="card font-bega-medium">

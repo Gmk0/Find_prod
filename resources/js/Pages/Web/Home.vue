@@ -94,7 +94,7 @@
                 </div>
             </div>
 
-            <div class="absolute top-0 left-0 w-full h-screen bg-skin-fill dark:bg-gray-900 lg:hidden">
+            <div class="absolute top-0 left-0 w-full h-screen bg-skin-fill dark:bg-findDark-900 lg:hidden">
 
                 <div
                     class="hidden [mask-image:linear-gradient(to_bottom,white_20%,transparent_75%)] absolute bottom-[-100px] md:w-[800px] md:h-[750px] lg:top-[120px] lg:right-[-100px] xl:right-0 w-[500px] h-[500px] 2xl:w-[1026px] 2xl:h-[1026px]">
@@ -158,7 +158,7 @@
 
         </div>
 
-        <div id="features" class="bg-gray-100 dark:bg-gray-800">
+        <div id="features" class="bg-findDark-100 dark:bg-findDark-800">
 
             <div data-aos="" class="z-10 px-8 py-8 overflow-hidden lg:max-w-6xl 2xl:max-w-7xl 2xl:px-2 lg:mx-auto md:px-6">
                 <div class="flex flex-col-reverse lg:flex-row ">
@@ -178,7 +178,7 @@
                                 un freelance</Link>
 
                             <Link :href="route('register.begin')"
-                                class="mt-4 md:mt-0 mx-auto text-center box-border w-10/12 2xl:py-3  2xl:text-lg   rounded-md border border-amber-500/20 px-8 py-2.5 font-bega-medium text-amber-600 shadow-md shadow-amber-500/10 hover:bg-gray-100 duration-200   ">Dévenir
+                                class="mt-4 md:mt-0 mx-auto text-center box-border w-10/12 2xl:py-3  2xl:text-lg   rounded-md border border-amber-500/20 px-8 py-2.5 font-bega-medium text-amber-600 shadow-md shadow-amber-500/10 hover:bg-findDark-100 duration-200   ">Dévenir
 
                                 freelance</Link>
 
@@ -187,7 +187,7 @@
 
                         <!-- brand -->
                         <div class="mt-4 mb-2 text-center">
-                            <h1 class="text-xl text-gray-500 font-bega-light">Nos partenaires</h1>
+                            <h1 class="text-xl text-findDark-500 font-bega-light">Nos partenaires</h1>
 
                         </div>
                         <div class="grid grid-cols-2 gap-4 mx-4 mt-6 md:mx-0 px-auto md:gap-2 md:grid-cols-3 ">
@@ -195,10 +195,10 @@
 
 
                               <img src="/images/brand/makutano.png" alt="makutano"
-                                    class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
+                                    class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 findDarkscale hover:findDarkscale-0 bg-findDark-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
 
                                 <img src="/images/brand/silikin.png" alt="silikin"
-                                    class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 grayscale hover:grayscale-0 bg-gray-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
+                                    class="object-contain w-32 h-24 px-5 py-3 duration-200 border rounded-lg shadow-md cursor-pointer xl:px-auto xl:py-auto xl:w-40 findDarkscale hover:findDarkscale-0 bg-findDark-50 border-blue-300/20 shadow-blue-500/5 hover:scale-95">
 
                         </div>
 
@@ -220,35 +220,35 @@
 
         <TalkAboutUs />
 
-          <div  id="monde2" class=" xl:min-h-full lg:min-h-screen dark:bg-gray-900">
+          <div  id="monde2" class=" xl:min-h-full lg:min-h-screen dark:bg-findDark-900">
 
             <div class="p-4">
-                <div class="px-6 m-auto text-gray-600 xl:container md:px-12 xl:px-16">
+                <div class="px-6 m-auto text-findDark-600 xl:container md:px-12 xl:px-16">
                     <div
-                        class="flex-row-reverse justify-center p-4 space-y-6 bg-gray-100 rounded-lg dark:bg-gray-800 lg:p-16 md:flex md:gap-6 md:space-y-0 lg:items-center">
+                        class="flex-row-reverse justify-center p-4 space-y-6 bg-findDark-100 rounded-lg dark:bg-findDark-800 lg:p-16 md:flex md:gap-6 md:space-y-0 lg:items-center">
                         <div data-aos="flip-left" data-aos-duration="500" class="md:5/12 lg:w-1/2">
                             <img src="/images/services/presentation3.png" alt="image"
-                                class="rounded-lg dark:bg-gray-800 floating bg-skin-fill" loading="lazy" width="" height="" />
+                                class="rounded-lg dark:bg-findDark-800 floating bg-skin-fill" loading="lazy" width="" height="" />
                         </div>
                         <div data-aos="fade-right" data-aos-duration="300" class="md:7/12 lg:w-1/2">
                             <div class="px-4">
-                            <h2 class="text-xl text-gray-900 font-bega-semibold md:text-4xl dark:text-white">
+                            <h2 class="text-xl text-findDark-900 font-bega-semibold md:text-4xl dark:text-white">
                                 Trouvez dès aujourd'hui la personne idéale pour votre projet !
                             </h2>
                             </div>
 
-                            <div class="space-y-4 divide-y divide-gray-100 font-bega-light dark:divide-gray-800">
+                            <div class="space-y-4 divide-y divide-findDark-100 font-bega-light dark:divide-findDark-800">
                                 <div class="flex gap-4 mt-4 md:items-start">
                                     <div class="flex w-12 h-12 gap-4 rounded-full dark:bg-teal-900/20">
 
                                           <CheckCircleIcon class="text-[20px] text-amber-600 duration-200 hover:text-dark w-12 h-12 ml-2"  />
                                     </div>
                                     <div class="w-5/6">
-                                        <h4 class="text-lg text-gray-700 font-bega-medium dark:text-indigo-300">Des services de
+                                        <h4 class="text-lg text-findDark-700 font-bega-medium dark:text-indigo-300">Des services de
                                             haute qualité
                                             pour
                                             un prix équitable</h4>
-                                            <p class="text-gray-500 dark:text-gray-50">Mettez la main sur d'excellents services
+                                            <p class="text-findDark-500 dark:text-findDark-50">Mettez la main sur d'excellents services
                                                 a bon prix . Une
                                                 taxation en fonction de la demande de service</p>
                                     </div>
@@ -259,9 +259,9 @@
                                         <DocumentTextIcon class="text-[20px] text-amber-600 duration-200 hover:text-dark w-12 h-12 ml-2"  />
                                     </div>
                                     <div class="w-5/6">
-                                        <h4 class="text-lg text-gray-700 font-bega-medium dark:text-teal-300">Des services
+                                        <h4 class="text-lg text-findDark-700 font-bega-medium dark:text-teal-300">Des services
                                             efficacement fait</h4>
-                                            <p class="text-gray-500 dark:text-gray-50">Decouvrez les freelancers qui convient
+                                            <p class="text-findDark-500 dark:text-findDark-50">Decouvrez les freelancers qui convient
                                                 afin de travailler
                                                 avec vous</p>
                                     </div>
@@ -277,9 +277,9 @@
 
                                     </div>
                                     <div class="w-5/6">
-                                        <h4 class="text-lg text-gray-700 font-bega-medium dark:text-indigo-300">Des Paiement
+                                        <h4 class="text-lg text-findDark-700 font-bega-medium dark:text-indigo-300">Des Paiement
                                             protégés</h4>
-                                            <p class="text-gray-500 dark:text-gray-50">Assurez-vous de connaître le coût total
+                                            <p class="text-findDark-500 dark:text-findDark-50">Assurez-vous de connaître le coût total
                                                 dès le départ.
                                                 Votre rémunération ne sera versée que lorsque vous aurez confirmé
                                                 que le travail est satisfaisant.</p>
@@ -296,9 +296,9 @@
 
                                     </div>
                                     <div class="w-5/6">
-                                        <h4 class="text-lg text-gray-700 font-bega-medium dark:text-teal-300">Une Assistance 24h/24
+                                        <h4 class="text-lg text-findDark-700 font-bega-medium dark:text-teal-300">Une Assistance 24h/24
                                             et 7j/7</h4>
-                                            <p class="text-gray-500 dark:text-gray-50">Des Questions ? notre equipe d'assistance
+                                            <p class="text-findDark-500 dark:text-findDark-50">Des Questions ? notre equipe d'assistance
                                                 est disponible
                                                 24h/24 pour vous aider à tout moment et en tout lieu</p>
                                     </div>
@@ -316,13 +316,13 @@
         </div>
 
 
-        <div id="Services" class="bg-gray-100 lg:min-h-screen dark:bg-gray-800">
+        <div id="Services" class="bg-findDark-100 lg:min-h-screen dark:bg-findDark-800">
 
             <div class="max-w-6xl px-8 py-6 mx-auto md:px-6">
                 <!-- heading text -->
                 <div class="mb-10 text-center">
                     <span class="font-bega-medium text-amber-600">Categories</span>
-                    <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Découvrez les services</h1>
+                    <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-findDark-200 sm:text-xl">Découvrez les services</h1>
 
                 </div>
 
@@ -349,12 +349,12 @@
 
         </div>
 
-        <div v-if="getMissions.length > 0" class=" bg-gray-50 lg:min-h-screen dark:bg-gray-900">
+        <div v-if="getMissions.length > 0" class=" bg-findDark-50 lg:min-h-screen dark:bg-findDark-900">
               <div class="max-w-6xl px-8 py-6 mx-auto md:px-6">
                     <!-- heading text -->
                     <div class="mb-10 text-center">
                         <span class="font-bega-medium text-amber-600">Mission</span>
-                        <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Découvrez quelques missions</h1>
+                        <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-findDark-200 sm:text-xl">Découvrez quelques missions</h1>
 
                     </div>
 
@@ -530,9 +530,9 @@
         <CommentaireUser />
 
 
-          <div id="getStarted" class="bg-gray-900 lg:min-h-screen">
+          <div id="getStarted" class="bg-findDark-900 lg:min-h-screen">
             <div class="py-16 ">
-                <div class="container px-6 m-auto space-y-8 text-gray-500 md:px-12 lg:px-20">
+                <div class="container px-6 m-auto space-y-8 text-findDark-500 md:px-12 lg:px-20">
                     <div
                         class="justify-center gap-6 p-3 mx-auto text-center rounded-lg md:flex md:text-left lg:items-center lg:gap-16">
                         <div data-aos="fade-up" data-aos-duration="500" class="mb-6 space-y-6 md:mb-0 md:w-6/12 lg:w-6/12">
@@ -541,7 +541,7 @@
                                 de
                                 nouvelles opportunités ?
                             </h1>
-                            <p class="text-base font-bega-light text-gray-50 dark:text-gray-300">
+                            <p class="text-base font-bega-light text-findDark-50 dark:text-findDark-300">
                                 FIND permet aux freelances de proposer leurs compétences aux entreprises et autres personnes
                                 intéressées
                                 par
@@ -574,7 +574,7 @@
             </div>
 
         </div>
-          <div id="presentation" class="bg-gray-100 dark:bg-gray-950 lg:min-h-screen ">
+          <div id="presentation" class="bg-findDark-100 dark:bg-findDark-950 lg:min-h-screen ">
             <div class="max-w-6xl px-8 py-6 mx-auto md:px-4">
 
                 <!-- heading text -->
@@ -588,7 +588,7 @@
                     <div data-aos="fade-in" data-aos-duration="500"
                         class="grid gap-4 mb-4 sm:grid-cols-2 md:grid-cols-3 xl:gap-8">
                         <div
-                            class="flex flex-col items-center w-full px-8 py-8 duration-200 bg-white border shadow-lg cursor-pointer dark:bg-gray-800 group rounded-xl border-amber-500/10 shadow-amber-300/10 hover:bg-amber-600">
+                            class="flex flex-col items-center w-full px-8 py-8 duration-200 bg-white border shadow-lg cursor-pointer dark:bg-findDark-800 group rounded-xl border-amber-500/10 shadow-amber-300/10 hover:bg-amber-600">
                             <i name="people-outline"
                                 class="text-[55px] text-amber-600 duration-200  group-hover:text-white">
                             </i>
@@ -599,7 +599,7 @@
                         </div>
 
                         <div
-                            class="flex flex-col items-center px-5 py-8 duration-200 bg-white border shadow-lg cursor-pointer group rounded-xl dark:bg-gray-800 border-amber-500/10 shadow-amber-300/10 hover:bg-amber-600">
+                            class="flex flex-col items-center px-5 py-8 duration-200 bg-white border shadow-lg cursor-pointer group rounded-xl dark:bg-findDark-800 border-amber-500/10 shadow-amber-300/10 hover:bg-amber-600">
                             <i name="bag-check-outline"
                                 class="text-[55px] text-amber-600 duration-200 group-hover:text-white">
                             </i>
@@ -611,7 +611,7 @@
 
                         </div>
                         <div
-                            class="flex flex-col items-center px-5 py-8 duration-200 bg-white border shadow-lg cursor-pointer dark:bg-gray-800 group rounded-xl border-amber-500/10 shadow-amber-300/10 hover:bg-amber-600">
+                            class="flex flex-col items-center px-5 py-8 duration-200 bg-white border shadow-lg cursor-pointer dark:bg-findDark-800 group rounded-xl border-amber-500/10 shadow-amber-300/10 hover:bg-amber-600">
                             <i name="albums-outline"
                                 class="text-[55px] text-amber-600 duration-200 group-hover:text-white">
                             </i>
@@ -627,18 +627,18 @@
 
 
                     <div
-                        class="p-2 bg-white border border-gray-100 dark:border-gray-700 rounded-3xl dark:bg-gray-800 dark:shadow-none md:mx-auto lg:w-10/12 xl:w-8/12">
+                        class="p-2 bg-white border border-findDark-100 dark:border-findDark-700 rounded-3xl dark:bg-findDark-800 dark:shadow-none md:mx-auto lg:w-10/12 xl:w-8/12">
                         <div class="flex flex-col px-2 py-4 md:py-6 ">
 
                             <div class="space-y-6 py-auto justify md:col-span-2 sm:p-8">
                                 <div class="px-6">
-                                    <h1 class="mt-4 text-xl text-center text-gray-800 font-bega-medium dark:text-white">Comment
+                                    <h1 class="mt-4 text-xl text-center text-findDark-800 font-bega-medium dark:text-white">Comment
                                         s'inscrire
                                         comme
                                         <span class="text-amber-800 dark:text-white">freelance ?</span>
                                     </h1>
                                 </div>
-                                <p class="mt-2 text-lg leading-none text-center text-gray-700 text-md dark:text-white">
+                                <p class="mt-2 text-lg leading-none text-center text-findDark-700 text-md dark:text-white">
                                     <span class="font-serif">"</span>
                                     Apprenez à utiliser la Plateforme Find-freelance à l'aide de ces tutoriels.
                                     <span class="font-serif">"</span>
@@ -664,13 +664,13 @@
 
         </div>
 
-          <div id="faqs" class="bg-white lg:min-h-screen dark:bg-gray-800 dark:text-white">
+          <div id="faqs" class="bg-white lg:min-h-screen dark:bg-findDark-800 dark:text-white">
 
             <div class="px-8 py-6 mx-auto max-w-7xl md:px-6">
 
                 <div class="mb-10 text-center">
                     <span class="font-bega-medium text-amber-600">Faqs</span>
-                    <h1 class="text-2xl font-bega-semibold dark:text-gray-50 text-slate-700 sm:text-3xl">Faqs </h1>
+                    <h1 class="text-2xl font-bega-semibold dark:text-findDark-50 text-slate-700 sm:text-3xl">Faqs </h1>
 
                 </div>
 
@@ -681,15 +681,15 @@
                     </div>
                     <div class="w-full lg:w-11/12">
 
-                        <div class="px-1 py-2 text-gray-800">
+                        <div class="px-1 py-2 text-findDark-800">
 
                             <div class="mt-6 text-lg leading-loose">
 
                             <div>
                                 <div v-for="(faq, index) in faqsGet" :key="faq.id">
                                 <button
-                                    class="flex items-center justify-between w-full py-3 mt-4 text-gray-800 border-b font-bega-semibold dark:text-white"
-                                    :class="index !== faqsGet.length - 1 && 'border-b border-gray-400'"
+                                    class="flex items-center justify-between w-full py-3 mt-4 text-findDark-800 border-b font-bega-semibold dark:text-white"
+                                    :class="index !== faqsGet.length - 1 && 'border-b border-findDark-400'"
                                     @click="toggleAccordion(faq.id)"
                                 >
                                     <div class="text-left">{{ faq.questions }}</div>
@@ -706,7 +706,7 @@
 
                                 <Collapse :when="expandedItems.includes(faq.id)" class="m-2 ">
 
-                                        <p class="m-2 text-sm text-justify text-gray-800 dark:text-white">{{ faq.reponses }}</p>
+                                        <p class="m-2 text-sm text-justify text-findDark-800 dark:text-white">{{ faq.reponses }}</p>
 
                                     </Collapse>
 

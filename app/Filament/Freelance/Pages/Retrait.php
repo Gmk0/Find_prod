@@ -98,12 +98,5 @@ class Retrait extends Page
         ];
     }
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Action::make('edit')
-         ,
 
-        ];
-    }
 }
