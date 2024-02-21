@@ -125,9 +125,9 @@ window.Echo.private(`chat.${page.props.auth.user.id}`)
 
                             <div v-for="user in props.Conversations.data"
                                 class="flex cursor-pointer items-center space-x-2.5 px-4 py-2.5 font-inter hover:bg-slate-150 dark:hover:bg-navy-600">
-                                <div class="w-10 h-10 avatar">
+                                <div class="w-10 h-10">
 
-                                    <Photo :user="user.user" />
+                                    <Photo :user="user.user" taille="10" />
                                     <div
                                         class="absolute right-0 w-3 h-3 border-2 border-white rounded-full dark:border-navy-700">
                                     </div>
@@ -253,9 +253,9 @@ window.Echo.private(`chat.${page.props.auth.user.id}`)
 
                                 <button @click="selectConversation(user.id)"
                                     class="flex cursor-pointer items-center justify-center py-2.5 hover:bg-slate-150 dark:hover:bg-navy-600">
-                                    <div class="w-10 h-10 avatar" v-tooltip.right="user.user.name">
+                                    <div class="w-10 h-10" v-tooltip.right="user.user.name">
 
-                                        <Photo :user="user.user" />
+                                        <Photo :user="user.user" taille="10" />
 
                                     </div>
                                 </button>

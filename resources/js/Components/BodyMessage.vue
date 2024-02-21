@@ -456,7 +456,7 @@ const isLastRejectedMessage = (index) => {
 
                         <div>
                             <p class="font-medium text-slate-700 line-clamp-1 dark:text-navy-100"
-                                x-text="activeChat.name"> {{user?.name}}</p>
+                                > {{user?.name}}</p>
                                 <template v-if="user?.is_online">
                                     <p class="mt-0.5 text-xs">En ligne </p>
 
@@ -586,7 +586,7 @@ const isLastRejectedMessage = (index) => {
                                 class="flex  space-x-2.5 sm:space-x-5">
                             <div :class="groupedMessage.message.receiver_id == props.user.id ?'hidden':'flex'"
                             class="">
-                            <Photo :user="user" />
+                            <Photo :user="user" taille="10" />
 
 
                             </div>
@@ -831,8 +831,8 @@ const isLastRejectedMessage = (index) => {
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center mt-5">
-                                    <div v-if="user" class="w-20 h-20 avatar">
-                                       <Photo :user="user" taille="20" />
+                                    <div v-if="user" class="w-10 h-10">
+                                       <Photo :user="user" taille="10" />
                                     </div>
                                     <h3 v-text="user?.name"
                                         class="mt-2 text-lg font-medium text-slate-700 dark:text-navy-100"></h3>

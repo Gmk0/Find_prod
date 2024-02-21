@@ -111,8 +111,8 @@ class ChatController extends Controller
                                 'file' => $message->file,
                                 'type' => $message->type,
                                 'proposal' => $message->proposal ?? null,
-                                'service' => $message->service ? $message->service->only('service_numero','title','files','user.id') : null,
-                                'user_service' => $message->service ? $message->service->freelance->user->id:null,
+                                'service' => $message->service ? $message->service->only('service_numero','title','files','user.id','slug') : null,
+                                'user_service' => $message->service ? $message->service->freelance->user->only('id','slug'):null,
                                 'order' =>$message->order ?? null,
                                     'proposal_user' => $message->proposal ? $message->proposal->service->freelance->user->id : null,
                                 'created_at' => $message->created_at
