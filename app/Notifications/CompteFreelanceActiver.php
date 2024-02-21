@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\VonageMessage;
 
 class CompteFreelanceActiver extends Notification
 {
@@ -18,19 +17,6 @@ class CompteFreelanceActiver extends Notification
     public function __construct()
     {
         //
-    }
-
-    public function toVonage(object $notifiable): VonageMessage
-    {
-        try{
-            return (new VonageMessage)
-            ->content('Votre compte freelance a ete activer');
-
-        }catch(\Exception $e){
-
-            dd($e->getMessage());
-        }
-
     }
 
     public function toDatabase($notifiable)
@@ -50,7 +36,7 @@ class CompteFreelanceActiver extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail',"vonage"];
+        return ['mail'];
     }
 
     /**
@@ -59,7 +45,7 @@ class CompteFreelanceActiver extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         try {
-            return (new MailMessage)->view('emails.acount-activer',['user'=>$notifiable])
+            return (new MailMessage)->view('emails.acount-activer')
                 ->subject('ACTIVATION COMPTE');
         } catch (\Exception $e) {
             // dd($e->getMessage());
