@@ -26,6 +26,8 @@ use Illuminate\Support\HtmlString;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Actions\ActionGroup;
+use App\Notifications\CompteFreelanceActiver;
+use Filament\Notifications\Notification;
 
 
 class FreelanceResource extends Resource
@@ -235,10 +237,38 @@ class FreelanceResource extends Resource
                     ->sortable(),
 
             SelectColumn::make('status_compte')->options([
-                'actif' => 'actif',
-                'en_attente' => 'en_attente',
+                'actif' => 'activer',
+                'en_attente' => 'en attente',
                 'suspendu' => 'suspendu',
-            ]),
+            ])->afterStateUpdated(function ($record, $state) {
+
+                if($state ==='actif')
+                {
+                    Notification::make()
+                    ->title('Compte activer')
+                    ->success()
+                    ->send();
+                    $record->user->notify(new CompteFreelanceActiver());
+
+                    $record->user->notify(
+                        Notification::make()
+                        ->title('Compte activer')
+                        ->body('votre compte freelance a ete activer')
+                        ->toDatabase()
+                    );
+                }else if($state ==='suspendu')
+                {
+                    Notification::make()
+                    ->title('Compte suspendu')
+                    ->success()
+                    ->send();
+
+                }
+
+
+
+                //dd($record,$state);
+            }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

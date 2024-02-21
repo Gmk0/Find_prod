@@ -76,8 +76,8 @@ class FreelancePanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
               \App\Http\Middleware\FreelanceAccessPanel::class,
             \App\Http\Middleware\AcountStatus::class,
-            //\Hasnayeen\Themes\Http\Middleware\SetTheme::class,
-            ])->plugins([
+
+                   ])->plugins([
 
             BreezyCore::make()
             ->myProfileComponents(
@@ -113,6 +113,7 @@ class FreelancePanelProvider extends PanelProvider
                 ])
             ->authMiddleware([
                 Authenticate::class,
+            \App\Http\Middleware\AnnonceFreelance::class,
 
             ]);
     }

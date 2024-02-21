@@ -77,6 +77,11 @@ class Mission extends Model
         });
 
         static::deleting(function ($mission) {
+
+            if($mission->status== 'active' || $mission->status=='completed')
+            {
+                return false;
+            }
             $mission->MissionResponses()->delete();
         });
         static::deleted(function ($model) {

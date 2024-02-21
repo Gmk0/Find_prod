@@ -68,20 +68,26 @@ class MissionResource extends Resource
                 Tables\Columns\TextColumn::make('category.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('transaction.id')
+                Tables\Columns\TextColumn::make('transaction.transaction_numero')
+                ->toggleable(isToggledHiddenByDefault: true)
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
+            ->toggleable(isToggledHiddenByDefault: true)
+
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('mission_numero')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('budget')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('begin_mission')
+            ->toggleable(isToggledHiddenByDefault: true)
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('end_mission')
+            ->toggleable(isToggledHiddenByDefault: true)
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('progress')
