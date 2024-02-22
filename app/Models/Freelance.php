@@ -286,4 +286,9 @@ class Freelance extends Model
         return $relatedSubcategories;
     }
 
+    public function annonceFreelances()
+    {
+        return $this->belongsToMany(AnnonceFreelance::class, 'annonce_freelance_liason', 'freelance_id','annonce_freelance_id');
+    }
+
 }

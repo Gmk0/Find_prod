@@ -58,6 +58,7 @@ const submit = () => {
                                             type="email"
                                             class="block w-full mt-1"
                                             required
+                                            disabled
                                             autofocus
                                             autocomplete="username"
                                         />
@@ -65,28 +66,28 @@ const submit = () => {
                                     </div>
 
                                     <div class="mt-4">
-                                        <InputLabel for="password" value="Mot de passe" />
-                                        <TextInput
-                                            id="password"
-                                            v-model="form.password"
-                                            type="password"
-                                            class="block w-full mt-1"
-                                            required
+
+                                        <MazInput
+                                        label="Mot de passe"
+                                        type="password"
+                                        v-model="form.password"
+                                        required
                                             autocomplete="new-password"
                                         />
+
                                         <InputError class="mt-2" :message="form.errors.password" />
                                     </div>
 
                                     <div class="mt-4">
-                                        <InputLabel for="password_confirmation" value="Confirmation" />
-                                        <TextInput
-                                            id="password_confirmation"
-                                            v-model="form.password_confirmation"
+
+                                        <MazInput
+                                            label="Confirmation"
                                             type="password"
-                                            class="block w-full mt-1"
+                                            v-model="form.password_confirmation"
                                             required
-                                            autocomplete="new-password"
-                                        />
+                                                autocomplete="new-password"
+                                            />
+
                                         <InputError class="mt-2" :message="form.errors.password_confirmation" />
                                     </div>
 

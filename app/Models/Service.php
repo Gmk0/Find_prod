@@ -250,5 +250,13 @@ class Service extends Model
             $service->service_numero = 'SV' . date('YmdHms');
             $service->freelance_id = auth()->user()->freelance->id;
         });
+
+        static::deleting(function($service) {
+            if($service->orders() !=null)
+            {
+                return false;
+            }
+
+        });
     }
 }

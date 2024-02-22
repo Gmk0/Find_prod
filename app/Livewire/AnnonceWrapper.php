@@ -3,27 +3,38 @@
 namespace App\Livewire;
 
 use App\Models\Annonce;
+use App\Models\AnnonceFreelance;
 use Livewire\Component;
 
 class AnnonceWrapper extends Component
 {
-    public  $annonce;
+    public AnnonceFreelance  $annonce;
 
-    public function mount($annonce)
-    {
-        $this->annonce;
-    }
+
     public function cacher()
     {
         try{
             $annonce = $this->annonce;
+
             $id = auth()->user()->freelance->id;
 
-            // Retirer un ID spécifique du tableau d'IDs de freelances
-            $annonce->freelances = collect($annonce->freelances)->forget($id)->values()->toJson();
+            // Convertir la chaîne JSON en tableau
+            $freelances = json_decode($annonce->freelances, true);
+
+            // Filtrer l'ID spécifique du tableau d'IDs de freelances
+            $freelances = array_filter($freelances, function ($freelanceId) use ($id) {
+                return $freelanceId != $id;
+            });
+
+
+
+            // Convertir le tableau en chaîne JSON
+            $annonce->freelances = json_encode(array_values($freelances));
+
 
             // Enregistrer les modifications
-            $annonce->save();
+            $annonce->update();
+
 
             $this->dispatch('close');
 

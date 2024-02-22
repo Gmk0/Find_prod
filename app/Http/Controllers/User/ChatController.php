@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ConversationResourceData;
+use App\Jobs\CheckUserActivityJob;
 use App\Models\ClientLink;
 use App\Models\Conversation;
 use App\Models\Freelance;
@@ -195,6 +196,7 @@ class ChatController extends Controller
 
             $this->dispatchMessageSent(auth()->user(), $createdMessage,$conversation, $request->user);
 
+            CheckUserActivityJob::dispatch($request->user, $createdMessage);
 
         }catch(\Exception $e){
 
@@ -243,8 +245,12 @@ class ChatController extends Controller
                 $conversation->last_time_message = now();
                 $conversation->save();
 
+            CheckUserActivityJob::dispatch($request->user_id, $createdMessage);
+
                 return response()->json(['chatId' => $conversation->id],200);
                     // return ()->back()->with(['chatid' => $conversation->id ]);
+
+
 
             }catch (\Exception $e) {
 
@@ -296,7 +302,7 @@ class ChatController extends Controller
 
             $this->dispatchMessageSent(auth()->user(), $message, $conversation, $request->freelance_user_id);
 
-
+            CheckUserActivityJob::dispatch($request->freelance_user_id, $message);
 
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['message' => $e->getMessage()]);
@@ -329,6 +335,8 @@ class ChatController extends Controller
             $conversation = Conversation::find($request->chat_id);
 
             $this->dispatchMessageSent(auth()->user(), $createdMessage, $conversation, $request->user_id);
+
+            CheckUserActivityJob::dispatch($request->user_id, $createdMessage);
 
         } catch (\Exception $e) {
 
@@ -375,6 +383,8 @@ class ChatController extends Controller
                 $conversation=Conversation::find($request->chat_id);
 
                 $this->dispatchMessageSent(auth()->user(), $createdMessage, $conversation, $request->user_id);
+
+            CheckUserActivityJob::dispatch($request->user_id, $createdMessage);
 
                 DB::commit();
 
@@ -437,6 +447,7 @@ class ChatController extends Controller
             $conversation = Conversation::find($request->chat_id);
 
             $this->dispatchMessageSent(auth()->user(), $createdMessage, $conversation, $request->user_id);
+            CheckUserActivityJob::dispatch($request->user_id, $createdMessage);
         } catch (\Exception $e) {
 
             return redirect()->back()->withErrors(['message' => $e->getMessage()]);

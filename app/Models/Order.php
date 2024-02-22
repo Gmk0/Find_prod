@@ -66,6 +66,11 @@ class Order extends Model
 
         static::deleting(function ($order) {
 
+            if ($order->status !== 'failed') {
+                // Si le statut n'est pas "failed", annulez la suppression de la transaction
+                return false;
+            }
+
            $order->feedback()->delete();
         });
 

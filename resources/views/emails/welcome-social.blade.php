@@ -30,6 +30,16 @@
             color: #555;
         }
 
+        .header {
+        text-align: center;
+        }
+
+        .header img {
+        max-width: 100px;
+        display: block;
+        margin: 0 auto;
+        }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -43,6 +53,10 @@
 
 <body>
     <div class="container">
+        <div class="header">
+            <img src="https://www.find-freelance.com/images/logo/find_02.png" alt="Logo de l'entreprise">
+
+        </div>
         <h1>Bienvenue sur Find-freelance</h1>
         <p>Merci de vous être inscrit sur notre site. Voici vos informations de connexion :</p>
 
