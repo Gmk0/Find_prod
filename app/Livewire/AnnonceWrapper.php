@@ -19,7 +19,8 @@ class AnnonceWrapper extends Component
             $id = auth()->user()->freelance->id;
 
             // Convertir la chaîne JSON en tableau
-            $freelances = json_decode($annonce->freelances, true);
+            $freelances = $annonce->freelances;
+
 
             // Filtrer l'ID spécifique du tableau d'IDs de freelances
             $freelances = array_filter($freelances, function ($freelanceId) use ($id) {
@@ -40,8 +41,9 @@ class AnnonceWrapper extends Component
 
         }catch(\Exception $e)
         {
-            dd($e->getMessage());
 
+            dd($e->getMessage());
+            error_log($e->getMessage());
             $this->dispatch('close');
 
         }
