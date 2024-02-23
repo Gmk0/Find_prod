@@ -74,7 +74,7 @@
         </div>
         <div class="footer">
           Copyright ©
-            2024
+         {{ date("Y") }}
             Find
         </div>
     </div>

@@ -43,3 +43,33 @@ export const getLastComment = defineStore('getLastComment', {
 
     persist: true,
 });
+
+
+export const conversations = defineStore('messages', {
+    state: () => ({
+        messages: null,
+    }),
+    actions: {
+        async fetchMessages(conversationId) {
+            try {
+                const response = await axios.get(`/api/conversations/${conversationId}/messages`);
+                this.messages = response.data;
+                return response.data;
+            } catch (error) {
+                console.error('Erreur lors de la récupération des messages :', error);
+                throw error;
+            }
+        },
+        async sendMessage(messageData) {
+            try {
+                const response = await axios.post('/api/messages', messageData);
+                const newMessage = response.data;
+                this.messages.push(newMessage);
+                return newMessage;
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi du message :', error);
+                throw error;
+            }
+        },
+    },
+});

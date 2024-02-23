@@ -321,14 +321,9 @@
                                                     </table>
                                                     <div class="text-muted text-center" style="color: #718096;"
                                                         align="center">
-                                                        <div
-                                                            class="flex flex-col items-center justify-center p-3 mt-2 text-gray-600 md:flex-row">
-                                                            Copyright ©
-                                                            <script>
-                                                                document.write(new Date().getFullYear());
-                                                            </script>
-                                                            Find
-                                                        </div>
+                                                       <div class="flex flex-col items-center justify-center p-3 mt-2 text-gray-600 md:flex-row">
+                                                        Copyright © {{ date("Y") }} Find
+                                                    </div>
                                                     </div>
                                                     <table class="s-6 w-full" role="presentation" border="0"
                                                         cellpadding="0" cellspacing="0" style="width: 100%;"

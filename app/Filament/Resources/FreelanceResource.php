@@ -248,6 +248,7 @@ class FreelanceResource extends Resource
                     ->title('Compte activer')
                     ->success()
                     ->send();
+
                     $record->user->notify(new CompteFreelanceActiver());
 
                     $record->user->notify(

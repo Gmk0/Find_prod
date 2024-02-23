@@ -202,6 +202,7 @@ Route::middleware([
             Route::post('/contactFreelance', 'contactFreelance')->name('contactFreelance');
             Route::post('/proposalPrice', 'proposalPrice')->name('proposalPrice');
 
+            Route::post('/delete-message', 'deleteMessage')->name('deleteMessage');
             Route::post('/proposal-get-price', 'proposalGetPrice')->name('proposalGetPrice');
 
             Route::post('/proposal-change-price', 'proposalChangePrice')->name('proposalChangePrice');

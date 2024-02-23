@@ -75,7 +75,7 @@
                                 </MazDropdown>
                             </div>
                         </div>
-                        <p class="text-gray-700 dark:text-gray-200 break-before-auto">{{ notification.body }}</p>
+                        <p class="text-gray-700 dark:text-gray-200 break-before-auto">{{ notification.data.body }}</p>
                     </div>
                         </template>
 

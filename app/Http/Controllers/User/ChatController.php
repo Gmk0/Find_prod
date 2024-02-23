@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Response;
 
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 
 class ChatController extends Controller
 {
@@ -160,6 +160,8 @@ class ChatController extends Controller
     public function SendMessage(Request $request)
     {
         // Vérifie s'il y a des fichiers téléchargés
+
+        $fileName='';
         if ($request->hasFile('files')) {
             $filePaths = [];
 
@@ -181,7 +183,7 @@ class ChatController extends Controller
                 'sender_id' => Auth::user()->id,
                 'receiver_id' => $request->user,
                 'conversation_id' => $request->chat,
-                'body' => $request->message ?? null,
+                'body' => $request->message ?? $fileName,
                 'is_read' => false,
                 'type' => "file",
                 'file' => $filesPaths ?? null, // Enregistre les chemins des fichiers dans la base de données
@@ -455,6 +457,36 @@ class ChatController extends Controller
            // dd($e->getMessage());
         }
 
+    }
+
+    public function deleteMessage(Request $request)
+    {
+        // Récupère l'ID du message à supprimer depuis la requête
+        $messageId = $request->message_id;
+
+        try {
+            // Récupère le message à supprimer
+            $message = Message::findOrFail($messageId);
+
+            // Vérifie s'il y a des fichiers associés à ce message et supprime-les
+            if (!empty($message->file)) {
+                foreach ($message->file as $file) {
+
+                    // Supprime le fichier du stockage
+                    Storage::delete('public/' . $file);
+
+
+
+                }
+            }
+
+            // Supprime le message lui-même
+            $message->delete();
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            // En cas d'erreur, retourne une réponse d'erreur
+            return redirect()->back()->withErrors(['error' => 'Une erreur s\'est produite lors de la suppression du message']);
+        }
     }
 
 

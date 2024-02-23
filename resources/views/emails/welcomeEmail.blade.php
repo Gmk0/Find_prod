@@ -309,9 +309,7 @@
                                                         <div
                                                             class="flex flex-col items-center justify-center p-3 mt-2 text-gray-600 md:flex-row">
                                                             Copyright ©
-                                                            <script>
-                                                                document.write(new Date().getFullYear());
-                                                            </script>
+                                                           {{ date("Y") }}
                                                             Find
                                                         </div>
                                                     </div>

@@ -19,6 +19,7 @@ class AnnonceFreelance extends Model
         'icon',
         'image',
         'link',
+        'freelances',
         'type_freelance',
         'afficher',
 
@@ -27,6 +28,7 @@ class AnnonceFreelance extends Model
     protected $casts = [
 
         'afficher' => 'boolean',
+        'freelances'=>'array',
     ];
 
 

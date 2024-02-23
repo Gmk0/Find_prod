@@ -70,12 +70,12 @@ class AnnonceFreelanceResource extends Resource
                 'en attente'=>'en attente d\'activation'
                 ])->live()
                     ->required(),
-                        Select::make('freelance')
+                        Select::make('freelances')
                         ->options(Freelance::pluck('nom', 'id')->toArray())
 
-                            ->visible(fn (Get $get) =>  $get('type_freelance') == 'choix')
+                            //->visible(fn (Get $get) =>  $get('type_freelance') == 'choix')
                             ->multiple()
-                            ->required(),
+                            ->required(fn (Get $get) =>  $get('type_freelance') == 'choix'),
 
                     ])->columns(2),
 
@@ -95,6 +95,8 @@ class AnnonceFreelanceResource extends Resource
             Tables\Columns\TextColumn::make('type_freelance')
                 ->searchable(),
             Tables\Columns\ToggleColumn::make('afficher')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('created_at')->label('Date')
                 ->searchable(),
 
                 //

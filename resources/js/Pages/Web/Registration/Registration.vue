@@ -160,19 +160,30 @@ const addEducation = () => {
 };
 
 const addExperience = () => {
+    // Vérifie si les éléments requis sont présents
     if (!selectedExperiment.value.title || !selectedExperiment.value.level) {
-
-         error.value.experience = 'les deux element sont requis.';
+        error.value.experience = 'Les deux éléments sont requis.';
         return;
     }
+
+    // Vérifie si le nombre d'expériences est inférieur à 4
+    if (experience.value.length >= 4) {
+        error.value.experience = 'Vous ne pouvez pas ajouter plus de 4 expériences.';
+        return;
+    }
+
+    // Ajoute une nouvelle expérience
     experience.value.push({
         title: selectedExperiment.value.title,
         level: selectedExperiment.value.level,
     });
+
+    // Réinitialise les valeurs sélectionnées et efface les erreurs
     selectedExperiment.value.title = '';
     selectedExperiment.value.level = '';
     error.value.experience = '';
 };
+
 
 const addCertification = () => {
 
@@ -406,12 +417,14 @@ function getAfricanCountries() {
 }
 
 
-const comptesSelector = ref([
-    { picture: '/images/logo/tiktok.png', label: 'Tiktok', value: 'Tiktok' },
-    { picture: '/images/logo/facebook.png', label: 'Facebook', value: 'Facebook' },
+const comptesSelector = [
+    { picture: 'https://variety.com/wp-content/uploads/2021/06/TikTok-Jump.png?w=970', label: 'Tiktok', value: 'Tiktok' },
+    { picture: 'https://placekitten.com/100/100', label: 'Facebook', value: 'Facebook' },
     { picture: '/images/logo/tiktok.png', label: 'twitter', value: 'twitter'},
+    { picture: '/images/logo/tiktok.png', label: 'instagram', value: 'instagram' },
+    { picture: '/images/logo/tiktok.png', label: 'linkedin', value: 'linkedin' },
 
-]);
+];
 
 
 onMounted( async () => {
@@ -772,6 +785,7 @@ for (let index = 1999; index < year ; index++) {
                                                     search
                                                     multiple
                                                 />
+                                                <span class="mt-2 dark:text-gray-200 text-gray-600">Maximum 4</span>
                                                 </div>
 
                                                 <div class="flex justify-content-center">
@@ -840,13 +854,15 @@ for (let index = 1999; index < year ; index++) {
 
                                         <div class="grid gap-2 mb-4 lg:grid-cols-3">
 
-                                            <div >
+                                            <div class="block" >
                                                     <MazInput
                                                      label="competences"
+                                                     placeholder="ex . Devellopeur fullStack"
                                                      v-model="selectedExperiment.title"
                                                      type="text"
 
                                                     />
+
 
                                             </div>
 
@@ -959,13 +975,14 @@ for (let index = 1999; index < year ; index++) {
                                     <div class="grid gap-2 lg:grid-cols-3">
                                          <MazSelect
                                     label="Pays"
+                                    id="pays"
                                     v-model="localisation.pays"
                                     :options="countries"
                                     v-slot="{ option, isSelected }"
                                     search
                                 >
                                     <div class="flex items-center" style="width: 100%; gap: 1rem">
-                                    <MazAvatar size="0.8rem" :src="option.flag" />
+                                    <MazAvatar v-if="option.flag" size="0.8rem" :src="option.flag" />
                                     <strong>
                                         {{ option.label }}
                                     </strong>
@@ -1702,17 +1719,24 @@ for (let index = 1999; index < year ; index++) {
                                                 <div>
                                                      <MazSelect
                                                 label="comptes"
+                                                id="comptes"
                                                 v-model="selectedComptes.compte"
                                                 :options="comptesSelector"
-                                                v-slot="{ option, isSelected }"
+
+
                                                 search
                                             >
+                                            <template #default="{ option, isSelected }">
                                                 <div class="flex items-center" style="width: 100%; gap: 1rem">
-                                                <MazAvatar size="0.8rem" :src="option.picture" />
+                                                <MazAvatar
+                                                v-if="option.picture"
+                                                 size="0.8rem"
+                                                :src="option.picture" />
                                                 <strong>
                                                     {{ option.label }}
                                                 </strong>
                                                 </div>
+                                                </template>
                                             </MazSelect>
 
 
@@ -1721,6 +1745,7 @@ for (let index = 1999; index < year ; index++) {
                                                 <div>
                                                      <MazInput
                                                         label="lien"
+                                                        placeholder="https://facebook.com/profile"
                                                         left-icon='globe-alt'
                                                         v-model="selectedComptes.lien"
                                                          />
