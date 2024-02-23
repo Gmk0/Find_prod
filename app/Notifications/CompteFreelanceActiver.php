@@ -8,6 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class CompteFreelanceActiver extends Notification
+implements ShouldQueue
 {
     use Queueable;
 

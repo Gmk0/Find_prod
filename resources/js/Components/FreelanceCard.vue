@@ -138,7 +138,7 @@ const like = ref(props.freelance.like);
                 </p>
                 <div class="inline-flex flex-wrap items-center h-20 gap-3 mt-2 group">
 
-                    <span v-for="(sub , index) in props.freelance.sub_categorie"
+                    <span v-for="(sub , index) in props.freelance.sub_categorie.slice(0,4)"
                     class="items-center cursor-pointer py-1  px-2 rounded-md text-[10px] lg:text-[10px]  border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700 dark:bg-secondary-700 dark:text-secondary-400 dark:border-none">
                            <span v-tooltip.top="sub.name"> {{ sub.name }}</span>
                     </span>
