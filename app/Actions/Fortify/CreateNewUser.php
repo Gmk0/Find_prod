@@ -39,7 +39,13 @@ class CreateNewUser implements CreatesNewUsers
             ],
         ])->validate();
 
-        $referrer = User::where('referral_code', $input['referral_code'])->first();
+        $referrer=null;
+        if (strlen($input['referral_code']) > 3) {
+            // Si la longueur est supérieure à 3, alors effectuer la requête
+            $referrer = User::where('referral_code', $input['referral_code'])->first();
+        }
+
+        //$referrer = User::where('referral_code', $input['referral_code'])->first();
         $generatedReferralCode = $this->generateReferralCode($input['name']);
 
         if($referrer==null && empty($input['referral_code'])){
