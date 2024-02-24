@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
         $referrer = User::where('referral_code', $input['referral_code'])->first();
         $generatedReferralCode = $this->generateReferralCode($input['name']);
 
-        if($referrer==null){
+        if($referrer==null && empty($input['referral_code'])){
             return User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
