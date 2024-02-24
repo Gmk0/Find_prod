@@ -120,8 +120,8 @@ class UserResource extends Resource
             ->query(fn (Builder $query): Builder => $query->where('is_online', true)),
             Filter::make('Freelance')->label('Freelance')
             ->query(fn (Builder $query): Builder => $query->whereHas('freelance')),
-            Filter::make('Code')->label('Code Parainage')
-            ->query(fn (Builder $query): Builder => $query->where('referral_code','!=',null)),
+            Filter::make('Code')->label('sans Code Parainage')
+            ->query(fn (Builder $query): Builder => $query->where('referral_code','=',null)),
 
             ])
 
