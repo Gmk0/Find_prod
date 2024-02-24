@@ -207,6 +207,7 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
         return $this->hasMany(User::class, 'referral_by');
     }
 
+
     public function countReferrals(): int
     {
         return $this->referrals()->count();

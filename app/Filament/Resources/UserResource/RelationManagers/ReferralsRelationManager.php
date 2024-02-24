@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -9,6 +10,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Collection;
 
 class ReferralsRelationManager extends RelationManager
 {
@@ -41,14 +44,39 @@ class ReferralsRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-             Tables\Actions\DissociateAction::make(),
+                //Tables\Actions\EditAction::make(),
+                //Tables\Actions\DeleteAction::make(),
+            /// Tables\Actions\DissociateAction::make(),
+             Tables\Actions\Action::make('dissocier')
+                ->requiresConfirmation()
+                ->action(function(User $record) {
+
+                $record->update(['referral_by' => null]);
+                Notification::make()
+                ->title('Dissociation reussie')
+                ->success()
+                ->send();
+
+
+                }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\BulkAction::make('dissocier')
+                ->requiresConfirmation()
+                ->action(function (Collection $records){
+                    foreach ($records as $record) {
+                        // Mise à jour de chaque enregistrement pour effacer la colonne spécifique
+                        $record->update(['referral_by' => null]); // Remplacez 'nom_de_la_colonne' par le nom de la colonne que vous souhaitez effacer
 
-                    Tables\Actions\DetachBulkAction::make(),
+
+                    };
+                    Notification::make()
+                    ->title('Dissociation reussie')
+                    ->success()
+                    ->send();
+
+                })
                 ]),
             ]);
     }
