@@ -3,7 +3,7 @@
                 <div class="px-4 py-4 mx-auto sm:mx-2 md:px-auto">
                     <div class="container text-gray-600 dark:text-gray-300 ">
                         <div class="mb-10 text-center">
-                            <span class="font-bega-medium text-amber-600">Comentaire</span>
+                            <span class="font-bega-medium text-amber-600">Commentaires</span>
                             <h1 class="text-2xl font-bega-semibold text-slate-700 dark:text-gray-200 sm:text-xl">Ils nous font confiance</h1>
 
                         </div>
@@ -17,9 +17,9 @@
 
                                 <div
                                     class="relative z-20 px-6 py-2 mb-0 text-2xl leading-tight tracking-tight text-indigo-100 font-bega-semibold md:text-5xl md:py-6 md:px-1 md:w-64 md:mx-auto">
-                                    <span class="md:block">Ce que</span>
+                                    <span class="md:block">Ce que </span>
 
-                                    <span class="md-block">disent</span>
+                                    <span class="md-block"> disent</span>
                                     <span class="block">nos clients !</span>
 
 
