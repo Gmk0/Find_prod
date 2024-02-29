@@ -18,38 +18,42 @@
 
 
 
-
-<form wire:submit.prevent='postuler'>
-
-    {{$this->postulerForm}}
-
-    @if($response->is_paid ==null)
-    @if($response !=null)
-
-    <div class="flex gap-6 p-4 mt-4 text-center">
-        <x-filament::button wire:click='changerPost()' type='button' class="align-center">
-            <span>Changer<span>
-
-
-        </x-filament::button>
-
-        {{ ($this->annulerAction)(['id' => $response->id]) }}
-    </div>
+@if($record->user->id === auth()->id())
 
 
     @else
-    <div class="p-4 mt-4 text-center">
-        <x-filament::button type="submit" form="submit" class="align-center">
-            Postuler <span wire:loading wire:target='postuler'>.....</span>
-        </x-filament::button>
-    </div>
+
+        <form wire:submit.prevent='postuler'>
+
+            {{$this->postulerForm}}
 
 
-    @endif
-    @endif
+
+                @if($response !=null)
+
+                <div class="flex gap-6 p-4 mt-4 text-center">
+                    <x-filament::button wire:click='changerPost()' type='button' class="align-center">
+                        <span>Changer<span>
 
 
-</form>
+                    </x-filament::button>
+
+                    {{ ($this->annulerAction)(['id' => $response->id]) }}
+                </div>
+                @else
+                <div x-data="{hidden:false}" x-on:hidden='hidden=true' class="p-4 mt-4 text-center">
+                    <div x-show="!hidden">
+                    <x-filament::button type="submit" form="submit" class="align-center">
+                        Postuler <span wire:loading wire:target='postuler'>.....</span>
+                    </x-filament::button>
+                    </div>
+                </div>
+                @endif
+
+        </form>
+
+
+@endif
 
 
 

@@ -178,9 +178,12 @@ defineOptions({
                     <img src="/images/hero/team.svg" class="object-cover w-full h-auto p-2 bg-white rounded-md " alt="">
             </div>
 
-            <div class="flex flex-col w-full mx-auto h-min-72 lg:col-span-1 lg:mx-0 ">
+            <div class="flex flex-col w-full mx-auto min-h-72 lg:col-span-1 lg:mx-0 ">
+                <div class="p-6">
 
+                        <p class="text-gray-700 text-lg dark:text-gray-100 font-bega-medium mb-4">Vous avez besoin d'un service en particulier? Créez une mission dès maintenant!</p>
 
+                    </div>
 
                 <div>
                       <MazStepper isabled-next-steps="true">

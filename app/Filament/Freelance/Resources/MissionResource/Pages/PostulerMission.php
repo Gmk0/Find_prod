@@ -23,6 +23,7 @@ use Filament\Infolists\Components\Section;
 use Filament\Notifications\Notification;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use App\Notifications\MissionStatus;
 
 class PostulerMission extends Page implements HasInfolists,HasForms, HasActions
 {
@@ -181,10 +182,13 @@ class PostulerMission extends Page implements HasInfolists,HasForms, HasActions
     {
 
         $this->postulerForm->validate();
+        try{
+
+
+
+
 
         $data= $this->postulerForm->getState();
-
-
 
             $missionRespone=new MissionResponse();
             $missionRespone->freelance_id =auth()->user()->freelance->id;
@@ -194,14 +198,25 @@ class PostulerMission extends Page implements HasInfolists,HasForms, HasActions
 
             $missionRespone->save();
 
-            $missionRespone->notifyUser();
+            $this->response=$missionRespone;
+            $user=$this->record->user;
 
-
+            $user->notify(new MissionStatus($missionRespone));
 
             $this->sendNotification();
 
+            $this->dispatch('refresh');
+            //return redirect()->back();
 
-        $this->dispatch('refresh');
+
+        } catch (\Exception $e) {
+
+            error_log($e);
+            Notification::make()
+            ->error()
+            ->title('Erreur survenue')
+            ->send();
+        }
     }
 
     public function changerPost()
@@ -225,7 +240,7 @@ class PostulerMission extends Page implements HasInfolists,HasForms, HasActions
     {
         Notification::make()
             ->success()
-            ->title('Votre proposition  a éte bien envoyer')
+            ->title('Nouvelle proposition pour votre mission')
             ->send()
             ->sendToDatabase($this->record->user);
 

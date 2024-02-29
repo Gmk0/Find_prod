@@ -29,16 +29,16 @@
         <div x-data="">
             <div>
                 <div class="flex flex-col items-center py-4 bg-white border-b dark:bg-gray-800 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-                    <a href="#" class="text-2xl font-bold text-gray-800 dark:text-gray-50">Paiment</a>
+                    <a href="#" class="text-2xl text-gray-800 font-bega-semibold dark:text-gray-50">Paiement</a>
                     <div class="py-2 mt-4 text-xs sm:mt-0 sm:ml-auto sm:text-base">
                         <div class="relative mx-2">
                             <ul class="relative flex items-center justify-between w-full space-x-2 sm:space-x-4">
                                 <li @click="stepP = 1"
                                     class="flex items-center space-x-3 text-left sm:space-x-4">
                                     <a :class="{ 'ring ring-gray-600 ring-offset-2 bg-gray-600 dark:text-gray-100': stepP == 1 }"
-                                        class="flex items-center justify-center w-6 h-6 text-xs font-semibold text-white bg-gray-400 rounded-full "
+                                        class="flex items-center justify-center w-6 h-6 text-xs text-white bg-gray-400 rounded-full font-bega-semibold "
                                         href="#">1</a>
-                                    <span class="font-semibold text-gray-800 dark:text-gray-50">Info</span>
+                                    <span class="text-gray-800 font-bega-semibold dark:text-gray-50">Info</span>
                                 </li>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -47,9 +47,9 @@
                                 <li @click="stepP = 2"
                                     class="flex items-center space-x-3 text-left cursor-pointer sm:space-x-4">
                                     <a :class="{ 'ring ring-gray-600 ring-offset-2 dark:text-gray-100 bg-gray-600': stepP == 2 }"
-                                        class="flex items-center justify-center w-6 h-6 text-xs font-semibold text-white bg-gray-400 rounded-full"
+                                        class="flex items-center justify-center w-6 h-6 text-xs text-white bg-gray-400 rounded-full font-bega-semibold"
                                         href="#">2</a>
-                                    <span class="font-semibold text-gray-800 dark:text-gray-50">Mission</span>
+                                    <span class="text-gray-800 font-bega-semibold dark:text-gray-50">Mission</span>
                                 </li>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -58,9 +58,9 @@
                                 <li @click="stepP = 3"
                                     class="flex items-center space-x-3 text-left sm:space-x-4">
                                     <a :class="{ 'ring ring-gray-600  dark:text-gray-100 ring-offset-2 bg-gray-600': stepP == 3 }"
-                                        class="flex items-center justify-center w-6 h-6 text-xs font-semibold text-white bg-gray-400 rounded-full"
+                                        class="flex items-center justify-center w-6 h-6 text-xs text-white bg-gray-400 rounded-full font-bega-semibold"
                                         href="#">3</a>
-                                    <span class="font-semibold text-gray-800 dark:text-gray-50">Paiement</span>
+                                    <span class="text-gray-800 font-bega-semibold dark:text-gray-50">Paiement</span>
                                 </li>
                             </ul>
                         </div>
@@ -72,10 +72,10 @@
             <section v-if="stepP == 1" class="py-8 bg-gray-100 dark:bg-gray-800">
                 <div class="container mx-auto">
                     <div class="max-w-6xl mx-auto">
-                        <h2 class="mb-4 text-3xl font-bold text-center">Paiement pour la mission
+                        <h2 class="mb-4 text-3xl text-center font-bega-semibold">Paiement pour la mission
                         </h2>
 
-                        <div class="p-8 text-gray-700 rounded-lg dark:text-gray-200">
+                        <div class="p-8 text-base text-gray-700 rounded-lg font-bega-light dark:text-gray-200">
                             <p class="text-lg text-gray-700 dark:text-gray-200">
                                 Cher client,<br>
                                 Nous souhaitons vous informer qu'il est maintenant temps de procéder au paiement pour votre
@@ -119,40 +119,40 @@
                     <section class="py-8 dark:bg-gray-800">
                         <div class="px-4 max-w-7xl lg:mx-auto sm:px-2 lg:px-8">
                             <div class="rounded-lg ">
-                                <div class="p-3 lg:p-6">
-                                    <h2 class="mb-4 text-2xl font-bold text-gray-800 dark:text-gray-50">Récapitulation de la mission</h2>
+                                <div class="p-3 lg:p-6 dark:text-gray-200">
+                                    <h2 class="mb-4 text-2xl text-gray-800 font-bega-semibold dark:text-gray-50">Récapitulation de la mission</h2>
                                     <!-- Informations de la mission -->
-                                    <p class="mb-2 text-base font-medium"> Titre :
-                                        <span class="text-base font-semibold">
+                                    <p class="mb-2 text-base font-bega-medium"> Titre :
+                                        <span class="text-base font-bega-semibold">
 
                                         {{ missionResponse.mission.title }}</span>
 
                                     </p>
-                                    <p class="mb-2 text-base font-medium">Description : <span class="text-base font-semibold">
+                                    <p class="mb-2 text-base font-bega-medium">Description : <span class="text-base font-bega-semibold">
                                         {{ missionResponse.mission.description }}
                                     </span>
                                         </p>
                                     <p class="mb-2">
-                                        <span class="font-semibold">Budget :
+                                        <span class="font-bega-semibold">Budget :
 
                                         </span>
-                                        <span class="text-lg font-bold text-amber-600">    {{ missionResponse.mission.budget }} $</span>
+                                        <span class="text-lg font-bega-semibold text-amber-600">    {{ missionResponse.mission.budget }} $</span>
                                      </p>
 
 
-                                    <p class="mb-4 text-base font-medium text-gray-600 md:mb-2 dark:text-gray-300">Délai
+                                    <p class="mb-4 text-base font-bega-medium md:mb-2">Délai
                                         d'echance :
                                         Du {{ missionResponse.mission.begin_mission }} au
                                         {{ missionResponse.mission.end_mission }}
                                     </p>
                                     <!-- Proposition acceptée -->
-                                    <h2 class="mt-8 mb-4 text-2xl font-bold">Proposition acceptée</h2>
+                                    <h2 class="mt-8 mb-4 text-2xl font-bega-semibold">Proposition acceptée</h2>
                                     <div class="p-4 bg-blue-100 rounded-lg dark:bg-gray-900">
-                                        <p class="text-base font-semibold text-gray-800 dark:text-gray-50">{{ missionResponse.freelance_user.name }} /
+                                        <p class="text-base text-gray-800 font-bega-semibold dark:text-gray-50">{{ missionResponse.freelance_user.name }} /
                                             {{  missionResponse.freelance_user.email }}</p>
 
 
-                                        <p class="mb-2">Budget proposer : <span class="text-lg font-bold text-amber-600"> {{ missionResponse.budget }} $</span>
+                                        <p class="mb-2">Budget proposer : <span class="text-lg font-bega-semibold text-amber-600"> {{ missionResponse.budget }} $</span>
 
                                          </p>
                                     </div>
@@ -169,11 +169,11 @@
                 class="p-3 py-8 bg-gray-100 dark:bg-gray-800">
 
                 <div class="mb-4">
-                    <a href="#" class="mb-4 text-2xl font-bold text-center text-gray-800">Methode de Paiment</a>
+                    <a href="#" class="mb-4 text-2xl text-center text-gray-800 font-bega-semibold">Methode de Paiment</a>
                 </div>
 
                 <div class="flex flex-col gap-2 lg:flex-row">
-                    <div class="hidden w-full p-4 mb-4 font-semibold bg-white border border-gray-200 rounded-md dark:bg-gray-900">
+                    <div class="hidden w-full p-4 mb-4 bg-white border border-gray-200 rounded-md font-bega-semibold dark:bg-gray-900">
                         <div class="grid hidden grid-cols-1 gap-4">
                             <h1>Address de Facturation / Livraison</h1>
 
@@ -195,7 +195,7 @@
                                 <label for="type2" class="flex items-center cursor-pointer">
 
 
-                                    <img src="/images/icon/maxicash.png" class="h-6 ml-3">
+
 
 
                                 </label>
@@ -213,6 +213,22 @@
                 </div>
 
 
+            </div>
+
+            <div class="flex justify-between mt-4">
+                <div>
+
+                      <MazBtn color="success" v-if="stepP != 1"  @click="stepP--">
+                                Retour
+                        </MazBtn>
+                </div>
+
+
+                <div>
+                <MazBtn v-if="stepP !=3" @click="stepP++">
+                        Suivant
+                </MazBtn>
+                </div>
             </div>
 
         </div>
@@ -265,6 +281,8 @@ import { Link, useForm, router } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 
 import PaiementC from '@/Components/PaiementC.vue';
+
+import MazBtn from 'maz-ui/components/MazBtn'
 
 
 const props = defineProps({

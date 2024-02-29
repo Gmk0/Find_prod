@@ -85,10 +85,8 @@ class MissionResponse extends Model
 
             $user = $this->freelance->user;
 
-            if ($user) {
+                $user->notify(new MissionStatusResponse($this));
 
-                //$user->notify(new MissionStatusResponse($this));
-            }
         } catch (Exception $e) {
 
             error_log($e->getMessage());

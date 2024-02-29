@@ -24,8 +24,10 @@ class MissionController extends Controller
 
     public function missionsList()
     {
-        $mission = auth()->user()->missions;
-        //dd($mission);
+        $mission =Mission::where('user_id',auth()->id())->orderBy('created_at', 'desc')->paginate(10);
+
+
+
         return Inertia::render(
             'User/Mission/MissionUser',
             ['missions' => MissionResourceData::collection($mission)]
@@ -145,7 +147,7 @@ class MissionController extends Controller
 
             $mission->status = 'active';
             $mission->update();
-            // $Response->notifyFreelance();
+            $response->notifyFreelance();
 
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['message' => $e->getMessage()]);

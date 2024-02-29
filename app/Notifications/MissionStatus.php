@@ -42,7 +42,7 @@ implements ShouldQueue
 
     public function via($notifiable)
     {
-        return ["database"];
+        return ['database','mail'];
     }
 
     public function toDatabase($notifiable)
@@ -50,7 +50,7 @@ implements ShouldQueue
         return [
             'title' => "Mission",
             'body' => 'Nouvelle proposition de votre mission ' . $this->projectResponse->mission->title,
-            'url' => '/user/mission-list/' . $this->projectResponse->mission->mission_numero,
+            'url' => '/user/mission/candidature/' . $this->projectResponse->mission->mission_numero,
             'icon' => 'fa fa-bars-progress',
         ];
     }
@@ -60,7 +60,7 @@ implements ShouldQueue
     {
         return (new MailMessage)
             ->line('Nouvelle proposition de votre mission ' . $this->projectResponse->mission->title)
-            ->action('Notification Action', url('/user/list_project/' . $this->projectResponse->mission->id))
+            ->action('Notification Action', url('/user/mission/candidature/' . $this->projectResponse->mission->mission_numero))
             ->line('Merci d\'utiliser notre Application!');
     }
 

@@ -20,7 +20,7 @@
 
 
 
-               <div  class="grid grid-cols-1 gap-4 mx-auto lg:grid-cols-2 xl:grid-cols-2">
+               <div  class="grid grid-cols-1 gap-4 mx-auto ">
                 <div v-for="mission in missions"
                 :class="{'border border-blue-500' : mission.status =='pending', 'border border-green-500': mission.status != 'pending' }"
                 class="flex flex-col mb-4 card md:flex-row">
@@ -48,40 +48,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div class="max-w-xs ">
                             <a href="{{route('PropostionProjet',[$projet->mission_numero])}}"
                                 class="text-lg font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light">
                                 {{ mission.title }}</a>
                         </div>
-                        <p  class="mt-1 line-clamp-3">
+                        <p  class="max-w-xs mt-1 line-clamp-3">
 
-                            <template v-if="!showMore">
-                                <div class="max-w-xs break-words">
 
-                                    {{ truncateText(mission.description,70) }}
+                                <div class="max-w-xs break-words truncate lg:max-w-lg">
+
+                                    {{ truncateText(mission.description,100) }}
                                 </div>
-
-                            </template>
-                            <template v-else>
-                                  <div class="max-w-xs break-words">
-                                {{ mission.description }}
-
-                                </div>
-
-                            </template>
-
-
-                        <div v-if="mission.description.length > 70">
-                            <button @click="showMore = !showMore">
-                                <span v-show="showMore" class="text-blue-600">Lire moins</span>
-                                <span v-show="!showMore" class="text-blue-600">Lire la suite</span>
-                            </button>
-
-                        </div>
-
-
-
-
 
 
                         </p>
