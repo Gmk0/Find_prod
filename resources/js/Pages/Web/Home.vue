@@ -581,7 +581,6 @@ import TalkAboutUs from '@/Components/TalkAboutUs.vue';
 
 
 
-import { Navigation, Pagination, Autoplay , EffectFade,Scrollbar, A11y, EffectCube } from 'swiper/modules';
 
 
 
@@ -609,20 +608,7 @@ const toggleAccordion = (key) => {
 };
 
 
-const swiperInstance=ref(null);
-const navigate = (direction) => {
-    if (swiperInstance.value) {
-        if (direction === 'prev') {
-            swiperInstance.value.slidePrev();
-        } else if (direction === 'next') {
-            swiperInstance.value.slideNext();
-        }
-    }
-};
 
-const onSwiperInitialized = (swiper) => {
-    swiperInstance.value = swiper;
-};
 
 const store = useStore();
 const homeSettingStore = homeSetting()
@@ -647,14 +633,6 @@ defineOptions({
 
 });
 
-const truncateText = (text, length) => {
-    return text.length > length ? text.slice(0, length) + '...' : text;
-}
-
-
-
-
-const showMore=ref(false);
 
 
 </script>
