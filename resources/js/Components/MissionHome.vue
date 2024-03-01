@@ -45,7 +45,7 @@
                             <swiper-slide v-for="mission in getMissions" class="p-2">
 
                             <div class="p-2 mb-4 rounded-md shadow-md min-h-[25rem] lg:flex-col">
-                                <img class="object-cover object-center  rounded-md  w-full h-48 bg-center bg-cover shrink-0"
+                                <img class="object-cover object-center w-full h-48 bg-center bg-cover rounded-md shrink-0"
                                     src="/images/illustrations/missionF.svg" alt="image" />
                                 <div class="flex flex-col w-full px-4 py-3 bg-white dark:bg-findDark-800 font-bega-light grow sm:px-5">
                                     <div class="flex items-center justify-between">

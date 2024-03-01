@@ -146,7 +146,7 @@ defineOptions({
 
 </script>
 <template>
-   <div class="min-h-screen pt-16 border-t border-gray-100 ">
+   <div class="min-h-screen pt-16 border-t border-gray-100">
 
        <div class="mx-4 mt-2 mb-4">
                 <nav class="flex" aria-label="Breadcrumb">

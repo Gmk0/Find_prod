@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ServiceResourceData;
 use App\Models\Category;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
@@ -94,5 +95,18 @@ class ServiceController extends Controller
                 'service_id' => $request->service,
             ]);
         }
+    }
+
+    public function AllservicesGetMobile()
+    {
+        $servicesAll = Service::whereHas('freelance', function ($q) {
+            $q->where('status_compte', '=', 'actif');
+        })->where('is_publish', true)
+            ->get();
+
+
+        return response()->json(['services'=> ServiceResourceData::collection($servicesAll)],200);
+
+
     }
 }

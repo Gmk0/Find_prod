@@ -225,7 +225,7 @@
             <div class="p-4">
                 <div class="px-6 m-auto text-findDark-600 xl:container md:px-12 xl:px-16">
                     <div
-                        class="flex-row-reverse justify-center p-4 space-y-6 bg-findDark-100 rounded-lg dark:bg-findDark-800 lg:p-16 md:flex md:gap-6 md:space-y-0 lg:items-center">
+                        class="flex-row-reverse justify-center p-4 space-y-6 rounded-lg bg-findDark-100 dark:bg-findDark-800 lg:p-16 md:flex md:gap-6 md:space-y-0 lg:items-center">
                         <div data-aos="flip-left" data-aos-duration="500" class="md:5/12 lg:w-1/2">
                             <img src="/images/services/presentation3.png" alt="image"
                                 class="rounded-lg dark:bg-findDark-800 floating bg-skin-fill" loading="lazy" width="" height="" />
@@ -513,7 +513,7 @@
                             <div>
                                 <div v-for="(faq, index) in faqsGet" :key="faq.id">
                                 <button
-                                    class="flex items-center justify-between w-full py-3 mt-4 text-findDark-800 border-b font-bega-semibold dark:text-white"
+                                    class="flex items-center justify-between w-full py-3 mt-4 border-b text-findDark-800 font-bega-semibold dark:text-white"
                                     :class="index !== faqsGet.length - 1 && 'border-b border-findDark-400'"
                                     @click="toggleAccordion(faq.id)"
                                 >
@@ -580,6 +580,8 @@ import HomeSearch from '@/Components/HomeSearch.vue';
 import TalkAboutUs from '@/Components/TalkAboutUs.vue';
 
 
+
+import { Navigation, Pagination, Autoplay, EffectFade, Scrollbar, A11y, EffectCube } from 'swiper/modules';
 
 
 
