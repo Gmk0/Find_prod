@@ -28,7 +28,7 @@ export const useCategoryStore = defineStore('category', {
                 const response = await axios.get(`/api/subcategories/${categoryid}`);
                 this.subCategoriesby = response.data.subcategories;
             } catch (error) {
-                console.error('Error fetching categories:', error);
+                //console.error('Error fetching categories:', error);
             }
 
         }
@@ -73,12 +73,12 @@ export const useParrainage = defineStore('useParrainage', {
 
 
                 }else{
-                    console.log("error:" + response.status)
+                    //console.log("error:" + response.status)
                 }
 
             } catch (e) {
 
-                console.log(e)
+                //console.log(e)
 
             }
         }
@@ -128,7 +128,7 @@ export const useSubcategoriesStore = defineStore('subcategories', {
                 this.subCategories = response.data.subCategories;
 
             } catch (error) {
-                console.error('Erreur lors de la récupération des sous-catégories:', error);
+                //console.error('Erreur lors de la récupération des sous-catégories:', error);
             }
         },
         setSubCategories(subCategories) {
@@ -328,11 +328,11 @@ export const useSidebarPanelUser = defineStore('useSidebarPanelUser',{
                         this.lastMessage = response.data;
                     } else {
 
-                        console.log('Aucun message trouvé.');
+                        //console.log('Aucun message trouvé.');
                     }
                 } else if (response.status === 203) {
 
-                    console.log('Aucun message n\'est renvoyé.');
+                    //console.log('Aucun message n\'est renvoyé.');
                 }
             } catch (error) {
                 console.error('Erreur lors de la récupération des messages :', error);

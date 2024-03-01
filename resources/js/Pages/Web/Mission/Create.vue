@@ -181,7 +181,7 @@ defineOptions({
             <div class="flex flex-col w-full mx-auto min-h-72 lg:col-span-1 lg:mx-0 ">
                 <div class="p-6">
 
-                        <p class="text-gray-700 text-lg dark:text-gray-100 font-bega-medium mb-4">Vous avez besoin d'un service en particulier? Créez une mission dès maintenant!</p>
+                        <p class="mb-4 text-lg text-gray-700 dark:text-gray-100 font-bega-medium">Vous avez besoin d'un service en particulier? Créez une mission dès maintenant!</p>
 
                     </div>
 
