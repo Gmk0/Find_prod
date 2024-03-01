@@ -104,7 +104,7 @@ Route::controller(ServiceController::class)->group(function(){
 Route::controller(MissionController::class)->group(function(){
 
     Route::get('/create-mission', 'createMission')->name('createProject')->middleware('auth');
-    Route::post('/create-mission', 'storeMission')->name('storeMission');
+    Route::post('/store-mission', 'storeMission')->name('storeMission');
 
 });
 

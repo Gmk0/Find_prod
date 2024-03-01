@@ -383,7 +383,7 @@ export const useNotification = defineStore('useNotification',{
                 if (response.status === 200) {
                     this.lastNotification = response.data.notifications;
 
-                    console.log(response.data.notifications);
+
 
 
                 } else if (response.status === 203) {
