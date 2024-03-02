@@ -21,7 +21,7 @@ class MissionController extends Controller
     public function createMission()
     {
 
-        return Inertia::render('Web/Mission/CreateMission',['categories'=>Category::all()]);
+        return Inertia::render('Web/Mission/NewMission',['categories'=>Category::all()]);
     }
 
 

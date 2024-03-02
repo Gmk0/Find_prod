@@ -14,7 +14,7 @@ class FreelanceAccessPanel
     {
         // Vérifiez si l'utilisateur est authentifié
         if (!Auth::check()) {
-            return redirect('/');
+            return redirect('/login');
         }
 
         // Récupérez l'utilisateur actuellement authentifié

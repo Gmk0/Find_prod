@@ -101,12 +101,6 @@ Route::controller(ServiceController::class)->group(function(){
 });
 
 
-Route::controller(MissionController::class)->group(function(){
-
-    Route::get('/mission-creation', 'createMission')->name('createProject')->middleware('auth');
-    Route::post('/store-mission', 'storeMission')->name('storeMission');
-
-});
 
 
 
@@ -119,6 +113,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::controller(MissionController::class)->group(function () {
+        Route::get('/mission-creation', 'createMission')->name('createProject');
+        Route::post('/store-mission', 'storeMission')->name('storeMission');
+    });
+
 
     Route::get('facturaction/{facture}', [ReportController::class, 'facture'])->where('facture', '(.*)')->name('facturation');
 
