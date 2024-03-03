@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Jobs\CheckTransactionStatus;
 use App\Models\Commission;
+use App\Jobs\CheckUserActivityJob;
 
 class MissionController extends Controller
 {
@@ -192,6 +193,7 @@ class MissionController extends Controller
     {
 
 
+
         try {
 
 
@@ -203,11 +205,20 @@ class MissionController extends Controller
                 ->first();
 
 
+                $mission=Mission::find($request->mission_id);
+
+                if(!$mission){
+
+                return redirect()->back()->withErrors(['message' => 'pas de mission disponible']);
+                }
+
+
 
 
 
             if (!$conversation) {
                 $conversation = new Conversation();
+                $conversation->user_id = auth()->id();
                 $conversation->freelance_id = $request->freelance_id;
                 $conversation->last_time_message = now();
                 $conversation->status = 'pending';
@@ -218,16 +229,18 @@ class MissionController extends Controller
                 'sender_id' => auth()->user()->id,
                 'receiver_id' => $request->freelance_user_id,
                 'conversation_id' => $conversation->id,
-                'body' => "conversation relater de la commande :". $request->mission_id,
+                'body' => "conversation relater de la mission : <strong> {$mission->title} </strong>",
                 'is_read' => false,
                 'type' => "text",
-
-
             ]);
+
+            CheckUserActivityJob::dispatch($request->freelance_user_id, $createdMessage);
+
 
             return redirect()->route('user.chat', $conversation->id);
         } catch (\Exception $e) {
 
+            //dd($e->getMessage());
             return redirect()->back()->withErrors(['message' => $e->getMessage()]);
         }
     }

@@ -25,6 +25,8 @@ use Illuminate\Support\Collection;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\TagSearch;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class ServiceResource extends Resource
 {
@@ -85,7 +87,7 @@ class ServiceResource extends Resource
                 ])
                 ->columns(2),
 
-            FileUpload::make('files')->label('Image Decrivant votre service')
+            SpatieMediaLibraryFileUpload::make('images')->label('Image Decrivant votre service')
             ->multiple()
             ->directory('service')
             ->imagePreviewHeight('100')

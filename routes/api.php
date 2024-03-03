@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Freelance\FreelanceController;
 use App\Http\Controllers\Web\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/allServices',[ServiceController::class, 'AllservicesGetMobile']);
+
+Route::get('/allFreelances',[FreelanceController::class, 'AllFreelancesGet']);

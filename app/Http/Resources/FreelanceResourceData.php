@@ -22,6 +22,7 @@ class FreelanceResourceData extends JsonResource
             'identifiant' => $this->identifiant,
             'description' => $this->description,
             'experience' =>$this->experience,
+            'nomComplet'=>$this->getNomCompletAttribute(),
             'langue' =>$this->langue,
             'diplome' =>$this->diplome,
             'certificat' =>$this->certificat,
