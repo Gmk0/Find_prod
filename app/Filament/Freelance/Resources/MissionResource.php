@@ -97,6 +97,7 @@ class MissionResource extends Resource
     public static function getRelations(): array
     {
         return [
+
             //
         ];
     }

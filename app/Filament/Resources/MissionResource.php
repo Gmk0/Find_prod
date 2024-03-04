@@ -127,6 +127,7 @@ class MissionResource extends Resource
     {
         return [
             //
+            RelationManagers\MissionResponsesRelationManager::class,
         ];
     }
 

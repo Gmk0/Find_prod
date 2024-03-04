@@ -89,6 +89,7 @@ class ServiceResource extends Resource
 
             SpatieMediaLibraryFileUpload::make('images')->label('Image Decrivant votre service')
             ->multiple()
+            ->preserveFilenames()
             ->directory('service')
             ->imagePreviewHeight('100')
             ->optimize('webp')

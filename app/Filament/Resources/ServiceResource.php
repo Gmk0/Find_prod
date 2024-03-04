@@ -23,7 +23,8 @@ use Illuminate\Support\Collection;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\TagSearch;
-
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
@@ -87,13 +88,17 @@ class ServiceResource extends Resource
                 ])
                     ->columnSpanFull(),
 
-                FileUpload::make('files')->label('Image Decrivant votre service')
-                ->multiple()
-                    ->directory('service')
-                    ->imagePreviewHeight('100')
-                    ->image()
-                    ->columnSpanFull()
-                    ->imageEditor(),
+            SpatieMediaLibraryFileUpload::make('images')->label('Image Decrivant votre service')
+            ->multiple()
+            ->preserveFilenames()
+            ->directory('service')
+            ->imagePreviewHeight('100')
+            ->optimize('webp')
+            ->collection('services')
+            ->enableReordering()
+            ->image()
+            ->columnSpanFull()
+            ->imageEditor(),
                 Fieldset::make('Realisation faites avec ce service')->schema([
                     FileUpload::make('example.image')
                     ->imagePreviewHeight('100')
