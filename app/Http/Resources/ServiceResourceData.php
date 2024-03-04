@@ -50,6 +50,13 @@ class ServiceResourceData extends JsonResource
             'likeUser' => $this->isFavorite(),
             'orderCount' => $this->orderCount(),
             'average' => $this->averageFeedback(),
+            "media" =>
+            $this->getMedia('services')->map(function ($media) {
+                return [
+                    'url' => $media->getUrl(),
+                    'alt' => $media->name,
+                ];
+            }),
             'commandeEncours'=>$this->countElementEncours(),
             'freelance' => $this->freelance ? $this->freelance->only('id','nom' ,'prenom','identifiant','description', 'level') : null,
             'user' => $this->freelance->user ?? null,

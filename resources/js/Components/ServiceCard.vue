@@ -87,9 +87,10 @@ const addToCart = () => {
 
 
 
+
                     <div class="p-2">
-                         <div v-if="props.service.image.lenght !==0" class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"
-                            :style="'background-image: url(/storage/' +  props.service.image[0] + ')'">
+                         <div v-if="props.service.media.length > 0" class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"
+                            :style="'background-image: url(' +  props.service.media[0]?.url  + ')'">
 
                         </div>
                          <div v-else class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"

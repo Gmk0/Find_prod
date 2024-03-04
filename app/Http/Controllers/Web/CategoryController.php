@@ -83,6 +83,12 @@ class CategoryController extends Controller
                     'like' => $service->isFavorite(),
                     'orderCount'=>$service->orderCount(),
                     'average' => $service->averageFeedback(),
+                        'media'=>$service->getMedia('services')->map(function ($media) {
+                            return [
+                                'url' => $media->getUrl(),
+                                'alt' => $media->name,
+                            ];
+                        }),
                     'freelance' => $service->freelance ? $service->freelance->only('nom', 'prenom', 'identifiant','level') : null,
                     'user'=>$service->freelance->user ? $service->freelance->user->only('name', 'profile_photo_path', 'profile_photo_url','slug') : null,
                     'category' => $service->category ? $service->category->only('name', 'id','slug') : null,
@@ -173,6 +179,13 @@ class CategoryController extends Controller
                             'like' => $service->isFavorite(),
                             'orderCount' => $service->orderCount(),
                             'average' => $service->averageFeedback(),
+                            'media' =>
+                                $service->getMedia('services')->map(function ($media) {
+                                    return [
+                                        'url' => $media->getUrl(),
+                                        'alt' => $media->name,
+                                    ];
+                                }),
                             'freelance' => $service->freelance ? $service->freelance->only('nom', 'prenom', 'identifiant', 'level') : null,
                             'user' => $service->freelance->user ? $service->freelance->user->only('name', 'profile_photo_path', 'profile_photo_url', 'slug') : null,
                             'category' => $service->category ? $service->category->only('name', 'id', 'slug') : null,

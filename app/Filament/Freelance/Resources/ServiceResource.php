@@ -92,6 +92,8 @@ class ServiceResource extends Resource
             ->directory('service')
             ->imagePreviewHeight('100')
             ->optimize('webp')
+            ->collection('services')
+            ->enableReordering()
             ->image()
             ->columnSpanFull()
             ->imageEditor(),
@@ -135,7 +137,9 @@ class ServiceResource extends Resource
             Fieldset::make('Prix')
                 ->schema([
                     // ...
-                    TextInput::make('basic_delivery_time')->label('Temps De livraison')->required(),
+                    TextInput::make('basic_delivery_time')->label('Temps De livraison')
+                ->numeric()
+                ->required(),
                     Select::make('delivery_time_unit')->label('Temps de livraison')
                     ->options([
                         'jour(s)' => 'jour(s)',

@@ -119,7 +119,10 @@ class ServiceResource extends Resource
                 Fieldset::make('Prix')
                 ->schema([
                     // ...
-                    TextInput::make('basic_delivery_time')->label('Temps De livraison')->required(),
+                    TextInput::make('basic_delivery_time')
+                    ->placeholder('5')
+                    ->label('Temps De livraison')
+                    ->required(),
                     Select::make('delivery_time_unit')->label('Temps de livraison')
                     ->options([
                         'jour(s)' => 'jour(s)',
