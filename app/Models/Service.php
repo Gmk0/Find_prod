@@ -96,7 +96,7 @@ class Service extends Model implements HasMedia
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug')
-            ->slugsShouldBeNoLongerThan(50);
+            ->slugsShouldBeNoLongerThan(100);
     }
 
 

@@ -232,6 +232,10 @@ class CategoryController extends Controller
 
         $service = Service::findBySlug($slug);
 
+
+
+
+
         if($service == null){
             return redirect()->back();
         }
@@ -261,10 +265,6 @@ class CategoryController extends Controller
                 $q->where('status_compte', '=', 'actif');
             })->where('category_id', $service->category_id)
             ->where('is_publish', true)->take(6)->get();
-
-           // $data= ServiceResourceData::collection($otherService);
-
-
 
 
 

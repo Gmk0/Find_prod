@@ -147,11 +147,11 @@ const toogleFavorite = async () => {
 
 const images = ref([]);
 
-for (let i = 0; i < props.service.data.files.length; i++) {
+for (let i = 0; i < props.service.data.media.length; i++) {
     images.value.push({
-        itemImageSrc: '/storage/' + props.service.data.files[i],
-        thumbnailImageSrc: '/storage/' + props.service.data.files[i],
-        alt: `Description for Image ${i + 1}`,
+        itemImageSrc:  props.service.data.media[i].url,
+        thumbnailImageSrc: props.service.data.media[i].url,
+        alt: props.service.data.media[i].alt,
         title: `Title ${i + 1}`
     });
 }
@@ -161,7 +161,7 @@ const add_cart=()=>{
 
 
 }
-const url = '/storage/';
+const url = '/storage/'+ props.service.data.url_default;
 
 const addToCart = () => {
     const item =
@@ -170,7 +170,7 @@ const addToCart = () => {
         name: props.service.data.title,
         price: price.value,
         level: level.value,
-        image: url + props.service.data.files[0]
+        image: props.service.data.media ? props.service.data.media[0].url:url
     }; // Exemple d'article
 
     usecartStore.addItem(item);
