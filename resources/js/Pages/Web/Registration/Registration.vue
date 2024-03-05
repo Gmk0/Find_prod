@@ -1146,7 +1146,7 @@ for (let index = 1999; index < year ; index++) {
 
 
 
-                                 <InputError  class="mt-2" />
+                                 <InputError :message="image.errors.photo" class="mt-2" />
                         </div>
 
                                     </div>

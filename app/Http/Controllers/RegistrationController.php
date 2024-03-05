@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
 {
@@ -124,6 +125,13 @@ class RegistrationController extends Controller
     public function updateProfileUser(Request $request)
     {
         try {
+
+             Validator::make($request->all(), [
+                'photo' => 'image|max:5120', // 5120 kilo-octets = 5 mégaoctets
+            ])->validate();
+
+
+
             if ($request->hasFile('photo')) {
 
                 $user = auth()->user();
@@ -143,9 +151,6 @@ class RegistrationController extends Controller
            //return response()->json(['success' => false, 'message' => 'Une erreur s\'est produite lors de la mise à jour du profil. Veuillez réessayer.']);
 
         }
-
-
-
 
     }
 
