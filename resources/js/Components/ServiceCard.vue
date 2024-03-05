@@ -91,9 +91,10 @@ const addToCart = () => {
 
                     <div class="p-2">
                          <div v-if="props.service.media !=null && props.service.media.length > 0"
-                            class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"
-                            style="background-size: contain;"
-                            v-lazy-img:bg-image="props.service.media[0]?.url">
+                            class="h-48 transition duration-500 ease-out lg:h-44"
+
+                            >
+                            <img   style="background-size: contain;"  v-lazy-img="props.service.media[0]?.url" class="w-full h-full p-2 bg-center bg-cover border rounded-xl"/>
 
                         </div>
                          <div v-else class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"
