@@ -118,7 +118,7 @@ class ServiceResource extends Resource
                     ->imagePreviewHeight('100')
                     ->image()
 
-                    ->optimize('webp')
+                    ->optimize('jpg')
                     ->imageEditor()
                     ->directory('examples')
                     ->multiple()

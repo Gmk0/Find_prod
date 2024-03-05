@@ -93,7 +93,7 @@ class ServiceResource extends Resource
             ->preserveFilenames()
             ->directory('service')
             ->imagePreviewHeight('100')
-            ->optimize('webp')
+            ->optimize('jpg')
             ->collection('services')
             ->enableReordering()
             ->image()
