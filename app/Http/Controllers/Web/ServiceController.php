@@ -46,6 +46,12 @@ class ServiceController extends Controller
                         'slug' => $service->slug,
                         'service_numero' => $service->service_numero,
                         'image' => $service->files,
+                        'media' =>$service->getMedia('services')->map(function ($media) {
+                            return [
+                                'url' => $media->getUrl(),
+                                'alt' => $media->name,
+                            ];
+                        }),
                         //'sub_categorie' => $service->subcategories(),
                         'like' => $service->isFavorite(),
                         'orderCount' => $service->orderCount(),
