@@ -1084,7 +1084,7 @@ const isLastRejectedMessage = (index) => {
 
 
 </template>
-<style lang="css" scoped>
+<style lang="css">
 
 
 .image-enter-active {

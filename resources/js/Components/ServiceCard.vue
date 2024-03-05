@@ -11,6 +11,7 @@ import { Navigation, Pagination, Autoplay, EffectFade, Scrollbar, A11y, EffectCu
 //import { useToast } from 'primevue/usetoast';
 
 //import Chip from 'primevue/chip';
+ import { vLazyImg } from 'maz-ui'
 
 const swal = inject('$swal')
 
@@ -89,8 +90,10 @@ const addToCart = () => {
 
 
                     <div class="p-2">
-                         <div v-if="props.service.media !=null && props.service.media.length > 0" class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"
-                            :style="'background-image: url(' +  props.service.media[0]?.url  + ')'">
+                         <div v-if="props.service.media !=null && props.service.media.length > 0"
+                            class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"
+                            style="background-size: contain;"
+                            v-lazy-img:bg-image="props.service.media[0]?.url">
 
                         </div>
                          <div v-else class="h-48 transition duration-500 ease-out bg-center bg-cover border rounded-xl lg:h-44"

@@ -560,5 +560,3 @@ defineOptions({
 
 
 
-
-<style lang="scss" scoped></style>

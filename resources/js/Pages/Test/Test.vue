@@ -103,21 +103,3 @@ defineOptions({
 
 
 </script>
-<style>
-
-
-.slide-enter-active, .slide-leave-active {
-  transition: all .3s ease;
-}
-.slide-enter, .slide-leave-to {
-  transform: translateX(100%);
-}
-
-
-/* Sélectionnez l'élément actif avec l'ID 'profile-tab' */
-[aria-selected="true"] {
-
-      @apply text-skin-fill hover:text-skin-fill  border-skin-fill dark:border-blue-500;
-}
-
-</style>

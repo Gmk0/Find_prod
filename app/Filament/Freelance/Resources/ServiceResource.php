@@ -91,14 +91,16 @@ class ServiceResource extends Resource
             ->multiple()
             ->preserveFilenames()
             ->directory('service')
+            ->image()
             ->imagePreviewHeight('100')
             ->optimize('webp')
             ->collection('services')
             ->enableReordering()
-            ->image()
+
             ->columnSpanFull()
             ->imageEditor(),
             RichEditor::make('description')
+            ->required()
             ->columnSpanFull(),
 
             RichEditor::make('need_service')->label('Besoin service')
@@ -119,7 +121,10 @@ class ServiceResource extends Resource
                     ->optimize('webp')
                     ->imageEditor()
                     ->directory('examples')
-                    ->multiple(),
+                    ->multiple()
+                    ->maxSize(3024)
+                    ->maxFiles(4)
+                    ->reorderable(),
                 Textarea::make('example.description')
 
 

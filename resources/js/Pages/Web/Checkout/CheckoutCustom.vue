@@ -554,7 +554,7 @@ const provider = [
 
 </template>
 
-<style scoped>
+<style>
 .loader-dots div {
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }

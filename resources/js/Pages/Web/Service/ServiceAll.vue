@@ -96,9 +96,9 @@
                             :space-between="25"
                             @swiper="onSwiperInitializedService"
                             >
-                            <swiper-slide v-for="service in props.servicesBest" class="p-2">
+                            <swiper-slide v-for="service in props.servicesBest.data" class="p-2">
 
-                            <ServiceCard :service="service" />
+                            <ServiceCard :service="service" :key="service.id" />
                             </swiper-slide>
 
                             </swiper>
@@ -107,6 +107,7 @@
 
 
                     </div>
+
             </div>
 
            <div class="py-8 mx-2 mb-4 bg-white rounded-lg dark:bg-findDark-800 lg:mx-4">
@@ -176,7 +177,7 @@
                     class="grid grid-cols-1 gap-4 lg:mx-6 lg:p-4 md:grid-cols-2 lg:md:grid-cols-4 md:gap-4">
 
 
-                    <div v-for="service in props.servicesBest">
+                    <div v-for="service in props.servicesBest.data">
                           <ServiceCard :service="service" :key="service.id" />
 
 
@@ -248,7 +249,7 @@ import 'swiper/css/autoplay';
 const props = defineProps({
     categories: Array,
     freelances : Array,
-    servicesBest : Array,
+    servicesBest : Object,
 });
 
 
