@@ -262,6 +262,9 @@ class CategoryController extends Controller
             })->where('category_id', $service->category_id)
             ->where('is_publish', true)->take(6)->get();
 
+           // $data= ServiceResourceData::collection($otherService);
+
+
 
 
 

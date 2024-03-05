@@ -247,6 +247,7 @@ defineOptions({
          <Toast position="bottom-right" group="br" />
 
 
+
         <div class="container relative px-4 py-4 lg:mx-auto">
 
             <div class="relative flex flex-col gap-4 lg:flex-row lg:space-x-4">
@@ -484,18 +485,19 @@ defineOptions({
                                 </div>
                                     <div class="mt-4">
 
+
                                             <div class="w-full rounded-lg lg:w-10/12">
-                                            <Swiper v-if="props.service.data.files.lenght!==0"
+                                            <Swiper v-if="props.service.data.media.length >0"
                                                 :modules="[Navigation, Autoplay, Pagination, Scrollbar, EffectFade, A11y]"
                                                 effect="fade"
                                                 :slides-per-view="1"
                                                 navigation
                                                 >
-                                                <swiper-slide v-for="(image, index) in props.service.data.files">
+                                                <swiper-slide v-for="(image, index) in props.service.data.media">
 
                                                     <img class="object-cover w-auto h-auto rounded-md lg:h-10/12 swiper-lazy"
-                                                        :src = "'/storage/' + image"
-                                                        :alt="image" />
+                                                        :src = "image.url"
+                                                        :alt="image.alt" />
                                                 </swiper-slide>
 
                                             </Swiper>
