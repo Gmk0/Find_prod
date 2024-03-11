@@ -122,7 +122,7 @@ class Retrait extends Page
                     $payment->amount = $montant;
                     $payment->payment_method = ['last4' => $data['numero'], 'brand' => $this->returnBrand($data['provider_id'])];
                     $payment->payment_token = $this->references();
-                    $payment->type = "paiement";
+                    $payment->type = "retrait";
                     $payment->save();
 
                     $freelance=auth()->user()->freelance;
