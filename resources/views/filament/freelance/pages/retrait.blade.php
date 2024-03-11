@@ -23,6 +23,7 @@
          class="align-center">
 
             Retrait
+            <span wire:loading wire:target='retrait'> en cours...</span>
 
         </x-filament::button>
         @else

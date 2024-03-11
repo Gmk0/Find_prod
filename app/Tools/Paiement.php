@@ -111,7 +111,7 @@ class Paiement
             'customer_id' => $numeberTransformerd,
             'order_id' => $transaction_id,
             'amount' => $montant,
-            'currency' => 'CDF',
+            'currency' => 'USD',
             'country' => 'CD',
             'callback_url' => $callback,
         ];
