@@ -61,7 +61,7 @@ class TransactionResource extends Resource
                 ->badge()
                 ->colors([
 
-                    'secondary' => 'pending',
+                    'primary' => 'pending',
                     'warning' => 'failed',
                     'success' => 'completed',
 
