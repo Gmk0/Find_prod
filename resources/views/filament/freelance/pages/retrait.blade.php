@@ -4,18 +4,30 @@
 
     {{$this->form}}
 
+    @empty(!$errors)
+    @foreach ($errors as $error)
+       <p class="mt-4 text-lg text-red-600"> {{$error}}</p>
+    @endforeach
+    @endempty
+
 
     <div style="margin-top: 20px;">
 
-        @if(auth()->user()->freelance->solde == 0)
+        @if(auth()->user()->freelance->solde  > 0)
 
-        <x-filament::button icon="heroicon-m-pencil-square" type="submit" form="submit" class="align-center">
+        <x-filament::button
+        icon="heroicon-m-pencil-square"
+        type="submit"
+        wire:loading.attr="disabled"
+        icon-position="after"
+         class="align-center">
 
-            <span>Retrait <span wire:loading>...</span></span>
+            Retrait
 
         </x-filament::button>
         @else
-        <x-filament::button icon="heroicon-m-pencil-square" disabled type="button" form="submit" class="align-center">
+        <x-filament::button icon="heroicon-m-pencil-square"
+         disabled type="button" form="submit" class="align-center">
 
             <span>Retrait indisponible </span>
 

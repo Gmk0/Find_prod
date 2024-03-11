@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use App\Jobs\CheckTransactionStatus;
 use App\Models\Commission;
 use App\Jobs\CheckUserActivityJob;
+use App\Notifications\PaiementDebloquer;
 
 class MissionController extends Controller
 {
@@ -378,7 +379,7 @@ class MissionController extends Controller
 
         }else{
 
-            //return redirect()->route('paiementStatus', ['transaction_numero' =>$transaction_numero]);
+            return redirect()->route('paiementStatus', ['transaction_numero' =>$transaction_numero]);
 
         }
 
@@ -475,13 +476,6 @@ class MissionController extends Controller
 
         }
 
-
-
-
-
-
-
-
         DB::beginTransaction();
         try {
 
@@ -493,6 +487,7 @@ class MissionController extends Controller
             $mission->update();
 
             $freelance = $missionResponse->freelance;
+            $user = $freelance->user;
 
             // Calculer 80% du montant total de la commande
             $amountToAdd = $transaction->amount * 0.80;
@@ -522,6 +517,7 @@ class MissionController extends Controller
             $commission->save();
 
 
+            $user->notify(new PaiementDebloquer($amountToAdd));
 
             DB::commit();
         } catch (\Exception $e) {

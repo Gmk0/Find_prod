@@ -42,7 +42,7 @@ class AnnonceWrapper extends Component
         }catch(\Exception $e)
         {
 
-            dd($e->getMessage());
+
             error_log($e->getMessage());
             $this->dispatch('close');
 

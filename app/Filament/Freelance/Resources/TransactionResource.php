@@ -58,6 +58,14 @@ class TransactionResource extends Resource
             ->label('Paiement Methode')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
+                ->badge()
+                ->colors([
+
+                    'secondary' => 'pending',
+                    'warning' => 'failed',
+                    'success' => 'completed',
+
+                ])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('type')
                     ->searchable(),

@@ -99,6 +99,14 @@ class MissionResource extends Resource
                 Tables\Columns\IconColumn::make('masquer')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('status')
+            ->badge()
+            ->colors([
+
+                'secondary' => 'pending',
+                'warning' => 'inactive',
+                'success' => 'completed',
+
+            ])
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

@@ -13,7 +13,7 @@
                         <li aria-current="page">
                                 <Link :href="route('user.transactions')" class="flex items-center">
 
-                                    <span class="ml-1 text-sm font-bega-medium text-gray-700 md:ml-2 dark:text-gray-400">Transactions</span>
+                                    <span class="ml-1 text-sm text-gray-700 font-bega-medium md:ml-2 dark:text-gray-400">Transactions</span>
                                 </Link>
                             </li>
 
@@ -23,7 +23,7 @@
                                 <svg class="w-3 h-3 mx-1 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                 </svg>
-                                <span class="ml-1 text-sm font-bega-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ transaction.transaction_numero }}</span>
+                                <span class="ml-1 text-sm text-gray-500 font-bega-medium md:ml-2 dark:text-gray-400">{{ transaction.transaction_numero }}</span>
                             </div>
                             </li>
                     </ol>
@@ -50,14 +50,14 @@
 
                 <h2 class="mb-4 text-xl font-bega-semibold">Récapitulatif de la transaction</h2>
 
-                <div class="flex items-center font-bega-medium mb-4">
+                <div class="flex items-center mb-4 font-bega-medium">
                     <span class="mr-2 text-gray-600 dark:text-gray-400">Numéro de transaction :</span>
                     <span class="text-gray-900 dark:text-gray-100">{{ transaction.transaction_numero }}</span>
                 </div>
 
-                <div class="flex items-center font-bega-medium mb-4">
+                <div class="flex items-center mb-4 font-bega-medium">
                     <span class="mr-2 text-gray-600 dark:text-gray-400">Montant :</span>
-                    <span class="text-lg font-bega-semibold text-gray-900 dark:text-gray-100">{{ transaction.amount
+                    <span class="text-lg text-gray-900 font-bega-semibold dark:text-gray-100">{{ transaction.amount
                     }} $</span>
                 </div>
 
@@ -119,7 +119,7 @@
 
 
 
-                <div class="flex items-center  font-bega-medium mb-4">
+                <div class="flex items-center mb-4 font-bega-medium">
                     <span class="mr-2 text-gray-600 dark:text-gray-400">Statut :</span>
 
 
@@ -150,18 +150,12 @@
 
             <div class="mt-4">
 
-                <div v-if="!transaction.orders !=null" class="p-6 bg-white rounded-lg dark:bg-gray-700 ">
+                <div v-if="transaction.orders.length > 0" class="p-6 bg-white rounded-lg dark:bg-gray-700 ">
 
                     <h2 class="mb-4 text-xl font-bega-semibold">Service Commander</h2>
-
-
-
                     <div v-for="order in transaction.orders">
-
-
-
                     <div class="flex items-center gap-2 mb-4">
-                        <span class="mr-2 font-bega-medium text-gray-600 dark:text-gray-400">Numéro de commande :</span>
+                        <span class="mr-2 text-gray-600 font-bega-medium dark:text-gray-400">Numéro de commande :</span>
                         <span class="text-gray-900 dark:text-gray-200">{{ order.order_numero }}</span>
                             <div class="px-2">
                                 <Link  :href="route('user.commandes.one', [order.order_numero])">
@@ -175,12 +169,12 @@
                         <span class="text-gray-900 dark:text-gray-200">{{ order.created_at }}</span>
                     </div>
 
-                    <div class="flex items-center font-bega-medium mb-4">
-                        <span class="mr-2 text-gray-600  dark:text-gray-400">Détails de la commande :</span>
+                    <div class="flex items-center mb-4 font-bega-medium">
+                        <span class="mr-2 text-gray-600 dark:text-gray-400">Détails de la commande :</span>
                         <span class="text-gray-900 dark:text-gray-200">{{ order.service.title }}</span>
 
                     </div>
-                    <div class="flex items-center font-bega-medium mb-4">
+                    <div class="flex items-center mb-4 font-bega-medium">
                         <span class="mr-2 text-gray-600 dark:text-gray-400">Montant de la commande :</span>
                         <span class="text-gray-900 dark:text-gray-200"> <span class="text-lg font-bega-semibold">{{
                             order.total_amount}} $</span> </span>
@@ -191,12 +185,12 @@
                 </div>
 
              </div>
-             <div v-else class="flex font-bega-medium items-start">
-                <h1 class="text-lg text-gray-200 dark:text-gray-400">Pas de service</h1>
+             <div v-else class="flex items-start font-bega-medium">
+                <h1 class="hidden text-lg text-gray-200 dark:text-gray-400">Pas de service</h1>
             </div>
 
 
-                <div v-if="transaction.missions != null"  class="p-6 bg-white rounded-lg ">
+                <div v-if="transaction.mission != null"  class="p-6 bg-white rounded-lg dark:bg-gray-700 ">
 
                     <h2 class="mb-4 text-xl font-bega-semibold">MISSION</h2>
                     <div class="flex items-center gap-2 mb-4">
@@ -213,14 +207,14 @@
                     </div>
 
                     <div class="flex items-center mb-4">
-                        <span class="mr-2 text-gray-600 dark:text-gray-400">Détails de la commande :</span>
+                        <span class="mr-2 text-gray-600 dark:text-gray-400">Détails de la mission :</span>
                         <span class="text-gray-900 dark:text-gray-200">{{ transaction.mission.title }}</span>
 
                     </div>
                     <div class="flex items-center mb-4">
                         <span class="mr-2 text-gray-600 dark:text-gray-400">Montant de la commande :</span>
                         <span class="text-gray-900 dark:text-gray-200"> <span class="text-lg font-bega-semibold">{{
-                            transaction.amount }}</span> </span>
+                            transaction.amount }} $</span> </span>
 
                     </div>
                     <hr>

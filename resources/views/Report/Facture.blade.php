@@ -156,11 +156,11 @@
                     style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 96px; border-style: none; border-width: 0;"
                     width="96"></H1>
         </div>
-        <h1>INVOICE {{$order->transaction_numero}}</h1>
+        <h1>Facture {{$order->transaction_numero}}</h1>
         <div id="company" class="clearfix">
             <div>FIND</div>
-            <div>455 Foggy Heights,<br /> AZ 85004, US</div>
-            <div>(602) 519-0450</div>
+            <div>63,avenue Colonel Mondjiba,<br />Kinshasa-RDC</div>
+            <div>(243)844720350 </div>
             <div><a href="mailto:support@find-freelance.com">support@find-freelance.com</a></div>
         </div>
         <div id="project">
@@ -169,7 +169,7 @@
 
             <div><span>EMAIL</span> <a href="mailto:{{$order->user->email}}">{{$order->user->email}}</a></div>
             <div><span>DATE</span> {{$order->created_at}}</div>
-            <div><span>DUE DATE</span> September 17, 2015</div>
+            <div><span>DUE DATE</span> {{$order->created_at}}</div>
         </div>
     </header>
     <main>
@@ -178,7 +178,7 @@
                 <tr>
                     <th class="service">SERVICE</th>
                     <th class="desc">DESCRIPTION</th>
-                    <th>PRICE</th>
+                    <th>Prix</th>
                     <th>QTY</th>
                     <th>TOTAL</th>
                 </tr>
@@ -188,7 +188,6 @@
 
                 @empty(!$order->orders)
                 @forelse ($order->orders as $order )
-
                 <tr>
                     <td class="service">{{$order->service->title}}</td>
                     <td class="desc">{{$order->service->category->name}}</td>
@@ -197,8 +196,17 @@
                     <td class="total">${{$order->total_amount}}</td>
                 </tr>
                 @empty
-
                 @endforelse
+                @endempty
+
+                @empty(!$order->mission)
+                <tr>
+                    <td class="service">{{$order->mission->title}}</td>
+                    <td class="desc">{{$order->mission->title}}</td>
+                    <td class="unit">${{$order->mission->budget}}</td>
+                    <td class="qty">1</td>
+                    <td class="total">${{$order->mission->budget}}</td>
+                </tr>
 
                 @endempty
 
@@ -212,7 +220,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" class="grand total">GRAND TOTAL</td>
-                    <td class="grand total">{{$order->amount}}</td>
+                    <td class="grand total">${{$order->amount}}</td>
                 </tr>
             </tbody>
         </table>

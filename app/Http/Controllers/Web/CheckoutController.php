@@ -104,7 +104,7 @@ class CheckoutController extends Controller
     {
         if ($provider == 10) {
             return 'ORANGE MONEY';
-        } else if ($provider == 15) {
+        } else if ($provider == 17) {
             return 'AIRTEL MONEY';
         } else {
             return 'M-PESA';

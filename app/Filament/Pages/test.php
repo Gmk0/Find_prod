@@ -121,7 +121,7 @@ class test extends Page
         try {
             $response = Http::post($url, $postData);
 
-             dd($response->json());
+            // dd($response->json());
 
             if ($response->successful()) {
 
@@ -131,7 +131,7 @@ class test extends Page
         } catch (\Exception $e) {
             // Handle the exception here
 
-            dd($e->getMessage());
+           // dd($e->getMessage());
             return response()->json(['error' => $e->getMessage()], 500);
         }
 

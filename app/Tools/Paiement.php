@@ -68,9 +68,7 @@ class Paiement
 
     public function paidAvada($montant, $numero,$provider, $callback,$transaction_id)
     {
-
         $numeberTransformerd= $this->transformNumber($numero,$provider);
-
         $postData = [
             'merchant_id' => env('MerchantAvadaID'),
             'provider_id' => $provider,
@@ -102,6 +100,35 @@ class Paiement
 
 
     }
+
+    public function retraitAvada($montant, $numero, $provider, $callback, $transaction_id)
+    {
+        $numeberTransformerd = $this->transformNumber($numero, $provider);
+
+        $postData = [
+            'merchant_id' => env('MerchantAvadaID'),
+            'provider_id' => $provider,
+            'customer_id' => $numeberTransformerd,
+            'order_id' => $transaction_id,
+            'amount' => $montant,
+            'currency' => 'CDF',
+            'country' => 'CD',
+            'callback_url' => $callback,
+        ];
+        $secretKey = env('SecretID');
+        $signature = SignatureCalculator::calculateSignature($postData, $secretKey);
+        $postData['signature'] = $signature;
+        $publicId = env('PublicId');
+        $url = 'https://api.unipesa.tech/' . $publicId . '/payment_b2c';
+        try {
+            $response = Http::post($url, $postData);
+            return $response->json();
+        } catch (\Exception $e) {
+            // Handle the exception here
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 
     public function checkStatus($transaction_numero)
     {
