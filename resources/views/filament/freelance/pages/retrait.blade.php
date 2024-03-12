@@ -13,7 +13,7 @@
 
     <div style="margin-top: 20px;">
 
-        @if(auth()->user()->freelance->solde  > 0)
+        @if(auth()->user()->freelance->solde  != 0)
 
         <x-filament::button
         icon="heroicon-m-pencil-square"

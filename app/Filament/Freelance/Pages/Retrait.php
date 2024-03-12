@@ -96,6 +96,8 @@ class Retrait extends Page
     }
 
 
+
+
     public function retrait()
     {
         // Assurez-vous que les données du formulaire sont valides
@@ -104,7 +106,6 @@ class Retrait extends Page
         $user = Auth::user();
         $password = $data['password'];
         $avada=new Paiement();
-
 
 
         $this->errors=[];
@@ -122,7 +123,7 @@ class Retrait extends Page
                     $payment->amount = $montant;
                     $payment->payment_method = ['last4' => $data['numero'], 'brand' => $this->returnBrand($data['provider_id'])];
                     $payment->payment_token = $this->references();
-                    $payment->type = "retrait";
+                    $payment->type = "crediter";
                     $payment->save();
 
                     $freelance=auth()->user()->freelance;
@@ -161,7 +162,7 @@ class Retrait extends Page
                     DB::rollback();
 
                   error_log($e->getMessage());
-                    $errors[] = "Une erreur s'est produite. Veuillez réessayer ultérieurement.";
+                $errors[] = "Une erreur s'est produite. Veuillez réessayer ultérieurement.";
                 }
 
 
