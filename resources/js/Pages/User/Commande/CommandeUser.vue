@@ -25,7 +25,15 @@
     <div class="mt-4">
         <div>
             <div class="card font-bega-medium">
-                <DataTable stripedRows   paginator :rows="10" :rowsPerPageOptions="[2, 10, 20, 50]" :value="commandes.data" tableStyle="min-width: 50rem"
+                <DataTable stripedRows
+                v-model:filters="filters"
+                dataKey="id"
+                filterDisplay="row"
+                 :globalFilterFields="['status']"
+                 paginator :rows="10"
+                :rowsPerPageOptions="[2, 10, 20, 50]"
+                :value="commandes.data"
+                tableStyle="min-width: 50rem"
                  >
 
                    <template #empty> Aucune commande. </template>
@@ -39,11 +47,18 @@
                     </template>
                     </Column>
                     <Column field="created_at" header="Date"></Column>
-                    <Column  header="status">
+                    <Column  header="status"  field="status">
                                     <template #body="slotProps">
-                                    <Tag :value="getStatus(slotProps.data)" :severity="getSeverity(slotProps.data)"/>
+                                    <Tag :value="getStatus(slotProps.data.status)" :severity="getSeverity(slotProps.data.status)"/>
 
                                     </template>
+                         <template #filter="{ filterModel, filterCallback }">
+                                    <Dropdown v-model="filterModel.value" @change="filterCallback()" :options="statuses" placeholder="Filtrer" class="p-column-filter" style="min-width: 10rem" :showClear="true">
+                                        <template #option="slotProps">
+                                            <Tag :value="getStatus(slotProps.option)" :severity="getSeverity(slotProps.option)" />
+                                        </template>
+                                    </Dropdown>
+                                </template>
 
 
                     </Column>
@@ -69,6 +84,9 @@
 
 import UserLayout from '@/Layouts/UserLayout.vue';
 
+import { FilterMatchMode } from 'primevue/api';
+
+import {ref } from 'vue';
 
 
 
@@ -76,11 +94,19 @@ defineProps({
     commandes : Object
 });
 
+
+const filters = ref({
+    status: { value: null, matchMode: FilterMatchMode.EQUALS },
+})
+
+const statuses = ref(['pending','completed','failed']);
+
+
 const formatCurrency = (value) => {
     return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
-const getSeverity = (commande) => {
-    switch (commande.status) {
+const getSeverity = (status) => {
+    switch (status) {
         case 'pending':
             return 'info';
             break;
@@ -97,8 +123,8 @@ const getSeverity = (commande) => {
     }
 }
 
-const getStatus = (commande) => {
-    switch (commande.status) {
+const getStatus = (status) => {
+    switch (status) {
         case 'pending':
             return 'en Attente';
             break;

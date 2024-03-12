@@ -20,26 +20,43 @@
             <div>
 
                 <div class="card font-bega-medium">
-                    <DataTable stripedRows   paginator :rows="10" :rowsPerPageOptions="[2, 10, 20, 50]" :value="transactions.data" tableStyle="min-width: 50rem"
+                    <DataTable stripedRows
+                    v-model:filters="filters"
+                    dataKey="id"
+                    filterDisplay="row"
+                    paginator
+                    :rows="10"
+                     :rowsPerPageOptions="[2, 10, 20, 50]"
+                    :value="transactions.data"
+                    tableStyle="min-width: 50rem"
+                    :globalFilterFields="['status']"
                      >
 
                          <template #empty> Aucune commande. </template>
         <template #loading> Chargement des données. Veuillez patienter. </template>
 
-                        <Column sortable  field="transaction_numero" header="transaction_numero"></Column>
+                        <Column sortable  field="transaction_numero" header="Numero Transaction "></Column>
 
-                        <Column field="amount" header="amount">
+                        <Column field="amount" header="Montant">
                          <template #body="slotProps">
                             {{ formatCurrency(slotProps.data.amount) }} $
                         </template>
                         </Column>
 
 
-                             <Column sortable  field="date" header="Date"></Column>
-                        <Column  header="status">
+                             <Column sortable  field="date" header="Date">
+                            </Column>
+                                <Column  header="status" field="status">
                                 <template #body="slotProps">
-                                <Tag :value="getStatus(slotProps.data)" :severity="getSeverity(slotProps.data)"/>
+                                <Tag :value="getStatus(slotProps.data.status)" :severity="getSeverity(slotProps.data.status)"/>
 
+                                </template>
+                                 <template #filter="{ filterModel, filterCallback }">
+                                    <Dropdown v-model="filterModel.value" @change="filterCallback()" :options="statuses" placeholder="Filtrer" class="p-column-filter" style="min-width: 10rem" :showClear="true">
+                                        <template #option="slotProps">
+                                            <Tag :value="getStatus(slotProps.option)" :severity="getSeverity(slotProps.option)" />
+                                        </template>
+                                    </Dropdown>
                                 </template>
 
 
@@ -93,8 +110,8 @@ const filters = ref({
 
 const statuses = ref(['pending','completed','failed']);
 
-const getSeverity = (commande) => {
-    switch (commande.status) {
+const getSeverity = (status) => {
+    switch (status) {
         case 'pending':
             return 'info';
             break;
@@ -112,8 +129,8 @@ const getSeverity = (commande) => {
 }
 
 
-const getStatus = (commande) => {
-    switch (commande.status) {
+const getStatus = (status) => {
+    switch (status) {
         case 'pending':
             return 'en Attente';
             break;
@@ -129,6 +146,7 @@ const getStatus = (commande) => {
 
     }
 }
+
 const formatCurrency = (value) => {
     return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
