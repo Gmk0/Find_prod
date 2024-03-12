@@ -41,6 +41,8 @@ class Conversation extends Model
         'id' => 'string',
         'freelance_id' => 'string',
         'user_id' => 'string',
+        'created_at'
+        => 'datetime:Y-m-d H:i:s',
     ];
 
 

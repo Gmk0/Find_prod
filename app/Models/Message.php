@@ -35,10 +35,10 @@ class Message extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'conversation_id' => 'integer',
+        'conversation_id' => 'string',
         'file' => 'array',
         'service_id' => 'string',
-        'proposal_id' => 'integer',
+        'proposal_id' => 'string',
         'order_id' => 'string',
         'receiver_id' => 'string',
         'sender_id' => 'string',

@@ -20,10 +20,13 @@ class ConversationResourceData extends JsonResource
             'status' => $this->status,
             'id' =>$this->id,
             'is_blocked' => $this->is_blocked,
-            'message' => $this->messages()->latest()->first(),
+            'created_at'=>$this->created_at,
+            'allMessages' => $this->messages,
+            'lastMessage' => $this->messages()->latest()->first(),
             'messagesNonLue'=> $this->messages()->where('receiver_id',auth()->id())->where('is_read',false)->count(),
-            'user'=> $this->user->only('name', 'email', 'profile_photo_url', 'profile_photo_path', 'last_activity', 'is_online'),
-            'freelanceUser' => $this->freelance->user->only('name', 'email', 'profile_photo_url','last_activity', 'is_online')
+            'user'=> $this->user,
+            'freelanceUser' => $this->freelance->user->only('name', 'email', 'profile_photo_url','last_activity', 'is_online'),
+            'freelance'=>FreelanceResourceData::make($this->freelance),
             ];
     }
 }
