@@ -104,7 +104,7 @@ class Retrait extends Page
         $user = Auth::user();
         $password = $data['password'];
         $avada=new Paiement();
-;
+
 
 
         $this->errors=[];
@@ -161,6 +161,7 @@ class Retrait extends Page
                     DB::rollback();
 
                   error_log($e->getMessage());
+                    $errors[] = "Une erreur s'est produite. Veuillez réessayer ultérieurement.";
                 }
 
 

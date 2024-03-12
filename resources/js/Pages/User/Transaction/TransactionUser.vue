@@ -71,6 +71,10 @@
 
 import UserLayout from '@/Layouts/UserLayout.vue';
 
+import { FilterMatchMode } from 'primevue/api';
+
+import {ref } from 'vue';
+
 
 defineProps(
     {
@@ -82,6 +86,12 @@ defineOptions({
     layout: UserLayout,
 
 });
+
+const filters = ref({
+    status: { value: null, matchMode: FilterMatchMode.EQUALS },
+})
+
+const statuses = ref(['pending','completed','failed']);
 
 const getSeverity = (commande) => {
     switch (commande.status) {

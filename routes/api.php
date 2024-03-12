@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Freelance\FreelanceController;
 use App\Http\Controllers\Web\ServiceController;
 use Illuminate\Http\Request;
@@ -32,3 +33,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/allServices',[ServiceController::class, 'AllservicesGetMobile']);
 
 Route::get('/allFreelances',[FreelanceController::class, 'AllFreelancesGet']);
+
+
+Route::get('/getUserConversations',[ChatController::class, 'getUserConversations'])->middleware(['auth:sanctum']);
