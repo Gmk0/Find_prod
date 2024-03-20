@@ -125,4 +125,24 @@ class AuthController extends Controller
         return $generatedCode;
     }
 
+    public function fetchUser(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json(UserResourceData::make($user));
+
+    }
+
+    public function logout(Request $request)
+    {
+        // Récupérer l'utilisateur authentifié
+        $user = $request->user();
+
+        // Révoquer tous les jetons personnels de l'utilisateur
+        $user->tokens()->delete();
+
+        // Retourner une réponse de succès
+        return response()->json(['message' => 'Logout successful']);
+    }
+
 }

@@ -43,7 +43,7 @@ class Message extends Model
         'receiver_id' => 'string',
         'sender_id' => 'string',
         'is_read' => 'boolean',
-        'created_at'=> 'datetime',
+        'created_at'=> 'datetime:Y-m-d H:i:s',
     ];
 
     public function user(): BelongsTo

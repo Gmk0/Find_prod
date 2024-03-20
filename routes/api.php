@@ -7,6 +7,8 @@ use App\Http\Controllers\Web\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,8 +28,11 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/auth/register', 'create');
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/user','fetchUser');
+        Route::get('/logout', 'logout');
+    });
 });
 
 Route::get('/allServices',[ServiceController::class, 'AllservicesGetMobile']);
@@ -36,3 +41,4 @@ Route::get('/allFreelances',[FreelanceController::class, 'AllFreelancesGet']);
 
 
 Route::get('/getUserConversations',[ChatController::class, 'getUserConversations'])->middleware(['auth:sanctum']);
+Route::post('/SendMessage', [ChatController::class, 'SendMessage'])->middleware(['auth:sanctum']);

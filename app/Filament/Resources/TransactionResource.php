@@ -29,6 +29,7 @@ class TransactionResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('transaction_numero')
                     ->required(),
+            Forms\Components\TextInput::make('id'),
                 Forms\Components\TextInput::make('amount')
                     ->required()
                     ->numeric(),

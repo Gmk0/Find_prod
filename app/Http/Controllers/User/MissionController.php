@@ -470,7 +470,7 @@ class MissionController extends Controller
 
         $transaction = $mission->transaction;
 
-        if($transaction->status !='completed')
+        if($transaction?->status !='completed')
         {
             return redirect()->back()->withErrors(['message' => 'le paiement n\'a pas encore ete effectuer']);
 

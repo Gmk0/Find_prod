@@ -29,6 +29,7 @@ class Conversation extends Model
         'status',
         'id',
         'is_blocked',
+        'last_time_message'
     ];
 
 
@@ -41,8 +42,8 @@ class Conversation extends Model
         'id' => 'string',
         'freelance_id' => 'string',
         'user_id' => 'string',
-        'created_at'
-        => 'datetime:Y-m-d H:i:s',
+        'created_at'=> 'datetime:Y-m-d H:i:s',
+        'last_time_message'=> 'datetime:Y-m-d H:i:s',
     ];
 
 
