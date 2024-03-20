@@ -31,7 +31,7 @@ class MissionResource extends Resource
                     ->relationship('category', 'name')
                     ->required(),
                 Forms\Components\Select::make('transaction_id')
-                    ->relationship('transaction', 'id'),
+                    ->relationship('transaction', 'transaction_numero'),
                 Forms\Components\TextInput::make('title')
                     ->required(),
                 Forms\Components\TextInput::make('mission_numero')
