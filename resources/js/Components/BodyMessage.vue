@@ -600,7 +600,7 @@ const isLastRejectedMessage = (index) => {
                                             <div class="flex flex-col">
                                                 <div
                                                     class="flex items-center p-3 bg-gray-200 rounded-t-lg shadow-sm dark:bg-navy-700 dark:text-navy-100">
-                                                    <img v-if='groupedMessage.message.service.files.length > 0'
+                                                    <img v-if='groupedMessage.message.service.files !=null'
                                                         class="w-10 h-10 mr-2 rounded-lg"
                                                         :src="'/storage/'+ groupedMessage.message.service.files[0]"
                                                         alt="Service Image">
