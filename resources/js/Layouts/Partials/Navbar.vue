@@ -22,7 +22,7 @@
                 <div class="block lg:hidden">
                 <button @click="navOpen = !navOpen"
                         class="inline-flex items-center justify-center p-2 text-gray-700 rounded-md hover:text-white hover:bg-findDark-700 focus:outline-none focus:bg-findDark-700 focus:text-white"
-                        x-bind:aria-label="navOpen ? 'Close main menu' : 'Main menu'" x-bind:aria-expanded="navOpen">
+                        >
                         <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path :class="{ 'hidden': navOpen, 'inline-flex': !navOpen }" class="inline-flex" stroke-linecap="round"
                                 stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
