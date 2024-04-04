@@ -48,7 +48,7 @@ class MessageSent implements ShouldBroadcast
 
         return [
             'sender_id' => $this->user->id,
-            'message' => MessageResourceData::make($this->message),
+            'message' => $this->message,
             'conversation' => $this->conversation,
             'receiver_id' => $this->receiver_id,
         ];

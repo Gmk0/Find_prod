@@ -58,7 +58,7 @@ class ServiceResourceData extends JsonResource
                 ];
             }),
             'commandeEncours'=>$this->countElementEncours(),
-            'freelance' => $this->freelance ? $this->freelance->only('id','nom' ,'prenom','identifiant','description', 'level') : null,
+            'freelance' => $this->freelance?FreelanceResourceData::make($this->freelance):null,
             'user' => $this->freelance->user ?? null,
             'category' => $this->category ? $this->category->only('name', 'id', 'slug') : null,
             'url_default' => $this->category->getFirstMediaUrl('categories') ?? null,
