@@ -62,13 +62,18 @@ class Paiement
         } else if ($provider == 17) {
             return substr($number, 4);
         } else {
-            return $number;
+            return substr($number, 1);
         }
     }
 
     public function paidAvada($montant, $numero,$provider, $callback,$transaction_id)
     {
+
+
+
         $numeberTransformerd= $this->transformNumber($numero,$provider);
+
+
         $postData = [
             'merchant_id' => env('MerchantAvadaID'),
             'provider_id' => $provider,

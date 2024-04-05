@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Jobs\CheckTransactionStatus;
+use App\Jobs\CheckCheckoutCustom;
 
 class CheckoutController extends Controller
 {
@@ -76,7 +77,7 @@ class CheckoutController extends Controller
             $proposal= $transaction->proposal;
             $transaction->status = 'failed';
             $transaction->save();
-            $proposal->transaction=null;
+            $proposal->transaction_id=null;
             $proposal->update();
 
             $oders = $transaction->orders;
@@ -377,6 +378,8 @@ class CheckoutController extends Controller
         abort(403, 'Accès non autorisé');
 
     }
+
+
     public function checkoutCustom(Request $request)
     {
 
@@ -414,15 +417,13 @@ class CheckoutController extends Controller
             $checkout = new Paiement();
             //$checkout->pa
             $response = $checkout->paidAvada($total, $form['numero'], $form['provider'], $callback, $payment->transaction_numero);
-            // dd($url);
-
-            CheckTransactionStatus::dispatch($payment)->delay(now()->addSeconds(30));
 
             return response()->json($response);
 
 
         } catch (\Exception $e) {
             DB::rollBack();
+            error_log($e->getMessage());
 
             return response()->json(['error' => $e->getMessage()],500);
           //  return redirect()->back()->withErrors(['message' => $e->getMessage()]);
