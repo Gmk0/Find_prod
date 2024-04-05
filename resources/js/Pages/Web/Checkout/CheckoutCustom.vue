@@ -21,6 +21,7 @@ const props =defineProps(
     {
          userSetting: Object,
          proposal:Object,
+         user_id:String,
     }
 );
 
@@ -55,6 +56,7 @@ const checkoutMaxi2 = async () => {
             form: form.value,
             service_id: props.proposal.service.id,
             proposal_id: props.proposal.id,
+            user_id: props.user_id,
            //items: items.value,
             total: props.proposal.proposed_price,
         },
@@ -111,6 +113,7 @@ const checkoutMaxi = async () => {
             form: form.value,
             service_id: props.proposal.service.id,
             proposal_id: props.proposal.id,
+            user_id: props.user_id,
             //items: items.value,
             total: props.proposal.proposed_price
         });
@@ -239,6 +242,8 @@ const provider = [
             <div class="px-6 md:px-12">
                 <div>
                     <div class="mb-2">
+
+
 
                     </div>
                     <div class="mb-2">
@@ -395,7 +400,7 @@ const provider = [
 
                                         <div class="w-full p-2 border-b border-gray-200 lg:p-6">
                                             <div class="flex flex-wrap gap-4 mb-5">
-                                                <MazRadioButtons v-model="form.provider"  required :options="provider"
+                                                <MazRadioButtons v-model="form.provider" required :options="provider"
                                                     color="primary">
                                                     <template #default="{ option, selected }">
                                                         <div style="display: flex;">
@@ -442,7 +447,8 @@ const provider = [
 
 
 
-                                                    <div :class="{'hidden': form.provider ==null}" class="flex flex-col gap-4 px-3 mb-3">
+                                                    <div :class="{'hidden': form.provider ==null}"
+                                                        class="flex flex-col gap-4 px-3 mb-3">
                                                         <ButtonMt type="submit">
                                                             payer
                                                         </ButtonMt>
@@ -508,7 +514,7 @@ const provider = [
                     </div>
                 </div>
             </div>
-              <div v-if="verification">
+            <div v-if="verification">
                 <div>
 
                     <div class="fixed top-0 left-0 z-50 flex items-center justify-center w-screen h-screen"

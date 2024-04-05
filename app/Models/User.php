@@ -61,6 +61,14 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
         'gift_used',
     ];
 
+    // Dans votre modèle utilisateur (par exemple, User.php)
+    // Dans votre modèle utilisateur (par exemple, User.php)
+    public function isAdmin()
+    {
+        // Vérifie si l'e-mail de l'utilisateur se termine par "@find-freelance.com"
+        return Str::endsWith($this->email, '@find-freelance.com');
+    }
+
 
     public function canAccessPanel(Panel $panel): bool
     {

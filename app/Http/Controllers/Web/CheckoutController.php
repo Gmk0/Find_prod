@@ -92,6 +92,8 @@ class CheckoutController extends Controller
 
             $proposal = $transaction->proposal;
             $transaction->status = 'completed';
+
+            $transaction->sendMail();
             $transaction->save();
             $proposal->status= 'finished';
             $proposal->update();
@@ -345,11 +347,11 @@ class CheckoutController extends Controller
 
 
         // Vérifiez si le lien correspond à un utilisateur authentifié
-        if ($clientLink && Auth::check() && $clientLink->user_id === Auth::id()) {
+        if
+        ($clientLink && Auth::check() && ($clientLink->user_id === Auth::id() || Auth::user()->isAdmin())) {
             // Utilisateur authentifié, redirigez vers la page appropriée
 
             $proposal=Proposal::find($clientLink->proposal_id);
-
 
 
             if($proposal->status =='finished')
@@ -366,6 +368,7 @@ class CheckoutController extends Controller
             return Inertia::render('Web/Checkout/CheckoutCustom',
             ['userSetting' => $userSetting,
             'proposal' => $proposal,
+            'user_id'=> $clientLink->user_id,
             //'service' => $service,
 
             ]);
@@ -384,13 +387,15 @@ class CheckoutController extends Controller
     {
 
 
+
         try {
 
             DB::beginTransaction();
             $form = $request->form;
             $total = $request->total;
+            $user_id= $request->user_id;
             $payment = new Transaction();
-            $payment->user_id = auth()->id();
+            $payment->user_id = $user_id;
             $payment->amount = $total;
             $payment->payment_method = ['last4' => $form['numero'], 'brand' => "Mobile"];
             $payment->payment_token = $this->references();
@@ -399,7 +404,7 @@ class CheckoutController extends Controller
 
             $order=Order::create([
                 'service_id' => $request->service_id,
-                'user_id' => auth()->user()->id,
+                'user_id' => $user_id,
                 'total_amount' => $request->total,
                 'quantity' => 1,
                 'type' => 'service',
@@ -432,72 +437,7 @@ class CheckoutController extends Controller
 
     }
 
-    public function paimentMaxiCustom(Request $request)
-    {
 
-
-
-        $reference = $request->reference;
-        $methode = $request->method;
-        $status = $request->status;
-
-        $transaction = Transaction::where('payment_token', $reference)->first();
-
-        if ($transaction == null) {
-        }
-
-        if ($status == 'failed') {
-            $transaction->status = 'failed';
-            $transaction->save();
-
-            $oders = $transaction->orders;
-
-
-
-            $link= $transaction->proposal->clientLink->uniqueId;
-
-
-            //$lin=[];
-            foreach ($oders as $order) {
-                $order->status = 'failed';
-                $order->save();
-            }
-
-            return redirect()->route('customLink.paid', ['uniqueId' => $link])->with('error', 'une erreur s\'est produite');
-
-
-        } else if ($status == 'success') {
-
-            $transaction->status = 'completed';
-            $transaction->save();
-
-            $oders = $transaction->orders;
-
-            foreach ($oders as $order) {
-                $order->status = 'completed';
-                $order->notifyUser();
-                $order->save();
-            }
-
-            return redirect()->route('paiementStatus', ['transaction_numero' => $transaction->transaction_numero]);
-        } else {
-            $transaction->status = 'failed';
-            $transaction->save();
-
-            $oders = $transaction->orders;
-
-            foreach ($oders as $order) {
-                $order->status = 'failed';
-                $order->save();
-            }
-
-            return redirect()->route('panier')->with('error', 'une erreur s\'est produite');
-        }
-
-
-
-
-    }
 
     public function applyCoupon(Request $request)
     {
