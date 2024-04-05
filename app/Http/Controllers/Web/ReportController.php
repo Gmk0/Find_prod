@@ -22,7 +22,7 @@ class ReportController extends Controller
                 return redirect()->back()->withErrors(['message' => 'Une erreur s\'est produite.']);
             }
             if ($order->orders != null) {
-                $pdf = Pdf::loadView('Report.Facture', ['order' => $order]);
+                $pdf = Pdf::loadView('Report.Facture', ['transaction' => $order]);
                // return $pdf->download('facture.pdf');
                 return $pdf->stream('facture.pdf');
             }

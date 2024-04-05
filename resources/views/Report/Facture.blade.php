@@ -156,7 +156,7 @@
                     style="height: auto; line-height: 100%; outline: none; text-decoration: none; display: block; width: 96px; border-style: none; border-width: 0;"
                     width="96"></H1>
         </div>
-        <h1>Facture {{$order->transaction_numero}}</h1>
+        <h1>Facture {{$transaction->transaction_numero}}</h1>
         <div id="company" class="clearfix">
             <div>FIND</div>
             <div>63,avenue Colonel Mondjiba,<br />Kinshasa-RDC</div>
@@ -165,11 +165,11 @@
         </div>
         <div id="project">
 
-            <div><span>CLIENT</span>{{$order->user->name}} </div>
+            <div><span>CLIENT</span>{{$transaction->user->name}} </div>
 
-            <div><span>EMAIL</span> <a href="mailto:{{$order->user->email}}">{{$order->user->email}}</a></div>
-            <div><span>DATE</span> {{$order->created_at}}</div>
-            <div><span>DUE DATE</span> {{$order->created_at}}</div>
+            <div><span>EMAIL</span> <a href="mailto:{{$transaction->user->email}}">{{$transaction->user->email}}</a></div>
+            <div><span>DATE</span> {{$transaction->created_at}}</div>
+            <div><span>DUE DATE</span> {{$transaction->created_at}}</div>
         </div>
     </header>
     <main>
@@ -186,48 +186,42 @@
             <tbody>
 
 
-                @empty(!$order->orders)
-                @forelse ($order->orders as $order )
+                @empty(!$transaction->orders)
+                @forelse ($transaction->orders as $item )
                 <tr>
-                    <td class="service">{{$order->service->title}}</td>
-                    <td class="desc">{{$order->service->category->name}}</td>
-                    <td class="unit">${{$order->service->basic_price}}</td>
-                    <td class="qty">{{$order->quantity}}</td>
-                    <td class="total">${{$order->total_amount}}</td>
+                    <td class="service">{{$item->service->title}}</td>
+                    <td class="desc">{{$item->service->category->name}}</td>
+                    <td class="unit">${{$item->service->basic_price}}</td>
+                    <td class="qty">{{$item->quantity}}</td>
+                    <td class="total">${{$item->total_amount}}</td>
                 </tr>
                 @empty
                 @endforelse
                 @endempty
 
-                @empty(!$order->mission)
+                @empty(!$transaction->mission)
                 <tr>
-                    <td class="service">{{$order->mission->title}}</td>
-                    <td class="desc">{{$order->mission->title}}</td>
-                    <td class="unit">${{$order->mission->budget}}</td>
+                    <td class="service">{{$transaction->mission->title}}</td>
+                    <td class="desc">{{$transaction->mission->title}}</td>
+                    <td class="unit">${{$transaction->mission->budget}}</td>
                     <td class="qty">1</td>
-                    <td class="total">${{$order->mission->budget}}</td>
+                    <td class="total">${{$transaction->mission->budget}}</td>
                 </tr>
 
                 @endempty
 
                 <tr>
                     <td colspan="4">SUBTOTAL</td>
-                    <td class="total">{{$order->amount}}</td>
+                    <td class="total">{{$transaction->amount}}</td>
                 </tr>
-                <tr>
-                    <td colspan="4">TAX 0%</td>
-                    <td class="total">$0</td>
-                </tr>
+
                 <tr>
                     <td colspan="4" class="grand total">GRAND TOTAL</td>
-                    <td class="grand total">${{$order->amount}}</td>
+                    <td class="grand total">${{$transaction->amount}}</td>
                 </tr>
             </tbody>
         </table>
-        <div id="notices">
-            <div>NOTICE:</div>
-            <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-        </div>
+
     </main>
     <footer>
         Invoice was created on a computer and is valid without the signature and seal.

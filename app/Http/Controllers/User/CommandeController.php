@@ -112,8 +112,8 @@ class CommandeController extends Controller
             $commission->amount = $commissionAmount;
             $commission->user_id = $freelance->user_id;
             $commission->net_amount = $amountToAdd;
-            $commission->percent = '30%';
-            $commission->description = 'Commission de 30% prélevée sur la commande.';
+            $commission->percent = '20%';
+            $commission->description = 'Commission de 20% prélevée sur la commande.';
             $commission->transaction_id = $transaction->id;
             $commission->save();
 
