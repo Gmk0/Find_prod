@@ -218,7 +218,9 @@ Route::middleware([
         Route::post('/apply-coupon','applyCoupon')->name('applyCoupon');
         Route::post('/checkoutMaxi', 'checkoutMaxi')->name('checkoutMaxi');
         Route::post('/checkout-status','checkoutStatus')->name('checkoutStatus');
-        Route::post('/checkoutMaxiCustom', 'checkoutMaxiCustom')->name('checkoutMaxiCustom');
+
+        Route::post('/checkout-status-custom', 'checkoutStatusCustom')->name('checkoutStatusCustom');
+        Route::post('/checkoutCustom', 'checkoutCustom')->name('checkoutCustom');
         Route::get('/checkout/status-maxi',  'paiment_maxi')->name('checkoutStatusMaxiService');
         Route::get('/checkout/status-maxi-custom',  'paimentMaxiCustom')->name('checkoutStatusMaxiServiceCustom');
         Route::get('/paiement-status/{transaction_numero}',  'paiementStatus')->name('paiementStatus');

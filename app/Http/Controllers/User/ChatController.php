@@ -256,6 +256,7 @@ class ChatController extends Controller
 
             }catch (\Exception $e) {
 
+                error_log($e);
                         return response()->json(['error' => $e->getMessage()], 500);
                 //return redirect()->back()->withErros(['message' => $e->getMessage()]);
             }
