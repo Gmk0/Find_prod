@@ -131,7 +131,6 @@ class Order extends Model
             if ($freelance) {
                 $user = $freelance->user;
 
-
                 $user->notify(new OrderCreatedNotification($this));
             }
         }
