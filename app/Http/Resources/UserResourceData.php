@@ -26,7 +26,7 @@ class UserResourceData extends JsonResource
             'referral_code'=>$this->reference_code,
             'profile_photo_path'=>$this->profile_photo_path,
             'last_activity'=>$this->last_activity,
-            'profile_url' => $this->getFilamentAvatarUrl(),
+            'profile_url' => $this->getMobileAvatarUrl(),
 
 
             ];
