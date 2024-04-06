@@ -19,8 +19,6 @@ class OrderGestion extends Page implements HasForms
 
     protected static string $view = 'filament.freelance.resources.order-resource.pages.order-gestion';
 
-
-
     public Order $record;
     public ?array $data = [];
     public $is_publish=false;

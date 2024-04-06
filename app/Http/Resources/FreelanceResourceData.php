@@ -34,7 +34,7 @@ class FreelanceResourceData extends JsonResource
             'sub_categorie' =>$this->sub_categorie,
             'subCategorie'=> $this->subcategories(),
             'localisation' =>$this->localisation,
-            'user' =>$this->user->only('id','name','email','profile_photo_url', 'is_online','profile_photo_path'),
+            'user' =>UserResourceData::make($this->user),
             'category' =>$this->category->only('name'),
             'level' =>$this->level,
             'solde' =>$this->solde,
