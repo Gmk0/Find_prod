@@ -92,7 +92,7 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
     }
     public function getMobileAvatarUrl(): ?string
     {
-        return $this->profile_photo_path ? asset($this->profile_photo_path) : $this->profile_photo_url;
+        return $this->profile_photo_path ? asset(Storage::url($this->profile_photo_path)) : $this->profile_photo_url;
     }
 
     /**
