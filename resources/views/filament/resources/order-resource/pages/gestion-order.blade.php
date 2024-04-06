@@ -96,7 +96,7 @@
 
 
         @if($record->is_paid =='' && $record->feedback->etat=='Livré')
-            <x-filament::button disabled class="align-right">
+            <x-filament::button type="submit" form="submit" class="align-right">
                 Debloquer le paiement
             </x-filament::button>
         @else
