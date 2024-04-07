@@ -74,6 +74,7 @@ class Paiement
         $numeberTransformerd= $this->transformNumber($numero,$provider);
 
 
+
         $postData = [
             'merchant_id' => env('MerchantAvadaID'),
             'provider_id' => $provider,
@@ -108,7 +109,8 @@ class Paiement
 
     public function retraitAvada($montant, $numero, $provider, $callback, $transaction_id)
     {
-        $numeberTransformerd = $this->transformNumber($numero, $provider);
+        $numeberTransformerd = $this->transformNumber2($numero, $provider);
+
 
         $postData = [
             'merchant_id' => env('MerchantAvadaID'),
@@ -134,6 +136,16 @@ class Paiement
         }
     }
 
+    function transformNumber2($number, $provider)
+    {
+        if ($provider == 10) {
+            return '0' . substr($number, 4);
+        } else if ($provider == 17) {
+            return substr($number, 4);
+        } else {
+            return '243'. substr($number, 4);
+        }
+    }
 
     public function checkStatus($transaction_numero)
     {
