@@ -15,6 +15,7 @@
 Homestead.json
 Homestead.yaml
 auth.json
+dart.dart
 npm-debug.log
 yarn-error.log
 /.fleet

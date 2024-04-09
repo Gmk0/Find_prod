@@ -36,6 +36,7 @@ class FreelanceResourceData extends JsonResource
             'localisation' =>$this->localisation,
             'user' =>UserResourceData::make($this->user),
             'category' =>$this->category->only('name'),
+            'categorName'=> $this->category->name,
             'level' =>$this->level,
             'solde' =>$this->solde,
             'realisations'=> $this->user->realisations ? RealisationResource::collection($this->user->realisations) : null,
