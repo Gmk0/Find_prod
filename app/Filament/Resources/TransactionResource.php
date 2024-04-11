@@ -36,8 +36,7 @@ class TransactionResource extends Resource
                 Forms\Components\TextInput::make('payment_method'),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
-                Forms\Components\Select::make('status')
-                ->options(['failed','completed', 'pending'])
+                Forms\Components\TextInput::make('status')
                     ->required(),
                 Forms\Components\TextInput::make('type'),
             ]);
