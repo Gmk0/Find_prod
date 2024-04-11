@@ -32,7 +32,7 @@ class FreelanceResourceData extends JsonResource
             'taux_journalier' =>$this->taux_journalier,
             'comptes' =>$this->comptes,
             'sub_categorie' =>$this->sub_categorie,
-            'subCategorie'=> $this->subcategories(),
+            'subCategories'=> $this->subcategories(),
             'localisation' =>$this->localisation,
             'user' =>UserResourceData::make($this->user),
             'category' =>$this->category->only('name'),

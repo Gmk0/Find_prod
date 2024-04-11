@@ -36,7 +36,8 @@ class TransactionResource extends Resource
                 Forms\Components\TextInput::make('payment_method'),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Select::make('status')
+                ->options(['failed','completed', 'pending'])
                     ->required(),
                 Forms\Components\TextInput::make('type'),
             ]);
@@ -97,6 +98,10 @@ class TransactionResource extends Resource
         ];
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->orderBy('created_at', 'desc');
+    }
     public static function getPages(): array
     {
         return [
