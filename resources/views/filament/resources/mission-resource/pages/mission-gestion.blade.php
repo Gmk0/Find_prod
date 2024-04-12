@@ -5,8 +5,8 @@
             <p class="mb-2 text-lg text-gray-800 font-inter dark:text-gray-200">Commande
                 #{{$record->mission_numero}}
             </p>
-            <p class="mb-2 text-lg "> <span class="text-gray-600 dark:text-gray-300">Mission :</span>
-                <span class="text-gray-800 truncate dark:text-gray-200">{{$record->title}}</span>
+            <p class="mb-2 text-lg "> <span class="max-w-md text-gray-600 dark:text-gray-300">Mission :</span>
+                <span class="text-gray-800 truncate break-before-auto dark:text-gray-200">{{$record->title}}</span>
             </p>
             <p class="mt-4 text-base text-gray-600 dark:text-gray-300">Date de creation : {{$record->created_at}}
             </p>
