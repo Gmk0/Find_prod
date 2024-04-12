@@ -13,7 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 
-use Filament\Forms\Components\{DateTimePicker, TextInput, RichEditor, DatePicker, MarkdownEditor, Select, Toggle, FileUpload, Grid, Section};
+use Filament\Forms\Components\{DateTimePicker, TextInput, RichEditor, DatePicker, MarkdownEditor, Select, Toggle, FileUpload, Grid, Section, Textarea};
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Facades\DB;
 
@@ -30,13 +30,13 @@ class GestionOrder extends Page  implements HasForms
 
     public function mount()
     {
-        $this->form->fill([
-            'progress' => $this->record->progress,
-            'etat' => $this->record->feedback->etat,
-            'delai_livraison_estimee' => $this->record->feedback->delai_livraison_estimee
-        ]);
 
-        $this->is_publish = $this->record->feedback->is_publish;
+
+        $this->form->fill([
+            'satisfaction' => $this->record->feedback->satisfaction,
+            'commentaire' => $this->record->feedback->commentaires,
+
+        ]);
     }
 
 
@@ -135,6 +135,62 @@ class GestionOrder extends Page  implements HasForms
             ->title("Mise à jour de la commande")
             ->send()
             ->sendToDatabase(auth()->user());
+    }
+
+    public function addFeedback()
+    {
+        $this->form->validate();
+
+        $data = $this->form->getState();
+
+
+
+        try {
+            $data = $this->form->getState();
+            $feedback = $this->record->feedback;
+            $feedback->satisfaction = $data['satisfaction'];
+            $feedback->commentaires = $data['commentaire'];
+            $feedback->update();
+
+            Notification::make()
+                ->success()
+                ->title(__('Feedback enregistrer avec success'))
+                ->send();
+
+            $this->dispatch('close-modal', id: 'feedback');
+        } catch (\Exception $e) {
+
+            error_log($e);
+
+            Notification::make()
+                ->danger()
+                ->title(__('erreur s\est produite'))
+
+                ->send();
+        }
+    }
+
+    public function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Grid::make('1')->schema([
+                    Select::make('satisfaction')
+                    ->options([
+                        '2' => '2 etoiles',
+                        '3' => '3 etoiles',
+                        '4' => '4 etoiles',
+                        '5' => '5 etoiles',
+                    ])->required()->native(false),
+                    Textarea::make('commentaire'),
+
+
+                ]),
+
+
+            ])
+            ->statePath('data')
+            ->model($this->record);
     }
 
 

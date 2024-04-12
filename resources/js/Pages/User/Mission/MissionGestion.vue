@@ -143,7 +143,7 @@
                                             class="absolute right-0 pt-1 text-base transition-transform fa fa-chevron-down "></i>
                                     </button>
                                 </h6>
-                                <div x-show="open" x-collapse class="overflow-hidden transition-all duration-300 ease-in-out ">
+                                <div  class="overflow-hidden transition-all duration-300 ease-in-out ">
                                     <div v-if="missionResponse.rapports !=null" class="p-4 text-sm leading-normal">
 
 

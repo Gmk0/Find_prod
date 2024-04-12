@@ -91,7 +91,7 @@
 </x-filament::card>
 
 <x-filament::card>
-    <form wire:submit.prevent="submit" class="space-y-6 ">
+    <form wire:submit.prevent="submit" class="flex justify-around gap-4 space-y-6 ">
 
 
 
@@ -103,6 +103,25 @@
 
 
         @endif
+
+       @if($record->feedback->etat=='Livré')
+
+    <x-filament::modal width="2xl" id="feedback">
+        <x-slot name="trigger">
+            <x-filament::button>
+                Ajouter un feedback
+            </x-filament::button>
+        </x-slot>
+        {{$this->form}}
+
+        <div>
+            <x-filament::button wire:click='addFeedback' class="align-right">
+                Ajouter un feedback
+            </x-filament::button>
+        </div>
+    </x-filament::modal>
+
+    @endif
 
     </form>
 </x-filament::card>

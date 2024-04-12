@@ -314,12 +314,6 @@ class MissionController extends Controller
 
     public function missionPaiementMaxi(Request $request)
     {
-
-
-       ;
-
-
-
         try {
 
             DB::beginTransaction();

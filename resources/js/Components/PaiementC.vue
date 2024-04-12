@@ -170,7 +170,7 @@ const checkout= async ()=>{
 
 
 
-const countdown = ref(60);
+const countdown = ref(30);
 let countdownInterval = null;
 
 
