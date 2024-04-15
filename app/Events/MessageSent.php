@@ -8,14 +8,14 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Message;
 use App\Models\Conversation;
 use App\Models\User;
 
-class MessageSent implements ShouldBroadcast
+class MessageSent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -48,7 +48,7 @@ class MessageSent implements ShouldBroadcast
 
         return [
             'sender_id' => $this->user->id,
-            //'message' => $this->message,
+            'message' => $this->message,
            // 'conversation' => $this->conversation,
             'receiver_id' => $this->receiver_id,
         ];
@@ -64,10 +64,8 @@ class MessageSent implements ShouldBroadcast
     public function broadcastOn()
     {
 
-
-
        // error_log($this->receiver_id);
 
-        return new PrivateChannel('chat.' . $this->receiver_id);
+        return new Channel('chat.' . $this->receiver_id);
     }
 }
