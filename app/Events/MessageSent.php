@@ -48,8 +48,8 @@ class MessageSent implements ShouldBroadcast
 
         return [
             'sender_id' => $this->user->id,
-            'message' => $this->message,
-            'conversation' => $this->conversation,
+            //'message' => $this->message,
+           // 'conversation' => $this->conversation,
             'receiver_id' => $this->receiver_id,
         ];
         # code...

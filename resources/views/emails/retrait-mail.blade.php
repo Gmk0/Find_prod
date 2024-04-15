@@ -71,7 +71,7 @@
         <h1>Montant versé</h1>
     </div>
     <div class="content">
-        <p>Cher(e) {{$userName}},</p>
+        <p>Cher(e) {{$senderName}},</p>
         <p>Vous avez reçu un versement sur votre compte. Voici les détails :</p>
         <p>Montant versé : <strong>{{$montant}} $</strong></p>
         <p>Merci de votre confiance.</p>
