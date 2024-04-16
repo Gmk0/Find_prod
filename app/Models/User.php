@@ -43,6 +43,9 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
     use HasSlug;
 
 
+    public string $userProfile= "https://www.find-freelance.com/images/illustrations/user-profile.jpg";
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -92,7 +95,7 @@ class User extends Authenticatable implements  HasAvatar, FilamentUser,MustVerif
     }
     public function getMobileAvatarUrl(): ?string
     {
-        return $this->profile_photo_path ? asset(Storage::url($this->profile_photo_path)) : null;
+        return $this->profile_photo_path ? asset(Storage::url($this->profile_photo_path)) : $this->userProfile;
     }
 
     /**
