@@ -32,7 +32,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::get('/user','fetchUser');
         Route::get('/logout', 'logout');
+        Route::post('/verifyCode', 'verifyCode');
+
     });
+
+    Route::controller(ChatController::class)->group(function () {
+
+        Route::get('/getUserConversations', 'getUserConversations');
+        Route::post('/createConversation', 'createConversation');
+
+    });
+
+
+
 });
 
 Route::get('/allServices',[ServiceController::class, 'AllservicesGetMobile']);
@@ -40,5 +52,4 @@ Route::get('/allServices',[ServiceController::class, 'AllservicesGetMobile']);
 Route::get('/allFreelances',[FreelanceController::class, 'AllFreelancesGet']);
 
 
-Route::get('/getUserConversations',[ChatController::class, 'getUserConversations'])->middleware(['auth:sanctum']);
 Route::post('/SendMessage', [ChatController::class, 'SendMessage'])->middleware(['auth:sanctum']);

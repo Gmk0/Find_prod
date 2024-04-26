@@ -19,7 +19,7 @@ class CommissionResource extends Resource
 
     protected static ?string $navigationGroup = 'Paiement';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
     public static function form(Form $form): Form
     {
@@ -53,21 +53,30 @@ class CommissionResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('order.id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('order.service.title')
+                    ->wrap()
+                    ,
                 Tables\Columns\TextColumn::make('mission.title')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('transaction_id')
-                    ->numeric()
-                    ->sortable(),
+                    ->wrap()
+                    ,
+
                 Tables\Columns\TextColumn::make('amount')
-                    ->numeric()
-                    ->sortable(),
+                    ->money('usd',true)
+                    ->sortable()
+                ->summarize([
+                    Tables\Columns\Summarizers\Sum::make()
+                    ->label('commission')
+                        ->money(),
+                ]),
                 Tables\Columns\TextColumn::make('net_amount')
                     ->numeric()
-                    ->sortable(),
+                ->money('usd', true)
+                    ->sortable()
+                ->summarize([
+                    Tables\Columns\Summarizers\Sum::make()
+                        ->money('usd',true)
+                    ->label('Freelance versement'),
+                ]),
                 Tables\Columns\TextColumn::make('percent')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

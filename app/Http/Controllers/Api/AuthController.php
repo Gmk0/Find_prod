@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResourceData;
 use App\Models\User;
+use App\Notifications\VerificationMailPhone;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Illuminate\Validation\Rule;
@@ -36,8 +38,20 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
+
+                $code=0;
+                if(empty($user->email_verified_at))
+                {
+                    $code=$this->sendEmail($user);
+                }
+
                 $token = $user->createToken("personal_token")->plainTextToken;
-                $response = ['user' => UserResourceData::make($user), 'token' => $token];
+                $response = ['user' =>
+                 UserResourceData::make($user),
+                 'token' => $token,
+                'code'=>$code];
+
+
 
                 return response()->json($response, 200);
             }
@@ -55,6 +69,9 @@ class AuthController extends Controller
     {
 
         try {
+
+            DB::beginTransaction();
+
             $rules = [
                 'name' => ['required', 'string', 'max:255', 'unique:users'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -99,11 +116,23 @@ class AuthController extends Controller
                 'referral_by' => $referrer ? $referrer->id : null
             ]);
 
+            $code= $this->sendEmail($user);
             $token = $user->createToken("personal_token")->plainTextToken;
-            $response = ['user' => UserResourceData::make($user), 'token' => $token, 'status' => true];
+            $response = ['user' =>
+            UserResourceData::make($user),
+             'token' => $token,
+             'code' => $code,
+             'status' => true];
+
+             DB::commit();
+
             return response()->json($response, 200);
+
+
         } catch (\Exception $e) {
 
+            DB::
+            Rollback();
             return response()->json([
                 'message' => $e->getMessage(),
                 'status' => false
@@ -144,5 +173,57 @@ class AuthController extends Controller
         // Retourner une réponse de succès
         return response()->json(['message' => 'Logout successful']);
     }
+    public function sendEmail(User $user)
+    {
+
+
+        $code = rand(1000, 9999);
+
+        DB::table('email_phone_verification')->insert([
+            'email' => $user->email,
+            'code' => $code,
+            'created_at' => now(),
+        ]);
+
+        $user->notify(new VerificationMailPhone($code));
+
+        return $code;
+        // $user->notifications()
+
+        /// Mail::to($this->userAuth['email'])->send(new EmailVerification($code));
+
+        //  $this->show = true;
+    }
+
+    public function verifyCode(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|digits:4',
+        ]);
+
+        $email = $request->user()->email;
+
+        $verification = DB::table('email_phone_verification')
+        ->where('email', $email)
+        ->where('code', $request->code)
+        ->where('created_at', '>=', now()->subMinutes(10))
+        ->first();
+
+        if ($verification) {
+            // Mettez à jour votre base de données ou effectuez d'autres opérations si la validation réussit.
+            DB::table('users')->where('email', $email)->update(['email_verified_at' => now()]);
+            DB::table('email_phone_verification')->where('email', $email)->delete();
+
+            // Réinitialiser les champs de formulaire pour permettre à l'utilisateur de soumettre un autre code.
+            // $this->reset(['code']);
+
+        };
+        return response()->json([
+            'message' => 'verification reussie',
+            'status' => true
+        ], 200);
+    }
 
 }
+
+

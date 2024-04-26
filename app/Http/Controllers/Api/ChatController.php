@@ -6,6 +6,7 @@ use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ConversationResourceData;
 use App\Models\Conversation;
+use App\Models\Freelance;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -87,6 +88,65 @@ class ChatController extends Controller
     public function dispatchMessageSent($user, $message, $conversation, $receiverInstance)
     {
         broadcast(new MessageSent($user, $message, $conversation, $receiverInstance));
+    }
+
+    public function createConversation(Request $request)
+    {
+
+        try {
+
+            $freelance_id=$request->freelance_id;
+            $user=$request->user();
+
+
+            $conversation = Conversation::where('freelance_id', $freelance_id)
+                ->whereHas('user', function ($query) use ($user) {
+                    $query->where('id', $user->id);
+                })
+                ->first();
+            // Si une conversation est trouvée, afficher la vue de la conversation
+            if ($conversation== null) {
+                // return redirect()->route('MessageUser');
+                $conversation = new Conversation();
+                $conversation->freelance_id = $freelance_id;
+                $conversation->user_id = $user->id;
+                $conversation->last_time_message = now();
+                $conversation->status = 'pending';
+                $conversation->save();
+            }
+
+
+            $createdMessage = Message::create([
+                'sender_id' => $user->id,
+                'receiver_id' => $request->receiver_id,
+                'conversation_id' => $conversation->id,
+                'body' => $request->message ?? null,
+                'is_read' => false,
+                //'service_id' => $request->service_id,
+                'type' => "file",
+                'file' => null, // Enregistre les chemins des fichiers dans la base de données
+            ]);
+
+
+            $conversation->last_time_message = now();
+            $conversation->save();
+
+            // CheckUserActivityJob::dispatch($request->user_id, $createdMessage);
+
+            return response()->json([
+                'message' => $createdMessage,
+                'conversation' => ConversationResourceData::make($conversation)
+            ], 200);
+
+
+
+        } catch (\Exception $e) {
+
+            error_log($e);
+            return response()->json(['error' => $e->getMessage()], 500);
+            //return redirect()->back()->withErros(['message' => $e->getMessage()]);
+        }
+
     }
 
 }
