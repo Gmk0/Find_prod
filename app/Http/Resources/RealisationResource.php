@@ -17,7 +17,12 @@ class RealisationResource extends JsonResource
         return [
             'id'=>$this->id,
             'description'=>$this->description,
-            "media"=>$this->getMedia('*'),
+            "media"=> $this->getMedia('realisations')->map(function ($media) {
+                return [
+                    'url' => $media->getUrl(),
+                    'alt' => $media->name,
+                ];
+            }),
            // "user"=>$this->user,
             ];
     }

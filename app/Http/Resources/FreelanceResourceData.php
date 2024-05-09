@@ -39,10 +39,12 @@ class FreelanceResourceData extends JsonResource
             'categorName'=> $this->category->name,
             'level' =>$this->level,
             'solde' =>$this->solde,
+            'isLike'=> $this->isFavorite(),
             'realisations'=> $this->user->realisations ? RealisationResource::collection($this->user->realisations) : null,
             'services' =>$this->services,
             'commande_encours'=> $this->countCommandeEncours(),
             'commande_realiser'=> $this->countCommandeFinis(),
+            'created_at'=> $this->created_at,
 
             ];
     }

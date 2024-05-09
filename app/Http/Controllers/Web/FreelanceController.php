@@ -139,6 +139,40 @@ class FreelanceController extends Controller
             ]);
         }
 
+    }
+
+    public function LikeMobile(Request $request)
+    {
+        //dd($request->all());
+
+        try{
+            $isLike = false;
+
+            $favorite = Favorite::where('user_id', auth()->id())
+                ->where('freelance_id', $request->freelance_id)
+                ->first();
+
+            if ($favorite) {
+                $favorite->delete();
+            } else {
+                Favorite::create([
+                    'user_id' => auth()->id(),
+                    'freelance_id' => $request->freelance_id,
+                ]);
+                $isLike = true;
+            }
+
+            return response([
+                'freelance_id' => $request->freelance_id,
+                'is_like' => $isLike
+            ]);
+
+        }catch(\Exception $e){
+            return response([
+                'error' => $e->getMessage(),
+                'is_like' => $isLike
+            ]);
+        }
 
     }
 
