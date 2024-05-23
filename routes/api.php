@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Freelance\FreelanceController;
+use App\Http\Controllers\User\MissionController;
 use App\Http\Controllers\Web\FreelanceController as WebFreelanceController;
 use App\Http\Controllers\Web\ServiceController;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ Route::controller(AuthController::class)->group(function () {
         'login'
 );
     Route::post('/auth/register', 'create');
+    Route::post('/auth/google/login', 'LoginGoogle');
 });
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -49,6 +51,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/likeMobile', 'LikeMobile');
     });
 
+    Route::controller(MissionController::class)->group(function () {
+        Route::post('/createMission', 'CreateMission');
+    });
+
+
 
 
 });
@@ -59,3 +66,5 @@ Route::get('/allFreelances',[FreelanceController::class, 'AllFreelancesGet'])->m
 
 
 Route::post('/SendMessage', [ChatController::class, 'SendMessage'])->middleware(['auth:sanctum']);
+
+

@@ -524,4 +524,48 @@ class MissionController extends Controller
         }
     }
 
+
+    public function createMission(Request $request)
+    {
+
+        try{
+
+
+        $imagePaths = [];
+
+        if ($request->hasFile('files')) {
+            $files = $request->file('files');
+            foreach ($files as $file) {
+                $fileName = $file->getClientOriginalName(); // Récupérer le nom original du fichier
+                $path = $file->storeAs('missions', $fileName, 'public'); // Enregistrer le fichier dans 'public/missions' avec le nom d'origine
+                $filesPaths[] = '/missions/' . $fileName; // Enregistrer les nouveaux chemins des fichiers
+            }
+
+        }
+
+        $mission=Mission::create([
+            'user_id'=>$request->user()->id,
+            'title' => $request->title,
+            'category_id' => $request->category,
+            'description' => $request->description,
+            'files' => $filesPaths, // Sauvegarde des chemins des fichiers dans la base de données
+            'budget' => $request->price,
+            'begin_mission' => $request->startDate,
+            'end_mission' => $request->endDate,
+            'exigences' => $request->exigences,
+            'masquer' => true,
+        ]);
+         return response()->json([
+                'message' => 'Mission successfully created',
+                'element' => $mission,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ],500);
+        }
+
+    }
+
+
 }

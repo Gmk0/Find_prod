@@ -45,12 +45,8 @@ class AuthController extends Controller
                     $code=$this->sendEmail($user);
                 }
 
-                $token = $user->createToken("personal_token")->plainTextToken;
-                $response = ['user' =>
-                 UserResourceData::make($user),
-                 'token' => $token,
-                'code'=>$code];
 
+                $response = $this->createTokenUser($user, $code);
 
 
                 return response()->json($response, 200);
@@ -116,13 +112,10 @@ class AuthController extends Controller
                 'referral_by' => $referrer ? $referrer->id : null
             ]);
 
+
             $code= $this->sendEmail($user);
-            $token = $user->createToken("personal_token")->plainTextToken;
-            $response = ['user' =>
-            UserResourceData::make($user),
-             'token' => $token,
-             'code' => $code,
-             'status' => true];
+            $response = $this->createTokenUser($user,$code);
+
 
              DB::commit();
 
@@ -223,6 +216,30 @@ class AuthController extends Controller
             'status' => true
         ], 200);
     }
+
+    public function createTokenUser(User $user,$code=0)
+    {
+
+        $token = $user->createToken("personal_token")->plainTextToken;
+        $response = [
+            'user' =>
+            UserResourceData::make(
+                $user
+            ),
+            'token' => $token,
+            'code' => $code
+        ];
+
+        return $response;
+
+    }
+
+    public function LoginGoogle(Request $request)
+    {
+
+        return response(['request'=> $request->all()]);
+    }
+
 
 }
 

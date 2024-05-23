@@ -83,7 +83,9 @@ class ServiceResource extends Resource
                     //->helperText('3.5% sera ajouter a votre prix pour les frais de transaction ')
                     ->required(),
 
-                    TextInput::make('basic_revision')->label('Revisions')
+                    TextInput::make('basic_revision')
+                    ->label('Revisions')
+                    ->numeric(),
                 ])
                 ->columns(2),
 
